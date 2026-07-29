@@ -121,7 +121,7 @@ jobs:
           PY
 
             echo "=== Run smoke checks ==="
-            python -m py_compile scripts/collect_shelters.py scripts/reference_matcher.py
+            python -m py_compile scripts/collect_shelters.py scripts/reference_matcher.py scripts/diagnose_html.py
             python - <<'PY'
           from pathlib import Path
           from scripts.reference_matcher import ReferenceMatcher
@@ -140,6 +140,9 @@ jobs:
           echo "exit_code=$STATUS" >> "$GITHUB_OUTPUT"
 
           if [ "$STATUS" -ne 0 ]; then
+            if [ -s debug/latest_page.html ]; then
+              python scripts/diagnose_html.py debug/latest_page.html >> debug/workflow.log 2>&1 || true
+            fi
             cp debug/workflow.log data/logs/last_failure.log
             cp debug/latest_page.html data/logs/last_failure_page.html 2>/dev/null || true
             cp debug/latest_page.png data/logs/last_failure_page.png 2>/dev/null || true
@@ -147,7 +150,7 @@ jobs:
               echo "## Shelter collection failed"
               echo
               echo '```text'
-              tail -n 80 debug/workflow.log
+              tail -n 120 debug/workflow.log
               echo '```'
             } >> "$GITHUB_STEP_SUMMARY"
           else
