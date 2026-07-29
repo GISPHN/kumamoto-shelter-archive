@@ -41,7 +41,7 @@ except ModuleNotFoundError:  # direct execution: python scripts/collect_shelters
 JST = ZoneInfo("Asia/Tokyo")
 DEFAULT_URL = (
     "https://portal.bousai.pref.kumamoto.jp/sp.html?"
-    "p=evacuation%2Fshelter&l=14-0&"
+    "p=evacuation%2Fshelter&l=15-0&"
     "ll=32.63819999999999%2C130.77610000000004&z=9&municipalityCd=430005"
 )
 
@@ -418,36 +418,9 @@ async def collect_rendered_page(url: str, debug_dir: Path, timeout_ms: int) -> C
                 )
             await page.wait_for_timeout(1500)
 
-            # Explicitly select the site's "all shelters" mode. The site may use
-            # a label, link, radio button, or JavaScript click handler.
+            # Keep the portal in opened shelter list mode. The site's
+            # "全ての避難所" control is a map layer selector and is not used here.
             all_selected = False
-            candidate_selectors = [
-                "[data-idis-layer-id='14']",
-                "label:has-text('全ての避難所')",
-                "a:has-text('全ての避難所')",
-                "button:has-text('全ての避難所')",
-                "text=全ての避難所",
-            ]
-            for selector in candidate_selectors:
-                locator = page.locator(selector)
-                if await locator.count() > 0:
-                    try:
-                        await locator.first.click(force=True)
-                        all_selected = True
-                        try:
-                            await page.wait_for_function(
-                                """() => {
-                                  const target = document.querySelector('[data-idis-layer-id="14"]');
-                                  return target && target.classList.contains('is-shown');
-                                }""",
-                                timeout=10000,
-                            )
-                        except Exception:
-                            pass
-                        await page.wait_for_timeout(5000)
-                        break
-                    except Exception:
-                        continue
 
             # Attempt to select the DataTables "all rows" option where present.
             selects = page.locator("select")
@@ -543,30 +516,104 @@ async def collect_rendered_page(url: str, debug_dir: Path, timeout_ms: int) -> C
             headers = extracted.get("headers", [])
             rows = extracted.get("rows", [])
 
-            # Dojo dgrid renders the header and each data row in separate,
-            # sometimes nested table elements. Parse direct TD children of every
-            # TR rather than assuming one conventional table/tbody structure.
+            # Dojo dgrid uses virtual scrolling and recycles row elements.
+            # Scroll through the grid and accumulate every unique rendered row.
             dgrid_extracted = await page.evaluate(
                 r"""
-                () => {
-                  const norm = s => (s || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
+                async () => {
+                  const norm = s => (s || '').replace(/ /g, ' ').replace(/\s+/g, ' ').trim();
+                  const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
                   const headerRow = Array.from(document.querySelectorAll('tr')).find(tr =>
                     Array.from(tr.children).some(cell =>
                       cell.tagName === 'TH' && norm(cell.textContent).includes('避難所名')
                     )
                   );
-                  if (!headerRow) return {headers: [], rows: []};
+                  if (!headerRow) return {headers: [], rows: [], scrolled: false};
+
                   const headers = Array.from(headerRow.children)
                     .filter(cell => cell.tagName === 'TH')
                     .map(cell => norm(cell.textContent));
-                  const rows = Array.from(document.querySelectorAll('tr'))
-                    .map(tr => Array.from(tr.children)
-                      .filter(cell => cell.tagName === 'TD')
-                      .map(cell => norm(cell.textContent)))
-                    .filter(cells => cells.length >= headers.length && headers.length >= 5)
-                    .map(cells => cells.slice(0, headers.length))
-                    .filter(cells => cells.some(Boolean));
-                  return {headers, rows};
+                  const root = headerRow.closest('.dgrid') || document;
+                  const scrollers = Array.from(root.querySelectorAll('.dgrid-scroller'));
+                  const scroller = scrollers.sort(
+                    (a, b) => (b.scrollHeight - b.clientHeight) - (a.scrollHeight - a.clientHeight)
+                  )[0] || null;
+                  const seen = new Map();
+
+                  const collect = () => {
+                    const rows = Array.from(root.querySelectorAll('tr'));
+                    for (const tr of rows) {
+                      const cells = Array.from(tr.children)
+                        .filter(cell => cell.tagName === 'TD')
+                        .map(cell => norm(cell.textContent));
+                      if (headers.length < 5 || cells.length < headers.length) continue;
+                      const values = cells.slice(0, headers.length);
+                      if (!values.some(Boolean)) continue;
+                      if (!values[1] || values[1] === '避難所名') continue;
+                      const key = JSON.stringify(values);
+                      if (!seen.has(key)) seen.set(key, values);
+                    }
+                  };
+
+                  collect();
+                  if (!scroller) {
+                    return {headers, rows: Array.from(seen.values()), scrolled: false};
+                  }
+
+                  scroller.scrollIntoView({block: 'center'});
+                  scroller.scrollTop = 0;
+                  scroller.dispatchEvent(new Event('scroll', {bubbles: true}));
+                  await sleep(800);
+                  collect();
+
+                  let stableBottomRounds = 0;
+                  let previousCount = -1;
+                  for (let iteration = 0; iteration < 500; iteration += 1) {
+                    collect();
+                    const maxTop = Math.max(0, scroller.scrollHeight - scroller.clientHeight);
+                    const currentTop = scroller.scrollTop;
+                    const atBottom = currentTop >= maxTop - 2;
+
+                    if (atBottom) {
+                      await sleep(700);
+                      collect();
+                      const expandedMaxTop = Math.max(0, scroller.scrollHeight - scroller.clientHeight);
+                      if (expandedMaxTop > maxTop + 2) {
+                        scroller.scrollTop = expandedMaxTop;
+                        scroller.dispatchEvent(new Event('scroll', {bubbles: true}));
+                        await sleep(500);
+                        continue;
+                      }
+                      if (seen.size === previousCount) {
+                        stableBottomRounds += 1;
+                      } else {
+                        stableBottomRounds = 0;
+                      }
+                      previousCount = seen.size;
+                      if (stableBottomRounds >= 4) break;
+
+                      // Nudge the virtual grid so a final deferred page is requested.
+                      scroller.scrollTop = Math.max(0, maxTop - Math.max(100, scroller.clientHeight * 0.2));
+                      scroller.dispatchEvent(new Event('scroll', {bubbles: true}));
+                      await sleep(250);
+                      scroller.scrollTop = maxTop;
+                      scroller.dispatchEvent(new Event('scroll', {bubbles: true}));
+                    } else {
+                      const step = Math.max(300, Math.floor(scroller.clientHeight * 0.7));
+                      scroller.scrollTop = Math.min(maxTop, currentTop + step);
+                      scroller.dispatchEvent(new Event('scroll', {bubbles: true}));
+                    }
+                    await sleep(400);
+                  }
+
+                  collect();
+                  return {
+                    headers,
+                    rows: Array.from(seen.values()),
+                    scrolled: true,
+                    scrollHeight: scroller.scrollHeight,
+                    clientHeight: scroller.clientHeight,
+                  };
                 }
                 """
             )
@@ -581,7 +628,7 @@ async def collect_rendered_page(url: str, debug_dir: Path, timeout_ms: int) -> C
 
             # DOM fallback: iterate visible pagination until the Next control is
             # disabled or no new rows are found.
-            if extracted.get("mode") != "datatable":
+            if extracted.get("mode") != "datatable" and not rows:
                 collected_rows: list[list[str]] = []
                 seen_pages: set[str] = set()
                 for _ in range(500):
@@ -762,7 +809,7 @@ def main() -> int:
         # A reference facility absent from the opened list is recorded as inactive.
         web_rows = normalized_rows
         if not web_rows:
-            raise RuntimeError("Webの開設避難所一覧から1件も取得できませんでした。")
+            print("Opened shelter table contains zero rows; recording all reference facilities as inactive.")
 
         master_rows: dict[tuple[str, ...], dict[str, str]] = {}
         for reference_group in reference_matcher.by_name_address.values():
