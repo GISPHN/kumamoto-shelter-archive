@@ -1,0 +1,111 @@
+#!/usr/bin/env python3
+"""Apply the Kumamoto portal Dojo dgrid extraction patch idempotently."""
+
+from __future__ import annotations
+
+from pathlib import Path
+
+
+def main() -> int:
+    path = Path("scripts/collect_shelters.py")
+    text = path.read_text(encoding="utf-8")
+    changed = False
+
+    exact_selector = '"[data-idis-layer-id=\'14\']",'
+    if exact_selector not in text:
+        old_selectors = '''            candidate_selectors = [
+                "label:has-text('全ての避難所')",
+                "a:has-text('全ての避難所')",
+                "button:has-text('全ての避難所')",
+                "text=全ての避難所",
+            ]'''
+        new_selectors = '''            candidate_selectors = [
+                "[data-idis-layer-id='14']",
+                "label:has-text('全ての避難所')",
+                "a:has-text('全ての避難所')",
+                "button:has-text('全ての避難所')",
+                "text=全ての避難所",
+            ]'''
+        if old_selectors not in text:
+            raise SystemExit("candidate selector block not found")
+        text = text.replace(old_selectors, new_selectors, 1)
+        changed = True
+
+    wait_marker = "target.classList.contains('is-shown')"
+    if wait_marker not in text:
+        old_wait = '''                        all_selected = True
+                        await page.wait_for_timeout(2500)
+                        break'''
+        new_wait = '''                        all_selected = True
+                        try:
+                            await page.wait_for_function(
+                                """() => {
+                                  const target = document.querySelector('[data-idis-layer-id="14"]');
+                                  return target && target.classList.contains('is-shown');
+                                }""",
+                                timeout=10000,
+                            )
+                        except Exception:
+                            pass
+                        await page.wait_for_timeout(5000)
+                        break'''
+        if old_wait not in text:
+            raise SystemExit("post-click wait block not found")
+        text = text.replace(old_wait, new_wait, 1)
+        changed = True
+
+    dgrid_marker = "Dojo dgrid renders the header and every data row as separate"
+    if dgrid_marker not in text:
+        marker = '''            headers = extracted.get("headers", [])
+            rows = extracted.get("rows", [])
+
+            # DOM fallback: iterate visible pagination until the Next control is'''
+        replacement = '''            headers = extracted.get("headers", [])
+            rows = extracted.get("rows", [])
+
+            # Dojo dgrid renders the header and every data row as separate
+            # table elements. Gather those row tables directly when this yields
+            # more records than the generic DataTables/DOM extractor.
+            dgrid_extracted = await page.evaluate(
+                r"""
+                () => {
+                  const norm = s => (s || '').replace(/\\u00a0/g, ' ').replace(/\\s+/g, ' ').trim();
+                  const tables = Array.from(document.querySelectorAll('table'));
+                  const headerTable = tables.find(table =>
+                    Array.from(table.querySelectorAll('th')).some(th => norm(th.textContent).includes('避難所名'))
+                  );
+                  if (!headerTable) return {headers: [], rows: []};
+                  const headers = Array.from(headerTable.querySelectorAll('th')).map(th => norm(th.textContent));
+                  const rows = tables
+                    .filter(table => table !== headerTable)
+                    .map(table => Array.from(table.querySelectorAll('td')).map(td => norm(td.textContent)))
+                    .filter(cells => cells.length === headers.length && cells.some(Boolean));
+                  return {headers, rows};
+                }
+                """
+            )
+            if len(dgrid_extracted.get("rows", [])) > len(rows):
+                headers = dgrid_extracted.get("headers", headers)
+                rows = dgrid_extracted.get("rows", rows)
+
+            print(
+                f"Rendered extraction: mode={extracted.get('mode')}; "
+                f"all_selected={all_selected}; headers={headers}; rows={len(rows)}"
+            )
+
+            # DOM fallback: iterate visible pagination until the Next control is'''
+        if marker not in text:
+            raise SystemExit("extraction insertion point not found")
+        text = text.replace(marker, replacement, 1)
+        changed = True
+
+    if changed:
+        path.write_text(text, encoding="utf-8")
+        print("Applied Dojo dgrid extraction patch.")
+    else:
+        print("Dojo dgrid extraction patch is already applied.")
+    return 0
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())
