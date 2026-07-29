@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Apply Kumamoto portal Dojo dgrid compatibility patches idempotently."""
+"""Apply Kumamoto portal compatibility and full snapshot patches idempotently."""
 
 from __future__ import annotations
 
@@ -12,7 +12,7 @@ def main() -> int:
     changed = False
 
     # Layer 15 is the currently opened shelter layer. Layer 14 is the site's
-    # explicit "all shelters" layer and must be requested in the source URL.
+    # explicit all shelter map layer. The list itself still contains open rows.
     if "p=evacuation%2Fshelter&l=15-0&" in text:
         text = text.replace(
             "p=evacuation%2Fshelter&l=15-0&",
@@ -166,11 +166,119 @@ def main() -> int:
         text = text.replace(old_dgrid, new_dgrid, 1)
         changed = True
 
+    # Do not replace successfully extracted dgrid rows with an empty conventional
+    # tbody pagination result.
+    if "if collected_rows:\n                    rows = collected_rows" not in text:
+        old_fallback = '''                rows = collected_rows
+
+            body_text = normalize_text(await page.locator("body").inner_text())'''
+        new_fallback = '''                if collected_rows:
+                    rows = collected_rows
+
+            body_text = normalize_text(await page.locator("body").inner_text())'''
+        if old_fallback not in text:
+            raise SystemExit("pagination fallback assignment not found")
+        text = text.replace(old_fallback, new_fallback, 1)
+        changed = True
+
+    master_marker = "Web開設一覧に掲載なし"
+    if master_marker not in text:
+        old_main = '''        for row in normalized_rows:
+            enrichment = reference_matcher.enrich(row)
+            row.update(enrichment)
+            row["shelter_id"] = tracking_id(row["web_shelter_id"], enrichment)
+            row["record_hash"] = record_hash(row)
+
+        validate_collection(normalized_rows, args.minimum_rows)
+'''
+        new_main = '''        for row in normalized_rows:
+            enrichment = reference_matcher.enrich(row)
+            row.update(enrichment)
+            row["shelter_id"] = tracking_id(row["web_shelter_id"], enrichment)
+            row["record_hash"] = record_hash(row)
+
+        # The portal's dgrid is an opened shelter list. Build the complete daily
+        # population from the supplied reference CSV and overlay opened web rows.
+        # A reference facility absent from the opened list is recorded as inactive.
+        web_rows = normalized_rows
+        if not web_rows:
+            raise RuntimeError("Webの開設避難所一覧から1件も取得できませんでした。")
+
+        master_rows: dict[tuple[str, ...], dict[str, str]] = {}
+        for reference_group in reference_matcher.by_name_address.values():
+            ordered_group = sorted(reference_group, key=lambda item: item["共通ID"])
+            primary = ordered_group[0]
+            address_without_prefecture = primary["住所"].replace("熊本県", "", 1)
+            municipality_match = re.match(r"(.+?(?:市|町|村))", address_without_prefecture)
+            municipality = municipality_match.group(1) if municipality_match else ""
+            synthetic_raw = {
+                "市町村": municipality,
+                "避難所名": primary["施設・場所名"],
+                "開設状況": "未開設（Web開設一覧に掲載なし）",
+                "混雑状況": "",
+                "住所": primary["住所"],
+                "ルート検索": "",
+            }
+            master_row = row_to_normalized(
+                synthetic_raw,
+                snapshot_date,
+                retrieved_at,
+                result.source_updated_at_text,
+                args.url,
+            )
+            enrichment = reference_matcher.enrich(master_row)
+            master_row.update(enrichment)
+            master_row["shelter_id"] = tracking_id(master_row["web_shelter_id"], enrichment)
+            master_row["record_hash"] = record_hash(master_row)
+            common_ids = tuple(
+                sorted(value for value in enrichment.get("reference_common_ids", "").split(";") if value)
+            )
+            if not common_ids:
+                raise RuntimeError(
+                    f"参照CSV施設を自己照合できませんでした: {primary['施設・場所名']}"
+                )
+            master_rows[common_ids] = master_row
+
+        unmatched_or_extra_web_rows: list[dict[str, str]] = []
+        for web_row in web_rows:
+            common_ids = tuple(
+                sorted(
+                    value
+                    for value in web_row.get("reference_common_ids", "").split(";")
+                    if value
+                )
+            )
+            if common_ids and common_ids in master_rows:
+                master_rows[common_ids] = web_row
+            else:
+                unmatched_or_extra_web_rows.append(web_row)
+
+        normalized_rows = list(master_rows.values()) + unmatched_or_extra_web_rows
+        normalized_rows.sort(
+            key=lambda row: (
+                normalize_text(row.get("municipality", "")),
+                normalize_text(row.get("shelter_name", "")),
+                row.get("shelter_id", ""),
+            )
+        )
+        print(
+            f"Full snapshot: reference_groups={len(master_rows)}, "
+            f"opened_web_rows={len(web_rows)}, extra_web_rows={len(unmatched_or_extra_web_rows)}, "
+            f"total={len(normalized_rows)}"
+        )
+
+        validate_collection(normalized_rows, args.minimum_rows)
+'''
+        if old_main not in text:
+            raise SystemExit("main enrichment block not found")
+        text = text.replace(old_main, new_main, 1)
+        changed = True
+
     if changed:
         path.write_text(text, encoding="utf-8")
-        print("Applied Dojo compatibility patch.")
+        print("Applied portal compatibility and full snapshot patch.")
     else:
-        print("Dojo compatibility patch is already applied.")
+        print("Portal compatibility and full snapshot patch is already applied.")
     return 0
 
 
