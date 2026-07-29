@@ -53,7 +53,6 @@ jobs:
           if [ -n "${MANUAL_DATE:-}" ]; then
             SNAPSHOT_DATE="$MANUAL_DATE"
           else
-            # 7月30日0時台の取得は、7月30日0時時点として記録する。
             SNAPSHOT_DATE="$(TZ=Asia/Tokyo date +%F)"
           fi
           date -d "$SNAPSHOT_DATE" +%F >/dev/null
@@ -118,15 +117,17 @@ jobs:
           print(f"Validated reference CSV: {rows} rows")
           PY
 
-            echo "=== Apply portal compatibility patch ==="
+            echo "=== Apply portal compatibility patches ==="
             python scripts/apply_dgrid_patch.py
+            python scripts/refine_dgrid_patch.py
 
             echo "=== Run smoke checks ==="
             python -m py_compile \
               scripts/collect_shelters.py \
               scripts/reference_matcher.py \
               scripts/diagnose_html.py \
-              scripts/apply_dgrid_patch.py
+              scripts/apply_dgrid_patch.py \
+              scripts/refine_dgrid_patch.py
             python - <<'PY'
           from pathlib import Path
           from scripts.reference_matcher import ReferenceMatcher
@@ -161,10 +162,12 @@ jobs:
 
           STATUS=${PIPESTATUS[0]}
           echo "exit_code=$STATUS" >> "$GITHUB_OUTPUT"
+          cp debug/workflow.log data/logs/latest_run.log
 
           if [ "$STATUS" -ne 0 ]; then
             if [ -s debug/latest_page.html ]; then
               python scripts/diagnose_html.py debug/latest_page.html >> debug/workflow.log 2>&1 || true
+              cp debug/workflow.log data/logs/latest_run.log
             fi
             cp debug/workflow.log data/logs/last_failure.log
             cp debug/latest_page.html data/logs/last_failure_page.html 2>/dev/null || true
