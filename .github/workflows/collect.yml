@@ -15,7 +15,7 @@ on:
   workflow_dispatch:
     inputs:
       snapshot_date:
-        description: "記録日（YYYY-MM-DD、空欄なら実行日）"
+        description: "記録日（YYYY-MM-DD、空欄なら実行日の日本時間）"
         required: false
         type: string
 
@@ -48,14 +48,12 @@ jobs:
         shell: bash
         env:
           MANUAL_DATE: ${{ inputs.snapshot_date }}
-          EVENT_NAME: ${{ github.event_name }}
         run: |
           set -euo pipefail
           if [ -n "${MANUAL_DATE:-}" ]; then
             SNAPSHOT_DATE="$MANUAL_DATE"
-          elif [ "$EVENT_NAME" = "schedule" ]; then
-            SNAPSHOT_DATE="$(TZ=Asia/Tokyo date -d 'yesterday' +%F)"
           else
+            # 7月30日0時台の取得は、7月30日0時時点として記録する。
             SNAPSHOT_DATE="$(TZ=Asia/Tokyo date +%F)"
           fi
           date -d "$SNAPSHOT_DATE" +%F >/dev/null
@@ -120,7 +118,7 @@ jobs:
           print(f"Validated reference CSV: {rows} rows")
           PY
 
-            echo "=== Apply Dojo dgrid compatibility patch ==="
+            echo "=== Apply portal compatibility patch ==="
             python scripts/apply_dgrid_patch.py
 
             echo "=== Run smoke checks ==="
@@ -141,6 +139,24 @@ jobs:
 
             echo "=== Collect rendered shelter table ==="
             python scripts/collect_shelters.py --snapshot-date "$SNAPSHOT_DATE"
+
+            echo "=== Export current opened shelters for review ==="
+            python - <<'PY'
+          import csv
+          from pathlib import Path
+
+          source = Path("data/latest.csv")
+          output = Path("data/latest_open.csv")
+          with source.open("r", encoding="utf-8-sig", newline="") as handle:
+              reader = csv.DictReader(handle)
+              fieldnames = list(reader.fieldnames or [])
+              rows = [row for row in reader if row.get("is_open") == "true"]
+          with output.open("w", encoding="utf-8-sig", newline="") as handle:
+              writer = csv.DictWriter(handle, fieldnames=fieldnames, extrasaction="ignore")
+              writer.writeheader()
+              writer.writerows(rows)
+          print(f"Exported current opened shelters: {len(rows)} rows")
+          PY
           } 2>&1 | tee debug/workflow.log
 
           STATUS=${PIPESTATUS[0]}
