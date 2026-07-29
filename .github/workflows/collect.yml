@@ -120,8 +120,15 @@ jobs:
           print(f"Validated reference CSV: {rows} rows")
           PY
 
+            echo "=== Apply Dojo dgrid compatibility patch ==="
+            python scripts/apply_dgrid_patch.py
+
             echo "=== Run smoke checks ==="
-            python -m py_compile scripts/collect_shelters.py scripts/reference_matcher.py scripts/diagnose_html.py
+            python -m py_compile \
+              scripts/collect_shelters.py \
+              scripts/reference_matcher.py \
+              scripts/diagnose_html.py \
+              scripts/apply_dgrid_patch.py
             python - <<'PY'
           from pathlib import Path
           from scripts.reference_matcher import ReferenceMatcher
@@ -169,9 +176,9 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data
+          git add scripts/collect_shelters.py data
           if git diff --cached --quiet; then
-            echo "No data or diagnostic changes to commit."
+            echo "No source, data, or diagnostic changes to commit."
             exit 0
           fi
           if [ "${{ steps.collector.outputs.exit_code }}" = "0" ]; then
