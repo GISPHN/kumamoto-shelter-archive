@@ -1,0 +1,129 @@
+name: Collect Kumamoto shelter data
+
+on:
+  schedule:
+    - cron: "5 0 * * *"
+      timezone: "Asia/Tokyo"
+  workflow_dispatch:
+    inputs:
+      snapshot_date:
+        description: "記録日（YYYY-MM-DD、空欄なら実行日）"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kumamoto-shelter-daily-collection
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+
+      - name: Determine snapshot date
+        id: observation
+        shell: bash
+        env:
+          MANUAL_DATE: ${{ inputs.snapshot_date }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          if [ -n "$MANUAL_DATE" ]; then
+            SNAPSHOT_DATE="$MANUAL_DATE"
+          elif [ "$EVENT_NAME" = "schedule" ]; then
+            # 00:05 JST run represents the state at the end of the previous day.
+            SNAPSHOT_DATE="$(TZ=Asia/Tokyo date -d 'yesterday' +%F)"
+          else
+            SNAPSHOT_DATE="$(TZ=Asia/Tokyo date +%F)"
+          fi
+          echo "snapshot_date=$SNAPSHOT_DATE" >> "$GITHUB_OUTPUT"
+          echo "Snapshot date: $SNAPSHOT_DATE"
+
+      - name: Download designated shelter reference CSV
+        shell: bash
+        env:
+          REFERENCE_URL: "https://hinanmap.gsi.go.jp/hinanjocp/defaultFtpData/csv/43000_1.csv"
+        run: |
+          set -euo pipefail
+          mkdir -p reference
+          curl --fail --location --retry 4 --retry-all-errors \
+            --connect-timeout 30 --max-time 180 \
+            --user-agent "GISPHN-kumamoto-shelter-archive/1.0" \
+            "$REFERENCE_URL" -o reference/43000_1.csv
+          python - <<'PY'
+          import csv
+          from pathlib import Path
+
+          path = Path("reference/43000_1.csv")
+          required = {
+              "NO", "共通ID", "施設・場所名", "住所",
+              "指定緊急避難場所との住所同一",
+              "その他市町村長が必要と認める事項",
+              "受入対象者", "緯度", "経度", "備考",
+          }
+          with path.open("r", encoding="utf-8-sig", newline="") as handle:
+              reader = csv.DictReader(handle)
+              fields = set(reader.fieldnames or [])
+              rows = sum(1 for _ in reader)
+          missing = sorted(required - fields)
+          if missing:
+              raise SystemExit(f"Reference CSV missing columns: {missing}")
+          if rows < 1000:
+              raise SystemExit(f"Reference CSV has too few rows: {rows}")
+          print(f"Validated reference CSV: {rows} rows")
+          PY
+
+      - name: Collect all shelter rows from rendered web page
+        env:
+          MINIMUM_ROWS: "100"
+          MINIMUM_MATCH_RATE: "0.75"
+          SHELTER_REFERENCE_CSV: "reference/43000_1.csv"
+        run: |
+          python scripts/collect_shelters.py \
+            --snapshot-date "${{ steps.observation.outputs.snapshot_date }}"
+
+      - name: Commit snapshot data
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          if git diff --cached --quiet; then
+            echo "No data changes to commit."
+            exit 0
+          fi
+          git commit -m "Record shelter snapshot ${{ steps.observation.outputs.snapshot_date }}"
+          git push
+
+      - name: Upload diagnostics on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: shelter-collector-debug-${{ github.run_id }}
+          path: |
+            debug/
+            data/logs/collection_log.csv
+            data/matching_issues/
+            data/latest_matching_issues.csv
+          if-no-files-found: ignore
+          retention-days: 14
