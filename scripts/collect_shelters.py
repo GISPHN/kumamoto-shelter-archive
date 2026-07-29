@@ -628,7 +628,8 @@ async def collect_rendered_page(url: str, debug_dir: Path, timeout_ms: int) -> C
                             continue
                     if not clicked:
                         break
-                rows = collected_rows
+                if collected_rows:
+                    rows = collected_rows
 
             body_text = normalize_text(await page.locator("body").inner_text())
             source_match = re.search(
@@ -755,6 +756,76 @@ def main() -> int:
             row.update(enrichment)
             row["shelter_id"] = tracking_id(row["web_shelter_id"], enrichment)
             row["record_hash"] = record_hash(row)
+
+        # The portal's dgrid is an opened shelter list. Build the complete daily
+        # population from the supplied reference CSV and overlay opened web rows.
+        # A reference facility absent from the opened list is recorded as inactive.
+        web_rows = normalized_rows
+        if not web_rows:
+            raise RuntimeError("Webの開設避難所一覧から1件も取得できませんでした。")
+
+        master_rows: dict[tuple[str, ...], dict[str, str]] = {}
+        for reference_group in reference_matcher.by_name_address.values():
+            ordered_group = sorted(reference_group, key=lambda item: item["共通ID"])
+            primary = ordered_group[0]
+            address_without_prefecture = primary["住所"].replace("熊本県", "", 1)
+            municipality_match = re.match(r"(.+?(?:市|町|村))", address_without_prefecture)
+            municipality = municipality_match.group(1) if municipality_match else ""
+            synthetic_raw = {
+                "市町村": municipality,
+                "避難所名": primary["施設・場所名"],
+                "開設状況": "未開設（Web開設一覧に掲載なし）",
+                "混雑状況": "",
+                "住所": primary["住所"],
+                "ルート検索": "",
+            }
+            master_row = row_to_normalized(
+                synthetic_raw,
+                snapshot_date,
+                retrieved_at,
+                result.source_updated_at_text,
+                args.url,
+            )
+            enrichment = reference_matcher.enrich(master_row)
+            master_row.update(enrichment)
+            master_row["shelter_id"] = tracking_id(master_row["web_shelter_id"], enrichment)
+            master_row["record_hash"] = record_hash(master_row)
+            common_ids = tuple(
+                sorted(value for value in enrichment.get("reference_common_ids", "").split(";") if value)
+            )
+            if not common_ids:
+                raise RuntimeError(
+                    f"参照CSV施設を自己照合できませんでした: {primary['施設・場所名']}"
+                )
+            master_rows[common_ids] = master_row
+
+        unmatched_or_extra_web_rows: list[dict[str, str]] = []
+        for web_row in web_rows:
+            common_ids = tuple(
+                sorted(
+                    value
+                    for value in web_row.get("reference_common_ids", "").split(";")
+                    if value
+                )
+            )
+            if common_ids and common_ids in master_rows:
+                master_rows[common_ids] = web_row
+            else:
+                unmatched_or_extra_web_rows.append(web_row)
+
+        normalized_rows = list(master_rows.values()) + unmatched_or_extra_web_rows
+        normalized_rows.sort(
+            key=lambda row: (
+                normalize_text(row.get("municipality", "")),
+                normalize_text(row.get("shelter_name", "")),
+                row.get("shelter_id", ""),
+            )
+        )
+        print(
+            f"Full snapshot: reference_groups={len(master_rows)}, "
+            f"opened_web_rows={len(web_rows)}, extra_web_rows={len(unmatched_or_extra_web_rows)}, "
+            f"total={len(normalized_rows)}"
+        )
 
         validate_collection(normalized_rows, args.minimum_rows)
 
