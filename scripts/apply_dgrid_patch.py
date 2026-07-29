@@ -11,6 +11,16 @@ def main() -> int:
     text = path.read_text(encoding="utf-8")
     changed = False
 
+    # Layer 15 is the currently opened shelter layer. Layer 14 is the site's
+    # explicit "all shelters" layer and must be requested in the source URL.
+    if "p=evacuation%2Fshelter&l=15-0&" in text:
+        text = text.replace(
+            "p=evacuation%2Fshelter&l=15-0&",
+            "p=evacuation%2Fshelter&l=14-0&",
+            1,
+        )
+        changed = True
+
     load_marker = "Dojo shelter view did not render"
     if load_marker not in text:
         old_load = '''            await page.goto(url, wait_until="domcontentloaded", timeout=timeout_ms)
@@ -94,16 +104,7 @@ def main() -> int:
         text = text.replace(old_wait, new_wait, 1)
         changed = True
 
-    dgrid_marker = "Dojo dgrid renders the header and every data row as separate"
-    if dgrid_marker not in text:
-        marker = '''            headers = extracted.get("headers", [])
-            rows = extracted.get("rows", [])
-
-            # DOM fallback: iterate visible pagination until the Next control is'''
-        replacement = '''            headers = extracted.get("headers", [])
-            rows = extracted.get("rows", [])
-
-            # Dojo dgrid renders the header and every data row as separate
+    old_dgrid = '''            # Dojo dgrid renders the header and every data row as separate
             # table elements. Gather those row tables directly when this yields
             # more records than the generic DataTables/DOM extractor.
             dgrid_extracted = await page.evaluate(
@@ -127,16 +128,42 @@ def main() -> int:
             if len(dgrid_extracted.get("rows", [])) > len(rows):
                 headers = dgrid_extracted.get("headers", headers)
                 rows = dgrid_extracted.get("rows", rows)
-
-            print(
-                f"Rendered extraction: mode={extracted.get('mode')}; "
-                f"all_selected={all_selected}; headers={headers}; rows={len(rows)}"
+'''
+    new_dgrid = '''            # Dojo dgrid renders the header and each data row in separate,
+            # sometimes nested table elements. Parse direct TD children of every
+            # TR rather than assuming one conventional table/tbody structure.
+            dgrid_extracted = await page.evaluate(
+                r"""
+                () => {
+                  const norm = s => (s || '').replace(/\\u00a0/g, ' ').replace(/\\s+/g, ' ').trim();
+                  const headerRow = Array.from(document.querySelectorAll('tr')).find(tr =>
+                    Array.from(tr.children).some(cell =>
+                      cell.tagName === 'TH' && norm(cell.textContent).includes('避難所名')
+                    )
+                  );
+                  if (!headerRow) return {headers: [], rows: []};
+                  const headers = Array.from(headerRow.children)
+                    .filter(cell => cell.tagName === 'TH')
+                    .map(cell => norm(cell.textContent));
+                  const rows = Array.from(document.querySelectorAll('tr'))
+                    .map(tr => Array.from(tr.children)
+                      .filter(cell => cell.tagName === 'TD')
+                      .map(cell => norm(cell.textContent)))
+                    .filter(cells => cells.length >= headers.length && headers.length >= 5)
+                    .map(cells => cells.slice(0, headers.length))
+                    .filter(cells => cells.some(Boolean));
+                  return {headers, rows};
+                }
+                """
             )
-
-            # DOM fallback: iterate visible pagination until the Next control is'''
-        if marker not in text:
-            raise SystemExit("extraction insertion point not found")
-        text = text.replace(marker, replacement, 1)
+            if len(dgrid_extracted.get("rows", [])) > len(rows):
+                headers = dgrid_extracted.get("headers", headers)
+                rows = dgrid_extracted.get("rows", rows)
+'''
+    if "Parse direct TD children of every" not in text:
+        if old_dgrid not in text:
+            raise SystemExit("existing dgrid extraction block not found")
+        text = text.replace(old_dgrid, new_dgrid, 1)
         changed = True
 
     if changed:
