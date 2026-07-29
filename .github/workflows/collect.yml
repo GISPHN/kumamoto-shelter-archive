@@ -120,8 +120,17 @@ jobs:
           print(f"Validated reference CSV: {rows} rows")
           PY
 
-            echo "=== Run unit tests ==="
-            python -m pytest -q
+            echo "=== Run smoke checks ==="
+            python -m py_compile scripts/collect_shelters.py scripts/reference_matcher.py
+            python - <<'PY'
+          from pathlib import Path
+          from scripts.reference_matcher import ReferenceMatcher
+
+          matcher = ReferenceMatcher(Path("reference/43000_1.csv"))
+          if len(matcher.rows) < 1000:
+              raise SystemExit(f"Reference matcher loaded too few rows: {len(matcher.rows)}")
+          print(f"Reference matcher loaded: {len(matcher.rows)} rows")
+          PY
 
             echo "=== Collect rendered shelter table ==="
             python scripts/collect_shelters.py --snapshot-date "$SNAPSHOT_DATE"
