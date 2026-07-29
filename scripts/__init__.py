@@ -1,0 +1,1 @@
+"""Kumamoto shelter archive scripts."""
