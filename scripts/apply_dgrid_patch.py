@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Apply the Kumamoto portal Dojo dgrid extraction patch idempotently."""
+"""Apply Kumamoto portal Dojo dgrid compatibility patches idempotently."""
 
 from __future__ import annotations
 
@@ -10,6 +10,46 @@ def main() -> int:
     path = Path("scripts/collect_shelters.py")
     text = path.read_text(encoding="utf-8")
     changed = False
+
+    load_marker = "Dojo shelter view did not render"
+    if load_marker not in text:
+        old_load = '''            await page.goto(url, wait_until="domcontentloaded", timeout=timeout_ms)
+            await page.wait_for_timeout(2500)
+'''
+        new_load = '''            # The Dojo router occasionally leaves only the outer page shell.
+            # Reload until the shelter dgrid header is actually rendered.
+            rendered = False
+            last_load_error = ""
+            for load_attempt in range(1, 5):
+                try:
+                    await page.goto(url, wait_until="domcontentloaded", timeout=timeout_ms)
+                    await page.wait_for_function(
+                        """() => Array.from(document.querySelectorAll('th'))
+                          .some(th => (th.textContent || '').includes('避難所名'))""",
+                        timeout=min(timeout_ms, 30000),
+                    )
+                    rendered = True
+                    print(f"Dojo shelter view rendered on attempt {load_attempt}.")
+                    break
+                except Exception as exc:
+                    last_load_error = f"{type(exc).__name__}: {exc}"
+                    print(
+                        f"Dojo shelter view did not render on attempt {load_attempt}/4: "
+                        f"{last_load_error}"
+                    )
+                    if load_attempt < 4:
+                        await page.wait_for_timeout(3000)
+            if not rendered:
+                raise RuntimeError(
+                    "Dojo shelter view did not render after 4 attempts. "
+                    f"Last error: {last_load_error}"
+                )
+            await page.wait_for_timeout(1500)
+'''
+        if old_load not in text:
+            raise SystemExit("page load block not found")
+        text = text.replace(old_load, new_load, 1)
+        changed = True
 
     exact_selector = '"[data-idis-layer-id=\'14\']",'
     if exact_selector not in text:
@@ -101,9 +141,9 @@ def main() -> int:
 
     if changed:
         path.write_text(text, encoding="utf-8")
-        print("Applied Dojo dgrid extraction patch.")
+        print("Applied Dojo compatibility patch.")
     else:
-        print("Dojo dgrid extraction patch is already applied.")
+        print("Dojo compatibility patch is already applied.")
     return 0
 
 
