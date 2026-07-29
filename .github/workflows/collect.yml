@@ -1,6 +1,13 @@
 name: Collect Kumamoto shelter data
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - scripts/**
+      - requirements.txt
+      - .github/workflows/collect.yml
   schedule:
     - cron: "5 0 * * *"
       timezone: "Asia/Tokyo"
@@ -51,7 +58,7 @@ jobs:
           if [ -n "$MANUAL_DATE" ]; then
             SNAPSHOT_DATE="$MANUAL_DATE"
           elif [ "$EVENT_NAME" = "schedule" ]; then
-            # 00:05 JST run represents the state at the end of the previous day.
+            # The 00:05 JST run represents the state at the end of the previous day.
             SNAPSHOT_DATE="$(TZ=Asia/Tokyo date -d 'yesterday' +%F)"
           else
             SNAPSHOT_DATE="$(TZ=Asia/Tokyo date +%F)"
