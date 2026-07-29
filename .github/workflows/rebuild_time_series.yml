@@ -1,0 +1,57 @@
+name: Rebuild shelter time-series CSVs
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - scripts/build_time_series.py
+      - data/daily/**
+      - .github/workflows/rebuild_time_series.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kumamoto-shelter-time-series-rebuild
+  cancel-in-progress: true
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Validate generator
+        run: python -m py_compile scripts/build_time_series.py
+
+      - name: Build wide time-series CSVs
+        run: python scripts/build_time_series.py --data-root data
+
+      - name: Commit rebuilt CSVs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            data/status_by_date.csv \
+            data/open_status_by_date.csv \
+            data/congestion_by_date.csv
+          if git diff --cached --quiet; then
+            echo "Time-series CSVs are already up to date."
+            exit 0
+          fi
+          git commit -m "Rebuild shelter time-series CSVs"
+          git push
