@@ -1,5 +1,5 @@
 === Environment ===
-2026-07-29T14:32:36+00:00
+2026-07-29T14:43:12+00:00
 Python 3.12.13
 === Install Python dependencies ===
 Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages (26.1.2)
@@ -22,7 +22,7 @@ Collecting pygments>=2.7.2 (from pytest<9,>=8->-r requirements.txt (line 2))
 Collecting typing-extensions (from pyee<14,>=13->playwright<2,>=1.50->-r requirements.txt (line 1))
   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
 Downloading playwright-1.61.0-py3-none-manylinux1_x86_64.whl (47.4 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 47.4/47.4 MB 109.2 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 47.4/47.4 MB 238.0 MB/s  0:00:00
 Downloading pytest-8.4.2-py3-none-any.whl (365 kB)
 Downloading greenlet-3.5.4-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (621 kB)
    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 621.5/621.5 kB 106.1 MB/s  0:00:00
@@ -31,7 +31,7 @@ Downloading pyee-13.0.1-py3-none-any.whl (15 kB)
 Downloading iniconfig-2.3.0-py3-none-any.whl (7.5 kB)
 Downloading packaging-26.2-py3-none-any.whl (100 kB)
 Downloading pygments-2.20.0-py3-none-any.whl (1.2 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 191.4 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 171.3 MB/s  0:00:00
 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
 Installing collected packages: typing-extensions, pygments, pluggy, packaging, iniconfig, greenlet, pytest, pyee, playwright
 
@@ -40,40 +40,40 @@ Installing dependencies...
 Switching to root user to install dependencies...
 Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
-Hit:6 https://packages.microsoft.com/repos/azure-cli noble InRelease
-Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
 Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
 Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
 Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+Hit:6 https://packages.microsoft.com/repos/azure-cli noble InRelease
+Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
 Get:8 https://dl.google.com/linux/chrome-stable/deb stable InRelease [2548 B]
-Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [217 kB]
-Get:10 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [252 kB]
-Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1153 kB]
-Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [278 kB]
-Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [180 kB]
-Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1678 kB]
-Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [334 kB]
-Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [388 kB]
-Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1367 kB]
-Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [308 kB]
-Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [45.4 kB]
-Get:20 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en [12.3 kB]
-Get:21 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
-Get:22 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [5740 B]
-Get:23 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [32.5 kB]
-Get:24 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [12.6 kB]
-Get:25 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [898 kB]
-Get:26 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [198 kB]
-Get:27 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [46.4 kB]
-Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1199 kB]
-Get:29 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [239 kB]
-Get:30 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [76.2 kB]
-Get:31 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1273 kB]
-Get:32 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [290 kB]
-Get:33 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [40.3 kB]
-Get:34 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Translation-en [10.6 kB]
+Get:9 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1153 kB]
+Get:10 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [278 kB]
+Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [180 kB]
+Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1678 kB]
+Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [334 kB]
+Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [388 kB]
+Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1367 kB]
+Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [308 kB]
+Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [45.4 kB]
+Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en [12.3 kB]
+Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
+Get:20 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [5740 B]
+Get:21 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [32.5 kB]
+Get:22 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [12.6 kB]
+Get:23 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [898 kB]
+Get:24 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [198 kB]
+Get:25 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [46.4 kB]
+Get:26 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1199 kB]
+Get:27 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [239 kB]
+Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [76.2 kB]
+Get:29 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1273 kB]
+Get:30 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [290 kB]
+Get:31 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [40.3 kB]
+Get:32 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Translation-en [10.6 kB]
+Get:33 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [252 kB]
+Get:34 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [217 kB]
 Get:35 https://dl.google.com/linux/chrome-stable/deb stable/main amd64 Packages [1425 B]
-Fetched 10.9 MB in 1s (8184 kB/s)
+Fetched 10.9 MB in 1s (9060 kB/s)
 Reading package lists...
 Reading package lists...
 Building dependency tree...
@@ -149,7 +149,7 @@ Get:7 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings a
 Get:8 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3 [94.4 kB]
 Get:9 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1 [384 kB]
 Get:10 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3 [304 kB]
-Fetched 21.1 MB in 2s (12.2 MB/s)
+Fetched 21.1 MB in 1s (19.2 MB/s)
 Selecting previously unselected package fonts-ipafont-gothic.
 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 202954 files and directories currently installed.)
 Preparing to unpack .../0-fonts-ipafont-gothic_00303-21ubuntu1_all.deb ...
@@ -244,160 +244,40 @@ Chrome Headless Shell 149.0.7827.55 (playwright chromium-headless-shell v1228) d
 Reference CSV is not stored in the repository; downloading the official file.
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 10  150k   10 15786    0     0  27914      0  0:00:05 --:--:--  0:00:05 27890100  150k  100  150k    0     0   192k      0 --:--:-- --:--:-- --:--:--  192k
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 62  150k   62 95786    0     0  90184      0  0:00:01  0:00:01 --:--:-- 90109100  150k  100  150k    0     0   141k      0  0:00:01  0:00:01 --:--:--  141k
 Validated reference CSV: 1315 rows
+=== Apply Dojo dgrid compatibility patch ===
+Applied Dojo dgrid extraction patch.
 === Run smoke checks ===
 Reference matcher loaded: 1315 rows
 === Collect rendered shelter table ===
 Traceback (most recent call last):
-  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/collect_shelters.py", line 685, in main
-    validate_collection(normalized_rows, args.minimum_rows)
-  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/collect_shelters.py", line 593, in validate_collection
+  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/collect_shelters.py", line 708, in main
+    result = asyncio.run(collect_rendered_page(args.url, debug_dir, args.timeout_ms))
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/asyncio/runners.py", line 195, in run
+    return runner.run(main)
+           ^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/asyncio/runners.py", line 118, in run
+    return self._loop.run_until_complete(task)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/asyncio/base_events.py", line 691, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/collect_shelters.py", line 473, in collect_rendered_page
     raise RuntimeError(
-RuntimeError: 全避難所の取得件数が想定下限を下回りました: 0件 < 100件。『全ての避難所』への切替失敗またはサイト構造変更の可能性があります。
+RuntimeError: 避難所名を見出しに含む表を検出できませんでした。サイト構造が変更された可能性があります。
 === Rendered HTML diagnostics ===
-html_bytes=568758
-table_count=65
+html_bytes=20544
+table_count=1
 table[0] rows=1 max_columns=2
-  row[0]=['熊本県', '']
-table[1] rows=1 max_columns=6
-  row[0]=['市町村', '避難所名', '開設状況', '混雑状況', '住所', 'ルート検索']
-table[2] rows=1 max_columns=6
-  row[0]=['熊本市', '春竹小学校', '開設', '不明', '熊本県熊本市中央区琴平1丁目9-43', '検索']
-table[3] rows=1 max_columns=6
-  row[0]=['熊本市', '東野中学校', '開設', '不明', '熊本県熊本市東区東野3丁目6-50', '検索']
-table[4] rows=1 max_columns=6
-  row[0]=['熊本市', '芳野小学校', '開設', '不明', '熊本県熊本市西区河内町野出1419', '検索']
-table[5] rows=1 max_columns=6
-  row[0]=['熊本市', '熊本県立総合体育館', '開設', '不明', '熊本県熊本市西区上熊本１丁目９－２８', '検索']
-table[6] rows=1 max_columns=6
-  row[0]=['熊本市', '熊本武道館', '開設', '不明', '熊本県熊本市中央区水前寺５丁目２３ー２', '検索']
-table[7] rows=1 max_columns=6
-  row[0]=['熊本市', '大和地域コミュニティセンター', '開設', '不明', '熊本県熊本市北区植木町大和７０?２２', '検索']
-table[8] rows=1 max_columns=6
-  row[0]=['熊本市', '九州動物学院【ペット避難場所】', '開設', '不明', '熊本県熊本市中央区本荘6丁目16-34', '検索']
-table[9] rows=1 max_columns=6
-  row[0]=['熊本市', '水前寺競技場【ペット避難場所】', '開設', '不明', '熊本市中央区水前寺5-23-3', '検索']
-table[10] rows=1 max_columns=6
-  row[0]=['熊本市', '熊本刑務所', '開設', '不明', '熊本県熊本市中央区渡鹿７丁目１２ー１', '検索']
-table[11] rows=1 max_columns=6
-  row[0]=['熊本市', '熊本工業高校', '開設', '不明', '熊本県熊本市中央区上京塚町5-1', '検索']
-table[12] rows=1 max_columns=6
-  row[0]=['熊本市', '熊本駅周辺帰宅困難者対策本部', '開設', '不明', '熊本市西区春日2丁目10-1', '検索']
-table[13] rows=1 max_columns=6
-  row[0]=['熊本市', '東海大学熊本キャンパス・付属熊本星翔高等学校', '開設', '不明', '熊本県熊本市東区渡鹿9丁目1-1', '検索']
-table[14] rows=1 max_columns=6
-  row[0]=['熊本市', '出水小学校', '開設', '不明', '熊本県熊本市中央区出水1丁目1-75', '検索']
-table[15] rows=1 max_columns=6
-  row[0]=['熊本市', '出水南小学校', '開設', '不明', '熊本県熊本市中央区出水4丁目1-1', '検索']
-table[16] rows=1 max_columns=6
-  row[0]=['熊本市', '出水中学校', '開設', '不明', '熊本県熊本市中央区出水5丁目3-1', '検索']
-table[17] rows=1 max_columns=6
-  row[0]=['熊本市', '出水南中学校', '開設', '不明', '熊本県熊本市中央区出水7丁目86-1', '検索']
-table[18] rows=1 max_columns=6
-  row[0]=['熊本市', '一新小学校', '開設', '不明', '熊本県熊本市中央区新町3丁目10-45', '検索']
-table[19] rows=1 max_columns=6
-  row[0]=['熊本市', '大江交流室・公民館', '開設', '不明', '熊本県熊本市中央区大江6丁目1-85', '検索']
-table[20] rows=1 max_columns=6
-  row[0]=['熊本市', '大江小学校', '開設', '不明', '熊本県熊本市中央区大江3丁目5-31', '検索']
-table[21] rows=1 max_columns=6
-  row[0]=['熊本市', '白川中学校', '開設', '不明', '熊本県熊本市中央区大江3丁目1-12', '検索']
-table[22] rows=1 max_columns=6
-  row[0]=['熊本市', '帯山小学校', '開設', '不明', '熊本県熊本市中央区帯山4丁目11-11', '検索']
-table[23] rows=1 max_columns=6
-  row[0]=['熊本市', '帯山中学校', '開設', '不明', '熊本県熊本市中央区帯山1丁目35-32', '検索']
-table[24] rows=1 max_columns=6
-  row[0]=['熊本市', '黒髪小学校', '開設', '不明', '熊本県熊本市中央区黒髪2丁目2-1', '検索']
-table[25] rows=1 max_columns=6
-  row[0]=['熊本市', '桜山中学校', '開設', '不明', '熊本県熊本市中央区黒髪5丁目13-1', '検索']
-table[26] rows=1 max_columns=6
-  row[0]=['熊本市', '竜南中学校', '開設', '不明', '熊本県熊本市中央区坪井4丁目16-1', '検索']
-table[27] rows=1 max_columns=6
-  row[0]=['熊本市', '市立必由館高校', '開設', '不明', '熊本県熊本市中央区坪井4丁目15-1', '検索']
-table[28] rows=1 max_columns=6
-  row[0]=['熊本市', 'サンライフ熊本', '開設', '不明', '熊本県熊本市中央区黒髪3丁目3-12', '検索']
-table[29] rows=1 max_columns=6
-  row[0]=['熊本市', '慶徳小学校', '開設', '不明', '熊本県熊本市中央区山崎町72', '検索']
-table[30] rows=1 max_columns=6
-  row[0]=['熊本市', '向山小学校', '開設', '不明', '熊本県熊本市中央区本山4丁目5-11', '検索']
-table[31] rows=1 max_columns=6
-  row[0]=['熊本市', '江南中学校', '開設', '不明', '熊本県熊本市中央区本山町75', '検索']
-table[32] rows=1 max_columns=6
-  row[0]=['熊本市', '壼川小学校', '開設', '不明', '熊本県熊本市中央区壼川1丁目4-5', '検索']
-table[33] rows=1 max_columns=6
-  row[0]=['熊本市', '京陵中学校', '開設', '不明', '熊本県熊本市中央区京町本丁1-14', '検索']
-table[34] rows=1 max_columns=6
-  row[0]=['熊本市', '五福小学校', '開設', '不明', '熊本県熊本市中央区細工町2丁目25', '検索']
-table[35] rows=1 max_columns=6
-  row[0]=['熊本市', '五福交流室・公民館', '開設', '不明', '熊本県熊本市中央区細工町2丁目25', '検索']
-table[36] rows=1 max_columns=6
-  row[0]=['熊本市', '城東小学校', '開設', '不明', '熊本県熊本市中央区千葉城町5-1', '検索']
-table[37] rows=1 max_columns=6
-  row[0]=['熊本市', '藤園中学校', '開設', '不明', '熊本県熊本市中央区千葉城町5-2', '検索']
-table[38] rows=1 max_columns=6
-  row[0]=['熊本市', '白川小学校', '開設', '不明', '熊本県熊本市中央区新屋敷１丁目7-13', '検索']
-table[39] rows=1 max_columns=6
-  row[0]=['熊本市', '砂取小学校', '開設', '不明', '熊本県熊本市中央区神水1丁目1-1', '検索']
-table[40] rows=1 max_columns=6
-  row[0]=['熊本市', '熊本市総合体育館・青年会館', '開設', '不明', '熊本県熊本市中央区出水2丁目7-1', '検索']
-table[41] rows=1 max_columns=6
-  row[0]=['熊本市', '中央公民館', '開設', '不明', '熊本県熊本市中央区草葉町5-1', '検索']
-table[42] rows=1 max_columns=6
-  row[0]=['熊本市', '碩台小学校', '開設', '不明', '熊本県熊本市中央区井川淵町4-8', '検索']
-table[43] rows=1 max_columns=6
-  row[0]=['熊本市', '託麻原小学校', '開設', '不明', '熊本県熊本市中央区渡鹿2丁目3-1', '検索']
-table[44] rows=1 max_columns=6
-  row[0]=['熊本市', '白山小学校', '開設', '不明', '熊本県熊本市中央区菅原町9-1', '検索']
-table[45] rows=1 max_columns=6
-  row[0]=['熊本市', '江原中学校', '開設', '不明', '熊本県熊本市中央区琴平2丁目9-59', '検索']
-table[46] rows=1 max_columns=6
-  row[0]=['熊本市', '本荘小学校', '開設', '不明', '熊本県熊本市中央区本荘6丁目5-47', '検索']
-table[47] rows=1 max_columns=6
-  row[0]=['熊本市', '熊本大学大江体育館', '開設', '不明', '熊本県熊本市中央区大江本町5-1', '検索']
-table[48] rows=1 max_columns=6
-  row[0]=['熊本市', '熊本学園大学', '開設', '不明', '熊本県熊本市中央区大江2丁目5-1', '検索']
-table[49] rows=1 max_columns=6
-  row[0]=['熊本市', '済々黌高校', '開設', '不明', '熊本県熊本市中央区黒髪2丁目22-1', '検索']
-table[50] rows=1 max_columns=6
-  row[0]=['熊本市', '熊本大学本荘体育館', '開設', '不明', '熊本県熊本市中央区九品寺4丁目24番1号', '検索']
-table[51] rows=1 max_columns=6
-  row[0]=['熊本市', '熊本商業高校', '開設', '不明', '熊本県熊本市中央区神水1丁目1-2', '検索']
-table[52] rows=1 max_columns=6
-  row[0]=['熊本市', '秋津まちづくりセンター・公民館', '開設', '不明', '熊本県熊本市東区秋津3丁目15-1', '検索']
-table[53] rows=1 max_columns=6
-  row[0]=['熊本市', '泉ヶ丘小学校', '開設', '不明', '熊本県熊本市東区水源1丁目7-1', '検索']
-table[54] rows=1 max_columns=6
-  row[0]=['熊本市', '画図小学校', '開設', '不明', '熊本県熊本市東区下江津8丁目1-6', '検索']
-table[55] rows=1 max_columns=6
-  row[0]=['熊本市', '環境総合センター', '開設', '不明', '熊本県熊本市東区画図町所島404-1', '検索']
-table[56] rows=1 max_columns=6
-  row[0]=['熊本市', '東部公民館', '開設', '不明', '熊本県熊本市東区錦ヶ丘1-1', '検索']
-table[57] rows=1 max_columns=6
-  row[0]=['熊本市', '尾ノ上小学校', '開設', '不明', '熊本県熊本市東区尾ノ上2丁目8-1', '検索']
-table[58] rows=1 max_columns=6
-  row[0]=['熊本市', '錦ヶ丘中学校', '開設', '不明', '熊本県熊本市東区錦ヶ丘22-1', '検索']
-table[59] rows=1 max_columns=6
-  row[0]=['熊本市', '健軍小学校', '開設', '不明', '熊本県熊本市東区健軍2丁目25-56', '検索']
-table[60] rows=1 max_columns=6
-  row[0]=['熊本市', '湖東中学校', '開設', '不明', '熊本県熊本市東区湖東1丁目13-1', '検索']
-table[61] rows=1 max_columns=6
-  row[0]=['熊本市', '健軍東小学校', '開設', '不明', '熊本県熊本市東区東町4丁目15-2', '検索']
-table[62] rows=1 max_columns=6
-  row[0]=['熊本市', '桜木小学校', '開設', '不明', '熊本県熊本市東区花立2丁目23-1', '検索']
-table[63] rows=1 max_columns=6
-  row[0]=['熊本市', '桜木東小学校', '開設', '不明', '熊本県熊本市東区桜木6丁目10-1', '検索']
-table[64] rows=1 max_columns=2
   row[0]=['Language', '']
-keyword[全ての避難所] count=1
-  context=app_map_MobileLayerSelector_0"><div class="label"><span>避難情報</span><ul><li class="button is-shown" data-idis-layer-id="15">開設済みの避難所</li><li class="button " data-idis-layer-id="14">全ての避難所</li></ul><div class="layer-annotation">※常に有効。地図側で市町村を選択時にマーカーが表示されます。</div></div><div class="label"><span>通行規制情報</span><ul><li class="button " data-idis-layer-id="99">現在の道路通行規制情報</li></ul></div><div class="label"><span>浸水想定区域</span><ul><li
+keyword[全ての避難所] count=0
 keyword[すべての避難所] count=0
 keyword[開設中の避難所] count=0
-keyword[避難所名] count=1
-  context=-0 field-municipalityName dgrid-sortable" role="columnheader" rowspan="1">市町村</th><th class="dgrid-cell dgrid-column-0-1 field-_item field-maplink" role="columnheader" rowspan="1">避難所名</th><th class="dgrid-cell dgrid-column-0-2 field-isOpen dgrid-sortable dgrid-sort-down" role="columnheader" rowspan="1"><div class="dgrid-sort-arrow ui-icon" role="presentation">&nbsp;</div>開設状況</th><th class="dgrid-cell dgrid-column-0-3 f
-keyword[開設状況] count=1
-  context=ass="dgrid-cell dgrid-column-0-2 field-isOpen dgrid-sortable dgrid-sort-down" role="columnheader" rowspan="1"><div class="dgrid-sort-arrow ui-icon" role="presentation">&nbsp;</div>開設状況</th><th class="dgrid-cell dgrid-column-0-3 field-crowdedStatus dgrid-sortable" role="columnheader" rowspan="1">混雑状況</th><th class="dgrid-cell dgrid-column-0-4 field-address dgrid-sortable" role="columnheader" rowspan="1">住所</th><th class="
-keyword[混雑状況] count=1
-  context=lass="dgrid-sort-arrow ui-icon" role="presentation">&nbsp;</div>開設状況</th><th class="dgrid-cell dgrid-column-0-3 field-crowdedStatus dgrid-sortable" role="columnheader" rowspan="1">混雑状況</th><th class="dgrid-cell dgrid-column-0-4 field-address dgrid-sortable" role="columnheader" rowspan="1">住所</th><th class="dgrid-cell dgrid-column-0-5 field-_item field-maplink" role="columnheader" rowspan="1">ルート検索</th></tr></table></div>
+keyword[避難所名] count=0
+keyword[開設状況] count=0
+keyword[混雑状況] count=0
 keyword[条件に一致するデータが存在しません] count=0
 keyword[データがありません] count=0
 keyword[エラー] count=0
