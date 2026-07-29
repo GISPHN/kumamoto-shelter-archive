@@ -517,7 +517,8 @@ async def collect_rendered_page(url: str, debug_dir: Path, timeout_ms: int) -> C
             rows = extracted.get("rows", [])
 
             # Dojo dgrid uses virtual scrolling and recycles row elements.
-            # Scroll through the grid and accumulate every unique rendered row.
+            # Restrict extraction to the dgrid that owns the shelter header, then
+            # scroll through its virtual buffer and accumulate stable row IDs.
             dgrid_extracted = await page.evaluate(
                 r"""
                 async () => {
@@ -528,36 +529,69 @@ async def collect_rendered_page(url: str, debug_dir: Path, timeout_ms: int) -> C
                       cell.tagName === 'TH' && norm(cell.textContent).includes('避難所名')
                     )
                   );
-                  if (!headerRow) return {headers: [], rows: [], scrolled: false};
+                  if (!headerRow) return {headers: [], rows: [], scrolled: false, error: 'header_not_found'};
 
                   const headers = Array.from(headerRow.children)
                     .filter(cell => cell.tagName === 'TH')
                     .map(cell => norm(cell.textContent));
-                  const root = headerRow.closest('.dgrid') || document;
+                  const headerContainer = headerRow.closest('.dgrid-header');
+                  const root =
+                    (headerContainer && headerContainer.parentElement) ||
+                    headerRow.closest('[role="grid"]') ||
+                    headerRow.closest('.dgrid');
+                  if (!root) {
+                    return {headers, rows: [], scrolled: false, error: 'shelter_grid_root_not_found'};
+                  }
+
                   const scrollers = Array.from(root.querySelectorAll('.dgrid-scroller'));
                   const scroller = scrollers.sort(
                     (a, b) => (b.scrollHeight - b.clientHeight) - (a.scrollHeight - a.clientHeight)
                   )[0] || null;
                   const seen = new Map();
+                  const observedRowIds = new Set();
 
                   const collect = () => {
-                    const rows = Array.from(root.querySelectorAll('tr'));
-                    for (const tr of rows) {
+                    let rowNodes = Array.from(root.querySelectorAll('.dgrid-row'));
+                    if (!rowNodes.length) {
+                      rowNodes = Array.from(root.querySelectorAll('tr')).filter(tr =>
+                        Array.from(tr.children).some(cell => cell.tagName === 'TD')
+                      );
+                    }
+                    for (const rowNode of rowNodes) {
+                      const tr = rowNode.tagName === 'TR' ? rowNode : rowNode.querySelector('tr');
+                      if (!tr) continue;
                       const cells = Array.from(tr.children)
                         .filter(cell => cell.tagName === 'TD')
                         .map(cell => norm(cell.textContent));
                       if (headers.length < 5 || cells.length < headers.length) continue;
                       const values = cells.slice(0, headers.length);
-                      if (!values.some(Boolean)) continue;
                       if (!values[1] || values[1] === '避難所名') continue;
-                      const key = JSON.stringify(values);
-                      if (!seen.has(key)) seen.set(key, values);
+                      // The source table is the opened shelter list. Reject rows
+                      // that do not explicitly report an opened state.
+                      if (!values[2].includes('開設') || values[2].includes('未開設')) continue;
+                      const rowId =
+                        rowNode.getAttribute('data-id') ||
+                        rowNode.id ||
+                        tr.getAttribute('data-id') ||
+                        tr.id ||
+                        JSON.stringify(values);
+                      observedRowIds.add(rowId);
+                      if (!seen.has(rowId)) seen.set(rowId, values);
                     }
                   };
 
                   collect();
                   if (!scroller) {
-                    return {headers, rows: Array.from(seen.values()), scrolled: false};
+                    return {
+                      headers,
+                      rows: Array.from(seen.values()),
+                      scrolled: false,
+                      error: 'scroller_not_found',
+                      rootId: root.id || '',
+                      rootClass: root.className || '',
+                      ariaRowCount: root.getAttribute('aria-rowcount') || '',
+                      rowIdCount: observedRowIds.size,
+                    };
                   }
 
                   scroller.scrollIntoView({block: 'center'});
@@ -592,7 +626,6 @@ async def collect_rendered_page(url: str, debug_dir: Path, timeout_ms: int) -> C
                       previousCount = seen.size;
                       if (stableBottomRounds >= 4) break;
 
-                      // Nudge the virtual grid so a final deferred page is requested.
                       scroller.scrollTop = Math.max(0, maxTop - Math.max(100, scroller.clientHeight * 0.2));
                       scroller.dispatchEvent(new Event('scroll', {bubbles: true}));
                       await sleep(250);
@@ -611,8 +644,14 @@ async def collect_rendered_page(url: str, debug_dir: Path, timeout_ms: int) -> C
                     headers,
                     rows: Array.from(seen.values()),
                     scrolled: true,
+                    rootId: root.id || '',
+                    rootClass: root.className || '',
+                    ariaRowCount: root.getAttribute('aria-rowcount') || '',
+                    scrollerClass: scroller.className || '',
                     scrollHeight: scroller.scrollHeight,
                     clientHeight: scroller.clientHeight,
+                    rowIdCount: observedRowIds.size,
+                    renderedRowCount: root.querySelectorAll('.dgrid-row').length,
                   };
                 }
                 """
@@ -621,9 +660,15 @@ async def collect_rendered_page(url: str, debug_dir: Path, timeout_ms: int) -> C
                 headers = dgrid_extracted.get("headers", headers)
                 rows = dgrid_extracted.get("rows", rows)
 
+            dgrid_meta = {
+                key: value
+                for key, value in dgrid_extracted.items()
+                if key not in {"headers", "rows"}
+            }
             print(
                 f"Rendered extraction: mode={extracted.get('mode')}; "
-                f"all_selected={all_selected}; headers={headers}; rows={len(rows)}"
+                f"all_selected={all_selected}; headers={headers}; rows={len(rows)}; "
+                f"dgrid_meta={json.dumps(dgrid_meta, ensure_ascii=False, sort_keys=True)}"
             )
 
             # DOM fallback: iterate visible pagination until the Next control is
