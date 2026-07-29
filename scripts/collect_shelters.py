@@ -660,11 +660,6 @@ async def collect_rendered_page(url: str, debug_dir: Path, timeout_ms: int) -> C
                 headers = dgrid_extracted.get("headers", headers)
                 rows = dgrid_extracted.get("rows", rows)
 
-            dgrid_meta = {
-                key: value
-                for key, value in dgrid_extracted.items()
-                if key not in {"headers", "rows"}
-            }
             print(
                 f"Rendered extraction: mode={extracted.get('mode')}; "
                 f"all_selected={all_selected}; headers={headers}; rows={len(rows)}; "
