@@ -388,8 +388,35 @@ async def collect_rendered_page(url: str, debug_dir: Path, timeout_ms: int) -> C
         page.set_default_timeout(timeout_ms)
 
         try:
-            await page.goto(url, wait_until="domcontentloaded", timeout=timeout_ms)
-            await page.wait_for_timeout(2500)
+            # The Dojo router occasionally leaves only the outer page shell.
+            # Reload until the shelter dgrid header is actually rendered.
+            rendered = False
+            last_load_error = ""
+            for load_attempt in range(1, 5):
+                try:
+                    await page.goto(url, wait_until="domcontentloaded", timeout=timeout_ms)
+                    await page.wait_for_function(
+                        """() => Array.from(document.querySelectorAll('th'))
+                          .some(th => (th.textContent || '').includes('避難所名'))""",
+                        timeout=min(timeout_ms, 30000),
+                    )
+                    rendered = True
+                    print(f"Dojo shelter view rendered on attempt {load_attempt}.")
+                    break
+                except Exception as exc:
+                    last_load_error = f"{type(exc).__name__}: {exc}"
+                    print(
+                        f"Dojo shelter view did not render on attempt {load_attempt}/4: "
+                        f"{last_load_error}"
+                    )
+                    if load_attempt < 4:
+                        await page.wait_for_timeout(3000)
+            if not rendered:
+                raise RuntimeError(
+                    "Dojo shelter view did not render after 4 attempts. "
+                    f"Last error: {last_load_error}"
+                )
+            await page.wait_for_timeout(1500)
 
             # Explicitly select the site's "all shelters" mode. The site may use
             # a label, link, radio button, or JavaScript click handler.
