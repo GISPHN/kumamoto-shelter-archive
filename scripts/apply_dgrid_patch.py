@@ -6,29 +6,42 @@ from __future__ import annotations
 from pathlib import Path
 
 
+def replace_between(text: str, start_marker: str, end_marker: str, replacement: str) -> tuple[str, bool]:
+    start = text.find(start_marker)
+    if start < 0:
+        return text, False
+    end = text.find(end_marker, start)
+    if end < 0:
+        raise SystemExit(f"end marker not found after: {start_marker}")
+    current = text[start:end]
+    if current == replacement:
+        return text, False
+    return text[:start] + replacement + text[end:], True
+
+
 def main() -> int:
     path = Path("scripts/collect_shelters.py")
     text = path.read_text(encoding="utf-8")
     changed = False
 
-    # Layer 15 is the currently opened shelter layer. Layer 14 is the site's
-    # explicit all shelter map layer. The list itself still contains open rows.
-    if "p=evacuation%2Fshelter&l=15-0&" in text:
+    # The daily source is the portal's opened shelter list. Layer 14 is a map
+    # display control and must not be used as the source of the list status.
+    if "p=evacuation%2Fshelter&l=14-0&" in text:
         text = text.replace(
-            "p=evacuation%2Fshelter&l=15-0&",
             "p=evacuation%2Fshelter&l=14-0&",
+            "p=evacuation%2Fshelter&l=15-0&",
             1,
         )
         changed = True
 
+    # The Dojo router occasionally leaves only the outer shell. Wait for the
+    # semantic table header and retry the complete navigation when necessary.
     load_marker = "Dojo shelter view did not render"
     if load_marker not in text:
         old_load = '''            await page.goto(url, wait_until="domcontentloaded", timeout=timeout_ms)
             await page.wait_for_timeout(2500)
 '''
-        new_load = '''            # The Dojo router occasionally leaves only the outer page shell.
-            # Reload until the shelter dgrid header is actually rendered.
-            rendered = False
+        new_load = '''            rendered = False
             last_load_error = ""
             for load_attempt in range(1, 5):
                 try:
@@ -61,126 +74,168 @@ def main() -> int:
         text = text.replace(old_load, new_load, 1)
         changed = True
 
-    exact_selector = '"[data-idis-layer-id=\'14\']",'
-    if exact_selector not in text:
-        old_selectors = '''            candidate_selectors = [
-                "label:has-text('全ての避難所')",
-                "a:has-text('全ての避難所')",
-                "button:has-text('全ての避難所')",
-                "text=全ての避難所",
-            ]'''
-        new_selectors = '''            candidate_selectors = [
-                "[data-idis-layer-id='14']",
-                "label:has-text('全ての避難所')",
-                "a:has-text('全ての避難所')",
-                "button:has-text('全ての避難所')",
-                "text=全ての避難所",
-            ]'''
-        if old_selectors not in text:
-            raise SystemExit("candidate selector block not found")
-        text = text.replace(old_selectors, new_selectors, 1)
-        changed = True
+    # Do not click the site's "全ての避難所" button. It changes the map layer,
+    # not the meaning of the opened shelter table used for the daily observation.
+    all_mode_start = '            # Explicitly select the site\'s "all shelters" mode.'
+    all_mode_end = "            # Attempt to select the DataTables"
+    all_mode_replacement = '''            # Keep the portal in opened shelter list mode. The site's
+            # "全ての避難所" control is a map layer selector and is not used here.
+            all_selected = False
 
-    wait_marker = "target.classList.contains('is-shown')"
-    if wait_marker not in text:
-        old_wait = '''                        all_selected = True
-                        await page.wait_for_timeout(2500)
-                        break'''
-        new_wait = '''                        all_selected = True
-                        try:
-                            await page.wait_for_function(
-                                """() => {
-                                  const target = document.querySelector('[data-idis-layer-id="14"]');
-                                  return target && target.classList.contains('is-shown');
-                                }""",
-                                timeout=10000,
-                            )
-                        except Exception:
-                            pass
-                        await page.wait_for_timeout(5000)
-                        break'''
-        if old_wait not in text:
-            raise SystemExit("post-click wait block not found")
-        text = text.replace(old_wait, new_wait, 1)
-        changed = True
-
-    old_dgrid = '''            # Dojo dgrid renders the header and every data row as separate
-            # table elements. Gather those row tables directly when this yields
-            # more records than the generic DataTables/DOM extractor.
-            dgrid_extracted = await page.evaluate(
-                r"""
-                () => {
-                  const norm = s => (s || '').replace(/\\u00a0/g, ' ').replace(/\\s+/g, ' ').trim();
-                  const tables = Array.from(document.querySelectorAll('table'));
-                  const headerTable = tables.find(table =>
-                    Array.from(table.querySelectorAll('th')).some(th => norm(th.textContent).includes('避難所名'))
-                  );
-                  if (!headerTable) return {headers: [], rows: []};
-                  const headers = Array.from(headerTable.querySelectorAll('th')).map(th => norm(th.textContent));
-                  const rows = tables
-                    .filter(table => table !== headerTable)
-                    .map(table => Array.from(table.querySelectorAll('td')).map(td => norm(td.textContent)))
-                    .filter(cells => cells.length === headers.length && cells.some(Boolean));
-                  return {headers, rows};
-                }
-                """
-            )
-            if len(dgrid_extracted.get("rows", [])) > len(rows):
-                headers = dgrid_extracted.get("headers", headers)
-                rows = dgrid_extracted.get("rows", rows)
 '''
-    new_dgrid = '''            # Dojo dgrid renders the header and each data row in separate,
-            # sometimes nested table elements. Parse direct TD children of every
-            # TR rather than assuming one conventional table/tbody structure.
+    text, did_replace = replace_between(
+        text,
+        all_mode_start,
+        all_mode_end,
+        all_mode_replacement,
+    )
+    changed = changed or did_replace
+
+    # Dojo dgrid virtualizes its rows. Only the first rendered buffer was being
+    # captured previously. Scroll the dgrid scroller from top to bottom and
+    # accumulate every unique row as the DOM buffer is recycled.
+    virtual_block = '''            # Dojo dgrid uses virtual scrolling and recycles row elements.
+            # Scroll through the grid and accumulate every unique rendered row.
             dgrid_extracted = await page.evaluate(
                 r"""
-                () => {
-                  const norm = s => (s || '').replace(/\\u00a0/g, ' ').replace(/\\s+/g, ' ').trim();
+                async () => {
+                  const norm = s => (s || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
+                  const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
                   const headerRow = Array.from(document.querySelectorAll('tr')).find(tr =>
                     Array.from(tr.children).some(cell =>
                       cell.tagName === 'TH' && norm(cell.textContent).includes('避難所名')
                     )
                   );
-                  if (!headerRow) return {headers: [], rows: []};
+                  if (!headerRow) return {headers: [], rows: [], scrolled: false};
+
                   const headers = Array.from(headerRow.children)
                     .filter(cell => cell.tagName === 'TH')
                     .map(cell => norm(cell.textContent));
-                  const rows = Array.from(document.querySelectorAll('tr'))
-                    .map(tr => Array.from(tr.children)
-                      .filter(cell => cell.tagName === 'TD')
-                      .map(cell => norm(cell.textContent)))
-                    .filter(cells => cells.length >= headers.length && headers.length >= 5)
-                    .map(cells => cells.slice(0, headers.length))
-                    .filter(cells => cells.some(Boolean));
-                  return {headers, rows};
+                  const root = headerRow.closest('.dgrid') || document;
+                  const scrollers = Array.from(root.querySelectorAll('.dgrid-scroller'));
+                  const scroller = scrollers.sort(
+                    (a, b) => (b.scrollHeight - b.clientHeight) - (a.scrollHeight - a.clientHeight)
+                  )[0] || null;
+                  const seen = new Map();
+
+                  const collect = () => {
+                    const rows = Array.from(root.querySelectorAll('tr'));
+                    for (const tr of rows) {
+                      const cells = Array.from(tr.children)
+                        .filter(cell => cell.tagName === 'TD')
+                        .map(cell => norm(cell.textContent));
+                      if (headers.length < 5 || cells.length < headers.length) continue;
+                      const values = cells.slice(0, headers.length);
+                      if (!values.some(Boolean)) continue;
+                      if (!values[1] || values[1] === '避難所名') continue;
+                      const key = JSON.stringify(values);
+                      if (!seen.has(key)) seen.set(key, values);
+                    }
+                  };
+
+                  collect();
+                  if (!scroller) {
+                    return {headers, rows: Array.from(seen.values()), scrolled: false};
+                  }
+
+                  scroller.scrollIntoView({block: 'center'});
+                  scroller.scrollTop = 0;
+                  scroller.dispatchEvent(new Event('scroll', {bubbles: true}));
+                  await sleep(800);
+                  collect();
+
+                  let stableBottomRounds = 0;
+                  let previousCount = -1;
+                  for (let iteration = 0; iteration < 500; iteration += 1) {
+                    collect();
+                    const maxTop = Math.max(0, scroller.scrollHeight - scroller.clientHeight);
+                    const currentTop = scroller.scrollTop;
+                    const atBottom = currentTop >= maxTop - 2;
+
+                    if (atBottom) {
+                      await sleep(700);
+                      collect();
+                      const expandedMaxTop = Math.max(0, scroller.scrollHeight - scroller.clientHeight);
+                      if (expandedMaxTop > maxTop + 2) {
+                        scroller.scrollTop = expandedMaxTop;
+                        scroller.dispatchEvent(new Event('scroll', {bubbles: true}));
+                        await sleep(500);
+                        continue;
+                      }
+                      if (seen.size === previousCount) {
+                        stableBottomRounds += 1;
+                      } else {
+                        stableBottomRounds = 0;
+                      }
+                      previousCount = seen.size;
+                      if (stableBottomRounds >= 4) break;
+
+                      // Nudge the virtual grid so a final deferred page is requested.
+                      scroller.scrollTop = Math.max(0, maxTop - Math.max(100, scroller.clientHeight * 0.2));
+                      scroller.dispatchEvent(new Event('scroll', {bubbles: true}));
+                      await sleep(250);
+                      scroller.scrollTop = maxTop;
+                      scroller.dispatchEvent(new Event('scroll', {bubbles: true}));
+                    } else {
+                      const step = Math.max(300, Math.floor(scroller.clientHeight * 0.7));
+                      scroller.scrollTop = Math.min(maxTop, currentTop + step);
+                      scroller.dispatchEvent(new Event('scroll', {bubbles: true}));
+                    }
+                    await sleep(400);
+                  }
+
+                  collect();
+                  return {
+                    headers,
+                    rows: Array.from(seen.values()),
+                    scrolled: true,
+                    scrollHeight: scroller.scrollHeight,
+                    clientHeight: scroller.clientHeight,
+                  };
                 }
                 """
             )
             if len(dgrid_extracted.get("rows", [])) > len(rows):
                 headers = dgrid_extracted.get("headers", headers)
                 rows = dgrid_extracted.get("rows", rows)
+
 '''
-    if "Parse direct TD children of every" not in text:
-        if old_dgrid not in text:
-            raise SystemExit("existing dgrid extraction block not found")
-        text = text.replace(old_dgrid, new_dgrid, 1)
+    dgrid_starts = [
+        "            # Dojo dgrid renders the header and each data row in separate,",
+        "            # Dojo dgrid renders the header and every data row as separate",
+        "            # Dojo dgrid uses virtual scrolling and recycles row elements.",
+    ]
+    dgrid_start = next((marker for marker in dgrid_starts if marker in text), None)
+    if dgrid_start is None:
+        raise SystemExit("dgrid extraction block not found")
+    text, did_replace = replace_between(text, dgrid_start, "            print(", virtual_block)
+    changed = changed or did_replace
+
+    # If virtual dgrid rows were obtained, do not enter the conventional tbody
+    # pagination fallback, which cannot read dgrid and previously erased results.
+    old_condition = '            if extracted.get("mode") != "datatable":\n'
+    new_condition = '            if extracted.get("mode") != "datatable" and not rows:\n'
+    if old_condition in text:
+        text = text.replace(old_condition, new_condition, 1)
         changed = True
 
-    # Do not replace successfully extracted dgrid rows with an empty conventional
-    # tbody pagination result.
-    if "if collected_rows:\n                    rows = collected_rows" not in text:
-        old_fallback = '''                rows = collected_rows
+    # Do not require at least one opened shelter. Zero opened shelters is a valid
+    # daily state as long as the dgrid header was rendered successfully.
+    no_open_block = '''        web_rows = normalized_rows
+        if not web_rows:
+            raise RuntimeError("Webの開設避難所一覧から1件も取得できませんでした。")
 
-            body_text = normalize_text(await page.locator("body").inner_text())'''
-        new_fallback = '''                if collected_rows:
-                    rows = collected_rows
+'''
+    no_open_replacement = '''        web_rows = normalized_rows
+        if not web_rows:
+            print("Opened shelter table contains zero rows; recording all reference facilities as inactive.")
 
-            body_text = normalize_text(await page.locator("body").inner_text())'''
-        if old_fallback not in text:
-            raise SystemExit("pagination fallback assignment not found")
-        text = text.replace(old_fallback, new_fallback, 1)
+'''
+    if no_open_block in text:
+        text = text.replace(no_open_block, no_open_replacement, 1)
         changed = True
 
+    # Add the full reference master overlay if it is not already present.
     master_marker = "Web開設一覧に掲載なし"
     if master_marker not in text:
         old_main = '''        for row in normalized_rows:
@@ -197,12 +252,11 @@ def main() -> int:
             row["shelter_id"] = tracking_id(row["web_shelter_id"], enrichment)
             row["record_hash"] = record_hash(row)
 
-        # The portal's dgrid is an opened shelter list. Build the complete daily
-        # population from the supplied reference CSV and overlay opened web rows.
-        # A reference facility absent from the opened list is recorded as inactive.
+        # Build the complete daily population from the supplied reference CSV
+        # and overlay the rows currently shown in the opened shelter table.
         web_rows = normalized_rows
         if not web_rows:
-            raise RuntimeError("Webの開設避難所一覧から1件も取得できませんでした。")
+            print("Opened shelter table contains zero rows; recording all reference facilities as inactive.")
 
         master_rows: dict[tuple[str, ...], dict[str, str]] = {}
         for reference_group in reference_matcher.by_name_address.values():
@@ -276,9 +330,9 @@ def main() -> int:
 
     if changed:
         path.write_text(text, encoding="utf-8")
-        print("Applied portal compatibility and full snapshot patch.")
+        print("Applied portal virtual dgrid and full snapshot patch.")
     else:
-        print("Portal compatibility and full snapshot patch is already applied.")
+        print("Portal virtual dgrid and full snapshot patch is already applied.")
     return 0
 
 
