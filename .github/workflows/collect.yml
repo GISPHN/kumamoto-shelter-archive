@@ -141,6 +141,8 @@ jobs:
 
           if [ "$STATUS" -ne 0 ]; then
             cp debug/workflow.log data/logs/last_failure.log
+            cp debug/latest_page.html data/logs/last_failure_page.html 2>/dev/null || true
+            cp debug/latest_page.png data/logs/last_failure_page.png 2>/dev/null || true
             {
               echo "## Shelter collection failed"
               echo
@@ -149,7 +151,10 @@ jobs:
               echo '```'
             } >> "$GITHUB_STEP_SUMMARY"
           else
-            rm -f data/logs/last_failure.log
+            rm -f \
+              data/logs/last_failure.log \
+              data/logs/last_failure_page.html \
+              data/logs/last_failure_page.png
             echo "## Shelter collection succeeded" >> "$GITHUB_STEP_SUMMARY"
           fi
 
