@@ -120,6 +120,7 @@ jobs:
             echo "=== Apply portal compatibility patches ==="
             python scripts/apply_dgrid_patch.py
             python scripts/refine_dgrid_patch.py
+            python scripts/ensure_dgrid_meta.py
 
             echo "=== Run smoke checks ==="
             python -m py_compile \
@@ -128,6 +129,7 @@ jobs:
               scripts/diagnose_html.py \
               scripts/apply_dgrid_patch.py \
               scripts/refine_dgrid_patch.py \
+              scripts/ensure_dgrid_meta.py \
               scripts/build_time_series.py
             python - <<'PY'
           from pathlib import Path
@@ -199,7 +201,11 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add scripts/collect_shelters.py scripts/build_time_series.py data
+          git add \
+            scripts/collect_shelters.py \
+            scripts/build_time_series.py \
+            scripts/ensure_dgrid_meta.py \
+            data
           if git diff --cached --quiet; then
             echo "No source, data, or diagnostic changes to commit."
             exit 0
