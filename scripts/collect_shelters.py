@@ -41,7 +41,7 @@ except ModuleNotFoundError:  # direct execution: python scripts/collect_shelters
 JST = ZoneInfo("Asia/Tokyo")
 DEFAULT_URL = (
     "https://portal.bousai.pref.kumamoto.jp/sp.html?"
-    "p=evacuation%2Fshelter&l=15-0&"
+    "p=evacuation%2Fshelter&l=14-0&"
     "ll=32.63819999999999%2C130.77610000000004&z=9&municipalityCd=430005"
 )
 
@@ -543,23 +543,29 @@ async def collect_rendered_page(url: str, debug_dir: Path, timeout_ms: int) -> C
             headers = extracted.get("headers", [])
             rows = extracted.get("rows", [])
 
-            # Dojo dgrid renders the header and every data row as separate
-            # table elements. Gather those row tables directly when this yields
-            # more records than the generic DataTables/DOM extractor.
+            # Dojo dgrid renders the header and each data row in separate,
+            # sometimes nested table elements. Parse direct TD children of every
+            # TR rather than assuming one conventional table/tbody structure.
             dgrid_extracted = await page.evaluate(
                 r"""
                 () => {
                   const norm = s => (s || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
-                  const tables = Array.from(document.querySelectorAll('table'));
-                  const headerTable = tables.find(table =>
-                    Array.from(table.querySelectorAll('th')).some(th => norm(th.textContent).includes('避難所名'))
+                  const headerRow = Array.from(document.querySelectorAll('tr')).find(tr =>
+                    Array.from(tr.children).some(cell =>
+                      cell.tagName === 'TH' && norm(cell.textContent).includes('避難所名')
+                    )
                   );
-                  if (!headerTable) return {headers: [], rows: []};
-                  const headers = Array.from(headerTable.querySelectorAll('th')).map(th => norm(th.textContent));
-                  const rows = tables
-                    .filter(table => table !== headerTable)
-                    .map(table => Array.from(table.querySelectorAll('td')).map(td => norm(td.textContent)))
-                    .filter(cells => cells.length === headers.length && cells.some(Boolean));
+                  if (!headerRow) return {headers: [], rows: []};
+                  const headers = Array.from(headerRow.children)
+                    .filter(cell => cell.tagName === 'TH')
+                    .map(cell => norm(cell.textContent));
+                  const rows = Array.from(document.querySelectorAll('tr'))
+                    .map(tr => Array.from(tr.children)
+                      .filter(cell => cell.tagName === 'TD')
+                      .map(cell => norm(cell.textContent)))
+                    .filter(cells => cells.length >= headers.length && headers.length >= 5)
+                    .map(cells => cells.slice(0, headers.length))
+                    .filter(cells => cells.some(Boolean));
                   return {headers, rows};
                 }
                 """

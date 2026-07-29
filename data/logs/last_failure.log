@@ -1,5 +1,5 @@
 === Environment ===
-2026-07-29T14:46:13+00:00
+2026-07-29T14:49:15+00:00
 Python 3.12.13
 === Install Python dependencies ===
 Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages (26.1.2)
@@ -22,16 +22,16 @@ Collecting pygments>=2.7.2 (from pytest<9,>=8->-r requirements.txt (line 2))
 Collecting typing-extensions (from pyee<14,>=13->playwright<2,>=1.50->-r requirements.txt (line 1))
   Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
 Downloading playwright-1.61.0-py3-none-manylinux1_x86_64.whl (47.4 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 47.4/47.4 MB 257.1 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 47.4/47.4 MB 180.2 MB/s  0:00:00
 Downloading pytest-8.4.2-py3-none-any.whl (365 kB)
 Downloading greenlet-3.5.4-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (621 kB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 621.5/621.5 kB 116.8 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 621.5/621.5 kB 121.6 MB/s  0:00:00
 Downloading pluggy-1.6.0-py3-none-any.whl (20 kB)
 Downloading pyee-13.0.1-py3-none-any.whl (15 kB)
 Downloading iniconfig-2.3.0-py3-none-any.whl (7.5 kB)
 Downloading packaging-26.2-py3-none-any.whl (100 kB)
 Downloading pygments-2.20.0-py3-none-any.whl (1.2 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 193.2 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.2/1.2 MB 174.8 MB/s  0:00:00
 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)
 Installing collected packages: typing-extensions, pygments, pluggy, packaging, iniconfig, greenlet, pytest, pyee, playwright
 
@@ -46,8 +46,8 @@ Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
 Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
 Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
 Get:8 https://dl.google.com/linux/chrome-stable/deb stable InRelease [2548 B]
-Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [217 kB]
-Get:10 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [252 kB]
+Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [252 kB]
+Get:10 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [217 kB]
 Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1153 kB]
 Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [278 kB]
 Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [180 kB]
@@ -73,7 +73,7 @@ Get:32 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translat
 Get:33 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [40.3 kB]
 Get:34 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Translation-en [10.6 kB]
 Get:35 https://dl.google.com/linux/chrome-stable/deb stable/main amd64 Packages [1425 B]
-Fetched 10.9 MB in 1s (8476 kB/s)
+Fetched 10.9 MB in 1s (8354 kB/s)
 Reading package lists...
 Reading package lists...
 Building dependency tree...
@@ -149,7 +149,7 @@ Get:7 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings a
 Get:8 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3 [94.4 kB]
 Get:9 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1 [384 kB]
 Get:10 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3 [304 kB]
-Fetched 21.1 MB in 4s (4942 kB/s)
+Fetched 21.1 MB in 1s (41.7 MB/s)
 Selecting previously unselected package fonts-ipafont-gothic.
 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 202954 files and directories currently installed.)
 Preparing to unpack .../0-fonts-ipafont-gothic_00303-21ubuntu1_all.deb ...
@@ -244,7 +244,7 @@ Chrome Headless Shell 149.0.7827.55 (playwright chromium-headless-shell v1228) d
 Reference CSV is not stored in the repository; downloading the official file.
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  150k  100  150k    0     0   189k      0 --:--:-- --:--:-- --:--:--  188k
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 30  150k   30 47786    0     0  40334      0  0:00:03  0:00:01  0:00:02 40325100  150k  100  150k    0     0   111k      0  0:00:01  0:00:01 --:--:--  111k
 Validated reference CSV: 1315 rows
 === Apply Dojo dgrid compatibility patch ===
 Applied Dojo compatibility patch.
@@ -252,15 +252,15 @@ Applied Dojo compatibility patch.
 Reference matcher loaded: 1315 rows
 === Collect rendered shelter table ===
 Traceback (most recent call last):
-  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/collect_shelters.py", line 753, in main
+  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/collect_shelters.py", line 759, in main
     validate_collection(normalized_rows, args.minimum_rows)
-  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/collect_shelters.py", line 661, in validate_collection
+  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/collect_shelters.py", line 667, in validate_collection
     raise RuntimeError(
 RuntimeError: 全避難所の取得件数が想定下限を下回りました: 0件 < 100件。『全ての避難所』への切替失敗またはサイト構造変更の可能性があります。
 Dojo shelter view rendered on attempt 1.
-Rendered extraction: mode=dom; all_selected=True; headers=[]; rows=0
+Rendered extraction: mode=dom; all_selected=True; headers=['市町村', '避難所名', '開設状況', '混雑状況', '住所', 'ルート検索']; rows=62
 === Rendered HTML diagnostics ===
-html_bytes=568758
+html_bytes=466606
 table_count=65
 table[0] rows=1 max_columns=2
   row[0]=['熊本県', '']
@@ -393,7 +393,7 @@ table[63] rows=1 max_columns=6
 table[64] rows=1 max_columns=2
   row[0]=['Language', '']
 keyword[全ての避難所] count=1
-  context=app_map_MobileLayerSelector_0"><div class="label"><span>避難情報</span><ul><li class="button is-shown" data-idis-layer-id="15">開設済みの避難所</li><li class="button " data-idis-layer-id="14">全ての避難所</li></ul><div class="layer-annotation">※常に有効。地図側で市町村を選択時にマーカーが表示されます。</div></div><div class="label"><span>通行規制情報</span><ul><li class="button " data-idis-layer-id="99">現在の道路通行規制情報</li></ul></div><div class="label"><span>浸水想定区域</span><ul><li
+  context=app_map_MobileLayerSelector_0"><div class="label"><span>避難情報</span><ul><li class="button " data-idis-layer-id="15">開設済みの避難所</li><li class="button is-shown" data-idis-layer-id="14">全ての避難所</li></ul><div class="layer-annotation">※常に有効。地図側で市町村を選択時にマーカーが表示されます。</div></div><div class="label"><span>通行規制情報</span><ul><li class="button " data-idis-layer-id="99">現在の道路通行規制情報</li></ul></div><div class="label"><span>浸水想定区域</span><ul><li
 keyword[すべての避難所] count=0
 keyword[開設中の避難所] count=0
 keyword[避難所名] count=1
