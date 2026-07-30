@@ -84,6 +84,7 @@ def main() -> int:
 
     paths.extend([
         data_root / "latest.csv",
+        data_root / "latest_open.csv",
         data_root / "latest_changes.csv",
         data_root / "latest_matching_issues.csv",
     ])
