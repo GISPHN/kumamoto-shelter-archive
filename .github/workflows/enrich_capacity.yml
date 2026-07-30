@@ -1,0 +1,72 @@
+name: Enrich shelter data with capacity
+
+on:
+  workflow_run:
+    workflows:
+      - Collect Kumamoto shelter data
+    types:
+      - completed
+  push:
+    branches:
+      - main
+    paths:
+      - reference/portal_shelter_capacity.csv
+      - scripts/capacity_matcher.py
+      - scripts/enrich_capacity_outputs.py
+      - scripts/build_time_series.py
+      - .github/workflows/enrich_capacity.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kumamoto-shelter-capacity-enrichment
+  cancel-in-progress: true
+
+jobs:
+  enrich:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Validate capacity scripts
+        run: |
+          python -m py_compile \
+            scripts/capacity_matcher.py \
+            scripts/enrich_capacity_outputs.py \
+            scripts/build_time_series.py
+
+      - name: Enrich all archived CSVs from the persistent capacity master
+        run: |
+          python scripts/enrich_capacity_outputs.py \
+            --data-root data \
+            --capacity-csv reference/portal_shelter_capacity.csv
+
+      - name: Rebuild wide time-series CSVs
+        run: python scripts/build_time_series.py --data-root data
+
+      - name: Commit enriched outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          if git diff --cached --quiet; then
+            echo "Capacity-enriched CSVs are already up to date."
+            exit 0
+          fi
+          git commit -m "Enrich shelter archive with capacity"
+          git push
