@@ -17,6 +17,8 @@ from typing import Iterable
 DATE_PATTERN = re.compile(r"^\d{4}-\d{2}-\d{2}$")
 
 # 日によって変化しない、または最新の非空値を採用する施設属性。
+# 国土地理院の指定避難所CSVには「定員」「収容人数」の独立列はない。
+# そのため、利用可能な全属性（受入対象者、必要事項、備考等）を保持する。
 IDENTITY_COLUMNS = [
     "shelter_id",
     "web_shelter_id",
@@ -27,10 +29,18 @@ IDENTITY_COLUMNS = [
     "address",
     "reference_facility_name",
     "reference_address",
+    "reference_same_address_as_emergency_site",
+    "reference_other_mayor_matters",
+    "reference_accepted_persons",
     "reference_latitude",
     "reference_longitude",
-    "reference_accepted_persons",
+    "reference_all_coordinates_json",
+    "reference_notes",
     "reference_match_status",
+    "reference_match_method",
+    "reference_match_score",
+    "reference_source_file",
+    "reference_source_sha256",
 ]
 
 
