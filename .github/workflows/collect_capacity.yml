@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - scripts/collect_capacity.py
+      - scripts/refine_capacity_collector.py
       - .github/workflows/collect_capacity.yml
   workflow_dispatch:
     inputs:
@@ -54,10 +55,14 @@ jobs:
           python -m pip install -r requirements.txt
           python -m playwright install --with-deps chromium
 
+      - name: Apply portal compatibility refinements
+        run: python scripts/refine_capacity_collector.py
+
       - name: Validate scripts
         run: |
           python -m py_compile \
             scripts/collect_capacity.py \
+            scripts/refine_capacity_collector.py \
             scripts/capacity_matcher.py \
             scripts/enrich_capacity_outputs.py \
             scripts/build_time_series.py
