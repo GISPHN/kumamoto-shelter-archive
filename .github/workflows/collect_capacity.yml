@@ -1,0 +1,115 @@
+name: Collect Kumamoto shelter capacity
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - scripts/collect_capacity.py
+      - .github/workflows/collect_capacity.yml
+  workflow_dispatch:
+    inputs:
+      municipality_code:
+        description: "対象市町村コード。空欄なら熊本県内全市町村"
+        required: false
+        type: string
+      max_municipalities:
+        description: "試験実行時の最大市町村数。0なら制限なし"
+        required: false
+        default: "0"
+        type: string
+      minimum_parsed:
+        description: "取得成功と判定する定員件数の下限"
+        required: false
+        default: "1"
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kumamoto-shelter-capacity-collection
+  cancel-in-progress: false
+
+jobs:
+  collect-capacity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install Playwright
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r requirements.txt
+          python -m playwright install --with-deps chromium
+
+      - name: Validate scripts
+        run: |
+          python -m py_compile \
+            scripts/collect_capacity.py \
+            scripts/capacity_matcher.py \
+            scripts/enrich_capacity_outputs.py \
+            scripts/build_time_series.py
+
+      - name: Collect capacity master once
+        id: capacity
+        shell: bash
+        env:
+          MUNICIPALITY_CODE: ${{ inputs.municipality_code }}
+          MAX_MUNICIPALITIES: ${{ inputs.max_municipalities || '0' }}
+          MINIMUM_PARSED: ${{ inputs.minimum_parsed || '1' }}
+        run: |
+          set -euo pipefail
+          args=(
+            --output reference/portal_shelter_capacity.csv
+            --history-dir reference/capacity_history
+            --debug-dir debug/capacity
+            --max-municipalities "$MAX_MUNICIPALITIES"
+            --minimum-parsed "$MINIMUM_PARSED"
+          )
+          if [ -n "${MUNICIPALITY_CODE:-}" ]; then
+            args+=(--municipality-code "$MUNICIPALITY_CODE")
+          fi
+          python scripts/collect_capacity.py "${args[@]}"
+
+      - name: Apply persistent capacity to all archived data
+        run: |
+          python scripts/enrich_capacity_outputs.py \
+            --data-root data \
+            --capacity-csv reference/portal_shelter_capacity.csv
+          python scripts/build_time_series.py --data-root data
+
+      - name: Commit capacity master and enriched outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reference/portal_shelter_capacity.csv reference/capacity_history data
+          if git diff --cached --quiet; then
+            echo "No capacity or enriched data changes to commit."
+            exit 0
+          fi
+          git commit -m "Add persistent shelter capacity master"
+          git pull --rebase origin main
+          git push
+
+      - name: Upload capacity diagnostics
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: shelter-capacity-diagnostics-${{ github.run_id }}
+          path: debug/capacity/
+          if-no-files-found: ignore
+          retention-days: 30
