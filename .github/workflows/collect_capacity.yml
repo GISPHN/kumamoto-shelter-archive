@@ -29,7 +29,7 @@ permissions:
 
 concurrency:
   group: kumamoto-shelter-capacity-collection
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   collect-capacity:
@@ -70,38 +70,60 @@ jobs:
           MAX_MUNICIPALITIES: ${{ inputs.max_municipalities || '0' }}
           MINIMUM_PARSED: ${{ inputs.minimum_parsed || '1' }}
         run: |
-          set -euo pipefail
-          args=(
-            --output reference/portal_shelter_capacity.csv
-            --history-dir reference/capacity_history
-            --debug-dir debug/capacity
-            --max-municipalities "$MAX_MUNICIPALITIES"
-            --minimum-parsed "$MINIMUM_PARSED"
-          )
-          if [ -n "${MUNICIPALITY_CODE:-}" ]; then
-            args+=(--municipality-code "$MUNICIPALITY_CODE")
+          set +e
+          mkdir -p debug/capacity data/logs reference/capacity_history
+          {
+            set -euo pipefail
+            args=(
+              --output reference/portal_shelter_capacity.csv
+              --history-dir reference/capacity_history
+              --debug-dir debug/capacity
+              --max-municipalities "$MAX_MUNICIPALITIES"
+              --minimum-parsed "$MINIMUM_PARSED"
+            )
+            if [ -n "${MUNICIPALITY_CODE:-}" ]; then
+              args+=(--municipality-code "$MUNICIPALITY_CODE")
+            fi
+            python scripts/collect_capacity.py "${args[@]}"
+          } 2>&1 | tee debug/capacity/workflow.log
+          STATUS=${PIPESTATUS[0]}
+          echo "exit_code=$STATUS" >> "$GITHUB_OUTPUT"
+          cp debug/capacity/workflow.log data/logs/capacity_latest_run.log
+          if [ "$STATUS" -ne 0 ]; then
+            cp debug/capacity/workflow.log data/logs/capacity_last_failure.log
+          else
+            rm -f data/logs/capacity_last_failure.log
           fi
-          python scripts/collect_capacity.py "${args[@]}"
+          exit 0
 
       - name: Apply persistent capacity to all archived data
+        if: steps.capacity.outputs.exit_code == '0'
         run: |
           python scripts/enrich_capacity_outputs.py \
             --data-root data \
             --capacity-csv reference/portal_shelter_capacity.csv
           python scripts/build_time_series.py --data-root data
 
-      - name: Commit capacity master and enriched outputs
+      - name: Commit capacity master or diagnostics
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reference/portal_shelter_capacity.csv reference/capacity_history data
+          git add data/logs/capacity_latest_run.log
+          git add data/logs/capacity_last_failure.log 2>/dev/null || true
+          if [ "${{ steps.capacity.outputs.exit_code }}" = "0" ]; then
+            git add reference/portal_shelter_capacity.csv reference/capacity_history data
+          fi
           if git diff --cached --quiet; then
-            echo "No capacity or enriched data changes to commit."
+            echo "No capacity or diagnostic changes to commit."
             exit 0
           fi
-          git commit -m "Add persistent shelter capacity master"
+          if [ "${{ steps.capacity.outputs.exit_code }}" = "0" ]; then
+            git commit -m "Add persistent shelter capacity master"
+          else
+            git commit -m "Record failed shelter capacity diagnostics"
+          fi
           git pull --rebase origin main
           git push
 
@@ -113,3 +135,9 @@ jobs:
           path: debug/capacity/
           if-no-files-found: ignore
           retention-days: 30
+
+      - name: Fail workflow when capacity collection failed
+        if: steps.capacity.outputs.exit_code != '0'
+        run: |
+          echo "Capacity collection failed with exit code ${{ steps.capacity.outputs.exit_code }}."
+          exit 1
