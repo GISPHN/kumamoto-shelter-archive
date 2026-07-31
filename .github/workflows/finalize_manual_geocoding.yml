@@ -1,0 +1,127 @@
+name: Finalize manual geocoding integration
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/finalize_manual_geocoding.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kumamoto-shelter-capacity-data-write
+  cancel-in-progress: true
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Validate scripts and manual master
+        run: |
+          python -m py_compile \
+            scripts/capacity_matcher.py \
+            scripts/coordinate_enricher.py \
+            scripts/enrich_capacity_outputs.py \
+            scripts/build_time_series.py \
+            scripts/validate_capacity_outputs.py \
+            scripts/validate_coordinate_outputs.py
+          python - <<'PY'
+          from pathlib import Path
+          from scripts.coordinate_enricher import CoordinateEnricher
+
+          manual = CoordinateEnricher(Path("reference/manual_geocoding"))
+          if len(manual.rows) != 138:
+              raise SystemExit(f"Manual geocoding rows: {len(manual.rows)} != 138")
+          if len(manual.by_id) != 138:
+              raise SystemExit("Manual geocoding shelter_id is not unique")
+          print("Validated manual geocoding master: 138 unique rows")
+          PY
+
+      - name: Re-enrich every archived shelter CSV
+        run: |
+          python scripts/enrich_capacity_outputs.py \
+            --data-root data \
+            --capacity-csv reference/portal_shelter_capacity.csv \
+            --manual-geocoding reference/manual_geocoding
+          python scripts/build_time_series.py --data-root data
+
+      - name: Validate complete coordinate coverage and manual values
+        id: validation
+        shell: bash
+        run: |
+          set +e
+          mkdir -p data/logs debug/manual_geocoding
+          python scripts/validate_capacity_outputs.py \
+            --master reference/portal_shelter_capacity.csv \
+            --metadata reference/portal_shelter_capacity_metadata.json \
+            --latest data/latest.csv \
+            --status-by-date data/status_by_date.csv \
+            --output data/logs/capacity_validation.json \
+            --minimum-master-records 2000 \
+            2>&1 | tee debug/manual_geocoding/capacity_validation.log
+          CAPACITY_STATUS=${PIPESTATUS[0]}
+          python scripts/validate_coordinate_outputs.py \
+            --data-root data \
+            --manual-geocoding reference/manual_geocoding \
+            --output data/logs/coordinate_validation.json \
+            --expected-manual-records 138 \
+            2>&1 | tee debug/manual_geocoding/coordinate_validation.log
+          COORDINATE_STATUS=${PIPESTATUS[0]}
+          echo "capacity_exit_code=$CAPACITY_STATUS" >> "$GITHUB_OUTPUT"
+          echo "coordinate_exit_code=$COORDINATE_STATUS" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Commit enriched archive and validation reports
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data
+          if git diff --cached --quiet; then
+            echo "No archive or validation changes to commit."
+            exit 0
+          fi
+          if [ "${{ steps.validation.outputs.capacity_exit_code }}" = "0" ] && \
+             [ "${{ steps.validation.outputs.coordinate_exit_code }}" = "0" ]; then
+            git commit -m "Finalize coordinate-complete shelter archive"
+          else
+            git commit -m "Record manual geocoding validation failure"
+          fi
+          git pull --rebase origin main
+          git push
+
+      - name: Upload validation diagnostics
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: manual-geocoding-finalization-${{ github.run_id }}
+          path: |
+            debug/manual_geocoding/
+            data/logs/capacity_validation.json
+            data/logs/coordinate_validation.json
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Fail when final validation failed
+        if: steps.validation.outputs.capacity_exit_code != '0' || steps.validation.outputs.coordinate_exit_code != '0'
+        run: |
+          echo "Capacity validation exit code: ${{ steps.validation.outputs.capacity_exit_code }}"
+          echo "Coordinate validation exit code: ${{ steps.validation.outputs.coordinate_exit_code }}"
+          exit 1
