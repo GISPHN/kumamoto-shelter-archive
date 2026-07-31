@@ -7,9 +7,13 @@ on:
     paths:
       - scripts/collect_capacity.py
       - scripts/capacity_matcher.py
+      - scripts/coordinate_enricher.py
       - scripts/enrich_capacity_outputs.py
       - scripts/build_time_series.py
       - scripts/validate_capacity_outputs.py
+      - scripts/validate_coordinate_outputs.py
+      - reference/manual_geocoding/**
+      - reference/manual_geocoding_metadata.json
       - .github/workflows/collect_capacity.yml
   workflow_dispatch:
     inputs:
@@ -52,9 +56,11 @@ jobs:
           python -m py_compile \
             scripts/collect_capacity.py \
             scripts/capacity_matcher.py \
+            scripts/coordinate_enricher.py \
             scripts/enrich_capacity_outputs.py \
             scripts/build_time_series.py \
-            scripts/validate_capacity_outputs.py
+            scripts/validate_capacity_outputs.py \
+            scripts/validate_coordinate_outputs.py
 
       - name: Collect statewide capacity master from official JSON
         id: capacity
@@ -84,12 +90,13 @@ jobs:
           fi
           exit 0
 
-      - name: Apply persistent capacity to all archived data
+      - name: Apply persistent attributes to all archived data
         if: steps.capacity.outputs.exit_code == '0'
         run: |
           python scripts/enrich_capacity_outputs.py \
             --data-root data \
-            --capacity-csv reference/portal_shelter_capacity.csv
+            --capacity-csv reference/portal_shelter_capacity.csv \
+            --manual-geocoding reference/manual_geocoding
           python scripts/build_time_series.py --data-root data
 
       - name: Validate generated master and enriched outputs
@@ -102,6 +109,11 @@ jobs:
             --status-by-date data/status_by_date.csv \
             --output data/logs/capacity_validation.json \
             --minimum-master-records 2000
+          python scripts/validate_coordinate_outputs.py \
+            --data-root data \
+            --manual-geocoding reference/manual_geocoding \
+            --output data/logs/coordinate_validation.json \
+            --expected-manual-records 138
 
       - name: Commit capacity master or diagnostics
         shell: bash
@@ -119,11 +131,11 @@ jobs:
               data
           fi
           if git diff --cached --quiet; then
-            echo "No capacity or diagnostic changes to commit."
+            echo "No capacity, coordinate, or diagnostic changes to commit."
             exit 0
           fi
           if [ "${{ steps.capacity.outputs.exit_code }}" = "0" ]; then
-            git commit -m "Refresh verified shelter capacity master"
+            git commit -m "Refresh verified shelter capacity and coordinates"
           else
             git commit -m "Record failed shelter capacity diagnostics"
           fi
@@ -140,7 +152,9 @@ jobs:
             data/logs/capacity_latest_run.log
             data/logs/capacity_last_failure.log
             data/logs/capacity_validation.json
+            data/logs/coordinate_validation.json
             reference/portal_shelter_capacity_metadata.json
+            reference/manual_geocoding_metadata.json
           if-no-files-found: ignore
           retention-days: 30
 
