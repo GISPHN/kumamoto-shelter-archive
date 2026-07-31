@@ -6,6 +6,7 @@ on:
       - main
     paths:
       - scripts/diagnose_capacity_source.py
+      - scripts/probe_shelter_endpoint.py
       - .github/workflows/diagnose_capacity.yml
   workflow_dispatch:
     inputs:
@@ -54,14 +55,19 @@ jobs:
           set +e
           rm -rf debug/capacity_probe
           mkdir -p debug/capacity_probe data/logs
-          python scripts/diagnose_capacity_source.py \
-            --municipality-code "$MUNICIPALITY_CODE" \
-            --output-dir debug/capacity_probe \
-            2>&1 | tee debug/capacity_probe/workflow.log
+          {
+            python scripts/diagnose_capacity_source.py \
+              --municipality-code "$MUNICIPALITY_CODE" \
+              --output-dir debug/capacity_probe
+            python scripts/probe_shelter_endpoint.py \
+              --output debug/capacity_probe/endpoint_schema.json
+          } 2>&1 | tee debug/capacity_probe/workflow.log
           STATUS=${PIPESTATUS[0]}
           echo "exit_code=$STATUS" >> "$GITHUB_OUTPUT"
           cp debug/capacity_probe/summary.txt data/logs/capacity_probe_summary.txt 2>/dev/null || true
           cp debug/capacity_probe/report.json data/logs/capacity_probe_report.json 2>/dev/null || true
+          cp debug/capacity_probe/endpoint_schema.json data/logs/capacity_endpoint_schema.json 2>/dev/null || true
+          cp debug/capacity_probe/endpoint_schema.txt data/logs/capacity_endpoint_schema.txt 2>/dev/null || true
           cp debug/capacity_probe/workflow.log data/logs/capacity_probe_workflow.log
           exit 0
 
@@ -71,12 +77,17 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/logs/capacity_probe_summary.txt data/logs/capacity_probe_report.json data/logs/capacity_probe_workflow.log
+          git add \
+            data/logs/capacity_probe_summary.txt \
+            data/logs/capacity_probe_report.json \
+            data/logs/capacity_endpoint_schema.json \
+            data/logs/capacity_endpoint_schema.txt \
+            data/logs/capacity_probe_workflow.log
           if git diff --cached --quiet; then
             echo "No diagnostic report changes."
             exit 0
           fi
-          git commit -m "Record capacity source diagnostic report"
+          git commit -m "Record shelter endpoint schema"
           git pull --rebase origin main
           git push
 
