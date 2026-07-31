@@ -1,46 +1,107 @@
-# 熊本防災マップの避難所定員
+# 熊本防災ポータルの避難所定員
 
-避難所定員は日次変動する情報ではなく、熊本防災マップの避難所詳細から一度取得し、固定属性マスタとして永続保存します。
+避難所の最大収容人数は日次変動する開設状況とは分離し、熊本防災ポータルの固定施設属性として永続保存します。
 
-## 情報源
+## 取得元
 
-定員は「防災情報くまもと」の地図上で避難所を選択した際に表示される詳細情報から取得します。
+熊本防災ポータルが地図マーカーの生成に使用する、全県避難所JSONを直接取得します。
 
-国土地理院CSVの`受入対象者`とは別の項目です。
+```text
+https://portal.bousai.pref.kumamoto.jp/data/shelter/shelter.json
+```
 
-- `reference_accepted_persons`: 国土地理院CSVの受入対象者
-- `portal_capacity_persons`: 熊本防災マップに表示された定員
+このJSONはトップレベルに`items`と`total`を持ち、`items`の各要素が1避難所です。2026年7月31日の検証時点では、45市町村、2,122施設が収録されていました。
+
+主なフィールドは次のとおりです。
+
+| JSONフィールド | 保存先 | 内容 |
+|---|---|---|
+| `facilityId` | `portal_shelter_id` | 熊本防災ポータル側の施設ID |
+| `municipalityCd` | `municipality_code` | 市町村コード |
+| `municipalityName` | `municipality` | 市町村名 |
+| `name` | `shelter_name` | 避難所名 |
+| `address` | `address` | 住所 |
+| `latitude` | `portal_latitude` | ポータル側の緯度 |
+| `longitude` | `portal_longitude` | ポータル側の経度 |
+| `capacity` | `portal_capacity_persons` | 最大収容人数 |
+
+地図上のポップアップでは、この`capacity`が「最大収容人数」として表示されます。
+
+## 国土地理院データとの区別
+
+国土地理院CSVの`受入対象者`と、熊本防災ポータルの最大収容人数は別項目です。
+
+| 列 | 情報源 | 意味 |
+|---|---|---|
+| `reference_accepted_persons` | 国土地理院CSV | 高齢者、障害者等の受入対象者 |
+| `portal_capacity_persons` | 熊本防災ポータルJSON | 最大収容人数 |
+
+`reference_accepted_persons`を人数として解釈したり、定員へ転記したりしません。
 
 ## 永続マスタ
 
+取得結果は次に保存します。
+
 ```text
 reference/portal_shelter_capacity.csv
+reference/portal_shelter_capacity_metadata.json
 ```
 
-主な列は次のとおりです。
+取得時点の履歴は次に保存します。
+
+```text
+reference/capacity_history/YYYY-MM-DD.csv
+reference/capacity_history/YYYY-MM-DD.metadata.json
+```
+
+CSVの主な列は次のとおりです。
 
 | 列 | 内容 |
 |---|---|
-| `portal_shelter_id` | 熊本防災側または取得時に生成した避難所ID |
+| `portal_shelter_id` | `facilityId` |
 | `municipality_code` | 市町村コード |
 | `municipality` | 市町村名 |
 | `shelter_name` | 避難所名 |
 | `address` | 住所 |
-| `portal_capacity_persons` | 数値化した定員 |
-| `portal_capacity_raw` | 表示された定員の原文 |
+| `portal_latitude` | 緯度 |
+| `portal_longitude` | 経度 |
+| `portal_capacity_persons` | 正の数として確認できた最大収容人数 |
+| `portal_capacity_raw` | JSONの`capacity`原値 |
 | `capacity_source` | `kumamoto_portal_map` |
-| `capacity_acquired_at_jst` | 初回取得日時 |
-| `capacity_parse_status` | `parsed`、`missing`、`invalid` |
+| `capacity_acquired_at_jst` | 取得日時 |
+| `capacity_match_key` | 日次データとの結合用キー |
+| `capacity_parse_status` | 定員値の解釈結果 |
+| `source_url` | 取得元JSON |
 
-取得時点のバックアップは次に保存します。
+## `capacity`が0の場合
+
+ポータルのポップアップでは、`capacity == 0`が人数の0ではなく`---`として表示されます。
+
+そのため、次のように保存します。
 
 ```text
-reference/capacity_history/YYYY-MM-DD.csv
+portal_capacity_persons = 空欄
+portal_capacity_raw = 0
+capacity_parse_status = missing_zero
 ```
 
-## 一度だけの取得
+「収容可能人数が0人」とは解釈しません。
 
-GitHub Actionsの`Collect Kumamoto shelter capacity`を使用します。
+2026年7月31日の取得結果は次のとおりです。
+
+| 区分 | 施設数 |
+|---|---:|
+| 全施設 | 2,122 |
+| 正の最大収容人数を取得 | 1,619 |
+| `capacity=0`でポップアップが`---` | 398 |
+| `capacity`が欠損 | 105 |
+| 解析不能な値 | 0 |
+
+全2,122施設のレコードは取得できていますが、数値として利用できる最大収容人数は1,619施設です。
+
+## 取得処理
+
+専用ワークフローを使用します。
 
 ```text
 .github/workflows/collect_capacity.yml
@@ -48,18 +109,20 @@ GitHub Actionsの`Collect Kumamoto shelter capacity`を使用します。
 
 処理は次の順序です。
 
-1. 熊本県内の市町村ごとに「全ての避難所」を表示する
-2. XHR・Fetchレスポンスから定員を持つ避難所レコードを探索する
-3. レスポンスから取得できない場合は、仮想スクロール表の各行をクリックする
-4. ポップアップの定員表示を数値化する
-5. 既存マスタと統合し、取得済みの定員を保持する
-6. 全日次CSVと横持ち時系列CSVへ定員を付与する
+1. 全県避難所JSONをキャッシュ回避パラメータ付きで取得する
+2. HTTPステータス、Content-Type、レスポンス件数を確認する
+3. 必須フィールドの欠落を検査する
+4. `facilityId`の空欄・重複を検査する
+5. `capacity`を正の数、0、欠損、不正値へ分類する
+6. 永続マスタと取得履歴を保存する
+7. 既存の日別・最新・横持ちCSVへ定員を結合する
+8. 生成後のマスタ件数と横持ちCSVの列を再検証する
 
-通常の日次ワークフローでは地図上の避難所をクリックしません。
+地図マーカーや一覧行をクリックする処理は使用しません。全県JSONを1回取得するため、市町村ごとの巡回も不要です。
 
 ## 日次データへの結合
 
-日次避難所収集が完了すると、`Enrich shelter data with capacity`が自動実行されます。
+日次の避難所収集後は、保存済みの定員マスタを読み込むだけです。定員取得元へ毎日アクセスする必要はありません。
 
 ```text
 .github/workflows/enrich_capacity.yml
@@ -67,13 +130,13 @@ GitHub Actionsの`Collect Kumamoto shelter capacity`を使用します。
 
 結合の優先順位は次のとおりです。
 
-1. 熊本防災側の避難所ID
+1. 熊本防災ポータル側の施設ID
 2. 市町村・正規化施設名・正規化住所の完全一致
 3. 市町村・施設名一致と住所の類似一致
 4. 高信頼度の類似照合
-5. 一致しない場合は空欄として監査対象にする
+5. 一致しない場合は未一致として保存
 
-次の列が日別・最新・横持ちCSVへ追加されます。
+追加される列は次のとおりです。
 
 ```text
 portal_shelter_id
@@ -88,19 +151,30 @@ portal_latitude
 portal_longitude
 ```
 
-照合できなかった施設は次に保存されます。
+未一致・曖昧な施設は次に保存します。
 
 ```text
 data/latest_capacity_matching_issues.csv
 ```
 
-## 更新
+## 検証情報
 
-定員は基本的に固定属性として扱います。次の場合のみ定員取得ワークフローを再実行します。
+最新の取得検証結果は次に保存します。
+
+```text
+reference/portal_shelter_capacity_metadata.json
+data/logs/capacity_latest_run.log
+```
+
+メタデータには、取得日時、レスポンスサイズ、SHA-256、全施設数、定員取得件数、市町村数、必須フィールド欠落件数を記録します。
+
+## 再取得する場合
+
+定員は固定属性として扱います。次の場合に限り、`Collect Kumamoto shelter capacity`を再実行します。
 
 - 新しい避難所が追加された場合
-- 定員が変更されたことを確認した場合
-- 定員未取得施設だけを再確認する場合
-- 熊本防災マップのデータ構造が変更された場合
+- 最大収容人数が変更された場合
+- 欠損施設の値が追加された場合
+- ポータルJSONの構造が変更された場合
 
-再取得時も、既存の正常な定員は新しい取得結果が欠損の場合には上書きしません。
+再取得時に、以前は正の定員が登録されていた施設の値が一時的に欠損した場合、直前の検証済み定員を保持します。その事実は`capacity_parse_status=preserved_previous_parsed`で明示します。
