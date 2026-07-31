@@ -1,12 +1,16 @@
 #!/usr/bin/env python3
 """Provide complete, provenance-preserving coordinates for shelter outputs.
 
-Source-specific coordinate columns are never overwritten.  The unified
+Source-specific coordinate columns are never overwritten. The unified
 ``latitude`` and ``longitude`` columns are selected in this order:
 
 1. GSI reference coordinates
-2. Kumamoto portal coordinates
-3. User-supplied manual geocoding
+2. User-supplied manual geocoding
+3. Kumamoto portal coordinates
+
+The manual master was prepared specifically for shelters whose GSI coordinates
+were blank. It therefore takes precedence over the portal fallback while all
+portal coordinates remain available in their source-specific columns.
 
 Manual geocoding is matched by stable shelter/web ID first and by exact
 normalized municipality, facility name and address only as a fallback.
@@ -231,14 +235,14 @@ class CoordinateEnricher:
             selected = reference_pair
             source = "gsi_reference"
             method = "reference_latitude_longitude"
-        elif portal_pair is not None:
-            selected = portal_pair
-            source = "kumamoto_portal"
-            method = "portal_latitude_longitude"
         elif manual_pair is not None:
             selected = manual_pair
             source = "manual_geocoding"
             method = manual.method
+        elif portal_pair is not None:
+            selected = portal_pair
+            source = "kumamoto_portal"
+            method = "portal_latitude_longitude"
 
         return {
             "manual_latitude": manual_row.get("manual_latitude", ""),
