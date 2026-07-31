@@ -1,0 +1,17 @@
+{
+  "source_file": "マニュアルジオコーディング(1).csv",
+  "source_encoding": "CP932",
+  "source_sha256": "35f5dae36fe4e9577c53f227bd933e4604ed40e589ee27a700add2b32438424c",
+  "imported_at_jst": "2026-08-01T00:09:00+09:00",
+  "record_count": 138,
+  "unique_shelter_id_count": 138,
+  "municipality_count": 14,
+  "coordinate_validation": {
+    "missing_coordinate_count": 0,
+    "invalid_coordinate_count": 0,
+    "latitude_min": 32.2097529,
+    "latitude_max": 32.97901737,
+    "longitude_min": 129.9930077,
+    "longitude_max": 131.1656138
+  }
+}
