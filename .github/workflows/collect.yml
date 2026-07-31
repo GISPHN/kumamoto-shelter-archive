@@ -23,13 +23,13 @@ permissions:
   contents: write
 
 concurrency:
-  group: kumamoto-shelter-daily-collection
+  group: kumamoto-shelter-capacity-data-write
   cancel-in-progress: false
 
 jobs:
   collect:
     runs-on: ubuntu-latest
-    timeout-minutes: 25
+    timeout-minutes: 30
 
     steps:
       - name: Checkout repository
@@ -59,7 +59,7 @@ jobs:
           echo "snapshot_date=$SNAPSHOT_DATE" >> "$GITHUB_OUTPUT"
           echo "Snapshot date: $SNAPSHOT_DATE"
 
-      - name: Install, validate, and collect
+      - name: Install, validate, collect, and enrich
         id: collector
         shell: bash
         env:
@@ -126,6 +126,11 @@ jobs:
             python -m py_compile \
               scripts/collect_shelters.py \
               scripts/reference_matcher.py \
+              scripts/capacity_matcher.py \
+              scripts/coordinate_enricher.py \
+              scripts/enrich_capacity_outputs.py \
+              scripts/validate_capacity_outputs.py \
+              scripts/validate_coordinate_outputs.py \
               scripts/diagnose_html.py \
               scripts/apply_dgrid_patch.py \
               scripts/refine_dgrid_patch.py \
@@ -133,16 +138,28 @@ jobs:
               scripts/build_time_series.py
             python - <<'PY'
           from pathlib import Path
+          from scripts.coordinate_enricher import CoordinateEnricher
           from scripts.reference_matcher import ReferenceMatcher
 
           matcher = ReferenceMatcher(Path("reference/43000_1.csv"))
           if len(matcher.rows) < 1000:
               raise SystemExit(f"Reference matcher loaded too few rows: {len(matcher.rows)}")
+          manual = CoordinateEnricher(Path("reference/manual_geocoding"))
+          if len(manual.rows) != 138:
+              raise SystemExit(f"Manual geocoding row count is invalid: {len(manual.rows)}")
           print(f"Reference matcher loaded: {len(matcher.rows)} rows")
+          print(f"Manual geocoding loaded: {len(manual.rows)} rows")
           PY
 
             echo "=== Collect rendered shelter table ==="
             python scripts/collect_shelters.py --snapshot-date "$SNAPSHOT_DATE"
+
+            echo "=== Enrich capacity and complete coordinates ==="
+            python scripts/enrich_capacity_outputs.py \
+              --data-root data \
+              --capacity-csv reference/portal_shelter_capacity.csv \
+              --manual-geocoding reference/manual_geocoding \
+              --snapshot-date "$SNAPSHOT_DATE"
 
             echo "=== Build wide daily time-series CSVs ==="
             python scripts/build_time_series.py --data-root data
@@ -164,6 +181,20 @@ jobs:
               writer.writerows(rows)
           print(f"Exported current opened shelters: {len(rows)} rows")
           PY
+
+            echo "=== Validate capacity and coordinate coverage ==="
+            python scripts/validate_capacity_outputs.py \
+              --master reference/portal_shelter_capacity.csv \
+              --metadata reference/portal_shelter_capacity_metadata.json \
+              --latest data/latest.csv \
+              --status-by-date data/status_by_date.csv \
+              --output data/logs/capacity_validation.json \
+              --minimum-master-records 2000
+            python scripts/validate_coordinate_outputs.py \
+              --data-root data \
+              --manual-geocoding reference/manual_geocoding \
+              --output data/logs/coordinate_validation.json \
+              --expected-manual-records 138
           } 2>&1 | tee debug/workflow.log
 
           STATUS=${PIPESTATUS[0]}
@@ -190,7 +221,7 @@ jobs:
               data/logs/last_failure.log \
               data/logs/last_failure_page.html \
               data/logs/last_failure_page.png
-            echo "## Shelter collection succeeded" >> "$GITHUB_STEP_SUMMARY"
+            echo "## Shelter collection and coordinate validation succeeded" >> "$GITHUB_STEP_SUMMARY"
           fi
 
           exit 0
@@ -201,20 +232,17 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add \
-            scripts/collect_shelters.py \
-            scripts/build_time_series.py \
-            scripts/ensure_dgrid_meta.py \
-            data
+          git add data
           if git diff --cached --quiet; then
-            echo "No source, data, or diagnostic changes to commit."
+            echo "No data or diagnostic changes to commit."
             exit 0
           fi
           if [ "${{ steps.collector.outputs.exit_code }}" = "0" ]; then
-            git commit -m "Record shelter snapshot ${{ steps.observation.outputs.snapshot_date }}"
+            git commit -m "Record coordinate-complete shelter snapshot ${{ steps.observation.outputs.snapshot_date }}"
           else
             git commit -m "Record failed shelter collection diagnostics"
           fi
+          git pull --rebase origin main
           git push
 
       - name: Upload diagnostics on failure
@@ -227,6 +255,7 @@ jobs:
             data/logs/
             data/matching_issues/
             data/latest_matching_issues.csv
+            data/latest_capacity_matching_issues.csv
           if-no-files-found: ignore
           retention-days: 14
 
