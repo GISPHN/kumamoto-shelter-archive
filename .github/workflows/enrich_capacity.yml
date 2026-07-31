@@ -1,4 +1,4 @@
-name: Enrich shelter data with capacity
+name: Enrich shelter data with capacity and coordinates
 
 on:
   workflow_run:
@@ -12,10 +12,14 @@ on:
     paths:
       - reference/portal_shelter_capacity.csv
       - reference/portal_shelter_capacity_metadata.json
+      - reference/manual_geocoding/**
+      - reference/manual_geocoding_metadata.json
       - scripts/capacity_matcher.py
+      - scripts/coordinate_enricher.py
       - scripts/enrich_capacity_outputs.py
       - scripts/build_time_series.py
       - scripts/validate_capacity_outputs.py
+      - scripts/validate_coordinate_outputs.py
       - .github/workflows/enrich_capacity.yml
   workflow_dispatch:
 
@@ -43,24 +47,27 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Validate capacity scripts
+      - name: Validate enrichment scripts
         run: |
           python -m py_compile \
             scripts/capacity_matcher.py \
+            scripts/coordinate_enricher.py \
             scripts/enrich_capacity_outputs.py \
             scripts/build_time_series.py \
-            scripts/validate_capacity_outputs.py
+            scripts/validate_capacity_outputs.py \
+            scripts/validate_coordinate_outputs.py
 
-      - name: Enrich all archived CSVs from the persistent capacity master
+      - name: Enrich all archived CSVs
         run: |
           python scripts/enrich_capacity_outputs.py \
             --data-root data \
-            --capacity-csv reference/portal_shelter_capacity.csv
+            --capacity-csv reference/portal_shelter_capacity.csv \
+            --manual-geocoding reference/manual_geocoding
 
       - name: Rebuild wide time-series CSVs
         run: python scripts/build_time_series.py --data-root data
 
-      - name: Validate enriched outputs
+      - name: Validate capacity integrity
         run: |
           python scripts/validate_capacity_outputs.py \
             --master reference/portal_shelter_capacity.csv \
@@ -70,6 +77,14 @@ jobs:
             --output data/logs/capacity_validation.json \
             --minimum-master-records 2000
 
+      - name: Validate complete coordinate coverage
+        run: |
+          python scripts/validate_coordinate_outputs.py \
+            --data-root data \
+            --manual-geocoding reference/manual_geocoding \
+            --output data/logs/coordinate_validation.json \
+            --expected-manual-records 138
+
       - name: Commit enriched outputs and validation
         shell: bash
         run: |
@@ -78,9 +93,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data
           if git diff --cached --quiet; then
-            echo "Capacity-enriched CSVs and validation are already up to date."
+            echo "Capacity and coordinate enriched CSVs are already up to date."
             exit 0
           fi
-          git commit -m "Validate capacity-enriched shelter archive"
+          git commit -m "Validate coordinate-complete shelter archive"
           git pull --rebase origin main
           git push
