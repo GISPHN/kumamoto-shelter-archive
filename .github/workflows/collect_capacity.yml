@@ -28,8 +28,8 @@ permissions:
   contents: write
 
 concurrency:
-  group: kumamoto-shelter-capacity-collection
-  cancel-in-progress: true
+  group: kumamoto-shelter-capacity-data-write
+  cancel-in-progress: false
 
 jobs:
   collect-capacity:
