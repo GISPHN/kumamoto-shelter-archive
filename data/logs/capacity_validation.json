@@ -1,19 +1,19 @@
 {
-  "validated_at_jst": "2026-08-01T00:27:40+09:00",
+  "validated_at_jst": "2026-08-01T00:28:25+09:00",
   "status": "success",
   "master": {
-    "row_count": 2122,
-    "unique_portal_shelter_id_count": 2122,
+    "row_count": 2125,
+    "unique_portal_shelter_id_count": 2125,
     "municipality_count": 45,
-    "positive_capacity_count": 1619,
+    "positive_capacity_count": 1620,
     "capacity_parse_status_counts": {
       "missing": 105,
-      "missing_zero": 398,
-      "parsed": 1619
+      "missing_zero": 400,
+      "parsed": 1620
     },
-    "metadata_response_sha256": "d47c0fcd4b9903a8b917d782feb539c72ec0c4b9bec5732007fbe0deafde7e85",
-    "metadata_acquired_at_jst": "2026-07-31T09:37:38+09:00",
-    "metadata_record_count": 2122
+    "metadata_response_sha256": "22af2291f30f3bcdc22858570987240f2a08bf2edb50c3f53168b34612fca856",
+    "metadata_acquired_at_jst": "2026-08-01T00:28:20+09:00",
+    "metadata_record_count": 2125
   },
   "latest": {
     "row_count": 1430,

@@ -1,18 +1,18 @@
 {
   "capacity_source": "kumamoto_portal_map",
   "source_endpoint": "https://portal.bousai.pref.kumamoto.jp/data/shelter/shelter.json",
-  "requested_url": "https://portal.bousai.pref.kumamoto.jp/data/shelter/shelter.json?request.preventCache=1785458258492",
-  "acquired_at_jst": "2026-07-31T09:37:38+09:00",
+  "requested_url": "https://portal.bousai.pref.kumamoto.jp/data/shelter/shelter.json?request.preventCache=1785511700793",
+  "acquired_at_jst": "2026-08-01T00:28:20+09:00",
   "response_content_type": "application/json",
-  "response_bytes": 1739427,
-  "response_sha256": "d47c0fcd4b9903a8b917d782feb539c72ec0c4b9bec5732007fbe0deafde7e85",
+  "response_bytes": 1745367,
+  "response_sha256": "22af2291f30f3bcdc22858570987240f2a08bf2edb50c3f53168b34612fca856",
   "existing_master_count": 2122,
-  "downloaded_record_count": 2122,
-  "merged_master_count": 2122,
-  "reported_total": 2122,
-  "record_count": 2122,
-  "parsed_capacity_count": 1619,
-  "missing_zero_capacity_count": 398,
+  "downloaded_record_count": 2125,
+  "merged_master_count": 2125,
+  "reported_total": 2125,
+  "record_count": 2125,
+  "parsed_capacity_count": 1620,
+  "missing_zero_capacity_count": 400,
   "missing_capacity_count": 105,
   "invalid_capacity_count": 0,
   "municipality_count": 45,
@@ -32,4 +32,4 @@
   }
 }
 Persistent capacity master: reference/portal_shelter_capacity.csv
-Capacity history: reference/capacity_history/2026-07-31.csv
+Capacity history: reference/capacity_history/2026-08-01.csv
