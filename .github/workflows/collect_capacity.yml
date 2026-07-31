@@ -6,21 +6,19 @@ on:
       - main
     paths:
       - scripts/collect_capacity.py
-      - scripts/refine_capacity_collector.py
+      - scripts/capacity_matcher.py
+      - scripts/enrich_capacity_outputs.py
+      - scripts/build_time_series.py
       - .github/workflows/collect_capacity.yml
   workflow_dispatch:
     inputs:
-      municipality_code:
-        description: "対象市町村コード。空欄なら熊本県内全市町村"
+      minimum_records:
+        description: "取得成功と判定する全避難所件数の下限"
         required: false
-        type: string
-      max_municipalities:
-        description: "試験実行時の最大市町村数。0なら制限なし"
-        required: false
-        default: "0"
+        default: "2000"
         type: string
       minimum_parsed:
-        description: "取得成功と判定する定員件数の下限"
+        description: "正の定員を取得できた施設数の下限"
         required: false
         default: "1"
         type: string
@@ -35,7 +33,7 @@ concurrency:
 jobs:
   collect-capacity:
     runs-on: ubuntu-latest
-    timeout-minutes: 180
+    timeout-minutes: 20
 
     steps:
       - name: Checkout repository
@@ -47,49 +45,32 @@ jobs:
         uses: actions/setup-python@v6
         with:
           python-version: "3.12"
-          cache: pip
-
-      - name: Install Playwright
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install -r requirements.txt
-          python -m playwright install --with-deps chromium
-
-      - name: Apply portal compatibility refinements
-        run: python scripts/refine_capacity_collector.py
 
       - name: Validate scripts
         run: |
           python -m py_compile \
             scripts/collect_capacity.py \
-            scripts/refine_capacity_collector.py \
             scripts/capacity_matcher.py \
             scripts/enrich_capacity_outputs.py \
             scripts/build_time_series.py
 
-      - name: Collect capacity master once
+      - name: Collect statewide capacity master from official JSON
         id: capacity
         shell: bash
         env:
-          MUNICIPALITY_CODE: ${{ inputs.municipality_code }}
-          MAX_MUNICIPALITIES: ${{ inputs.max_municipalities || '0' }}
+          MINIMUM_RECORDS: ${{ inputs.minimum_records || '2000' }}
           MINIMUM_PARSED: ${{ inputs.minimum_parsed || '1' }}
         run: |
           set +e
           mkdir -p debug/capacity data/logs reference/capacity_history
           {
             set -euo pipefail
-            args=(
-              --output reference/portal_shelter_capacity.csv
-              --history-dir reference/capacity_history
-              --debug-dir debug/capacity
-              --max-municipalities "$MAX_MUNICIPALITIES"
+            python scripts/collect_capacity.py \
+              --output reference/portal_shelter_capacity.csv \
+              --metadata-output reference/portal_shelter_capacity_metadata.json \
+              --history-dir reference/capacity_history \
+              --minimum-records "$MINIMUM_RECORDS" \
               --minimum-parsed "$MINIMUM_PARSED"
-            )
-            if [ -n "${MUNICIPALITY_CODE:-}" ]; then
-              args+=(--municipality-code "$MUNICIPALITY_CODE")
-            fi
-            python scripts/collect_capacity.py "${args[@]}"
           } 2>&1 | tee debug/capacity/workflow.log
           STATUS=${PIPESTATUS[0]}
           echo "exit_code=$STATUS" >> "$GITHUB_OUTPUT"
@@ -109,6 +90,63 @@ jobs:
             --capacity-csv reference/portal_shelter_capacity.csv
           python scripts/build_time_series.py --data-root data
 
+      - name: Validate generated master and outputs
+        if: steps.capacity.outputs.exit_code == '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import csv
+          import json
+          from pathlib import Path
+
+          master = Path("reference/portal_shelter_capacity.csv")
+          metadata_path = Path("reference/portal_shelter_capacity_metadata.json")
+          status_path = Path("data/status_by_date.csv")
+
+          with master.open("r", encoding="utf-8-sig", newline="") as handle:
+              rows = list(csv.DictReader(handle))
+          metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
+          with status_path.open("r", encoding="utf-8-sig", newline="") as handle:
+              status_reader = csv.DictReader(handle)
+              status_columns = set(status_reader.fieldnames or [])
+              status_rows = list(status_reader)
+
+          required_master = {
+              "portal_shelter_id", "municipality_code", "municipality",
+              "shelter_name", "address", "portal_capacity_persons",
+              "portal_capacity_raw", "capacity_parse_status",
+              "portal_latitude", "portal_longitude", "source_url",
+          }
+          missing_master = required_master - set(rows[0] if rows else {})
+          if missing_master:
+              raise SystemExit(f"Capacity master missing columns: {sorted(missing_master)}")
+          if len(rows) < 2000:
+              raise SystemExit(f"Capacity master has too few rows: {len(rows)}")
+          ids = [row["portal_shelter_id"] for row in rows]
+          if not all(ids) or len(ids) != len(set(ids)):
+              raise SystemExit("portal_shelter_id is empty or duplicated")
+          parsed = sum(bool(row["portal_capacity_persons"]) for row in rows)
+          if parsed != int(metadata["parsed_capacity_count"]):
+              raise SystemExit(
+                  f"Parsed capacity mismatch: csv={parsed}, metadata={metadata['parsed_capacity_count']}"
+              )
+          required_status = {
+              "portal_shelter_id", "portal_capacity_persons",
+              "capacity_match_status", "capacity_match_method",
+          }
+          if required_status - status_columns:
+              raise SystemExit(
+                  f"status_by_date missing capacity columns: {sorted(required_status - status_columns)}"
+              )
+          matched_status = sum(row.get("capacity_match_status") == "matched" for row in status_rows)
+          print(
+              f"Validated capacity master: rows={len(rows)}, parsed={parsed}, "
+              f"municipalities={metadata['municipality_count']}, "
+              f"status_by_date_matched={matched_status}/{len(status_rows)}"
+          )
+          PY
+
       - name: Commit capacity master or diagnostics
         shell: bash
         run: |
@@ -118,14 +156,18 @@ jobs:
           git add data/logs/capacity_latest_run.log
           git add data/logs/capacity_last_failure.log 2>/dev/null || true
           if [ "${{ steps.capacity.outputs.exit_code }}" = "0" ]; then
-            git add reference/portal_shelter_capacity.csv reference/capacity_history data
+            git add \
+              reference/portal_shelter_capacity.csv \
+              reference/portal_shelter_capacity_metadata.json \
+              reference/capacity_history \
+              data
           fi
           if git diff --cached --quiet; then
             echo "No capacity or diagnostic changes to commit."
             exit 0
           fi
           if [ "${{ steps.capacity.outputs.exit_code }}" = "0" ]; then
-            git commit -m "Add persistent shelter capacity master"
+            git commit -m "Add verified persistent shelter capacity master"
           else
             git commit -m "Record failed shelter capacity diagnostics"
           fi
@@ -137,7 +179,11 @@ jobs:
         uses: actions/upload-artifact@v6
         with:
           name: shelter-capacity-diagnostics-${{ github.run_id }}
-          path: debug/capacity/
+          path: |
+            debug/capacity/
+            data/logs/capacity_latest_run.log
+            data/logs/capacity_last_failure.log
+            reference/portal_shelter_capacity_metadata.json
           if-no-files-found: ignore
           retention-days: 30
 
