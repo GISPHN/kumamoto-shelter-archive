@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate that every shelter row has a complete unified coordinate pair."""
+"""Validate complete coordinates and exact application of the manual master."""
 
 from __future__ import annotations
 
@@ -18,6 +18,10 @@ except ModuleNotFoundError:
 
 JST = ZoneInfo("Asia/Tokyo")
 REQUIRED_COLUMNS = {
+    "manual_latitude",
+    "manual_longitude",
+    "manual_geocode_status",
+    "manual_geocode_method",
     "latitude",
     "longitude",
     "coordinate_source",
@@ -52,11 +56,30 @@ def target_paths(data_root: Path) -> list[Path]:
         ]
     )
     seen: set[Path] = set()
-    return [
-        path
-        for path in paths
-        if path.exists() and not (path in seen or seen.add(path))
-    ]
+    output: list[Path] = []
+    for path in paths:
+        if path.exists() and path not in seen:
+            seen.add(path)
+            output.append(path)
+    return output
+
+
+def normalized_web_id(value: str) -> str:
+    value = value.strip()
+    if not value:
+        return ""
+    return value if value.startswith("web:") else f"web:{value}"
+
+
+def same_coordinate_pair(
+    first: tuple[str, str] | None, second: tuple[str, str] | None
+) -> bool:
+    if first is None or second is None:
+        return False
+    return (
+        abs(float(first[0]) - float(second[0])) <= 1e-10
+        and abs(float(first[1]) - float(second[1])) <= 1e-10
+    )
 
 
 def main() -> int:
@@ -85,6 +108,9 @@ def main() -> int:
     all_errors: list[dict[str, str]] = []
     source_counts: Counter[str] = Counter()
     all_output_ids: set[str] = set()
+    manual_ids_selected: set[str] = set()
+    manual_ids_requiring_selection: set[str] = set()
+    manual_selection_occurrences = 0
 
     for path in target_paths(data_root):
         columns, rows = read_csv(path)
@@ -92,21 +118,22 @@ def main() -> int:
             continue
         missing_columns = sorted(REQUIRED_COLUMNS - set(columns))
         if missing_columns:
-            all_errors.append(
-                {
-                    "file": path.as_posix(),
-                    "shelter_id": "",
-                    "error": f"missing_columns:{','.join(missing_columns)}",
-                }
-            )
+            error = {
+                "file": path.as_posix(),
+                "shelter_id": "",
+                "error": f"missing_columns:{','.join(missing_columns)}",
+            }
+            all_errors.append(error)
             reports.append(
                 {
                     "file": path.as_posix(),
                     "row_count": len(rows),
                     "shelter_row_count": sum(bool(row.get("shelter_id")) for row in rows),
                     "complete_coordinate_count": 0,
+                    "manual_selection_count": 0,
                     "error_count": 1,
                     "coordinate_source_counts": {},
+                    "error_examples": [error],
                 }
             )
             continue
@@ -115,15 +142,17 @@ def main() -> int:
         file_sources: Counter[str] = Counter()
         shelter_rows = 0
         complete = 0
+        file_manual_selections = 0
+
         for row in rows:
             shelter_id = (row.get("shelter_id") or "").strip()
             if not shelter_id:
                 continue
             shelter_rows += 1
             all_output_ids.add(shelter_id)
-            web_id = (row.get("web_shelter_id") or "").strip()
+            web_id = normalized_web_id(row.get("web_shelter_id") or "")
             if web_id:
-                all_output_ids.add(web_id if web_id.startswith("web:") else f"web:{web_id}")
+                all_output_ids.add(web_id)
 
             pair = valid_pair(row.get("latitude"), row.get("longitude"))
             source = (row.get("coordinate_source") or "").strip()
@@ -139,6 +168,46 @@ def main() -> int:
                 errors.append(f"coordinate_source={source or '(blank)'}")
             if not method:
                 errors.append("coordinate_method=(blank)")
+
+            manual_match = manual.match_manual(row)
+            manual_row = manual_match.row or {}
+            manual_pair = valid_pair(
+                manual_row.get("manual_latitude"),
+                manual_row.get("manual_longitude"),
+            )
+            reference_pair = valid_pair(
+                row.get("reference_latitude"), row.get("reference_longitude")
+            )
+
+            if manual_pair is not None:
+                manual_id = manual_row.get("shelter_id", "")
+                output_manual_pair = valid_pair(
+                    row.get("manual_latitude"), row.get("manual_longitude")
+                )
+                if not same_coordinate_pair(output_manual_pair, manual_pair):
+                    errors.append("manual_columns_do_not_match_manual_master")
+                if row.get("manual_geocode_status") != "matched":
+                    errors.append(
+                        f"manual_geocode_status={row.get('manual_geocode_status') or '(blank)'}"
+                    )
+
+                # Manual coordinates were supplied for records without GSI
+                # coordinates. In that situation the unified pair must exactly
+                # equal the manual master and must not silently use portal data.
+                if reference_pair is None:
+                    manual_ids_requiring_selection.add(manual_id)
+                    if source != "manual_geocoding":
+                        errors.append(
+                            f"manual_coordinate_not_selected:source={source or '(blank)'}"
+                        )
+                    if not same_coordinate_pair(pair, manual_pair):
+                        errors.append("unified_pair_does_not_match_manual_master")
+                    if source == "manual_geocoding" and same_coordinate_pair(
+                        pair, manual_pair
+                    ):
+                        manual_ids_selected.add(manual_id)
+                        manual_selection_occurrences += 1
+                        file_manual_selections += 1
 
             if errors:
                 item = {
@@ -162,6 +231,7 @@ def main() -> int:
                 "row_count": len(rows),
                 "shelter_row_count": shelter_rows,
                 "complete_coordinate_count": complete,
+                "manual_selection_count": file_manual_selections,
                 "error_count": len(file_errors),
                 "coordinate_source_counts": dict(sorted(file_sources.items())),
                 "error_examples": file_errors[:10],
@@ -170,15 +240,55 @@ def main() -> int:
 
     manual_ids = set(manual.by_id)
     manual_ids_not_present = sorted(manual_ids - all_output_ids)
+    manual_ids_not_selected = sorted(
+        manual_ids_requiring_selection - manual_ids_selected
+    )
+    if manual_ids_not_present:
+        all_errors.append(
+            {
+                "file": "manual_master",
+                "shelter_id": "",
+                "error": (
+                    "manual_ids_not_present_in_outputs:"
+                    + ",".join(manual_ids_not_present[:20])
+                ),
+            }
+        )
+    if manual_ids_not_selected:
+        all_errors.append(
+            {
+                "file": "manual_master",
+                "shelter_id": "",
+                "error": (
+                    "manual_ids_not_selected_where_required:"
+                    + ",".join(manual_ids_not_selected[:20])
+                ),
+            }
+        )
+
     report = {
         "validated_at_jst": datetime.now(JST).isoformat(timespec="seconds"),
         "status": "success" if not all_errors else "failure",
+        "coordinate_priority": [
+            "gsi_reference",
+            "manual_geocoding",
+            "kumamoto_portal",
+        ],
         "manual_geocoding": {
             "record_count": len(manual.rows),
             "unique_shelter_id_count": len(manual.by_id),
             "loaded_files": manual.loaded_files,
             "manual_ids_not_present_in_outputs_count": len(manual_ids_not_present),
             "manual_ids_not_present_in_outputs": manual_ids_not_present,
+            "manual_ids_requiring_selection_count": len(
+                manual_ids_requiring_selection
+            ),
+            "manual_unique_ids_selected_count": len(manual_ids_selected),
+            "manual_ids_not_selected_where_required_count": len(
+                manual_ids_not_selected
+            ),
+            "manual_ids_not_selected_where_required": manual_ids_not_selected,
+            "manual_selection_occurrence_count": manual_selection_occurrences,
         },
         "validated_file_count": len(reports),
         "total_coordinate_source_counts": dict(sorted(source_counts.items())),
@@ -196,7 +306,7 @@ def main() -> int:
 
     if all_errors:
         raise RuntimeError(
-            f"緯度経度が未付与または不正な行があります: {len(all_errors)}"
+            f"緯度経度または手動座標の適用に問題があります: {len(all_errors)}"
         )
     return 0
 
