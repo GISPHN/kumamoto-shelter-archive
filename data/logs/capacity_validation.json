@@ -1,0 +1,61 @@
+{
+  "validated_at_jst": "2026-07-31T09:27:22+09:00",
+  "status": "success",
+  "master": {
+    "row_count": 2122,
+    "unique_portal_shelter_id_count": 2122,
+    "municipality_count": 45,
+    "positive_capacity_count": 1619,
+    "capacity_parse_status_counts": {
+      "missing": 105,
+      "missing_zero": 398,
+      "parsed": 1619
+    },
+    "metadata_response_sha256": "3284780e4a1510e6a5db80c23c169bef375c8b79093b25d92aad664d02aab96a",
+    "metadata_acquired_at_jst": "2026-07-31T09:27:17+09:00",
+    "metadata_record_count": 2122
+  },
+  "latest": {
+    "row_count": 1430,
+    "capacity_match_status_counts": {
+      "ambiguous": 5,
+      "matched": 1195,
+      "unmatched": 230
+    },
+    "capacity_match_method_counts": {
+      "duplicate_exact_key": 3,
+      "exact_name_multiple_capacity_rows": 2,
+      "fuzzy_below_threshold": 33,
+      "no_candidate": 197,
+      "portal_shelter_id": 1195
+    },
+    "matched_row_count": 1195,
+    "matched_with_positive_capacity_count": 962,
+    "matched_with_source_coordinates_count": 1195,
+    "unknown_master_id_count": 0,
+    "capacity_mismatch_count": 0
+  },
+  "status_by_date": {
+    "row_count": 1438,
+    "capacity_match_status_counts": {
+      "ambiguous": 5,
+      "matched": 1203,
+      "unmatched": 230
+    },
+    "capacity_match_method_counts": {
+      "duplicate_exact_key": 3,
+      "exact_name_multiple_capacity_rows": 2,
+      "fuzzy_below_threshold": 33,
+      "no_candidate": 197,
+      "portal_shelter_id": 1203
+    },
+    "matched_row_count": 1203,
+    "matched_with_positive_capacity_count": 969,
+    "matched_with_source_coordinates_count": 1203,
+    "unknown_master_id_count": 0,
+    "capacity_mismatch_count": 0,
+    "date_column_count": 3,
+    "first_date": "2026-07-29",
+    "last_date": "2026-07-31"
+  }
+}
