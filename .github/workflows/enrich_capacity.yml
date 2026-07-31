@@ -11,9 +11,11 @@ on:
       - main
     paths:
       - reference/portal_shelter_capacity.csv
+      - reference/portal_shelter_capacity_metadata.json
       - scripts/capacity_matcher.py
       - scripts/enrich_capacity_outputs.py
       - scripts/build_time_series.py
+      - scripts/validate_capacity_outputs.py
       - .github/workflows/enrich_capacity.yml
   workflow_dispatch:
 
@@ -21,14 +23,14 @@ permissions:
   contents: write
 
 concurrency:
-  group: kumamoto-shelter-capacity-enrichment
-  cancel-in-progress: true
+  group: kumamoto-shelter-capacity-data-write
+  cancel-in-progress: false
 
 jobs:
   enrich:
     if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
 
     steps:
       - name: Checkout repository
@@ -46,7 +48,8 @@ jobs:
           python -m py_compile \
             scripts/capacity_matcher.py \
             scripts/enrich_capacity_outputs.py \
-            scripts/build_time_series.py
+            scripts/build_time_series.py \
+            scripts/validate_capacity_outputs.py
 
       - name: Enrich all archived CSVs from the persistent capacity master
         run: |
@@ -57,7 +60,17 @@ jobs:
       - name: Rebuild wide time-series CSVs
         run: python scripts/build_time_series.py --data-root data
 
-      - name: Commit enriched outputs
+      - name: Validate enriched outputs
+        run: |
+          python scripts/validate_capacity_outputs.py \
+            --master reference/portal_shelter_capacity.csv \
+            --metadata reference/portal_shelter_capacity_metadata.json \
+            --latest data/latest.csv \
+            --status-by-date data/status_by_date.csv \
+            --output data/logs/capacity_validation.json \
+            --minimum-master-records 2000
+
+      - name: Commit enriched outputs and validation
         shell: bash
         run: |
           set -euo pipefail
@@ -65,8 +78,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data
           if git diff --cached --quiet; then
-            echo "Capacity-enriched CSVs are already up to date."
+            echo "Capacity-enriched CSVs and validation are already up to date."
             exit 0
           fi
-          git commit -m "Enrich shelter archive with capacity"
+          git commit -m "Validate capacity-enriched shelter archive"
+          git pull --rebase origin main
           git push
