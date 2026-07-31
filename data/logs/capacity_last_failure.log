@@ -1,8 +1,0 @@
-usage: collect_capacity.py [-h] [--output OUTPUT]
-                           [--metadata-output METADATA_OUTPUT]
-                           [--history-dir HISTORY_DIR]
-                           [--minimum-records MINIMUM_RECORDS]
-                           [--minimum-parsed MINIMUM_PARSED]
-                           [--timeout-seconds TIMEOUT_SECONDS]
-                           [--retries RETRIES]
-collect_capacity.py: error: unrecognized arguments: --debug-dir debug/capacity --max-municipalities 0
