@@ -1,5 +1,5 @@
 {
-  "validated_at_jst": "2026-07-31T09:27:22+09:00",
+  "validated_at_jst": "2026-07-31T09:36:40+09:00",
   "status": "success",
   "master": {
     "row_count": 2122,
@@ -18,40 +18,38 @@
   "latest": {
     "row_count": 1430,
     "capacity_match_status_counts": {
-      "ambiguous": 5,
-      "matched": 1195,
-      "unmatched": 230
+      "ambiguous": 9,
+      "matched": 1271,
+      "unmatched": 150
     },
     "capacity_match_method_counts": {
-      "duplicate_exact_key": 3,
-      "exact_name_multiple_capacity_rows": 2,
-      "fuzzy_below_threshold": 33,
-      "no_candidate": 197,
-      "portal_shelter_id": 1195
+      "coordinate_near_tie": 9,
+      "fuzzy_below_threshold": 26,
+      "no_candidate": 124,
+      "portal_shelter_id": 1271
     },
-    "matched_row_count": 1195,
-    "matched_with_positive_capacity_count": 962,
-    "matched_with_source_coordinates_count": 1195,
+    "matched_row_count": 1271,
+    "matched_with_positive_capacity_count": 1034,
+    "matched_with_source_coordinates_count": 1271,
     "unknown_master_id_count": 0,
     "capacity_mismatch_count": 0
   },
   "status_by_date": {
     "row_count": 1438,
     "capacity_match_status_counts": {
-      "ambiguous": 5,
-      "matched": 1203,
-      "unmatched": 230
+      "ambiguous": 9,
+      "matched": 1279,
+      "unmatched": 150
     },
     "capacity_match_method_counts": {
-      "duplicate_exact_key": 3,
-      "exact_name_multiple_capacity_rows": 2,
-      "fuzzy_below_threshold": 33,
-      "no_candidate": 197,
-      "portal_shelter_id": 1203
+      "coordinate_near_tie": 9,
+      "fuzzy_below_threshold": 26,
+      "no_candidate": 124,
+      "portal_shelter_id": 1279
     },
-    "matched_row_count": 1203,
-    "matched_with_positive_capacity_count": 969,
-    "matched_with_source_coordinates_count": 1203,
+    "matched_row_count": 1279,
+    "matched_with_positive_capacity_count": 1041,
+    "matched_with_source_coordinates_count": 1279,
     "unknown_master_id_count": 0,
     "capacity_mismatch_count": 0,
     "date_column_count": 3,
