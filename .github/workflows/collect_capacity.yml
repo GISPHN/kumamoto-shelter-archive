@@ -9,6 +9,7 @@ on:
       - scripts/capacity_matcher.py
       - scripts/enrich_capacity_outputs.py
       - scripts/build_time_series.py
+      - scripts/validate_capacity_outputs.py
       - .github/workflows/collect_capacity.yml
   workflow_dispatch:
     inputs:
@@ -52,7 +53,8 @@ jobs:
             scripts/collect_capacity.py \
             scripts/capacity_matcher.py \
             scripts/enrich_capacity_outputs.py \
-            scripts/build_time_series.py
+            scripts/build_time_series.py \
+            scripts/validate_capacity_outputs.py
 
       - name: Collect statewide capacity master from official JSON
         id: capacity
@@ -90,62 +92,16 @@ jobs:
             --capacity-csv reference/portal_shelter_capacity.csv
           python scripts/build_time_series.py --data-root data
 
-      - name: Validate generated master and outputs
+      - name: Validate generated master and enriched outputs
         if: steps.capacity.outputs.exit_code == '0'
-        shell: bash
         run: |
-          set -euo pipefail
-          python - <<'PY'
-          import csv
-          import json
-          from pathlib import Path
-
-          master = Path("reference/portal_shelter_capacity.csv")
-          metadata_path = Path("reference/portal_shelter_capacity_metadata.json")
-          status_path = Path("data/status_by_date.csv")
-
-          with master.open("r", encoding="utf-8-sig", newline="") as handle:
-              rows = list(csv.DictReader(handle))
-          metadata = json.loads(metadata_path.read_text(encoding="utf-8"))
-          with status_path.open("r", encoding="utf-8-sig", newline="") as handle:
-              status_reader = csv.DictReader(handle)
-              status_columns = set(status_reader.fieldnames or [])
-              status_rows = list(status_reader)
-
-          required_master = {
-              "portal_shelter_id", "municipality_code", "municipality",
-              "shelter_name", "address", "portal_capacity_persons",
-              "portal_capacity_raw", "capacity_parse_status",
-              "portal_latitude", "portal_longitude", "source_url",
-          }
-          missing_master = required_master - set(rows[0] if rows else {})
-          if missing_master:
-              raise SystemExit(f"Capacity master missing columns: {sorted(missing_master)}")
-          if len(rows) < 2000:
-              raise SystemExit(f"Capacity master has too few rows: {len(rows)}")
-          ids = [row["portal_shelter_id"] for row in rows]
-          if not all(ids) or len(ids) != len(set(ids)):
-              raise SystemExit("portal_shelter_id is empty or duplicated")
-          parsed = sum(bool(row["portal_capacity_persons"]) for row in rows)
-          if parsed != int(metadata["parsed_capacity_count"]):
-              raise SystemExit(
-                  f"Parsed capacity mismatch: csv={parsed}, metadata={metadata['parsed_capacity_count']}"
-              )
-          required_status = {
-              "portal_shelter_id", "portal_capacity_persons",
-              "capacity_match_status", "capacity_match_method",
-          }
-          if required_status - status_columns:
-              raise SystemExit(
-                  f"status_by_date missing capacity columns: {sorted(required_status - status_columns)}"
-              )
-          matched_status = sum(row.get("capacity_match_status") == "matched" for row in status_rows)
-          print(
-              f"Validated capacity master: rows={len(rows)}, parsed={parsed}, "
-              f"municipalities={metadata['municipality_count']}, "
-              f"status_by_date_matched={matched_status}/{len(status_rows)}"
-          )
-          PY
+          python scripts/validate_capacity_outputs.py \
+            --master reference/portal_shelter_capacity.csv \
+            --metadata reference/portal_shelter_capacity_metadata.json \
+            --latest data/latest.csv \
+            --status-by-date data/status_by_date.csv \
+            --output data/logs/capacity_validation.json \
+            --minimum-master-records 2000
 
       - name: Commit capacity master or diagnostics
         shell: bash
@@ -167,7 +123,7 @@ jobs:
             exit 0
           fi
           if [ "${{ steps.capacity.outputs.exit_code }}" = "0" ]; then
-            git commit -m "Add verified persistent shelter capacity master"
+            git commit -m "Refresh verified shelter capacity master"
           else
             git commit -m "Record failed shelter capacity diagnostics"
           fi
@@ -183,6 +139,7 @@ jobs:
             debug/capacity/
             data/logs/capacity_latest_run.log
             data/logs/capacity_last_failure.log
+            data/logs/capacity_validation.json
             reference/portal_shelter_capacity_metadata.json
           if-no-files-found: ignore
           retention-days: 30
