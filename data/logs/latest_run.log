@@ -1,12 +1,12 @@
 === Environment ===
-2026-07-31T16:52:41+00:00
+2026-08-01T16:09:54+00:00
 Python 3.12.13
 === Install Python dependencies ===
 Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages (26.1.2)
 Collecting pip
   Downloading pip-26.2-py3-none-any.whl.metadata (4.6 kB)
 Downloading pip-26.2-py3-none-any.whl (1.8 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 97.8 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 72.9 MB/s  0:00:00
 Installing collected packages: pip
   Attempting uninstall: pip
     Found existing installation: pip 26.1.2
@@ -14,7 +14,7 @@ Installing collected packages: pip
       Successfully uninstalled pip-26.1.2
 Successfully installed pip-26.2
 Collecting playwright<2,>=1.50 (from -r requirements.txt (line 1))
-  Using cached playwright-1.61.0-py3-none-manylinux1_x86_64.whl.metadata (3.3 kB)
+  Downloading playwright-1.62.0-py3-none-manylinux1_x86_64.whl.metadata (3.3 kB)
 Collecting pytest<9,>=8 (from -r requirements.txt (line 2))
   Using cached pytest-8.4.2-py3-none-any.whl.metadata (7.7 kB)
 Collecting pyee<14,>=13 (from playwright<2,>=1.50->-r requirements.txt (line 1))
@@ -31,7 +31,8 @@ Collecting pygments>=2.7.2 (from pytest<9,>=8->-r requirements.txt (line 2))
   Using cached pygments-2.20.0-py3-none-any.whl.metadata (2.5 kB)
 Collecting typing-extensions (from pyee<14,>=13->playwright<2,>=1.50->-r requirements.txt (line 1))
   Using cached typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
-Using cached playwright-1.61.0-py3-none-manylinux1_x86_64.whl (47.4 MB)
+Downloading playwright-1.62.0-py3-none-manylinux1_x86_64.whl (47.7 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 47.7/47.7 MB 198.0 MB/s  0:00:00
 Using cached pytest-8.4.2-py3-none-any.whl (365 kB)
 Using cached greenlet-3.5.4-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (621 kB)
 Using cached pluggy-1.6.0-py3-none-any.whl (20 kB)
@@ -42,45 +43,46 @@ Using cached pygments-2.20.0-py3-none-any.whl (1.2 MB)
 Using cached typing_extensions-4.16.0-py3-none-any.whl (45 kB)
 Installing collected packages: typing-extensions, pygments, pluggy, packaging, iniconfig, greenlet, pytest, pyee, playwright
 
-Successfully installed greenlet-3.5.4 iniconfig-2.3.0 packaging-26.2 playwright-1.61.0 pluggy-1.6.0 pyee-13.0.1 pygments-2.20.0 pytest-8.4.2 typing-extensions-4.16.0
+Successfully installed greenlet-3.5.4 iniconfig-2.3.0 packaging-26.2 playwright-1.62.0 pluggy-1.6.0 pyee-13.0.1 pygments-2.20.0 pytest-8.4.2 typing-extensions-4.16.0
 Installing dependencies...
 Switching to root user to install dependencies...
 Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
-Hit:6 https://packages.microsoft.com/repos/azure-cli noble InRelease
 Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+Hit:6 https://packages.microsoft.com/repos/azure-cli noble InRelease
 Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
 Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
 Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
 Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
 Get:8 https://dl.google.com/linux/chrome-stable/deb stable InRelease [2548 B]
-Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [260 kB]
-Get:10 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [226 kB]
-Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1154 kB]
-Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [278 kB]
-Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [181 kB]
-Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1681 kB]
-Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [334 kB]
-Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [388 kB]
-Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1367 kB]
-Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [308 kB]
-Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [45.4 kB]
-Get:20 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en [12.3 kB]
-Get:21 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
-Get:22 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [5744 B]
-Get:23 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [32.5 kB]
-Get:24 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [12.6 kB]
-Get:25 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [897 kB]
-Get:26 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [198 kB]
-Get:27 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [46.4 kB]
-Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1199 kB]
-Get:29 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [239 kB]
-Get:30 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [76.3 kB]
-Get:31 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1273 kB]
-Get:32 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [290 kB]
-Get:33 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [40.3 kB]
-Get:34 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Translation-en [10.6 kB]
-Get:35 https://dl.google.com/linux/chrome-stable/deb stable/main amd64 Packages [1410 B]
-Fetched 10.9 MB in 1s (7963 kB/s)
+Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [227 kB]
+Get:10 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [261 kB]
+Get:11 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [11.7 kB]
+Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1154 kB]
+Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [278 kB]
+Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [181 kB]
+Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1680 kB]
+Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [334 kB]
+Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [388 kB]
+Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1367 kB]
+Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [308 kB]
+Get:20 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [45.4 kB]
+Get:21 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en [12.3 kB]
+Get:22 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
+Get:23 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [5760 B]
+Get:24 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [31.2 kB]
+Get:25 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [12.6 kB]
+Get:26 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [897 kB]
+Get:27 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [198 kB]
+Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [46.3 kB]
+Get:29 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1199 kB]
+Get:30 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [239 kB]
+Get:31 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [76.4 kB]
+Get:32 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1273 kB]
+Get:33 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [290 kB]
+Get:34 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [40.3 kB]
+Get:35 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Translation-en [10.6 kB]
+Get:36 https://dl.google.com/linux/chrome-stable/deb stable/main amd64 Packages [1408 B]
+Fetched 11.0 MB in 1s (7884 kB/s)
 Reading package lists...
 Reading package lists...
 Building dependency tree...
@@ -156,7 +158,7 @@ Get:7 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings a
 Get:8 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3 [94.4 kB]
 Get:9 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1 [384 kB]
 Get:10 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3 [304 kB]
-Fetched 21.1 MB in 0s (46.5 MB/s)
+Fetched 21.1 MB in 0s (82.5 MB/s)
 Selecting previously unselected package fonts-ipafont-gothic.
 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 202954 files and directories currently installed.)
 Preparing to unpack .../0-fonts-ipafont-gothic_00303-21ubuntu1_all.deb ...
@@ -208,19 +210,19 @@ No containers need to be restarted.
 No user sessions are running outdated binaries.
 
 No VM guests are running outdated hypervisor (qemu) binaries on this host.
-Downloading Chrome for Testing 149.0.7827.55 (playwright chromium v1228) from https://cdn.playwright.dev/builds/cft/149.0.7827.55/linux64/chrome-linux64.zip
-|                                                                                |   0% of 177 MiB
-|■■■■■■■■                                                                        |  10% of 177 MiB
-|■■■■■■■■■■■■■■■■                                                                |  20% of 177 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 177 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 177 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 177 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 177 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 177 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 177 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 177 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 177 MiB
-Chrome for Testing 149.0.7827.55 (playwright chromium v1228) downloaded to /home/runner/.cache/ms-playwright/chromium-1228
+Downloading Chrome for Testing 151.0.7922.34 (playwright chromium v1234) from https://cdn.playwright.dev/builds/cft/151.0.7922.34/linux64/chrome-linux64.zip
+|                                                                                |   0% of 184.3 MiB
+|■■■■■■■■                                                                        |  10% of 184.3 MiB
+|■■■■■■■■■■■■■■■■                                                                |  20% of 184.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 184.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 184.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 184.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 184.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 184.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 184.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 184.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 184.3 MiB
+Chrome for Testing 151.0.7922.34 (playwright chromium v1234) downloaded to /home/runner/.cache/ms-playwright/chromium-1234
 Downloading FFmpeg (playwright ffmpeg v1011) from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1011/ffmpeg-linux.zip
 |                                                                                |   0% of 2.3 MiB
 |■■■■■■■■                                                                        |  10% of 2.3 MiB
@@ -234,24 +236,24 @@ Downloading FFmpeg (playwright ffmpeg v1011) from https://cdn.playwright.dev/dba
 |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 2.3 MiB
 |■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 2.3 MiB
 FFmpeg (playwright ffmpeg v1011) downloaded to /home/runner/.cache/ms-playwright/ffmpeg-1011
-Downloading Chrome Headless Shell 149.0.7827.55 (playwright chromium-headless-shell v1228) from https://cdn.playwright.dev/builds/cft/149.0.7827.55/linux64/chrome-headless-shell-linux64.zip
-|                                                                                |   0% of 114.2 MiB
-|■■■■■■■■                                                                        |  10% of 114.2 MiB
-|■■■■■■■■■■■■■■■■                                                                |  20% of 114.2 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 114.2 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 114.2 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 114.2 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 114.2 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 114.2 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 114.2 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 114.2 MiB
-|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 114.2 MiB
-Chrome Headless Shell 149.0.7827.55 (playwright chromium-headless-shell v1228) downloaded to /home/runner/.cache/ms-playwright/chromium_headless_shell-1228
+Downloading Chrome Headless Shell 151.0.7922.34 (playwright chromium-headless-shell v1234) from https://cdn.playwright.dev/builds/cft/151.0.7922.34/linux64/chrome-headless-shell-linux64.zip
+|                                                                                |   0% of 114.7 MiB
+|■■■■■■■■                                                                        |  10% of 114.7 MiB
+|■■■■■■■■■■■■■■■■                                                                |  20% of 114.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 114.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 114.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 114.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 114.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 114.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 114.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 114.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 114.7 MiB
+Chrome Headless Shell 151.0.7922.34 (playwright chromium-headless-shell v1234) downloaded to /home/runner/.cache/ms-playwright/chromium_headless_shell-1234
 === Prepare reference CSV ===
 Reference CSV is not stored in the repository; downloading the official file.
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  150k  100  150k    0     0   142k      0  0:00:01  0:00:01 --:--:--  142k
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 10  150k   10 15786    0     0  18573      0  0:00:08 --:--:--  0:00:08 18571100  150k  100  150k    0     0   126k      0  0:00:01  0:00:01 --:--:--  126k
 Validated reference CSV: 1315 rows
 === Apply portal compatibility patches ===
 /home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/apply_dgrid_patch.py:102: SyntaxWarning: invalid escape sequence '\s'
@@ -270,43 +272,43 @@ Reference matcher loaded: 1315 rows
 Manual geocoding loaded: 138 rows
 === Collect rendered shelter table ===
 Dojo shelter view rendered on attempt 1.
-Rendered extraction: mode=dom; all_selected=False; headers=['市町村', '避難所名', '開設状況', '混雑状況', '住所', 'ルート検索']; rows=227; dgrid_meta={"ariaRowCount": "", "clientHeight": 430, "renderedRowCount": 191, "rootClass": "dgrid dgrid-grid ui-widget idis-IdisGrid", "rootId": "dgrid_0", "rowIdCount": 227, "scrollHeight": 54637, "scrolled": true, "scrollerClass": "dgrid-scroller"}
-Full snapshot: reference_groups=1300, opened_web_rows=227, extra_web_rows=87, total=1387
+Rendered extraction: mode=dom; all_selected=False; headers=['市町村', '避難所名', '開設状況', '混雑状況', '住所', 'ルート検索']; rows=210; dgrid_meta={"ariaRowCount": "", "clientHeight": 430, "renderedRowCount": 191, "rootClass": "dgrid dgrid-grid ui-widget idis-IdisGrid", "rootId": "dgrid_0", "rowIdCount": 210, "scrollHeight": 54637, "scrolled": true, "scrollerClass": "dgrid-scroller"}
+Full snapshot: reference_groups=1300, opened_web_rows=210, extra_web_rows=82, total=1382
 {
-  "snapshot_date": "2026-08-01",
-  "records": 1387,
-  "open": 227,
-  "closed_or_inactive": 1160,
+  "snapshot_date": "2026-08-02",
+  "records": 1382,
+  "open": 210,
+  "closed_or_inactive": 1172,
   "unknown": 0,
-  "changes": 188,
+  "changes": 32,
   "reference_matched": 1285,
   "reference_matched_multiple": 15,
   "reference_ambiguous": 0,
-  "reference_unmatched": 87,
-  "reference_match_rate": 0.937275,
-  "matching_issues_csv": "data/matching_issues/2026/08/2026-08-01.csv",
-  "daily_csv": "data/daily/2026/08/2026-08-01.csv",
-  "changes_csv": "data/changes/2026/08/2026-08-01.csv",
-  "source_updated_at": "26/08/01 01:53時点の避難所状況の一覧です。",
+  "reference_unmatched": 82,
+  "reference_match_rate": 0.940666,
+  "matching_issues_csv": "data/matching_issues/2026/08/2026-08-02.csv",
+  "daily_csv": "data/daily/2026/08/2026-08-02.csv",
+  "changes_csv": "data/changes/2026/08/2026-08-02.csv",
+  "source_updated_at": "26/08/02 01:10時点の避難所状況の一覧です。",
   "all_shelters_click_attempted": true
 }
 === Enrich capacity and complete coordinates ===
-Enrichment: data/daily/2026/08/2026-08-01.csv capacity=1226/1387 coordinates=1387/1387
-Enrichment: data/changes/2026/08/2026-08-01.csv capacity=187/188 coordinates=188/188
-Enrichment: data/matching_issues/2026/08/2026-08-01.csv capacity=86/87 coordinates=87/87
-Enrichment: data/latest.csv capacity=1226/1387 coordinates=1387/1387
+Enrichment: data/daily/2026/08/2026-08-02.csv capacity=1221/1382 coordinates=1382/1382
+Enrichment: data/changes/2026/08/2026-08-02.csv capacity=32/32 coordinates=32/32
+Enrichment: data/matching_issues/2026/08/2026-08-02.csv capacity=81/82 coordinates=82/82
+Enrichment: data/latest.csv capacity=1221/1382 coordinates=1382/1382
 Enrichment: data/latest_open.csv capacity=227/227 coordinates=227/227
-Enrichment: data/latest_changes.csv capacity=187/188 coordinates=188/188
-Enrichment: data/latest_matching_issues.csv capacity=86/87 coordinates=87/87
+Enrichment: data/latest_changes.csv capacity=32/32 coordinates=32/32
+Enrichment: data/latest_matching_issues.csv capacity=81/82 coordinates=82/82
 Capacity matching issues: 161 rows -> data/latest_capacity_matching_issues.csv
-Capacity master rows=2125; manual geocoding rows=138; capacity matches=3225/3551; complete coordinates=3551/3551
+Capacity master rows=2125; manual geocoding rows=138; capacity matches=2895/3219; complete coordinates=3219/3219
 === Build wide daily time-series CSVs ===
-横持ち時系列CSVを生成しました: 施設数=1444, 日数=4, 開始日=2026-07-29, 終了日=2026-08-01
+横持ち時系列CSVを生成しました: 施設数=1444, 日数=5, 開始日=2026-07-29, 終了日=2026-08-02
 === Export current opened shelters for review ===
-Exported current opened shelters: 227 rows
+Exported current opened shelters: 210 rows
 === Validate capacity and coordinate coverage ===
 {
-  "validated_at_jst": "2026-08-01T01:55:02+09:00",
+  "validated_at_jst": "2026-08-02T01:12:11+09:00",
   "status": "success",
   "master": {
     "row_count": 2125,
@@ -323,10 +325,10 @@ Exported current opened shelters: 227 rows
     "metadata_record_count": 2125
   },
   "latest": {
-    "row_count": 1387,
+    "row_count": 1382,
     "capacity_match_status_counts": {
       "ambiguous": 11,
-      "matched": 1226,
+      "matched": 1221,
       "unmatched": 150
     },
     "capacity_match_method_counts": {
@@ -335,15 +337,15 @@ Exported current opened shelters: 227 rows
       "coordinate_near_tie": 10,
       "coordinate_with_name_20m": 47,
       "duplicate_exact_key": 1,
-      "exact_municipality_name_address": 1007,
-      "exact_name_municipality_address_similar": 126,
+      "exact_municipality_name_address": 995,
+      "exact_name_municipality_address_similar": 133,
       "fuzzy_below_threshold": 26,
       "high_confidence_fuzzy": 2,
       "no_candidate": 124
     },
-    "matched_row_count": 1226,
-    "matched_with_positive_capacity_count": 1000,
-    "matched_with_source_coordinates_count": 1226,
+    "matched_row_count": 1221,
+    "matched_with_positive_capacity_count": 996,
+    "matched_with_source_coordinates_count": 1221,
     "unknown_master_id_count": 0,
     "capacity_mismatch_count": 0
   },
@@ -360,25 +362,25 @@ Exported current opened shelters: 227 rows
       "coordinate_near_tie": 10,
       "coordinate_with_name_20m": 47,
       "duplicate_exact_key": 1,
-      "exact_municipality_name_address": 1007,
-      "exact_name_municipality_address_similar": 126,
+      "exact_municipality_name_address": 995,
+      "exact_name_municipality_address_similar": 133,
       "fuzzy_below_threshold": 26,
       "high_confidence_fuzzy": 2,
       "no_candidate": 124,
-      "portal_shelter_id": 57
+      "portal_shelter_id": 62
     },
     "matched_row_count": 1283,
     "matched_with_positive_capacity_count": 1043,
     "matched_with_source_coordinates_count": 1283,
     "unknown_master_id_count": 0,
     "capacity_mismatch_count": 0,
-    "date_column_count": 4,
+    "date_column_count": 5,
     "first_date": "2026-07-29",
-    "last_date": "2026-08-01"
+    "last_date": "2026-08-02"
   }
 }
 {
-  "validated_at_jst": "2026-08-01T01:55:03+09:00",
+  "validated_at_jst": "2026-08-02T01:12:12+09:00",
   "status": "success",
   "coordinate_priority": [
     "gsi_reference",
@@ -402,13 +404,13 @@ Exported current opened shelters: 227 rows
     "manual_unique_ids_selected_count": 138,
     "manual_ids_not_selected_where_required_count": 0,
     "manual_ids_not_selected_where_required": [],
-    "manual_selection_occurrence_count": 2005
+    "manual_selection_occurrence_count": 2185
   },
-  "validated_file_count": 21,
+  "validated_file_count": 24,
   "total_coordinate_source_counts": {
-    "gsi_reference": 17703,
-    "kumamoto_portal": 66,
-    "manual_geocoding": 2005
+    "gsi_reference": 20202,
+    "kumamoto_portal": 82,
+    "manual_geocoding": 2185
   },
   "total_error_count": 0,
   "files": [
@@ -466,6 +468,20 @@ Exported current opened shelters: 227 rows
       "error_examples": []
     },
     {
+      "file": "data/daily/2026/08/2026-08-02.csv",
+      "row_count": 1382,
+      "shelter_row_count": 1382,
+      "complete_coordinate_count": 1382,
+      "manual_selection_count": 76,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1300,
+        "kumamoto_portal": 6,
+        "manual_geocoding": 76
+      },
+      "error_examples": []
+    },
+    {
       "file": "data/changes/2026/07/2026-07-29.csv",
       "row_count": 1314,
       "shelter_row_count": 1314,
@@ -519,6 +535,20 @@ Exported current opened shelters: 227 rows
       "error_examples": []
     },
     {
+      "file": "data/changes/2026/08/2026-08-02.csv",
+      "row_count": 32,
+      "shelter_row_count": 32,
+      "complete_coordinate_count": 32,
+      "manual_selection_count": 11,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 19,
+        "kumamoto_portal": 2,
+        "manual_geocoding": 11
+      },
+      "error_examples": []
+    },
+    {
       "file": "data/matching_issues/2026/07/2026-07-29.csv",
       "row_count": 14,
       "shelter_row_count": 14,
@@ -568,57 +598,70 @@ Exported current opened shelters: 227 rows
       "error_examples": []
     },
     {
+      "file": "data/matching_issues/2026/08/2026-08-02.csv",
+      "row_count": 82,
+      "shelter_row_count": 82,
+      "complete_coordinate_count": 82,
+      "manual_selection_count": 76,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 6,
+        "manual_geocoding": 76
+      },
+      "error_examples": []
+    },
+    {
       "file": "data/latest.csv",
-      "row_count": 1387,
-      "shelter_row_count": 1387,
-      "complete_coordinate_count": 1387,
-      "manual_selection_count": 81,
+      "row_count": 1382,
+      "shelter_row_count": 1382,
+      "complete_coordinate_count": 1382,
+      "manual_selection_count": 76,
       "error_count": 0,
       "coordinate_source_counts": {
         "gsi_reference": 1300,
         "kumamoto_portal": 6,
-        "manual_geocoding": 81
+        "manual_geocoding": 76
       },
       "error_examples": []
     },
     {
       "file": "data/latest_open.csv",
-      "row_count": 227,
-      "shelter_row_count": 227,
-      "complete_coordinate_count": 227,
-      "manual_selection_count": 81,
+      "row_count": 210,
+      "shelter_row_count": 210,
+      "complete_coordinate_count": 210,
+      "manual_selection_count": 76,
       "error_count": 0,
       "coordinate_source_counts": {
-        "gsi_reference": 140,
+        "gsi_reference": 128,
         "kumamoto_portal": 6,
-        "manual_geocoding": 81
+        "manual_geocoding": 76
       },
       "error_examples": []
     },
     {
       "file": "data/latest_changes.csv",
-      "row_count": 188,
-      "shelter_row_count": 188,
-      "complete_coordinate_count": 188,
-      "manual_selection_count": 55,
+      "row_count": 32,
+      "shelter_row_count": 32,
+      "complete_coordinate_count": 32,
+      "manual_selection_count": 11,
       "error_count": 0,
       "coordinate_source_counts": {
-        "gsi_reference": 127,
-        "kumamoto_portal": 6,
-        "manual_geocoding": 55
+        "gsi_reference": 19,
+        "kumamoto_portal": 2,
+        "manual_geocoding": 11
       },
       "error_examples": []
     },
     {
       "file": "data/latest_matching_issues.csv",
-      "row_count": 87,
-      "shelter_row_count": 87,
-      "complete_coordinate_count": 87,
-      "manual_selection_count": 81,
+      "row_count": 82,
+      "shelter_row_count": 82,
+      "complete_coordinate_count": 82,
+      "manual_selection_count": 76,
       "error_count": 0,
       "coordinate_source_counts": {
         "kumamoto_portal": 6,
-        "manual_geocoding": 81
+        "manual_geocoding": 76
       },
       "error_examples": []
     },
@@ -637,15 +680,15 @@ Exported current opened shelters: 227 rows
     },
     {
       "file": "data/all_snapshots.csv",
-      "row_count": 5567,
-      "shelter_row_count": 5567,
-      "complete_coordinate_count": 5567,
-      "manual_selection_count": 361,
+      "row_count": 6949,
+      "shelter_row_count": 6949,
+      "complete_coordinate_count": 6949,
+      "manual_selection_count": 437,
       "error_count": 0,
       "coordinate_source_counts": {
-        "gsi_reference": 5200,
-        "kumamoto_portal": 6,
-        "manual_geocoding": 361
+        "gsi_reference": 6500,
+        "kumamoto_portal": 12,
+        "manual_geocoding": 437
       },
       "error_examples": []
     },
