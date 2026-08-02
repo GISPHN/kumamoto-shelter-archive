@@ -1,0 +1,85 @@
+name: Validate current shelter archive
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - scripts/validate_capacity_outputs.py
+      - scripts/validate_coordinate_outputs.py
+      - scripts/build_time_series.py
+      - data/latest.csv
+      - data/status_by_date.csv
+      - data/open_status_by_date.csv
+      - data/congestion_by_date.csv
+      - reference/portal_shelter_capacity.csv
+      - reference/portal_shelter_capacity_metadata.json
+      - reference/manual_geocoding/**
+      - .github/workflows/validate_archive.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: kumamoto-shelter-fast-validation
+  cancel-in-progress: true
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+
+      - name: Compile validators
+        run: |
+          python -m py_compile \
+            scripts/coordinate_enricher.py \
+            scripts/validate_capacity_outputs.py \
+            scripts/validate_coordinate_outputs.py
+
+      - name: Validate capacity and compact time-series schema
+        run: |
+          python scripts/validate_capacity_outputs.py \
+            --master reference/portal_shelter_capacity.csv \
+            --metadata reference/portal_shelter_capacity_metadata.json \
+            --latest data/latest.csv \
+            --status-by-date data/status_by_date.csv \
+            --open-status-by-date data/open_status_by_date.csv \
+            --output data/logs/capacity_validation.json \
+            --minimum-master-records 2000
+
+      - name: Validate complete coordinates
+        run: |
+          python scripts/validate_coordinate_outputs.py \
+            --data-root data \
+            --manual-geocoding reference/manual_geocoding \
+            --output data/logs/coordinate_validation.json \
+            --expected-manual-records 138
+
+      - name: Commit validation reports
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            data/logs/capacity_validation.json \
+            data/logs/coordinate_validation.json
+          if git diff --cached --quiet; then
+            echo "Validation reports are already current."
+            exit 0
+          fi
+          git commit -m "Validate current shelter archive"
+          git pull --rebase origin main
+          git push
