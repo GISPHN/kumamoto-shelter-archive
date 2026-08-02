@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import json
-from pathlib import Path
+import re
 from typing import Any
 
 import fitz
@@ -16,12 +16,10 @@ def _cell(value: object) -> str:
 
 
 def _numeric_rows(matrix: list[list[Any]]) -> int:
-    count = 0
-    for row in matrix:
-        first = _cell(row[0] if row else "")
-        if first.isdigit():
-            count += 1
-    return count
+    return sum(
+        _cell(row[0] if row else "").isdigit()
+        for row in matrix
+    )
 
 
 def parse_yatsushiro_pdf(
@@ -35,7 +33,9 @@ def parse_yatsushiro_pdf(
     No., shelter name, address, district, capacity, households, evacuees,
     followed by facility-condition columns.  The parser selects the detected
     table with the largest number of numeric shelter rows and validates the
-    extracted evacuee sum against the PDF total row.
+    extracted evacuee sum against the PDF total row.  PyMuPDF may detect the
+    total row outside the ruled table, so the full page text is used as a
+    validated fallback for the published total.
     """
     from collect_municipal_evacuees import (
         SourceRecord,
@@ -116,9 +116,19 @@ def parse_yatsushiro_pdf(
             records.append(SourceRecord("八代市", name, address, evacuees))
             continue
 
-        if any("合計" in value for value in row):
-            if row[6]:
-                published_total = parse_integer(row[6])
+        if any("合計" in value for value in row) and row[6]:
+            published_total = parse_integer(row[6])
+
+    if published_total is None:
+        # The visual total row can fall just outside the table bounding box.
+        # In page text its first three numbers are capacity, households and
+        # evacuees respectively; the third number is therefore the target.
+        total_match = re.search(
+            r"合計\s+[\d,]+\s+[\d,]+\s+([\d,]+)",
+            full_text,
+        )
+        if total_match:
+            published_total = parse_integer(total_match.group(1))
 
     if not records:
         raise RuntimeError(
