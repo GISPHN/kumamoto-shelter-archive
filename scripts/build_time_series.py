@@ -1,19 +1,40 @@
 #!/usr/bin/env python3
-"""日別避難所CSVから横持ち時系列CSVを再構築する。"""
+"""日別避難所CSVから横持ち時系列CSVを再構築する。
+
+status_by_date.csv は日常的な確認・分析に使いやすい最小限の固定属性だけを
+出力する。open_status_by_date.csv と congestion_by_date.csv は、監査や詳細な
+解析に利用できるよう従来の詳細属性を保持する。
+"""
 from __future__ import annotations
 
 import argparse
 import csv
 import re
+from datetime import date
 from pathlib import Path
 from typing import Iterable
 
 DATE_PATTERN = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+DATE_COLUMN_PATTERN = re.compile(r"^(\d{4})[-/](\d{1,2})[-/](\d{1,2})$")
 
-# 日によって変化しない、または最新の非空値を採用する施設属性。
-# 情報源別の座標列はそのまま保持し、latitude/longitude は
-# GSI -> 熊本防災ポータル -> 手動ジオコーディングの順で選択された統一座標。
-IDENTITY_COLUMNS = [
+# status_by_date.csv に出力する固定属性。
+# 添付された利用用CSVと同じ順序を厳密に維持する。
+STATUS_IDENTITY_COLUMNS = [
+    "shelter_id",
+    "reference_common_ids",
+    "municipality",
+    "shelter_name",
+    "address",
+    "reference_same_address_as_emergency_site",
+    "reference_other_mayor_matters",
+    "reference_accepted_persons",
+    "portal_capacity_persons",
+    "latitude",
+    "longitude",
+]
+
+# open_status_by_date.csv と congestion_by_date.csv に保持する詳細属性。
+DETAIL_IDENTITY_COLUMNS = [
     "shelter_id",
     "web_shelter_id",
     "reference_common_id",
@@ -68,6 +89,12 @@ def read_csv(path: Path) -> list[dict[str, str]]:
         return list(csv.DictReader(handle))
 
 
+def read_csv_with_columns(path: Path) -> tuple[list[str], list[dict[str, str]]]:
+    with path.open("r", encoding="utf-8-sig", newline="") as handle:
+        reader = csv.DictReader(handle)
+        return list(reader.fieldnames or []), list(reader)
+
+
 def write_csv(path: Path, rows: Iterable[dict[str, str]], columns: list[str]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8-sig", newline="") as handle:
@@ -85,6 +112,18 @@ def daily_files(data_root: Path) -> list[tuple[str, Path]]:
         if DATE_PATTERN.fullmatch(path.stem)
     ]
     return sorted(files, key=lambda item: item[0])
+
+
+def normalize_date_column(column: str) -> str | None:
+    match = DATE_COLUMN_PATTERN.fullmatch(normalize(column))
+    if not match:
+        return None
+    try:
+        return date(
+            int(match.group(1)), int(match.group(2)), int(match.group(3))
+        ).isoformat()
+    except ValueError:
+        return None
 
 
 def status_label(row: dict[str, str]) -> str:
@@ -129,6 +168,89 @@ def row_priority(row: dict[str, str]) -> tuple[int, int, int, int]:
     )
 
 
+def validate_historical_statuses(
+    existing_path: Path,
+    generated_rows: list[dict[str, str]],
+    newest_date: str,
+) -> None:
+    """既存の過去日ステータスが再構築で変化していないことを確認する。
+
+    当日再実行による最新日データの更新は許可する。一方、最新日より前の
+    日付については、施設ごとの開設状況・混雑度が1件でも変われば停止する。
+    """
+    if not existing_path.exists() or existing_path.stat().st_size == 0:
+        return
+
+    columns, existing_rows = read_csv_with_columns(existing_path)
+    existing_date_columns = {
+        normalized: column
+        for column in columns
+        if (normalized := normalize_date_column(column)) is not None
+        and normalized < newest_date
+    }
+    if not existing_date_columns:
+        return
+
+    generated_by_id = {
+        normalize(row.get("shelter_id")): row
+        for row in generated_rows
+        if normalize(row.get("shelter_id"))
+    }
+    differences: list[str] = []
+    compared_cells = 0
+
+    for old_row in existing_rows:
+        shelter_id = normalize(old_row.get("shelter_id"))
+        if not shelter_id:
+            continue
+        new_row = generated_by_id.get(shelter_id)
+        if new_row is None:
+            differences.append(f"{shelter_id}: 再構築後に施設行が存在しません")
+            if len(differences) >= 20:
+                break
+            continue
+        for normalized_date, original_column in existing_date_columns.items():
+            old_value = normalize(old_row.get(original_column))
+            new_value = normalize(new_row.get(normalized_date))
+            compared_cells += 1
+            if old_value != new_value:
+                differences.append(
+                    f"{shelter_id} {normalized_date}: {old_value!r} -> {new_value!r}"
+                )
+                if len(differences) >= 20:
+                    break
+        if len(differences) >= 20:
+            break
+
+    if differences:
+        raise RuntimeError(
+            "既存の過去日ステータスが変更されるため再構築を停止しました。\n"
+            + "\n".join(differences)
+        )
+    print(f"既存の過去日ステータスを検証しました: {compared_cells}セル、変更0件")
+
+
+def validate_status_schema(path: Path, dates: list[str]) -> None:
+    columns, rows = read_csv_with_columns(path)
+    expected = STATUS_IDENTITY_COLUMNS + dates
+    if columns != expected:
+        raise RuntimeError(
+            "status_by_date.csvの列構成が指定と一致しません。\n"
+            f"expected={expected}\nactual={columns}"
+        )
+    if len(columns) != len(set(columns)):
+        raise RuntimeError("status_by_date.csvに重複列があります。")
+    for row_number, row in enumerate(rows, start=2):
+        if not normalize(row.get("shelter_id")):
+            raise RuntimeError(
+                f"status_by_date.csvの{row_number}行目にshelter_idがありません。"
+            )
+    print(
+        f"status_by_date.csvの列構成を検証しました: "
+        f"固定属性={len(STATUS_IDENTITY_COLUMNS)}列、日付={len(dates)}列、施設={len(rows)}件"
+    )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--data-root", default="data")
@@ -138,7 +260,7 @@ def main() -> int:
     if not files:
         raise SystemExit(f"日別CSVが見つかりません: {data_root / 'daily'}")
 
-    dates = [date for date, _ in files]
+    dates = [snapshot_date for snapshot_date, _ in files]
     facilities: dict[str, dict[str, object]] = {}
     for snapshot_date, path in files:
         selected: dict[str, dict[str, str]] = {}
@@ -153,7 +275,9 @@ def main() -> int:
             facility = facilities.setdefault(
                 shelter_id,
                 {
-                    "metadata": {column: "" for column in IDENTITY_COLUMNS},
+                    "metadata": {
+                        column: "" for column in DETAIL_IDENTITY_COLUMNS
+                    },
                     "status": {},
                     "open": {},
                     "congestion": {},
@@ -162,7 +286,7 @@ def main() -> int:
             metadata = facility["metadata"]
             if not isinstance(metadata, dict):
                 raise RuntimeError(f"時系列データ内部形式が不正です: {shelter_id}")
-            for column in IDENTITY_COLUMNS:
+            for column in DETAIL_IDENTITY_COLUMNS:
                 value = normalize(row.get(column))
                 if value:
                     metadata[column] = value
@@ -196,13 +320,19 @@ def main() -> int:
         metadata = facility["metadata"]
         if not isinstance(metadata, dict):
             raise RuntimeError(f"時系列データ内部形式が不正です: {shelter_id}")
-        base = {
-            column: normalize(metadata.get(column)) for column in IDENTITY_COLUMNS
+
+        status_base = {
+            column: normalize(metadata.get(column))
+            for column in STATUS_IDENTITY_COLUMNS
+        }
+        detail_base = {
+            column: normalize(metadata.get(column))
+            for column in DETAIL_IDENTITY_COLUMNS
         }
         outputs = [
-            (dict(base), "status", "未開設"),
-            (dict(base), "open", "0"),
-            (dict(base), "congestion", "未開設"),
+            (dict(status_base), "status", "未開設"),
+            (dict(detail_base), "open", "0"),
+            (dict(detail_base), "congestion", "未開設"),
         ]
         for output, key, default in outputs:
             values = facility[key]
@@ -216,10 +346,26 @@ def main() -> int:
         open_rows.append(outputs[1][0])
         congestion_rows.append(outputs[2][0])
 
-    columns = IDENTITY_COLUMNS + dates
-    write_csv(data_root / "status_by_date.csv", status_rows, columns)
-    write_csv(data_root / "open_status_by_date.csv", open_rows, columns)
-    write_csv(data_root / "congestion_by_date.csv", congestion_rows, columns)
+    status_path = data_root / "status_by_date.csv"
+    validate_historical_statuses(status_path, status_rows, dates[-1])
+
+    write_csv(
+        status_path,
+        status_rows,
+        STATUS_IDENTITY_COLUMNS + dates,
+    )
+    write_csv(
+        data_root / "open_status_by_date.csv",
+        open_rows,
+        DETAIL_IDENTITY_COLUMNS + dates,
+    )
+    write_csv(
+        data_root / "congestion_by_date.csv",
+        congestion_rows,
+        DETAIL_IDENTITY_COLUMNS + dates,
+    )
+    validate_status_schema(status_path, dates)
+
     print(
         f"横持ち時系列CSVを生成しました: 施設数={len(facilities)}, "
         f"日数={len(dates)}, 開始日={dates[0]}, 終了日={dates[-1]}"
