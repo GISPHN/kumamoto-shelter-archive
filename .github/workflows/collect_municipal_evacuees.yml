@@ -6,6 +6,8 @@ on:
       - main
     paths:
       - scripts/collect_municipal_evacuees.py
+      - scripts/run_municipal_evacuee_collection.py
+      - scripts/yatsushiro_evacuee_pdf.py
       - reference/municipal_evacuee_shelter_aliases.csv
       - requirements.txt
       - .github/workflows/collect_municipal_evacuees.yml
@@ -43,7 +45,11 @@ jobs:
           python -m pip install -r requirements.txt
 
       - name: Validate collector
-        run: python -m py_compile scripts/collect_municipal_evacuees.py
+        run: |
+          python -m py_compile \
+            scripts/collect_municipal_evacuees.py \
+            scripts/run_municipal_evacuee_collection.py \
+            scripts/yatsushiro_evacuee_pdf.py
 
       - name: Collect evacuee counts
         id: collect
@@ -52,7 +58,7 @@ jobs:
           set +e
           rm -rf debug/municipal_evacuees
           mkdir -p debug/municipal_evacuees data/logs
-          python scripts/collect_municipal_evacuees.py \
+          python scripts/run_municipal_evacuee_collection.py \
             --status-csv data/status_by_date.csv \
             --aliases-csv reference/municipal_evacuee_shelter_aliases.csv \
             --observations-csv data/municipal_evacuees/all_observations.csv \
