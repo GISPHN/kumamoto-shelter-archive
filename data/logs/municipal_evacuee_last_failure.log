@@ -1,13 +1,14 @@
+Consider using the pymupdf_layout package for a greatly improved page layout analysis.
 Traceback (most recent call last):
-  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/collect_municipal_evacuees.py", line 899, in <module>
-    raise SystemExit(main())
-                     ^^^^^^
+  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/run_municipal_evacuee_collection.py", line 12, in <module>
+    raise SystemExit(collector.main())
+                     ^^^^^^^^^^^^^^^^
   File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/collect_municipal_evacuees.py", line 751, in main
     snapshots = [collect_yatsushiro(debug_dir), collect_uki(debug_dir)]
                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
   File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/collect_municipal_evacuees.py", line 369, in collect_yatsushiro
     return parse_yatsushiro_pdf(pdf_data, document_url, YATSUSHIRO_PAGE_URL)
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/collect_municipal_evacuees.py", line 335, in parse_yatsushiro_pdf
+  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/yatsushiro_evacuee_pdf.py", line 131, in parse_yatsushiro_pdf
     raise RuntimeError(
-RuntimeError: 八代市PDFの避難者数合計が一致しません: parsed=2548, published=2948, rows=42
+RuntimeError: 八代市PDFの合計行から避難者数を取得できませんでした。[{"page": 0, "table": 0, "row_count": 44, "column_count": 11, "numeric_row_count": 43, "sample": [["避難所基本情報 避難者情報 エア No. 避難所名 住所 水 電気 コン 地区 最大収容人数 避難世帯数 避難者数", "", "", "", "", "", "", "", "", "", "仮設 トイレ 設置数"], ["1", "代陽コミュニティセンター", "八代市西松江城町2-18", "代陽", "200", "50", "100", "×", "〇", "〇", "5"], ["2", "代陽小学校", "八代市北の丸町1-7", "代陽", "1,000", "1", "2", "×", "〇", "〇", "0"], ["3", "第一中学校", "八代市北の丸町1-29", "代陽", "1,300", "32", "48", "×", "〇", "〇", "2"], ["4", "八代コミュニティセンター", "八代市新地町6-3", "八代", "200", "52", "65", "×", "〇", "〇", "6"], ["5", "八代小学校", "八代市新地町4-1", "八代", "1,120", "36", "79", "×", "〇", "〇", "2"]]}]
