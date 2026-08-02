@@ -17,8 +17,8 @@ permissions:
   contents: write
 
 concurrency:
-  group: kumamoto-shelter-capacity-data-write
-  cancel-in-progress: false
+  group: kumamoto-municipal-evacuee-data-write
+  cancel-in-progress: true
 
 jobs:
   collect:
@@ -46,8 +46,12 @@ jobs:
         run: python -m py_compile scripts/collect_municipal_evacuees.py
 
       - name: Collect evacuee counts
+        id: collect
+        shell: bash
         run: |
+          set +e
           rm -rf debug/municipal_evacuees
+          mkdir -p debug/municipal_evacuees data/logs
           python scripts/collect_municipal_evacuees.py \
             --status-csv data/status_by_date.csv \
             --aliases-csv reference/municipal_evacuee_shelter_aliases.csv \
@@ -56,23 +60,43 @@ jobs:
             --issues-csv data/municipal_evacuees/matching_issues.csv \
             --latest-csv data/municipal_evacuees/latest_observations.csv \
             --log-json data/logs/municipal_evacuee_collection.json \
-            --debug-dir debug/municipal_evacuees
+            --debug-dir debug/municipal_evacuees \
+            2>&1 | tee debug/municipal_evacuees/workflow.log
+          STATUS=${PIPESTATUS[0]}
+          echo "exit_code=$STATUS" >> "$GITHUB_OUTPUT"
+          cp debug/municipal_evacuees/workflow.log data/logs/municipal_evacuee_last_run.log
+          if [ "$STATUS" -ne 0 ]; then
+            cp debug/municipal_evacuees/workflow.log data/logs/municipal_evacuee_last_failure.log
+          else
+            rm -f data/logs/municipal_evacuee_last_failure.log
+          fi
+          exit 0
 
-      - name: Commit updated observations
+      - name: Commit observations or diagnostics
         shell: bash
         run: |
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add \
-            data/evacuee_count_by_date.csv \
-            data/municipal_evacuees \
-            data/logs/municipal_evacuee_collection.json
+          git add data/logs/municipal_evacuee_last_run.log
+          git add data/logs/municipal_evacuee_last_failure.log 2>/dev/null || true
+          if [ "${{ steps.collect.outputs.exit_code }}" = "0" ]; then
+            git add \
+              data/evacuee_count_by_date.csv \
+              data/municipal_evacuees \
+              data/logs/municipal_evacuee_collection.json
+          else
+            git add data/municipal_evacuees/matching_issues.csv 2>/dev/null || true
+          fi
           if git diff --cached --quiet; then
-            echo "Municipal evacuee sources are unchanged."
+            echo "Municipal evacuee sources and diagnostics are unchanged."
             exit 0
           fi
-          git commit -m "Update municipal shelter evacuee counts"
+          if [ "${{ steps.collect.outputs.exit_code }}" = "0" ]; then
+            git commit -m "Update municipal shelter evacuee counts"
+          else
+            git commit -m "Record municipal evacuee collection failure"
+          fi
           git pull --rebase origin main
           git push
 
@@ -84,3 +108,9 @@ jobs:
           path: debug/municipal_evacuees/
           if-no-files-found: ignore
           retention-days: 30
+
+      - name: Fail workflow when collection failed
+        if: steps.collect.outputs.exit_code != '0'
+        run: |
+          echo "Municipal evacuee collection failed with exit code ${{ steps.collect.outputs.exit_code }}."
+          exit 1
