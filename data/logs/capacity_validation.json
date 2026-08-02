@@ -1,5 +1,5 @@
 {
-  "validated_at_jst": "2026-08-03T01:39:00+09:00",
+  "validated_at_jst": "2026-08-03T08:52:50+09:00",
   "status": "success",
   "master": {
     "row_count": 2125,
@@ -16,10 +16,10 @@
     "metadata_record_count": 2125
   },
   "latest": {
-    "row_count": 1381,
+    "row_count": 1359,
     "capacity_match_status_counts": {
       "ambiguous": 11,
-      "matched": 1220,
+      "matched": 1198,
       "unmatched": 150
     },
     "capacity_match_method_counts": {
@@ -28,16 +28,16 @@
       "coordinate_near_tie": 10,
       "coordinate_with_name_20m": 47,
       "duplicate_exact_key": 1,
-      "exact_municipality_name_address": 992,
+      "exact_municipality_name_address": 970,
       "exact_name_municipality_address_similar": 135,
       "fuzzy_below_threshold": 26,
       "high_confidence_fuzzy": 2,
       "no_candidate": 124
     },
-    "matched_row_count": 1220,
-    "matched_with_positive_capacity_count": 996,
-    "matched_with_source_coordinates_count": 1220,
-    "complete_unified_coordinate_count": 1381,
+    "matched_row_count": 1198,
+    "matched_with_positive_capacity_count": 974,
+    "matched_with_source_coordinates_count": 1198,
+    "complete_unified_coordinate_count": 1359,
     "unknown_master_id_count": 0,
     "capacity_mismatch_count": 0
   },
@@ -54,12 +54,12 @@
       "coordinate_near_tie": 10,
       "coordinate_with_name_20m": 47,
       "duplicate_exact_key": 1,
-      "exact_municipality_name_address": 992,
+      "exact_municipality_name_address": 970,
       "exact_name_municipality_address_similar": 135,
       "fuzzy_below_threshold": 26,
       "high_confidence_fuzzy": 2,
       "no_candidate": 124,
-      "portal_shelter_id": 63
+      "portal_shelter_id": 85
     },
     "matched_row_count": 1283,
     "matched_with_positive_capacity_count": 1043,
