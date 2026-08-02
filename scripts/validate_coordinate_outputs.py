@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Validate complete coordinates and exact application of the manual master."""
+"""Validate complete coordinates and exact application of the manual master.
+
+Detailed CSVs retain coordinate provenance fields. ``status_by_date.csv`` is a
+compact user-facing export with only unified ``latitude`` and ``longitude``.
+For that file, the validator checks complete valid coordinates and verifies that
+they exactly match ``open_status_by_date.csv`` for the same ``shelter_id``.
+"""
 
 from __future__ import annotations
 
@@ -17,7 +23,7 @@ except ModuleNotFoundError:
     from coordinate_enricher import CoordinateEnricher, valid_pair
 
 JST = ZoneInfo("Asia/Tokyo")
-REQUIRED_COLUMNS = {
+DETAILED_REQUIRED_COLUMNS = {
     "manual_latitude",
     "manual_longitude",
     "manual_geocode_status",
@@ -28,6 +34,7 @@ REQUIRED_COLUMNS = {
     "coordinate_method",
     "coordinate_status",
 }
+COMPACT_REQUIRED_COLUMNS = {"shelter_id", "latitude", "longitude"}
 ALLOWED_SOURCES = {"gsi_reference", "kumamoto_portal", "manual_geocoding"}
 
 
@@ -82,6 +89,122 @@ def same_coordinate_pair(
     )
 
 
+def validate_compact_status_file(
+    path: Path,
+    columns: list[str],
+    rows: list[dict[str, str]],
+    detailed_by_id: dict[str, dict[str, str]],
+) -> tuple[dict[str, object], list[dict[str, str]], set[str]]:
+    """Validate compact status coordinates against the detailed time series."""
+    file_errors: list[dict[str, str]] = []
+    missing_columns = sorted(COMPACT_REQUIRED_COLUMNS - set(columns))
+    if missing_columns:
+        error = {
+            "file": path.as_posix(),
+            "shelter_id": "",
+            "error": f"missing_columns:{','.join(missing_columns)}",
+        }
+        return (
+            {
+                "file": path.as_posix(),
+                "validation_mode": "compact_unified_coordinates",
+                "row_count": len(rows),
+                "shelter_row_count": sum(bool(row.get("shelter_id")) for row in rows),
+                "complete_coordinate_count": 0,
+                "manual_selection_count": 0,
+                "error_count": 1,
+                "coordinate_source_counts": {},
+                "error_examples": [error],
+            },
+            [error],
+            set(),
+        )
+
+    seen_ids: set[str] = set()
+    output_ids: set[str] = set()
+    complete = 0
+    for row in rows:
+        shelter_id = (row.get("shelter_id") or "").strip()
+        if not shelter_id:
+            file_errors.append(
+                {
+                    "file": path.as_posix(),
+                    "shelter_id": "",
+                    "error": "empty_shelter_id",
+                }
+            )
+            continue
+        if shelter_id in seen_ids:
+            file_errors.append(
+                {
+                    "file": path.as_posix(),
+                    "shelter_id": shelter_id,
+                    "error": "duplicate_shelter_id",
+                }
+            )
+            continue
+        seen_ids.add(shelter_id)
+        output_ids.add(shelter_id)
+
+        pair = valid_pair(row.get("latitude"), row.get("longitude"))
+        detail = detailed_by_id.get(shelter_id)
+        errors: list[str] = []
+        if pair is None:
+            errors.append("missing_or_invalid_coordinate_pair")
+        if detail is None:
+            errors.append("shelter_id_not_found_in_open_status_by_date")
+        else:
+            detailed_pair = valid_pair(
+                detail.get("latitude"), detail.get("longitude")
+            )
+            if detailed_pair is None:
+                errors.append("detailed_coordinate_pair_is_invalid")
+            elif not same_coordinate_pair(pair, detailed_pair):
+                errors.append("unified_pair_differs_from_open_status_by_date")
+
+        if errors:
+            file_errors.append(
+                {
+                    "file": path.as_posix(),
+                    "shelter_id": shelter_id,
+                    "municipality": row.get("municipality", ""),
+                    "shelter_name": row.get("shelter_name", ""),
+                    "address": row.get("address", ""),
+                    "error": ";".join(errors),
+                }
+            )
+        else:
+            complete += 1
+
+    missing_from_compact = sorted(set(detailed_by_id) - seen_ids)
+    if missing_from_compact:
+        file_errors.append(
+            {
+                "file": path.as_posix(),
+                "shelter_id": "",
+                "error": (
+                    "detailed_ids_missing_from_status_by_date:"
+                    + ",".join(missing_from_compact[:20])
+                ),
+            }
+        )
+
+    report = {
+        "file": path.as_posix(),
+        "validation_mode": "compact_unified_coordinates",
+        "row_count": len(rows),
+        "shelter_row_count": len(seen_ids),
+        "complete_coordinate_count": complete,
+        "manual_selection_count": 0,
+        "error_count": len(file_errors),
+        "coordinate_source_counts": {
+            "inherited_from_open_status_by_date": complete
+        },
+        "error_examples": file_errors[:10],
+    }
+    return report, file_errors, output_ids
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--data-root", default="data")
@@ -104,6 +227,24 @@ def main() -> int:
     if len(manual.by_id) != len(manual.rows):
         raise RuntimeError("手動ジオコーディングのshelter_idが一意ではありません。")
 
+    detailed_path = data_root / "open_status_by_date.csv"
+    detailed_columns, detailed_rows = read_csv(detailed_path)
+    detailed_missing = sorted(DETAILED_REQUIRED_COLUMNS - set(detailed_columns))
+    if detailed_missing:
+        raise RuntimeError(
+            "open_status_by_date.csvに座標監査列がありません: "
+            + ",".join(detailed_missing)
+        )
+    detailed_by_id = {
+        (row.get("shelter_id") or "").strip(): row
+        for row in detailed_rows
+        if (row.get("shelter_id") or "").strip()
+    }
+    if len(detailed_by_id) != len(detailed_rows):
+        raise RuntimeError(
+            "open_status_by_date.csvに空または重複したshelter_idがあります。"
+        )
+
     reports: list[dict[str, object]] = []
     all_errors: list[dict[str, str]] = []
     source_counts: Counter[str] = Counter()
@@ -116,7 +257,17 @@ def main() -> int:
         columns, rows = read_csv(path)
         if "shelter_id" not in columns:
             continue
-        missing_columns = sorted(REQUIRED_COLUMNS - set(columns))
+
+        if path.name == "status_by_date.csv":
+            report, errors, output_ids = validate_compact_status_file(
+                path, columns, rows, detailed_by_id
+            )
+            reports.append(report)
+            all_errors.extend(errors)
+            all_output_ids.update(output_ids)
+            continue
+
+        missing_columns = sorted(DETAILED_REQUIRED_COLUMNS - set(columns))
         if missing_columns:
             error = {
                 "file": path.as_posix(),
@@ -127,6 +278,7 @@ def main() -> int:
             reports.append(
                 {
                     "file": path.as_posix(),
+                    "validation_mode": "detailed_provenance",
                     "row_count": len(rows),
                     "shelter_row_count": sum(bool(row.get("shelter_id")) for row in rows),
                     "complete_coordinate_count": 0,
@@ -191,9 +343,6 @@ def main() -> int:
                         f"manual_geocode_status={row.get('manual_geocode_status') or '(blank)'}"
                     )
 
-                # Manual coordinates were supplied for records without GSI
-                # coordinates. In that situation the unified pair must exactly
-                # equal the manual master and must not silently use portal data.
                 if reference_pair is None:
                     manual_ids_requiring_selection.add(manual_id)
                     if source != "manual_geocoding":
@@ -228,6 +377,7 @@ def main() -> int:
         reports.append(
             {
                 "file": path.as_posix(),
+                "validation_mode": "detailed_provenance",
                 "row_count": len(rows),
                 "shelter_row_count": shelter_rows,
                 "complete_coordinate_count": complete,
