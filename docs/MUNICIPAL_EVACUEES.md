@@ -120,6 +120,8 @@ revision
 reference/municipal_evacuee_shelter_aliases.csv
 ```
 
+PDFの埋込フォントにより施設名・住所が文字化けまたは欠落する場合も、確認済みの対応関係をこのエイリアスに保存します。
+
 ## 自治体別の解析
 
 ### 八代市
@@ -145,7 +147,9 @@ reference/municipal_evacuee_shelter_aliases.csv
 .github/workflows/collect_municipal_evacuees.yml
 ```
 
-1時間ごとに確認します。情報源に実質的な変更がなければ、CSVやコミットは追加しません。処理失敗時はHTML、PDF、実行ログをGitHub Actions artifactへ保存します。
+毎時確認は行いません。日本時間0時05分に開始される`Collect Kumamoto shelter data`が正常終了した後に、1日1回だけ実行します。これにより、その日の最新`status_by_date.csv`を使って施設照合を行います。上流の日次収集が失敗した場合は、避難者数収集を実行しません。手動実行は可能です。
+
+情報源に実質的な変更がなければ、CSVやコミットは追加しません。処理失敗時はHTML、PDF、実行ログをGitHub Actions artifactへ保存します。
 
 ## 初回検証結果
 
@@ -157,3 +161,5 @@ reference/municipal_evacuee_shelter_aliases.csv
 | 宇城市 | 2026-08-03 08:00 JST | 11 | 3,248 | 11/11 |
 
 未一致・曖昧施設は0件でした。
+
+2026年8月3日18時の八代市PDFでは、PDF埋込フォントにより「今泉地区公民館」が「今晋地区公⺠館」等として抽出されました。確認済みの手動エイリアスを追加し、43施設すべてを一意に照合しています。
