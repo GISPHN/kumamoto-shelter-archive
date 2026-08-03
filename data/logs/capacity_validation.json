@@ -1,5 +1,5 @@
 {
-  "validated_at_jst": "2026-08-04T01:52:13+09:00",
+  "validated_at_jst": "2026-08-04T01:52:38+09:00",
   "status": "success",
   "master": {
     "row_count": 2125,
@@ -18,25 +18,20 @@
   "latest": {
     "row_count": 1359,
     "capacity_match_status_counts": {
-      "ambiguous": 12,
-      "matched": 1197,
+      "ambiguous": 11,
+      "matched": 1198,
       "unmatched": 150
     },
     "capacity_match_method_counts": {
-      "coordinate_high_similarity_200m": 2,
-      "coordinate_name_address_75m": 42,
       "coordinate_near_tie": 11,
-      "coordinate_with_name_20m": 47,
-      "duplicate_exact_key": 1,
-      "exact_municipality_name_address": 965,
-      "exact_name_municipality_address_similar": 139,
+      "coordinate_with_name_20m": 1,
       "fuzzy_below_threshold": 26,
-      "high_confidence_fuzzy": 2,
-      "no_candidate": 124
+      "no_candidate": 124,
+      "portal_shelter_id": 1197
     },
-    "matched_row_count": 1197,
-    "matched_with_positive_capacity_count": 974,
-    "matched_with_source_coordinates_count": 1197,
+    "matched_row_count": 1198,
+    "matched_with_positive_capacity_count": 975,
+    "matched_with_source_coordinates_count": 1198,
     "complete_unified_coordinate_count": 1359,
     "unknown_master_id_count": 0,
     "capacity_mismatch_count": 0
@@ -44,26 +39,20 @@
   "open_status_by_date": {
     "row_count": 1446,
     "capacity_match_status_counts": {
-      "ambiguous": 12,
-      "matched": 1284,
+      "ambiguous": 11,
+      "matched": 1285,
       "unmatched": 150
     },
     "capacity_match_method_counts": {
-      "coordinate_high_similarity_200m": 2,
-      "coordinate_name_address_75m": 42,
       "coordinate_near_tie": 11,
-      "coordinate_with_name_20m": 47,
-      "duplicate_exact_key": 1,
-      "exact_municipality_name_address": 965,
-      "exact_name_municipality_address_similar": 139,
+      "coordinate_with_name_20m": 1,
       "fuzzy_below_threshold": 26,
-      "high_confidence_fuzzy": 2,
       "no_candidate": 124,
-      "portal_shelter_id": 87
+      "portal_shelter_id": 1284
     },
-    "matched_row_count": 1284,
-    "matched_with_positive_capacity_count": 1044,
-    "matched_with_source_coordinates_count": 1284,
+    "matched_row_count": 1285,
+    "matched_with_positive_capacity_count": 1045,
+    "matched_with_source_coordinates_count": 1285,
     "complete_unified_coordinate_count": 1446,
     "unknown_master_id_count": 0,
     "capacity_mismatch_count": 0
