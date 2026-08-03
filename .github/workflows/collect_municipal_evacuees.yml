@@ -8,6 +8,7 @@ on:
       - scripts/collect_municipal_evacuees.py
       - scripts/run_municipal_evacuee_collection.py
       - scripts/yatsushiro_evacuee_pdf.py
+      - scripts/uki_evacuee_html.py
       - reference/municipal_evacuee_shelter_aliases.csv
       - requirements.txt
       - .github/workflows/collect_municipal_evacuees.yml
@@ -49,7 +50,8 @@ jobs:
           python -m py_compile \
             scripts/collect_municipal_evacuees.py \
             scripts/run_municipal_evacuee_collection.py \
-            scripts/yatsushiro_evacuee_pdf.py
+            scripts/yatsushiro_evacuee_pdf.py \
+            scripts/uki_evacuee_html.py
 
       - name: Collect evacuee counts
         id: collect
@@ -84,25 +86,30 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/logs/municipal_evacuee_last_run.log
-          git add data/logs/municipal_evacuee_last_failure.log 2>/dev/null || true
+
           if [ "${{ steps.collect.outputs.exit_code }}" = "0" ]; then
             git add \
               data/evacuee_count_by_date.csv \
               data/municipal_evacuees \
               data/logs/municipal_evacuee_collection.json
-          else
-            git add data/municipal_evacuees/matching_issues.csv 2>/dev/null || true
-          fi
-          if git diff --cached --quiet; then
-            echo "Municipal evacuee sources and diagnostics are unchanged."
-            exit 0
-          fi
-          if [ "${{ steps.collect.outputs.exit_code }}" = "0" ]; then
+            if git diff --cached --quiet; then
+              echo "Municipal evacuee sources are unchanged; no commit is required."
+              exit 0
+            fi
+            git add data/logs/municipal_evacuee_last_run.log
+            git add data/logs/municipal_evacuee_last_failure.log 2>/dev/null || true
             git commit -m "Update municipal shelter evacuee counts"
           else
+            git add data/logs/municipal_evacuee_last_run.log
+            git add data/logs/municipal_evacuee_last_failure.log
+            git add data/municipal_evacuees/matching_issues.csv 2>/dev/null || true
+            if git diff --cached --quiet; then
+              echo "Failure diagnostics are unchanged."
+              exit 0
+            fi
             git commit -m "Record municipal evacuee collection failure"
           fi
+
           git pull --rebase origin main
           git push
 
