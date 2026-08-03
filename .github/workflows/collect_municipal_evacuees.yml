@@ -1,6 +1,11 @@
 name: Collect municipal shelter evacuee counts
 
 on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/manual_triggers/municipal_evacuees_2026-08-04.txt
   workflow_run:
     workflows:
       - Collect Kumamoto shelter data
@@ -19,6 +24,7 @@ jobs:
   collect:
     if: >-
       github.event_name == 'workflow_dispatch' ||
+      github.event_name == 'push' ||
       (github.event.workflow_run.conclusion == 'success' &&
        github.event.workflow_run.event == 'schedule')
     runs-on: ubuntu-latest
