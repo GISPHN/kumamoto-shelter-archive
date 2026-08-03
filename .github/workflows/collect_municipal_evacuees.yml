@@ -1,11 +1,11 @@
 name: Collect municipal shelter evacuee counts
 
 on:
-  workflow_run:
-    workflows:
-      - Collect Kumamoto shelter data
-    types:
-      - completed
+  # GitHub Actions cron is UTC. 23:10 / 23:30 UTC correspond to
+  # 08:10 / 08:30 JST on the following calendar day.
+  schedule:
+    - cron: "10 23 * * *"
+    - cron: "30 23 * * *"
   workflow_dispatch:
 
 permissions:
@@ -13,14 +13,10 @@ permissions:
 
 concurrency:
   group: kumamoto-municipal-evacuee-data-write
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   collect:
-    if: >-
-      github.event_name == 'workflow_dispatch' ||
-      (github.event.workflow_run.conclusion == 'success' &&
-       github.event.workflow_run.event == 'schedule')
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
