@@ -1,19 +1,11 @@
 name: Collect municipal shelter evacuee counts
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - scripts/collect_municipal_evacuees.py
-      - scripts/run_municipal_evacuee_collection.py
-      - scripts/yatsushiro_evacuee_pdf.py
-      - scripts/uki_evacuee_html.py
-      - reference/municipal_evacuee_shelter_aliases.csv
-      - requirements.txt
-      - .github/workflows/collect_municipal_evacuees.yml
-  schedule:
-    - cron: "17 * * * *"
+  workflow_run:
+    workflows:
+      - Collect Kumamoto shelter data
+    types:
+      - completed
   workflow_dispatch:
 
 permissions:
@@ -25,13 +17,15 @@ concurrency:
 
 jobs:
   collect:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     timeout-minutes: 20
 
     steps:
-      - name: Checkout repository
+      - name: Checkout latest main branch
         uses: actions/checkout@v6
         with:
+          ref: main
           fetch-depth: 0
 
       - name: Set up Python
