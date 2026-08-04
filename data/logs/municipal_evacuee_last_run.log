@@ -1,32 +1,11 @@
 Consider using the pymupdf_layout package for a greatly improved page layout analysis.
+No source change: 八代市 observed=2026-08-04T06:00+09:00 hash=080ae4d762e3
+No source change: 宇城市 observed=2026-08-04T08:00+09:00 hash=0b59edb7e878
 {
-  "retrieved_at_jst": "2026-08-04T09:15:27+09:00",
+  "retrieved_at_jst": "2026-08-04T09:57:52+09:00",
   "status": "success",
-  "source_changed": true,
-  "changed_sources": [
-    {
-      "municipality": "八代市",
-      "source_observed_at_jst": "2026-08-04T06:00+09:00",
-      "record_count": 43,
-      "matched_count": 43,
-      "issue_count": 0,
-      "published_total": 2745,
-      "calculated_total": 2745,
-      "revision": 1,
-      "normalized_sha256": "080ae4d762e320e88c48f3b37a59ee060cf3211b8df9f5d9de03ce0b656c825e"
-    },
-    {
-      "municipality": "宇城市",
-      "source_observed_at_jst": "2026-08-04T08:00+09:00",
-      "record_count": 11,
-      "matched_count": 11,
-      "issue_count": 0,
-      "published_total": 3222,
-      "calculated_total": 3222,
-      "revision": 1,
-      "normalized_sha256": "0b59edb7e878c788b139f4b7abc10bef6110f71d233734ba5fa6e8c6ce886bde"
-    }
-  ],
+  "source_changed": false,
+  "changed_sources": [],
   "observation_row_count": 151,
   "matched_observation_row_count": 151,
   "unmatched_or_ambiguous_row_count": 0,
