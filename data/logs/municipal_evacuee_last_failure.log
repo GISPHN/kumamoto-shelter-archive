@@ -1,8 +1,0 @@
-Consider using the pymupdf_layout package for a greatly improved page layout analysis.
-Traceback (most recent call last):
-  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/run_municipal_evacuee_collection.py", line 14, in <module>
-    raise SystemExit(collector.main())
-                     ^^^^^^^^^^^^^^^^
-  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/collect_municipal_evacuees.py", line 824, in main
-    raise RuntimeError(
-RuntimeError: 自治体避難者数の未一致・曖昧施設があります: 41件。matching_issues.csvを確認してください。
