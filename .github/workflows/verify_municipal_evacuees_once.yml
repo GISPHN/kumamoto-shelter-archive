@@ -1,4 +1,4 @@
-# Retry after adapting the Yatsushiro PDF parser to the address-less layout.
+# Retry after adding conservative name-only matching for address-less PDFs.
 name: Verify municipal evacuee collector once
 
 on:
@@ -43,6 +43,7 @@ jobs:
         run: |
           python -m py_compile \
             scripts/collect_municipal_evacuees.py \
+            scripts/municipal_evacuee_matcher.py \
             scripts/run_municipal_evacuee_collection.py \
             scripts/yatsushiro_evacuee_pdf.py \
             scripts/uki_evacuee_html.py
