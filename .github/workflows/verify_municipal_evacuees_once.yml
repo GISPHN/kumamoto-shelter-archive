@@ -1,3 +1,4 @@
+# Retry after adapting the Yatsushiro PDF parser to the address-less layout.
 name: Verify municipal evacuee collector once
 
 on:
