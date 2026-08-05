@@ -62,8 +62,11 @@ def _find_header_index(headers: list[str], tokens: tuple[str, ...]) -> int | Non
 
 
 def _is_facility_marker(value: str) -> bool:
-    normalized = value.replace(" ", "")
-    return normalized in FACILITY_MARKERS
+    return value.replace(" ", "") in FACILITY_MARKERS
+
+
+def _is_integer_cell(value: str) -> bool:
+    return bool(re.fullmatch(r"[\d,]+", value))
 
 
 def detect_schema(matrix: list[list[Any]]) -> TableSchema:
@@ -75,21 +78,21 @@ def detect_schema(matrix: list[list[Any]]) -> TableSchema:
     Current layout (2026-08-04 18:00):
       No., shelter, district, capacity, households, evacuees, ...
 
-    The current PDF removed the address column.  The parser therefore detects
-    ``避難者数`` from the header where possible and otherwise uses the first
-    facility-condition symbol (○/△/×) as a structural boundary.
+    PyMuPDF can merge every header label into the first physical cell, so a
+    header hit is not sufficient to locate a column.  Data rows are more
+    stable: the first facility-condition symbol (○/△/×) immediately follows
+    ``避難者数`` in both verified layouts.  That boundary is therefore the
+    primary detector.
     """
     headers = _header_text_by_column(matrix)
     sample = _first_data_row(matrix)
     if not sample:
         raise RuntimeError("八代市PDFの表にデータ行がありません。")
+    if len(sample) < 3 or not sample[0].isdigit():
+        raise RuntimeError(f"八代市PDFの先頭データ行が不正です: {sample}")
 
-    name_index = _find_header_index(headers, ("避難所名", "施設名"))
-    if name_index is None:
-        name_index = 1
-
-    address_index = _find_header_index(headers, ("住所", "所在地"))
-    evacuee_index = _find_header_index(headers, ("避難者数",))
+    # Verified layouts always place No. in column 0 and shelter name in column 1.
+    name_index = 1
 
     marker_index = next(
         (index for index, value in enumerate(sample) if _is_facility_marker(value)),
@@ -97,38 +100,44 @@ def detect_schema(matrix: list[list[Any]]) -> TableSchema:
     )
 
     method_parts: list[str] = []
-    if evacuee_index is not None:
-        method_parts.append("header_evacuee")
-    elif marker_index is not None and marker_index >= 1:
+    if marker_index is not None and marker_index >= 3:
         evacuee_index = marker_index - 1
         method_parts.append("marker_boundary")
     else:
-        # Last-resort support for the two verified layouts.  A data row with an
-        # address has at least seven cells before facility markers; without an
-        # address it has six.
-        evacuee_index = 6 if len(sample) >= 11 else 5
-        method_parts.append("verified_layout_fallback")
-
-    if address_index is None:
-        # Header extraction can lose merged labels.  The old format is still
-        # identifiable because column 2 contains an 八代市 address.
-        if len(sample) > 2 and sample[2].startswith("八代市"):
-            address_index = 2
-            method_parts.append("address_value")
+        header_candidate = _find_header_index(headers, ("避難者数",))
+        if (
+            header_candidate is not None
+            and header_candidate not in (0, name_index)
+            and header_candidate < len(sample)
+            and _is_integer_cell(sample[header_candidate])
+        ):
+            evacuee_index = header_candidate
+            method_parts.append("validated_header_evacuee")
         else:
-            method_parts.append("address_absent")
-    else:
-        method_parts.append("header_address")
+            # Last-resort support for the two verified layouts.
+            evacuee_index = 6 if len(sample) >= 11 else 5
+            method_parts.append("verified_layout_fallback")
+
+    # The historical table has an address in column 2; the current table does
+    # not.  The value itself is a more reliable detector than the merged header.
+    address_index = 2 if sample[2].startswith("八代市") else None
+    method_parts.append("address_value" if address_index is not None else "address_absent")
 
     if evacuee_index >= len(sample):
         raise RuntimeError(
             "八代市PDFの避難者数列がデータ行の範囲外です: "
             f"evacuee_index={evacuee_index}, sample={sample}, headers={headers}"
         )
-    if _is_facility_marker(sample[evacuee_index]):
+    if evacuee_index in (0, name_index):
         raise RuntimeError(
-            "八代市PDFの避難者数列が設備記号列を指しています: "
+            "八代市PDFの避難者数列が識別列と重複しています: "
             f"evacuee_index={evacuee_index}, sample={sample}, headers={headers}"
+        )
+    if not _is_integer_cell(sample[evacuee_index]):
+        raise RuntimeError(
+            "八代市PDFの避難者数列が整数列ではありません: "
+            f"evacuee_index={evacuee_index}, value={sample[evacuee_index]!r}, "
+            f"sample={sample}, headers={headers}"
         )
 
     return TableSchema(
@@ -251,7 +260,7 @@ def parse_yatsushiro_pdf(
         if any("合計" in value for value in row):
             if schema.evacuee_index < len(row) and row[schema.evacuee_index]:
                 candidate = row[schema.evacuee_index]
-                if re.fullmatch(r"[\d,]+", candidate):
+                if _is_integer_cell(candidate):
                     published_total = parse_integer(candidate)
 
     if published_total is None:
