@@ -3,12 +3,6 @@ Traceback (most recent call last):
   File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/run_municipal_evacuee_collection.py", line 14, in <module>
     raise SystemExit(collector.main())
                      ^^^^^^^^^^^^^^^^
-  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/collect_municipal_evacuees.py", line 751, in main
-    snapshots = [collect_yatsushiro(debug_dir), collect_uki(debug_dir)]
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/collect_municipal_evacuees.py", line 369, in collect_yatsushiro
-    return parse_yatsushiro_pdf(pdf_data, document_url, YATSUSHIRO_PAGE_URL)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/yatsushiro_evacuee_pdf.py", line 280, in parse_yatsushiro_pdf
+  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/collect_municipal_evacuees.py", line 824, in main
     raise RuntimeError(
-RuntimeError: 八代市PDFの避難者数合計が一致しません: parsed=861, published=3149, rows=41, schema=TableSchema(name_index=0, address_index=None, evacuee_index=0, facility_marker_index=6, detection_method='header_evacuee+address_absent'), diagnostics=[{"page": 0, "table": 0, "row_count": 42, "column_count": 10, "numeric_row_count": 41, "sample": [["避難所基本情報 避難者情報 エア No. 避難所名 水 電気 コン 地区 最大収容人数 避難世帯数 避難者数", "", "", "", "", "", "", "", "", "仮設 トイレ 設置数"], ["1", "代陽コミュニティセンター", "代陽", "200", "50", "100", "×", "〇", "〇", "5"], ["2", "第一中学校", "代陽", "1,300", "27", "42", "×", "〇", "〇", "5"], ["3", "八代コミュニティセンター", "八代", "200", "22", "26", "×", "〇", "〇", "5"], ["4", "八代小学校", "八代", "1,120", "54", "80", "×", "〇", "〇", "5"], ["5", "八代トヨオカ地建アリーナ(総合体育館)", "太田郷", "3,000", "0", "950", "〇", "〇", "〇", "5"]]}, {"selected_schema": {"name_index": 0, "address_index": null, "evacuee_index": 0, "facility_marker_index": 6, "detection_method": "header_evacuee+address_absent", "headers": ["避難所基本情報 避難者情報 エア No. 避難所名 水 電気 コン 地区 最大収容人数 避難世帯数 避難者数", "", "", "", "", "", "", "", "", "仮設 トイレ 設置数"], "first_data_row": ["1", "代陽コミュニティセンター", "代陽", "200", "50", "100", "×", "〇", "〇", "5"]}}]
+RuntimeError: 自治体避難者数の未一致・曖昧施設があります: 41件。matching_issues.csvを確認してください。
