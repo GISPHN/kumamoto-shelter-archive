@@ -1,5 +1,4 @@
 Consider using the pymupdf_layout package for a greatly improved page layout analysis.
-No source change: 宇城市 observed=2026-08-05T08:00+09:00 hash=2fc98a497db4
 Traceback (most recent call last):
   File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/run_municipal_evacuee_collection.py", line 17, in <module>
     raise SystemExit(collector.main())
