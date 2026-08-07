@@ -1,11 +1,13 @@
 name: Collect municipal shelter evacuee counts
 
 on:
-  # GitHub Actions cron is UTC. 23:10 / 23:30 UTC correspond to
-  # 08:10 / 08:30 JST on the following calendar day.
+  # GitHub Actions cron is UTC.
+  # 23:10 / 23:30 UTC correspond to 08:10 / 08:30 JST on the following day.
+  # 09:30 UTC corresponds to 18:30 JST on the same day.
   schedule:
     - cron: "10 23 * * *"
     - cron: "30 23 * * *"
+    - cron: "30 9 * * *"
   workflow_dispatch:
 
 permissions:
