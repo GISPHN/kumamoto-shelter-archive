@@ -1,8 +1,61 @@
+warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
 Consider using the pymupdf_layout package for a greatly improved page layout analysis.
-Traceback (most recent call last):
-  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/run_municipal_evacuee_collection.py", line 17, in <module>
-    raise SystemExit(collector.main())
-                     ^^^^^^^^^^^^^^^^
-  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/collect_municipal_evacuees.py", line 824, in main
-    raise RuntimeError(
-RuntimeError: 自治体避難者数の未一致・曖昧施設があります: 2件。matching_issues.csvを確認してください。
+{
+  "retrieved_at_jst": "2026-08-07T10:43:35+09:00",
+  "status": "success",
+  "source_changed": true,
+  "changed_sources": [
+    {
+      "municipality": "八代市",
+      "source_observed_at_jst": "2026-08-06T18:00+09:00",
+      "record_count": 41,
+      "matched_count": 41,
+      "issue_count": 0,
+      "published_total": 2248,
+      "calculated_total": 2248,
+      "revision": 1,
+      "normalized_sha256": "22c38f2b0133e919d74f3bcc881574798da67f7b8703886b6e54cb6a43c2dd52"
+    },
+    {
+      "municipality": "宇城市",
+      "source_observed_at_jst": "2026-08-07T08:00+09:00",
+      "record_count": 11,
+      "matched_count": 11,
+      "issue_count": 0,
+      "published_total": 3044,
+      "calculated_total": 3044,
+      "revision": 1,
+      "normalized_sha256": "67e99bb8581152031e786127fd3593bb56eb5b8ce8dbb7054ccd95f6deeb5805"
+    }
+  ],
+  "observation_row_count": 255,
+  "matched_observation_row_count": 255,
+  "unmatched_or_ambiguous_row_count": 0,
+  "wide_row_count": 1446,
+  "wide_date_columns": [
+    "2026-07-29",
+    "2026-07-30",
+    "2026-07-31",
+    "2026-08-01",
+    "2026-08-02",
+    "2026-08-03",
+    "2026-08-04",
+    "2026-08-05",
+    "2026-08-06",
+    "2026-08-07"
+  ],
+  "wide_fixed_columns": [
+    "shelter_id",
+    "reference_common_ids",
+    "municipality",
+    "shelter_name",
+    "address",
+    "reference_same_address_as_emergency_site",
+    "reference_other_mayor_matters",
+    "reference_accepted_persons",
+    "portal_capacity_persons",
+    "latitude",
+    "longitude"
+  ],
+  "blank_means": "municipal source did not publish a value; not zero"
+}
