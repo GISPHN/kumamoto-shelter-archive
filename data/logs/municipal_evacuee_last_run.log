@@ -1,25 +1,35 @@
 warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
 Consider using the pymupdf_layout package for a greatly improved page layout analysis.
-No source change: 宇城市 observed=2026-08-08T08:00+09:00 hash=85bd35f3ef99
 {
-  "retrieved_at_jst": "2026-08-08T19:03:34+09:00",
+  "retrieved_at_jst": "2026-08-09T08:42:44+09:00",
   "status": "success",
   "source_changed": true,
   "changed_sources": [
     {
       "municipality": "八代市",
-      "source_observed_at_jst": "2026-08-08T12:00+09:00",
-      "record_count": 40,
-      "matched_count": 40,
+      "source_observed_at_jst": "2026-08-09T06:00+09:00",
+      "record_count": 39,
+      "matched_count": 39,
       "issue_count": 0,
-      "published_total": 2076,
-      "calculated_total": 2076,
+      "published_total": 2060,
+      "calculated_total": 2060,
       "revision": 1,
-      "normalized_sha256": "0a1a545922e8c4015d6370617ef5c681680a5519f513f42b565059197d9feeaa"
+      "normalized_sha256": "a7ce96f7ea8f3880299eaae0eb2f6d08ecf7d18a06845113b9ccb6e20628b59a"
+    },
+    {
+      "municipality": "宇城市",
+      "source_observed_at_jst": "2026-08-09T08:00+09:00",
+      "record_count": 11,
+      "matched_count": 11,
+      "issue_count": 0,
+      "published_total": 2973,
+      "calculated_total": 2973,
+      "revision": 1,
+      "normalized_sha256": "7c9eb6e55e0b71c35bf8330c13cc7331a3ed106933c688620e6dd2ab1b8b4596"
     }
   ],
-  "observation_row_count": 346,
-  "matched_observation_row_count": 346,
+  "observation_row_count": 396,
+  "matched_observation_row_count": 396,
   "unmatched_or_ambiguous_row_count": 0,
   "wide_row_count": 1447,
   "wide_date_columns": [
@@ -33,7 +43,8 @@ No source change: 宇城市 observed=2026-08-08T08:00+09:00 hash=85bd35f3ef99
     "2026-08-05",
     "2026-08-06",
     "2026-08-07",
-    "2026-08-08"
+    "2026-08-08",
+    "2026-08-09"
   ],
   "wide_fixed_columns": [
     "shelter_id",
