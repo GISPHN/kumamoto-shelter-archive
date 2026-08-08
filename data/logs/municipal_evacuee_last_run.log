@@ -1,11 +1,9 @@
 warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
+Consider using the pymupdf_layout package for a greatly improved page layout analysis.
 Traceback (most recent call last):
-  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/run_municipal_evacuee_collection.py", line 17, in <module>
+  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/run_municipal_evacuee_collection.py", line 22, in <module>
     raise SystemExit(collector.main())
                      ^^^^^^^^^^^^^^^^
-  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/collect_municipal_evacuees.py", line 751, in main
-    snapshots = [collect_yatsushiro(debug_dir), collect_uki(debug_dir)]
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/collect_municipal_evacuees.py", line 363, in collect_yatsushiro
-    raise RuntimeError("八代市ページから避難所PDFリンクを検出できませんでした。")
-RuntimeError: 八代市ページから避難所PDFリンクを検出できませんでした。
+  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/collect_municipal_evacuees.py", line 824, in main
+    raise RuntimeError(
+RuntimeError: 自治体避難者数の未一致・曖昧施設があります: 2件。matching_issues.csvを確認してください。
