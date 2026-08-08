@@ -8,6 +8,18 @@ on:
     - cron: "10 23 * * *"
     - cron: "30 23 * * *"
     - cron: "30 9 * * *"
+  push:
+    branches:
+      - main
+    paths:
+      - scripts/collect_municipal_evacuees.py
+      - scripts/municipal_evacuee_matcher.py
+      - scripts/run_municipal_evacuee_collection.py
+      - scripts/yatsushiro_evacuee_pdf.py
+      - scripts/yatsushiro_source_fetcher.py
+      - scripts/uki_evacuee_html.py
+      - reference/municipal_evacuee_shelter_aliases.csv
+      - .github/workflows/collect_municipal_evacuees.yml
   workflow_dispatch:
 
 permissions:
@@ -20,7 +32,7 @@ concurrency:
 jobs:
   collect:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 25
 
     steps:
       - name: Checkout latest main branch
@@ -47,6 +59,7 @@ jobs:
             scripts/municipal_evacuee_matcher.py \
             scripts/run_municipal_evacuee_collection.py \
             scripts/yatsushiro_evacuee_pdf.py \
+            scripts/yatsushiro_source_fetcher.py \
             scripts/uki_evacuee_html.py
 
       - name: Collect evacuee counts
