@@ -1,0 +1,732 @@
+=== Environment ===
+2026-08-08T03:56:35+00:00
+Python 3.12.13
+=== Install Python dependencies ===
+Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.12.13/x64/lib/python3.12/site-packages (26.1.2)
+Collecting pip
+  Downloading pip-26.2.1-py3-none-any.whl.metadata (4.6 kB)
+Downloading pip-26.2.1-py3-none-any.whl (1.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.8/1.8 MB 88.9 MB/s  0:00:00
+Installing collected packages: pip
+  Attempting uninstall: pip
+    Found existing installation: pip 26.1.2
+    Uninstalling pip-26.1.2:
+      Successfully uninstalled pip-26.1.2
+Successfully installed pip-26.2.1
+Collecting playwright<2,>=1.50 (from -r requirements.txt (line 1))
+  Using cached playwright-1.62.0-py3-none-manylinux1_x86_64.whl.metadata (3.3 kB)
+Collecting pytest<9,>=8 (from -r requirements.txt (line 2))
+  Using cached pytest-8.4.2-py3-none-any.whl.metadata (7.7 kB)
+Collecting beautifulsoup4<5,>=4.12 (from -r requirements.txt (line 3))
+  Using cached beautifulsoup4-4.15.0-py3-none-any.whl.metadata (3.8 kB)
+Collecting PyMuPDF<2,>=1.24 (from -r requirements.txt (line 4))
+  Downloading pymupdf-1.28.2-cp310-abi3-manylinux_2_28_x86_64.whl.metadata (26 kB)
+Collecting pyee<14,>=13 (from playwright<2,>=1.50->-r requirements.txt (line 1))
+  Using cached pyee-13.0.1-py3-none-any.whl.metadata (3.0 kB)
+Collecting greenlet<4.0.0,>=3.1.1 (from playwright<2,>=1.50->-r requirements.txt (line 1))
+  Using cached greenlet-3.5.4-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl.metadata (3.8 kB)
+Collecting iniconfig>=1 (from pytest<9,>=8->-r requirements.txt (line 2))
+  Using cached iniconfig-2.3.0-py3-none-any.whl.metadata (2.5 kB)
+Collecting packaging>=20 (from pytest<9,>=8->-r requirements.txt (line 2))
+  Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+Collecting pluggy<2,>=1.5 (from pytest<9,>=8->-r requirements.txt (line 2))
+  Using cached pluggy-1.6.0-py3-none-any.whl.metadata (4.8 kB)
+Collecting pygments>=2.7.2 (from pytest<9,>=8->-r requirements.txt (line 2))
+  Using cached pygments-2.20.0-py3-none-any.whl.metadata (2.5 kB)
+Collecting soupsieve>=1.6.1 (from beautifulsoup4<5,>=4.12->-r requirements.txt (line 3))
+  Downloading soupsieve-2.9.2-py3-none-any.whl.metadata (4.6 kB)
+Collecting typing-extensions>=4.0.0 (from beautifulsoup4<5,>=4.12->-r requirements.txt (line 3))
+  Using cached typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Using cached playwright-1.62.0-py3-none-manylinux1_x86_64.whl (47.7 MB)
+Using cached pytest-8.4.2-py3-none-any.whl (365 kB)
+Using cached beautifulsoup4-4.15.0-py3-none-any.whl (109 kB)
+Downloading pymupdf-1.28.2-cp310-abi3-manylinux_2_28_x86_64.whl (25.8 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 25.8/25.8 MB 304.2 MB/s  0:00:00
+Using cached greenlet-3.5.4-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (621 kB)
+Using cached pluggy-1.6.0-py3-none-any.whl (20 kB)
+Using cached pyee-13.0.1-py3-none-any.whl (15 kB)
+Using cached iniconfig-2.3.0-py3-none-any.whl (7.5 kB)
+Downloading packaging-26.3-py3-none-any.whl (129 kB)
+Using cached pygments-2.20.0-py3-none-any.whl (1.2 MB)
+Downloading soupsieve-2.9.2-py3-none-any.whl (37 kB)
+Using cached typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+Installing collected packages: typing-extensions, soupsieve, PyMuPDF, pygments, pluggy, packaging, iniconfig, greenlet, pytest, pyee, beautifulsoup4, playwright
+
+Successfully installed PyMuPDF-1.28.2 beautifulsoup4-4.15.0 greenlet-3.5.4 iniconfig-2.3.0 packaging-26.3 playwright-1.62.0 pluggy-1.6.0 pyee-13.0.1 pygments-2.20.0 pytest-8.4.2 soupsieve-2.9.2 typing-extensions-4.16.0
+Installing dependencies...
+Switching to root user to install dependencies...
+Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+Get:6 https://packages.microsoft.com/repos/azure-cli noble InRelease [3564 B]
+Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
+Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
+Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+Get:8 https://dl.google.com/linux/chrome-stable/deb stable InRelease [2548 B]
+Get:9 https://packages.microsoft.com/repos/azure-cli noble/main amd64 Packages [2375 B]
+Get:10 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [12.2 kB]
+Get:11 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [274 kB]
+Get:12 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [314 kB]
+Get:13 https://packages.microsoft.com/ubuntu/24.04/prod noble/main all Packages [643 B]
+Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1184 kB]
+Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [281 kB]
+Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [180 kB]
+Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1682 kB]
+Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [335 kB]
+Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [388 kB]
+Get:20 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1414 kB]
+Get:21 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [320 kB]
+Get:22 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [45.4 kB]
+Get:23 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en [12.3 kB]
+Get:24 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
+Get:25 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [5764 B]
+Get:26 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Packages [31.0 kB]
+Get:27 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [12.6 kB]
+Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [927 kB]
+Get:29 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [201 kB]
+Get:30 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [46.4 kB]
+Get:31 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1199 kB]
+Get:32 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [239 kB]
+Get:33 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [76.3 kB]
+Get:34 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1320 kB]
+Get:35 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [302 kB]
+Get:36 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse amd64 Packages [40.3 kB]
+Get:37 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Translation-en [10.6 kB]
+Get:38 https://dl.google.com/linux/chrome-stable/deb stable/main amd64 Packages [1407 B]
+Fetched 11.2 MB in 1s (8028 kB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+libasound2t64 is already the newest version (1.2.11-1ubuntu0.3).
+libasound2t64 set to manually installed.
+libatk-bridge2.0-0t64 is already the newest version (2.52.0-1build1).
+libatk-bridge2.0-0t64 set to manually installed.
+libatk1.0-0t64 is already the newest version (2.52.0-1build1).
+libatk1.0-0t64 set to manually installed.
+libatspi2.0-0t64 is already the newest version (2.52.0-1build1).
+libatspi2.0-0t64 set to manually installed.
+libcairo2 is already the newest version (1.18.0-3build1).
+libcairo2 set to manually installed.
+libcups2t64 is already the newest version (2.4.7-1.2ubuntu7.14).
+libcups2t64 set to manually installed.
+libdbus-1-3 is already the newest version (1.14.10-4ubuntu4.1).
+libdbus-1-3 set to manually installed.
+libdrm2 is already the newest version (2.4.125-1ubuntu0.1~24.04.2).
+libdrm2 set to manually installed.
+libgbm1 is already the newest version (25.2.8-0ubuntu0.24.04.2).
+libgbm1 set to manually installed.
+libglib2.0-0t64 is already the newest version (2.80.0-6ubuntu3.8).
+libglib2.0-0t64 set to manually installed.
+libnspr4 is already the newest version (2:4.35-1.1build1).
+libnspr4 set to manually installed.
+libnss3 is already the newest version (2:3.98-1ubuntu0.2).
+libnss3 set to manually installed.
+libpango-1.0-0 is already the newest version (1.52.1+ds-1build1).
+libpango-1.0-0 set to manually installed.
+libx11-6 is already the newest version (2:1.8.7-1build1).
+libx11-6 set to manually installed.
+libxcb1 is already the newest version (1.15-1ubuntu2).
+libxcb1 set to manually installed.
+libxcomposite1 is already the newest version (1:0.4.5-1build3).
+libxcomposite1 set to manually installed.
+libxdamage1 is already the newest version (1:1.1.6-1build1).
+libxdamage1 set to manually installed.
+libxext6 is already the newest version (2:1.3.4-1build2).
+libxext6 set to manually installed.
+libxfixes3 is already the newest version (1:6.0.0-2build1).
+libxfixes3 set to manually installed.
+libxkbcommon0 is already the newest version (1.6.0-1build1).
+libxkbcommon0 set to manually installed.
+libxrandr2 is already the newest version (2:1.5.2-2build1).
+libxrandr2 set to manually installed.
+xvfb is already the newest version (2:21.1.12-1ubuntu1.6).
+fonts-noto-color-emoji is already the newest version (2.047-0ubuntu0.24.04.1).
+libfontconfig1 is already the newest version (2.15.0-1.1ubuntu2).
+libfontconfig1 set to manually installed.
+libfreetype6 is already the newest version (2.13.2+dfsg-1ubuntu0.1).
+libfreetype6 set to manually installed.
+fonts-liberation is already the newest version (1:2.1.5-3).
+fonts-liberation set to manually installed.
+The following additional packages will be installed:
+  xfonts-encodings xfonts-utils
+Recommended packages:
+  fonts-ipafont-mincho fonts-tlwg-loma
+The following NEW packages will be installed:
+  fonts-freefont-ttf fonts-ipafont-gothic fonts-tlwg-loma-otf fonts-unifont
+  fonts-wqy-zenhei xfonts-cyrillic xfonts-encodings xfonts-scalable
+  xfonts-utils
+0 upgraded, 9 newly installed, 0 to remove and 86 not upgraded.
+Need to get 21.1 MB of archives.
+After this operation, 79.5 MB of additional disk space will be used.
+Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+Get:2 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-ipafont-gothic all 00303-21ubuntu1 [3513 kB]
+Get:3 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 fonts-freefont-ttf all 20211204+svn4273-2 [5641 kB]
+Get:4 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-tlwg-loma-otf all 1:0.7.3-1 [107 kB]
+Get:5 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-unifont all 1:15.1.01-1build1 [2993 kB]
+Get:6 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 fonts-wqy-zenhei all 0.9.45-8 [7472 kB]
+Get:7 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings all 1:1.0.5-0ubuntu2 [578 kB]
+Get:8 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3 [94.4 kB]
+Get:9 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1 [384 kB]
+Get:10 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3 [304 kB]
+Fetched 21.1 MB in 1s (41.6 MB/s)
+Selecting previously unselected package fonts-ipafont-gothic.
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 202954 files and directories currently installed.)
+Preparing to unpack .../0-fonts-ipafont-gothic_00303-21ubuntu1_all.deb ...
+Unpacking fonts-ipafont-gothic (00303-21ubuntu1) ...
+Selecting previously unselected package fonts-freefont-ttf.
+Preparing to unpack .../1-fonts-freefont-ttf_20211204+svn4273-2_all.deb ...
+Unpacking fonts-freefont-ttf (20211204+svn4273-2) ...
+Selecting previously unselected package fonts-tlwg-loma-otf.
+Preparing to unpack .../2-fonts-tlwg-loma-otf_1%3a0.7.3-1_all.deb ...
+Unpacking fonts-tlwg-loma-otf (1:0.7.3-1) ...
+Selecting previously unselected package fonts-unifont.
+Preparing to unpack .../3-fonts-unifont_1%3a15.1.01-1build1_all.deb ...
+Unpacking fonts-unifont (1:15.1.01-1build1) ...
+Selecting previously unselected package fonts-wqy-zenhei.
+Preparing to unpack .../4-fonts-wqy-zenhei_0.9.45-8_all.deb ...
+Unpacking fonts-wqy-zenhei (0.9.45-8) ...
+Selecting previously unselected package xfonts-encodings.
+Preparing to unpack .../5-xfonts-encodings_1%3a1.0.5-0ubuntu2_all.deb ...
+Unpacking xfonts-encodings (1:1.0.5-0ubuntu2) ...
+Selecting previously unselected package xfonts-utils.
+Preparing to unpack .../6-xfonts-utils_1%3a7.7+6build3_amd64.deb ...
+Unpacking xfonts-utils (1:7.7+6build3) ...
+Selecting previously unselected package xfonts-cyrillic.
+Preparing to unpack .../7-xfonts-cyrillic_1%3a1.0.5+nmu1_all.deb ...
+Unpacking xfonts-cyrillic (1:1.0.5+nmu1) ...
+Selecting previously unselected package xfonts-scalable.
+Preparing to unpack .../8-xfonts-scalable_1%3a1.0.3-1.3_all.deb ...
+Unpacking xfonts-scalable (1:1.0.3-1.3) ...
+Setting up fonts-wqy-zenhei (0.9.45-8) ...
+Setting up fonts-freefont-ttf (20211204+svn4273-2) ...
+Setting up fonts-tlwg-loma-otf (1:0.7.3-1) ...
+Setting up xfonts-encodings (1:1.0.5-0ubuntu2) ...
+Setting up fonts-ipafont-gothic (00303-21ubuntu1) ...
+update-alternatives: using /usr/share/fonts/opentype/ipafont-gothic/ipag.ttf to provide /usr/share/fonts/truetype/fonts-japanese-gothic.ttf (fonts-japanese-gothic.ttf) in auto mode
+Setting up fonts-unifont (1:15.1.01-1build1) ...
+Setting up xfonts-utils (1:7.7+6build3) ...
+Setting up xfonts-cyrillic (1:1.0.5+nmu1) ...
+Setting up xfonts-scalable (1:1.0.3-1.3) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+Not building database; man-db/auto-update is not 'true'.
+Processing triggers for fontconfig (2.15.0-1.1ubuntu2) ...
+
+Running kernel seems to be up-to-date.
+
+No services need to be restarted.
+
+No containers need to be restarted.
+
+No user sessions are running outdated binaries.
+
+No VM guests are running outdated hypervisor (qemu) binaries on this host.
+Downloading Chrome for Testing 151.0.7922.34 (playwright chromium v1234) from https://cdn.playwright.dev/builds/cft/151.0.7922.34/linux64/chrome-linux64.zip
+|                                                                                |   0% of 184.3 MiB
+|■■■■■■■■                                                                        |  10% of 184.3 MiB
+|■■■■■■■■■■■■■■■■                                                                |  20% of 184.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 184.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 184.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 184.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 184.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 184.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 184.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 184.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 184.3 MiB
+Chrome for Testing 151.0.7922.34 (playwright chromium v1234) downloaded to /home/runner/.cache/ms-playwright/chromium-1234
+Downloading FFmpeg (playwright ffmpeg v1011) from https://cdn.playwright.dev/dbazure/download/playwright/builds/ffmpeg/1011/ffmpeg-linux.zip
+|                                                                                |   0% of 2.3 MiB
+|■■■■■■■■                                                                        |  10% of 2.3 MiB
+|■■■■■■■■■■■■■■■■                                                                |  20% of 2.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 2.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 2.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 2.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 2.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 2.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 2.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 2.3 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 2.3 MiB
+FFmpeg (playwright ffmpeg v1011) downloaded to /home/runner/.cache/ms-playwright/ffmpeg-1011
+Downloading Chrome Headless Shell 151.0.7922.34 (playwright chromium-headless-shell v1234) from https://cdn.playwright.dev/builds/cft/151.0.7922.34/linux64/chrome-headless-shell-linux64.zip
+|                                                                                |   0% of 114.7 MiB
+|■■■■■■■■                                                                        |  10% of 114.7 MiB
+|■■■■■■■■■■■■■■■■                                                                |  20% of 114.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■                                                        |  30% of 114.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                                |  40% of 114.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                        |  50% of 114.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                                |  60% of 114.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                        |  70% of 114.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■                |  80% of 114.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■        |  90% of 114.7 MiB
+|■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■■| 100% of 114.7 MiB
+Chrome Headless Shell 151.0.7922.34 (playwright chromium-headless-shell v1234) downloaded to /home/runner/.cache/ms-playwright/chromium_headless_shell-1234
+=== Prepare reference CSV ===
+Reference CSV is not stored in the repository; downloading the official file.
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 10  150k   10 15786    0     0  20357      0  0:00:07 --:--:--  0:00:07 20342100  150k  100  150k    0     0   137k      0  0:00:01  0:00:01 --:--:--  138k
+Validated reference CSV: 1316 rows
+=== Apply portal compatibility patches ===
+/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/apply_dgrid_patch.py:102: SyntaxWarning: invalid escape sequence '\s'
+  const norm = s => (s || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
+Applied portal virtual dgrid and full snapshot patch.
+/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/refine_dgrid_patch.py:28: SyntaxWarning: invalid escape sequence '\s'
+  const norm = s => (s || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
+Refined shelter dgrid extraction to the owning grid and stable row IDs.
+Inserted dgrid_meta definition before the extraction log statement.
+=== Run smoke checks ===
+scripts/apply_dgrid_patch.py:102: SyntaxWarning: invalid escape sequence '\s'
+  const norm = s => (s || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
+scripts/refine_dgrid_patch.py:28: SyntaxWarning: invalid escape sequence '\s'
+  const norm = s => (s || '').replace(/\u00a0/g, ' ').replace(/\s+/g, ' ').trim();
+Reference matcher loaded: 1316 rows
+Manual geocoding loaded: 138 rows
+=== Collect rendered shelter table ===
+Dojo shelter view rendered on attempt 1.
+Rendered extraction: mode=dom; all_selected=False; headers=['市町村', '避難所名', '開設状況', '混雑状況', '住所', 'ルート検索']; rows=120; dgrid_meta={"ariaRowCount": "", "clientHeight": 430, "renderedRowCount": 192, "rootClass": "dgrid dgrid-grid ui-widget idis-IdisGrid", "rootId": "dgrid_0", "rowIdCount": 120, "scrollHeight": 54662, "scrolled": true, "scrollerClass": "dgrid-scroller"}
+Full snapshot: reference_groups=1301, opened_web_rows=120, extra_web_rows=50, total=1351
+{
+  "snapshot_date": "2026-08-08",
+  "records": 1351,
+  "open": 120,
+  "closed_or_inactive": 1231,
+  "unknown": 0,
+  "changes": 19,
+  "reference_matched": 1286,
+  "reference_matched_multiple": 15,
+  "reference_ambiguous": 0,
+  "reference_unmatched": 50,
+  "reference_match_rate": 0.96299,
+  "matching_issues_csv": "data/matching_issues/2026/08/2026-08-08.csv",
+  "daily_csv": "data/daily/2026/08/2026-08-08.csv",
+  "changes_csv": "data/changes/2026/08/2026-08-08.csv",
+  "source_updated_at": "26/08/08 12:57時点の避難所状況の一覧です。",
+  "all_shelters_click_attempted": true
+}
+=== Enrich capacity and complete coordinates ===
+Enrichment: data/daily/2026/08/2026-08-08.csv capacity=1189/1351 coordinates=1351/1351
+Enrichment: data/changes/2026/08/2026-08-08.csv capacity=19/19 coordinates=19/19
+Enrichment: data/matching_issues/2026/08/2026-08-08.csv capacity=49/50 coordinates=50/50
+Enrichment: data/latest.csv capacity=1189/1351 coordinates=1351/1351
+Enrichment: data/latest_open.csv capacity=124/124 coordinates=124/124
+Enrichment: data/latest_changes.csv capacity=19/19 coordinates=19/19
+Enrichment: data/latest_matching_issues.csv capacity=49/50 coordinates=50/50
+Capacity matching issues: 162 rows -> data/latest_capacity_matching_issues.csv
+Capacity master rows=2125; manual geocoding rows=138; capacity matches=2638/2964; complete coordinates=2964/2964
+=== Build wide daily time-series CSVs ===
+Traceback (most recent call last):
+  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/build_time_series.py", line 377, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/build_time_series.py", line 350, in main
+    validate_historical_statuses(status_path, status_rows, dates[-1])
+  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/build_time_series.py", line 226, in validate_historical_statuses
+    raise RuntimeError(
+RuntimeError: 既存の過去日ステータスが変更されるため再構築を停止しました。
+web:ca66162b50dcc013b548: 再構築後に施設行が存在しません
+=== Rendered HTML diagnostics ===
+html_bytes=620492
+table_count=195
+table[0] rows=1 max_columns=2
+  row[0]=['熊本県', '']
+table[1] rows=1 max_columns=6
+  row[0]=['市町村', '避難所名', '開設状況', '混雑状況', '住所', 'ルート検索']
+table[2] rows=1 max_columns=6
+  row[0]=['多良木町', '多良木小学校体育館', '---', '---', '多良木町大字多良木876', '検索']
+table[3] rows=1 max_columns=6
+  row[0]=['多良木町', '町民広場', '---', '---', '熊本県球磨郡多良木町大字多良木850-1', '検索']
+table[4] rows=1 max_columns=6
+  row[0]=['多良木町', '多良木中学校運動場', '---', '---', '熊本県球磨郡多良木町大字多良木1736', '検索']
+table[5] rows=1 max_columns=6
+  row[0]=['多良木町', '多良木小学校運動場', '---', '---', '熊本県球磨郡多良木町大字多良木876', '検索']
+table[6] rows=1 max_columns=6
+  row[0]=['多良木町', '槻木小学校体育館', '---', '---', '多良木町大字槻木713-1', '検索']
+table[7] rows=1 max_columns=6
+  row[0]=['多良木町', '元下槻木小学校体育館', '---', '---', '多良木町大字槻木583', '検索']
+table[8] rows=1 max_columns=6
+  row[0]=['湯前町', '湯前町役場', '---', '---', '熊本県湯前町1989-1', '検索']
+table[9] rows=1 max_columns=6
+  row[0]=['湯前町', '湯前町福祉センター', '---', '---', '湯前町1693-37', '検索']
+table[10] rows=1 max_columns=6
+  row[0]=['湯前町', '特別養護老人ホーム福寿荘', '---', '---', '湯前町836', '検索']
+table[11] rows=1 max_columns=6
+  row[0]=['湯前町', '湯前町保健センター', '---', '---', '湯前町１９８４', '検索']
+table[12] rows=1 max_columns=6
+  row[0]=['湯前町', '湯前町避難防災交流施設', '---', '---', '湯前町１８２２－４', '検索']
+table[13] rows=1 max_columns=6
+  row[0]=['湯前町', '湯前町農村環境改善センター', '---', '---', '湯前町１８３４－１', '検索']
+table[14] rows=1 max_columns=6
+  row[0]=['湯前町', '湯前町Ｂ＆Ｇ海洋センター', '---', '---', '湯前町１６９３－２', '検索']
+table[15] rows=1 max_columns=6
+  row[0]=['湯前町', '湯前町立湯前小学校', '---', '---', '湯前町２１２０', '検索']
+table[16] rows=1 max_columns=6
+  row[0]=['湯前町', '湯前町立湯前中学校', '---', '---', '湯前町２６４３', '検索']
+table[17] rows=1 max_columns=6
+  row[0]=['湯前町', '旧南部保育所', '---', '---', '湯前町３４４６－１', '検索']
+table[18] rows=1 max_columns=6
+  row[0]=['水上村', '湯山地域交流センター', '---', '---', '熊本県水上村', '検索']
+table[19] rows=1 max_columns=6
+  row[0]=['水上村', '湯山小学校体育館', '---', '---', '熊本県水上村', '検索']
+table[20] rows=1 max_columns=6
+  row[0]=['水上村', '水上村役場', '---', '---', '水上村大字岩野90', '検索']
+table[21] rows=1 max_columns=6
+  row[0]=['水上村', '岩野公民館', '---', '---', '水上村大字岩野2678', '検索']
+table[22] rows=1 max_columns=6
+  row[0]=['水上村', '保健センター', '---', '---', '水上村大字岩野2678', '検索']
+table[23] rows=1 max_columns=6
+  row[0]=['水上村', '村民体育館', '---', '---', '水上村大字岩野2886', '検索']
+table[24] rows=1 max_columns=6
+  row[0]=['水上村', '江代地域防災拠点施設', '---', '---', '水上村大字江代1255-3', '検索']
+table[25] rows=1 max_columns=6
+  row[0]=['水上村', '旧古屋敷体育館', '---', '---', '水上村大字江代1274-1', '検索']
+table[26] rows=1 max_columns=6
+  row[0]=['水上村', '江代地区集会施設', '---', '---', '水上村大字江代1658-2', '検索']
+table[27] rows=1 max_columns=6
+  row[0]=['水上村', '幸野公民分館', '---', '---', '水上村大字岩野146-1', '検索']
+table[28] rows=1 max_columns=6
+  row[0]=['水上村', '高瀬公民分館', '---', '---', '水上村大字岩野869-3', '検索']
+table[29] rows=1 max_columns=6
+  row[0]=['水上村', '岩野覚井公民分館', '---', '---', '水上村大字岩野1055-3', '検索']
+table[30] rows=1 max_columns=6
+  row[0]=['水上村', '上楠公民分館', '---', '---', '水上村大字岩野2498-1', '検索']
+table[31] rows=1 max_columns=6
+  row[0]=['水上村', '宮田公民分館', '---', '---', '水上村大字岩野2548-1', '検索']
+table[32] rows=1 max_columns=6
+  row[0]=['水上村', '里坊公民分館', '---', '---', '水上村大字岩野3373', '検索']
+table[33] rows=1 max_columns=6
+  row[0]=['水上村', '川内公民分館', '---', '---', '水上村大字岩野1653-3', '検索']
+table[34] rows=1 max_columns=6
+  row[0]=['水上村', '戸屋野公民分館', '---', '---', '水上村大字江代2597-1', '検索']
+table[35] rows=1 max_columns=6
+  row[0]=['水上村', '古川公民分館', '---', '---', '水上村大字江代2358-1', '検索']
+table[36] rows=1 max_columns=6
+  row[0]=['水上村', '平谷公民分館', '---', '---', '水上村大字江代1430-3', '検索']
+table[37] rows=1 max_columns=6
+  row[0]=['水上村', '千ヶ平公民分館', '---', '---', '水上村大字江代1721-2', '検索']
+table[38] rows=1 max_columns=6
+  row[0]=['水上村', '川口公民分館', '---', '---', '水上村大字江代2048-23', '検索']
+table[39] rows=1 max_columns=6
+  row[0]=['水上村', '岩野保育所', '---', '---', '水上村大字岩野2641', '検索']
+table[40] rows=1 max_columns=6
+  row[0]=['水上村', '岩野小学校', '---', '---', '水上村大字岩野2696-2', '検索']
+table[41] rows=1 max_columns=6
+  row[0]=['水上村', '古屋敷運動広場', '---', '---', '水上村大字江代1178', '検索']
+table[42] rows=1 max_columns=6
+  row[0]=['水上村', '湯山地域交流センター', '---', '---', '水上村大字湯山412', '検索']
+table[43] rows=1 max_columns=6
+  row[0]=['水上村', '湯山小学校体育館', '---', '---', '水上村大字湯山412', '検索']
+table[44] rows=1 max_columns=6
+  row[0]=['水上村', '湯山保育所', '---', '---', '水上村大字湯山1549', '検索']
+table[45] rows=1 max_columns=6
+  row[0]=['水上村', '馬場公民分館', '---', '---', '水上村大字湯山289-2', '検索']
+table[46] rows=1 max_columns=6
+  row[0]=['水上村', '北目公民分館', '---', '---', '水上村大字湯山1695-1', '検索']
+table[47] rows=1 max_columns=6
+  row[0]=['水上村', '湯山覚井公民分館', '---', '---', '水上村大字湯山355-2', '検索']
+table[48] rows=1 max_columns=6
+  row[0]=['水上村', '神揚公民分館', '---', '---', '水上村大字湯山1291-1', '検索']
+table[49] rows=1 max_columns=6
+  row[0]=['水上村', '舟石公民分館', '---', '---', '水上村大字湯山2435-74', '検索']
+table[50] rows=1 max_columns=6
+  row[0]=['水上村', '高澄公民分館', '---', '---', '水上村大字湯山1167-96', '検索']
+table[51] rows=1 max_columns=6
+  row[0]=['水上村', '本野公民分館', '---', '---', '水上村大字湯山1122-53', '検索']
+table[52] rows=1 max_columns=6
+  row[0]=['水上村', '湯山小学校', '---', '---', '水上村大字湯山412', '検索']
+table[53] rows=1 max_columns=6
+  row[0]=['水上村', '湯山運動広場', '---', '---', '水上村大字湯山2266', '検索']
+table[54] rows=1 max_columns=6
+  row[0]=['相良村', '相良北小学校体育館', '---', '---', '相良村大字四浦東2449', '検索']
+table[55] rows=1 max_columns=6
+  row[0]=['相良村', '相良村林業総合センター', '---', '---', '相良村大字四浦東2076', '検索']
+table[56] rows=1 max_columns=6
+  row[0]=['相良村', '上四浦集落センター', '---', '---', '相良村大字四浦西4449-25', '検索']
+table[57] rows=1 max_columns=6
+  row[0]=['相良村', '川辺構造改善センター', '---', '---', '相良村大字川辺2491', '検索']
+table[58] rows=1 max_columns=6
+  row[0]=['相良村', '松馬場集落センター', '---', '---', '相良村大字川辺1920', '検索']
+table[59] rows=1 max_columns=6
+  row[0]=['相良村', '相良村総合体育館', '---', '---', '相良村大字深水2493-1', '検索']
+table[60] rows=1 max_columns=6
+  row[0]=['相良村', '柳瀬構造改善センター', '---', '---', '相良村大字柳瀬377', '検索']
+table[61] rows=1 max_columns=6
+  row[0]=['五木村', '宮園体育館', '---', '---', '熊本県五木村甲5667番地', '検索']
+table[62] rows=1 max_columns=6
+  row[0]=['五木村', '五木村社協介護サービスセンター', '---', '---', '五木村甲字下手2672-41', '検索']
+table[63] rows=1 max_columns=6
+  row[0]=['五木村', '小規模多機能ホーム 五木の友', '---', '---', '五木村甲字宮園5670', '検索']
+table[64] rows=1 max_columns=6
+  row[0]=['五木村', '南地区集会室', '---', '---', '五木村甲字野々脇458-2', '検索']
+table[65] rows=1 max_columns=6
+  row[0]=['五木村', '瀬目地区集会所', '---', '---', '五木村甲字南瀬目234-2', '検索']
+table[66] rows=1 max_columns=6
+  row[0]=['五木村', '葛の八重地区集会所', '---', '---', '五木村甲字葛の八重746', '検索']
+table[67] rows=1 max_columns=6
+  row[0]=['五木村', '下谷集会所', '---', '---', '五木村甲字下谷地内', '検索']
+table[68] rows=1 max_columns=6
+  row[0]=['五木村', '伝統文化伝承館', '---', '---', '五木村甲字田口2997-21', '検索']
+table[69] rows=1 max_columns=6
+  row[0]=['五木村', '西地区集会室', '---', '---', '五木村丙字小鶴321-1', '検索']
+table[70] rows=1 max_columns=6
+  row[0]=['五木村', '中村地区集会所', '---', '---', '五木村乙字中村1629', '検索']
+table[71] rows=1 max_columns=6
+  row[0]=['五木村', '山口集会所', '---', '---', '五木村乙字山口地内', '検索']
+table[72] rows=1 max_columns=6
+  row[0]=['五木村', '日添集会所', '---', '---', '五木村丙字古山口地内', '検索']
+table[73] rows=1 max_columns=6
+  row[0]=['五木村', '日当集会所', '---', '---', '五木村丙字古山口地内', '検索']
+table[74] rows=1 max_columns=6
+  row[0]=['五木村', '端海野ハウス', '---', '---', '五木村乙字上小鶴1561-24', '検索']
+table[75] rows=1 max_columns=6
+  row[0]=['五木村', '三浦地区集会室', '---', '---', '五木村甲字嶽4797-6', '検索']
+table[76] rows=1 max_columns=6
+  row[0]=['五木村', '入鴨集会所', '---', '---', '五木村甲字嶽地内', '検索']
+table[77] rows=1 max_columns=6
+  row[0]=['五木村', '梶原集会所', '---', '---', '五木村甲字梶原地内', '検索']
+table[78] rows=1 max_columns=6
+  row[0]=['五木村', '下梶原集会所', '---', '---', '五木村甲字下梶原地内', '検索']
+table[79] rows=1 max_columns=6
+  row[0]=['五木村', '竹の川集会所', '---', '---', '五木村甲字竹の川地内', '検索']
+table[80] rows=1 max_columns=6
+  row[0]=['五木村', '宮園交流館', '---', '---', '五木村甲字宮園5670', '検索']
+table[81] rows=1 max_columns=6
+  row[0]=['五木村', '栗鶴集会所', '---', '---', '五木村甲字栗鶴地内', '検索']
+table[82] rows=1 max_columns=6
+  row[0]=['五木村', '宮園憩いの家', '---', '---', '五木村甲字北西谷6900-2', '検索']
+table[83] rows=1 max_columns=6
+  row[0]=['五木村', '八重集会所', '---', '---', '五木村甲字八重地内', '検索']
+table[84] rows=1 max_columns=6
+  row[0]=['五木村', '五木東小学校体育館', '---', '---', '五木村甲字松本3374-51', '検索']
+table[85] rows=1 max_columns=6
+  row[0]=['五木村', '林業センター体育館', '---', '---', '五木村乙字高野665-35', '検索']
+table[86] rows=1 max_columns=6
+  row[0]=['五木村', '小鶴体育館', '---', '---', '五木村丙字小鶴321-2', '検索']
+table[87] rows=1 max_columns=6
+  row[0]=['五木村', '三浦体育館', '---', '---', '五木村甲字嶽4797-3', '検索']
+table[88] rows=1 max_columns=6
+  row[0]=['五木村', '下梶原体育館', '---', '---', '五木村甲字下梶原4263-10', '検索']
+table[89] rows=1 max_columns=6
+  row[0]=['山江村', '福祉保健センター 健康の駅', '---', '---', '山江村大字山田甲1373-1', '検索']
+table[90] rows=1 max_columns=6
+  row[0]=['山江村', '万江体育館', '---', '---', '山江村大字万江甲９１２-１', '検索']
+table[91] rows=1 max_columns=6
+  row[0]=['山江村', '介護老人保健施設つつじのさと', '---', '---', '山江村大字山田乙1705', '検索']
+table[92] rows=1 max_columns=6
+  row[0]=['山江村', '合戦峰公民館', '---', '---', '山江村大字山田乙2851', '検索']
+table[93] rows=1 max_columns=6
+  row[0]=['山江村', '秋丸地区農業構造改善センター', '---', '---', '山江村大字山田乙2403', '検索']
+table[94] rows=1 max_columns=6
+  row[0]=['山江村', '寺山公民館', '---', '---', '山江村大字山田甲2733-35', '検索']
+table[95] rows=1 max_columns=6
+  row[0]=['山江村', '山江村体育館', '---', '---', '山江村大字山田甲1353-1', '検索']
+table[96] rows=1 max_columns=6
+  row[0]=['山江村', '山江村農村環境改善センター', '---', '---', '山江村大字山田甲1356-1', '検索']
+table[97] rows=1 max_columns=6
+  row[0]=['山江村', '山江中学校武道館', '---', '---', '山江村大字山田丁23-3', '検索']
+table[98] rows=1 max_columns=6
+  row[0]=['山江村', '一丸公民館', '---', '---', '山江村大字山田丁472-1', '検索']
+table[99] rows=1 max_columns=6
+  row[0]=['山江村', '山江中学校体育館', '---', '---', '山江村大字山田丁60', '検索']
+table[100] rows=1 max_columns=6
+  row[0]=['山江村', '小山田公民館', '---', '---', '山江村大字山田乙690', '検索']
+table[101] rows=1 max_columns=6
+  row[0]=['山江村', '北永シ切集会所', '---', '---', '山江村大字山田乙1728-17', '検索']
+table[102] rows=1 max_columns=6
+  row[0]=['山江村', '山田小学校体育館', '---', '---', '山江村大字山田乙2030', '検索']
+table[103] rows=1 max_columns=6
+  row[0]=['山江村', '第９区公民館', '---', '---', '山江村大字山田丙2396-2', '検索']
+table[104] rows=1 max_columns=6
+  row[0]=['山江村', '湯の原自治会館', '---', '---', '山江村大字山田丙1078', '検索']
+table[105] rows=1 max_columns=6
+  row[0]=['球磨村', 'エスペランサ桜峯集会所（さくらドーム及び周辺施設）', '---', '---', '球磨村大字渡乙８６８番地１', '検索']
+table[106] rows=1 max_columns=6
+  row[0]=['球磨村', '球磨清流学園南屋内運動場', '---', '---', '球磨村大字一勝地丙１８１', '検索']
+table[107] rows=1 max_columns=6
+  row[0]=['球磨村', '田舎の体験交流館さんがうら', '---', '---', '球磨村大字三ケ浦乙２４５－５', '検索']
+table[108] rows=1 max_columns=6
+  row[0]=['球磨村', 'コミュニティセンターたかさわ', '---', '---', '球磨村大字神瀬丁５４８－２', '検索']
+table[109] rows=1 max_columns=6
+  row[0]=['球磨村', '球磨村高齢者生活福祉センターせせらぎ', '---', '---', '球磨村大字一勝地乙１－５', '検索']
+table[110] rows=1 max_columns=6
+  row[0]=['球磨村', 'コミュニティセンターこうのせ', '---', '---', '球磨村大字神瀬甲１１９９番地２', '検索']
+table[111] rows=1 max_columns=6
+  row[0]=['球磨村', '峯公民館', '---', '---', '球磨村大字渡乙９９６', '検索']
+table[112] rows=1 max_columns=6
+  row[0]=['球磨村', '渡保育園', '---', '---', '球磨村大字渡乙７６３', '検索']
+table[113] rows=1 max_columns=6
+  row[0]=['球磨村', '水篠公民館', '---', '---', '球磨村大字渡乙３１６４－１', '検索']
+table[114] rows=1 max_columns=6
+  row[0]=['球磨村', '小川公民館', '---', '---', '球磨村大字渡乙２５９５', '検索']
+table[115] rows=1 max_columns=6
+  row[0]=['球磨村', '馬場公民館', '---', '---', '球磨村大字渡丙２４１－１', '検索']
+table[116] rows=1 max_columns=6
+  row[0]=['球磨村', '大無田林業総合センター', '---', '---', '球磨村大字三ケ浦乙１２４５', '検索']
+table[117] rows=1 max_columns=6
+  row[0]=['球磨村', '岡公民館（椎葉）', '---', '---', '球磨村大字渡丙１３２３－１', '検索']
+table[118] rows=1 max_columns=6
+  row[0]=['球磨村', '岡公民館（久保）', '---', '---', '球磨村大字渡丙６３０', '検索']
+table[119] rows=1 max_columns=6
+  row[0]=['球磨村', '吐合公民館', '---', '---', '球磨村大字一勝地乙７３９－１', '検索']
+table[120] rows=1 max_columns=6
+  row[0]=['球磨村', '中津公民館', '---', '---', '球磨村大字一勝地甲１２４８', '検索']
+table[121] rows=1 max_columns=6
+  row[0]=['球磨村', '日隠公民館', '---', '---', '球磨村大字一勝地乙５８１－５', '検索']
+table[122] rows=1 max_columns=6
+  row[0]=['球磨村', '岳本公民館', '---', '---', '球磨村大字一勝地乙１３８９－１', '検索']
+table[123] rows=1 max_columns=6
+  row[0]=['球磨村', '告公民館', '---', '---', '球磨村大字一勝地丁１２４２－１', '検索']
+table[124] rows=1 max_columns=6
+  row[0]=['球磨村', '松谷公民館', '---', '---', '球磨村大字三ケ浦乙６２３－２', '検索']
+table[125] rows=1 max_columns=6
+  row[0]=['球磨村', '茂田公民館', '---', '---', '球磨村大字一勝地甲１７４７', '検索']
+table[126] rows=1 max_columns=6
+  row[0]=['球磨村', '遠原公民館', '---', '---', '球磨村大字一勝地甲１９３３－１３', '検索']
+table[127] rows=1 max_columns=6
+  row[0]=['球磨村', '大瀬公民館', '---', '---', '球磨村大字大瀬１７８', '検索']
+table[128] rows=1 max_columns=6
+  row[0]=['あさぎり町', '岡原保健センター', '---', '---', '熊本県あさぎり町', '検索']
+table[129] rows=1 max_columns=6
+  row[0]=['あさぎり町', '須恵文化ホール', '---', '---', '熊本県あさぎり町須恵', '検索']
+table[130] rows=1 max_columns=6
+  row[0]=['あさぎり町', '上小学校', '---', '---', 'あさぎり町上南2370', '検索']
+table[131] rows=1 max_columns=6
+  row[0]=['あさぎり町', 'あさぎり中学校', '---', '---', 'あさぎり町上北2144', '検索']
+table[132] rows=1 max_columns=6
+  row[0]=['あさぎり町', '上総合運動公園(体育館・武道場含む)', '---', '---', 'あさぎり町上東1282', '検索']
+table[133] rows=1 max_columns=6
+  row[0]=['あさぎり町', 'あさぎり町ヘルシーランド', '---', '---', 'あさぎり町上北1874', '検索']
+table[134] rows=1 max_columns=6
+  row[0]=['あさぎり町', '旧皆越分校', '---', '---', 'あさぎり町皆越307', '検索']
+table[135] rows=1 max_columns=6
+  row[0]=['あさぎり町', '総合福祉センター', '---', '---', 'あさぎり町免田東1190-2', '検索']
+table[136] rows=1 max_columns=6
+  row[0]=['あさぎり町', '免田小学校', '---', '---', 'あさぎり町免田東1719', '検索']
+table[137] rows=1 max_columns=6
+  row[0]=['あさぎり町', '免田地区体育施設体育館及び武道場(旧免田中学校)', '---', '---', 'あさぎり町免田東1774', '検索']
+table[138] rows=1 max_columns=6
+  row[0]=['あさぎり町', 'ポッポー館', '---', '---', 'あさぎり町免田東1482-2', '検索']
+table[139] rows=1 max_columns=6
+  row[0]=['あさぎり町', '免田総合体育センターグラウンド', '---', '---', 'あさぎり町免田東1989-3', '検索']
+table[140] rows=1 max_columns=6
+  row[0]=['あさぎり町', '県立南稜高等学校', '---', '---', 'あさぎり町上北310', '検索']
+table[141] rows=1 max_columns=6
+  row[0]=['あさぎり町', '岡原かえで館', '---', '---', 'あさぎり町岡原北929', '検索']
+table[142] rows=1 max_columns=6
+  row[0]=['あさぎり町', '岡原小学校', '---', '---', 'あさぎり町岡原北1313', '検索']
+table[143] rows=1 max_columns=6
+  row[0]=['あさぎり町', 'もみじ館', '---', '---', 'あさぎり町岡原北904', '検索']
+table[144] rows=1 max_columns=6
+  row[0]=['あさぎり町', '福留コミュニティ消防センター', '---', '---', 'あさぎり町岡原南1167', '検索']
+table[145] rows=1 max_columns=6
+  row[0]=['あさぎり町', '岡原総合運動公園', '---', '---', 'あさぎり町岡原南2236-13', '検索']
+table[146] rows=1 max_columns=6
+  row[0]=['あさぎり町', 'やったろ館', '---', '---', 'あさぎり町岡原南1654-1', '検索']
+table[147] rows=1 max_columns=6
+  row[0]=['あさぎり町', '須恵文化ホール（大ホールは除く）', '---', '---', 'あさぎり町須恵1227', '検索']
+table[148] rows=1 max_columns=6
+  row[0]=['あさぎり町', '須恵小学校', '---', '---', 'あさぎり町須恵1230', '検索']
+table[149] rows=1 max_columns=6
+  row[0]=['あさぎり町', 'せきれい館', '---', '---', 'あさぎり町深田西955-1', '検索']
+table[150] rows=1 max_columns=6
+  row[0]=['あさぎり町', '深田小学校', '---', '---', 'あさぎり町深田東787', '検索']
+table[151] rows=1 max_columns=6
+  row[0]=['あさぎり町', '高山総合運動公園（体育館含む）', '---', '---', 'あさぎり町深田東1404', '検索']
+table[152] rows=1 max_columns=6
+  row[0]=['あさぎり町', '旧深田中学校グラウンド', '---', '---', 'あさぎり町深田東2070', '検索']
+table[153] rows=1 max_columns=6
+  row[0]=['あさぎり町', 'あさぎり町定住促進センター', '---', '---', 'あさぎり町深田東1430', '検索']
+table[154] rows=1 max_columns=6
+  row[0]=['あさぎり町', '白寿荘', '---', '---', '熊本県あさぎり町上北1880', '検索']
+table[155] rows=1 max_columns=6
+  row[0]=['苓北町', '坂瀬川集会所', '---', '---', '苓北町坂瀬川3756', '検索']
+table[156] rows=1 max_columns=6
+  row[0]=['苓北町', '坂瀬川公民館', '---', '---', '苓北町坂瀬川2600', '検索']
+table[157] rows=1 max_columns=6
+  row[0]=['苓北町', '坂瀬川小学校体育館', '---', '---', '苓北町坂瀬川83', '検索']
+table[158] rows=1 max_columns=6
+  row[0]=['苓北町', '苓北町坂瀬川体育館', '---', '---', '苓北町坂瀬川2600', '検索']
+table[159] rows=1 max_columns=6
+  row[0]=['苓北町', '坂瀬川総合グラウンド', '---', '---', '苓北町坂瀬川2871', '検索']
+table[160] rows=1 max_columns=6
+  row[0]=['苓北町', '大師山', '---', '---', '苓北町坂瀬川3859･3862', '検索']
+table[161] rows=1 max_columns=6
+  row[0]=['苓北町', '上津深江集会所', '---', '---', '苓北町上津深江1186', '検索']
+table[162] rows=1 max_columns=6
+  row[0]=['苓北町', '天神山', '---', '---', '苓北町上津深江1175-1', '検索']
+table[163] rows=1 max_columns=6
+  row[0]=['苓北町', '西日本プラント苓北寮', '---', '---', '苓北町上津深江4452他', '検索']
+table[164] rows=1 max_columns=6
+  row[0]=['苓北町', '上津深江広域避難地', '---', '---', '苓北町上津深江101-1他', '検索']
+table[165] rows=1 max_columns=6
+  row[0]=['苓北町', '町民総合センタ－', '---', '---', '苓北町志岐1220-2', '検索']
+table[166] rows=1 max_columns=6
+  row[0]=['苓北町', '志岐小学校体育館', '---', '---', '苓北町志岐410', '検索']
+table[167] rows=1 max_columns=6
+  row[0]=['苓北町', '苓北中学校体育館', '---', '---', '苓北町志岐294-4', '検索']
+table[168] rows=1 max_columns=6
+  row[0]=['苓北町', '苓北町役場', '---', '---', '苓北町志岐660', '検索']
+table[169] rows=1 max_columns=6
+  row[0]=['苓北町', '苓北町志岐集会所', '---', '---', '苓北町志岐４４４－１', '検索']
+table[170] rows=1 max_columns=6
+  row[0]=['苓北町', '志岐城趾', '---', '---', '苓北町志岐1441他', '検索']
+table[171] rows=1 max_columns=6
+  row[0]=['苓北町', '農構センタ－', '---', '---', '苓北町志岐1010', '検索']
+table[172] rows=1 max_columns=6
+  row[0]=['苓北町', '温泉センタ－', '---', '---', '苓北町志岐1281', '検索']
+table[173] rows=1 max_columns=6
+  row[0]=['苓北町', '総合武道館', '---', '---', '苓北町志岐1183', '検索']
+table[174] rows=1 max_columns=6
+  row[0]=['苓北町', '体育センタ－', '---', '---', '苓北町志岐1220-2', '検索']
+table[175] rows=1 max_columns=6
+  row[0]=['苓北町', '国照寺', '---', '---', '苓北町志岐1360-1･1360-2', '検索']
+table[176] rows=1 max_columns=6
+  row[0]=['苓北町', '明神山地区避難所', '---', '---', '苓北町志岐32-1', '検索']
+table[177] rows=1 max_columns=6
+  row[0]=['苓北町', '紺屋町地区避難所', '---', '---', '苓北町志岐65･66-1', '検索']
+table[178] rows=1 max_columns=6
+  row[0]=['苓北町', '円通寺', '---', '---', '苓北町白木尾6-1', '検索']
+table[179] rows=1 max_columns=6
+  row[0]=['苓北町', '富岡公民館', '---', '---', '苓北町富岡2910', '検索']
+table[180] rows=1 max_columns=6
+  row[0]=['苓北町', '富岡小学校体育館', '---', '---', '苓北町富岡2480', '検索']
+table[181] rows=1 max_columns=6
+  row[0]=['苓北町', '天草拓心高校マリン校舎体育館', '---', '---', '苓北町富岡3757', '検索']
+table[182] rows=1 max_columns=6
+  row[0]=['苓北町', '瑞林寺', '---', '---', '苓北町富岡3170･3171', '検索']
+table[183] rows=1 max_columns=6
+  row[0]=['苓北町', '富岡城趾', '---', '---', '苓北町富岡2245-15他', '検索']
+table[184] rows=1 max_columns=6
+  row[0]=['苓北町', '鎮道寺', '---', '---', '苓北町富岡2452-1･2454-2', '検索']
+table[185] rows=1 max_columns=6
+  row[0]=['苓北町', '富岡温泉ホテル跡', '---', '---', '苓北町富岡2381他', '検索']
+table[186] rows=1 max_columns=6
+  row[0]=['苓北町', '富岡地区避難地', '---', '---', '苓北町富岡2930', '検索']
+table[187] rows=1 max_columns=6
+  row[0]=['苓北町', '苓北町拠点避難地', '---', '---', '苓北町1143-1他', '検索']
+table[188] rows=1 max_columns=6
+  row[0]=['苓北町', '都呂々公民館', '---', '---', '苓北町都呂々114', '検索']
+table[189] rows=1 max_columns=6
+  row[0]=['苓北町', '都呂々小学校体育館', '---', '---', '苓北町都呂々1245-1', '検索']
+table[190] rows=1 max_columns=6
+  row[0]=['苓北町', '苓北町都呂々体育館（ペット専用避難所）', '---', '---', '苓北町都呂々1245-1', '検索']
+table[191] rows=1 max_columns=6
+  row[0]=['苓北町', '木場地区交流施設', '---', '---', '苓北町都呂々6118-2', '検索']
+table[192] rows=1 max_columns=6
+  row[0]=['苓北町', '木場集会所', '---', '---', '苓北町都呂々5153-2', '検索']
+table[193] rows=1 max_columns=6
+  row[0]=['苓北町', '都呂々神社', '---', '---', '苓北町都呂々888', '検索']
+table[194] rows=1 max_columns=2
+  row[0]=['Language', '']
+keyword[全ての避難所] count=1
+  context=app_map_MobileLayerSelector_0"><div class="label"><span>避難情報</span><ul><li class="button is-shown" data-idis-layer-id="15">開設済みの避難所</li><li class="button " data-idis-layer-id="14">全ての避難所</li></ul><div class="layer-annotation">※常に有効。地図側で市町村を選択時にマーカーが表示されます。</div></div><div class="label"><span>通行規制情報</span><ul><li class="button " data-idis-layer-id="99">現在の道路通行規制情報</li></ul></div><div class="label"><span>浸水想定区域</span><ul><li
+keyword[すべての避難所] count=0
+keyword[開設中の避難所] count=0
+keyword[避難所名] count=1
+  context=-0 field-municipalityName dgrid-sortable" role="columnheader" rowspan="1">市町村</th><th class="dgrid-cell dgrid-column-0-1 field-_item field-maplink" role="columnheader" rowspan="1">避難所名</th><th class="dgrid-cell dgrid-column-0-2 field-isOpen dgrid-sortable dgrid-sort-down" role="columnheader" rowspan="1"><div class="dgrid-sort-arrow ui-icon" role="presentation">&nbsp;</div>開設状況</th><th class="dgrid-cell dgrid-column-0-3 f
+keyword[開設状況] count=1
+  context=ass="dgrid-cell dgrid-column-0-2 field-isOpen dgrid-sortable dgrid-sort-down" role="columnheader" rowspan="1"><div class="dgrid-sort-arrow ui-icon" role="presentation">&nbsp;</div>開設状況</th><th class="dgrid-cell dgrid-column-0-3 field-crowdedStatus dgrid-sortable" role="columnheader" rowspan="1">混雑状況</th><th class="dgrid-cell dgrid-column-0-4 field-address dgrid-sortable" role="columnheader" rowspan="1">住所</th><th class="
+keyword[混雑状況] count=1
+  context=lass="dgrid-sort-arrow ui-icon" role="presentation">&nbsp;</div>開設状況</th><th class="dgrid-cell dgrid-column-0-3 field-crowdedStatus dgrid-sortable" role="columnheader" rowspan="1">混雑状況</th><th class="dgrid-cell dgrid-column-0-4 field-address dgrid-sortable" role="columnheader" rowspan="1">住所</th><th class="dgrid-cell dgrid-column-0-5 field-_item field-maplink" role="columnheader" rowspan="1">ルート検索</th></tr></table></div>
+keyword[条件に一致するデータが存在しません] count=0
+keyword[データがありません] count=0
+keyword[エラー] count=0
