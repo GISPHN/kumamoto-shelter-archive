@@ -7,24 +7,40 @@ from typing import Any
 
 
 def build_match_record(collector: Any, original: Callable[..., Any]) -> Callable[..., Any]:
-    """Wrap the standard matcher with conservative name-only rules.
+    """Wrap the standard matcher with conservative address-less rules.
 
-    Yatsushiro City's PDF previously included addresses, but the
-    2026-08-04 18:00 layout removed that column.  The standard score weights
-    address similarity, so a unique exact facility-name match scored only
-    0.68 and was rejected.  This wrapper is used only when the municipal
-    source address is empty.
+    Yatsushiro City's current PDF omits addresses.  When multiple rows share
+    the same normalized facility name, the wrapper uses stable portal-master
+    quality signals before considering daily opening state, because the daily
+    shelter workflow can itself be temporarily unavailable.
 
     Acceptance order for address-less rows:
-      1. Existing manual aliases and any match already accepted by the
-         standard matcher.
+      1. Existing manual aliases and any match already accepted by the standard
+         matcher.
       2. One unique normalized facility-name match in the municipality.
-      3. One unique open row among multiple exact-name candidates.
-      4. One unique ``web:`` row among the open exact-name candidates.
+      3. One unique high-quality Web row among duplicate exact-name matches.
+         A high-quality Web row must have a ``web:`` shelter id, a positive
+         portal capacity, and a sufficiently specific address.
+      4. One unique open row among multiple exact-name candidates.
+      5. One unique ``web:`` row among the open exact-name candidates.
 
     Any unresolved duplicate remains ambiguous; fuzzy name-only matching is
     intentionally not introduced.
     """
+
+    def has_positive_capacity(row: dict[str, str]) -> bool:
+        text = collector.clean_text(row.get("portal_capacity_persons", "")).replace(",", "")
+        try:
+            return float(text) > 0
+        except (TypeError, ValueError):
+            return False
+
+    def has_specific_address(row: dict[str, str]) -> bool:
+        normalized = collector.normalize_address(row.get("address", ""))
+        # Municipality-only placeholders such as "熊本県八代市" normalize to
+        # an empty string.  A short but non-empty token is still treated
+        # cautiously; verified shelter addresses contain substantially more.
+        return len(normalized) >= 5
 
     def match_record(
         record: Any,
@@ -73,6 +89,27 @@ def build_match_record(collector: Any, original: Callable[..., Any]) -> Callable
             )
 
         if len(ranked) > 1:
+            # Prefer the portal-backed row that has enough independent master
+            # attributes to disambiguate the duplicate.  This resolves cases
+            # such as a real facility row versus a municipality-only duplicate,
+            # and a GSI reference row versus its Web counterpart.
+            high_quality_web = [
+                item
+                for item in ranked
+                if collector.clean_text(item[1].get("shelter_id", "")).startswith("web:")
+                and has_positive_capacity(item[1])
+                and has_specific_address(item[1])
+            ]
+            if len(high_quality_web) == 1:
+                row = high_quality_web[0][1]
+                return collector.MatchResult(
+                    "matched",
+                    "exact_name_web_master_quality_without_source_address",
+                    0.95,
+                    collector.clean_text(row.get("shelter_id")),
+                    ranked[:2],
+                )
+
             open_ranked = [
                 item
                 for item in ranked
