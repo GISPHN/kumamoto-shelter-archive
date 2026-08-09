@@ -1,33 +1,12 @@
 warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
 Consider using the pymupdf_layout package for a greatly improved page layout analysis.
+No source change: 八代市 observed=2026-08-10T06:00+09:00 hash=506b421aa042
+No source change: 宇城市 observed=2026-08-10T08:00+09:00 hash=237024128bb2
 {
-  "retrieved_at_jst": "2026-08-10T08:44:55+09:00",
+  "retrieved_at_jst": "2026-08-10T08:55:22+09:00",
   "status": "success",
-  "source_changed": true,
-  "changed_sources": [
-    {
-      "municipality": "八代市",
-      "source_observed_at_jst": "2026-08-10T06:00+09:00",
-      "record_count": 38,
-      "matched_count": 38,
-      "issue_count": 0,
-      "published_total": 2037,
-      "calculated_total": 2037,
-      "revision": 1,
-      "normalized_sha256": "506b421aa0421e95404c4b3b339365495d990006ed0e5866f7823b38fa4fa052"
-    },
-    {
-      "municipality": "宇城市",
-      "source_observed_at_jst": "2026-08-10T08:00+09:00",
-      "record_count": 11,
-      "matched_count": 11,
-      "issue_count": 0,
-      "published_total": 2917,
-      "calculated_total": 2917,
-      "revision": 1,
-      "normalized_sha256": "237024128bb23456cb2066d7f3ca89c5347dcf99fd255d70b3281e5a50664a9a"
-    }
-  ],
+  "source_changed": false,
+  "changed_sources": [],
   "observation_row_count": 445,
   "matched_observation_row_count": 445,
   "unmatched_or_ambiguous_row_count": 0,
