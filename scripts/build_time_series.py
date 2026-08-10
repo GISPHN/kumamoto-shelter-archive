@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
-"""日別避難所CSVから横持ち時系列CSVを再構築する。
+"""日別避難所CSVから横持ち時系列CSVを更新する。
 
 status_by_date.csv は日常的な確認・分析に使いやすい最小限の固定属性だけを
 出力する。open_status_by_date.csv と congestion_by_date.csv は、監査や詳細な
 解析に利用できるよう従来の詳細属性を保持する。
+
+重要な原則として、既に横持ちCSVへ保存された過去日の値は再計算結果で
+上書きしない。日別スナップショットの照合方法や施設IDが後日変化しても、
+既存の歴史値を正本として保持し、新しい日付だけを右端へ追加する。
+同じ最新日の再実行だけは、当日中の正当な更新として上書きを許可する。
 """
 from __future__ import annotations
 
@@ -168,54 +173,151 @@ def row_priority(row: dict[str, str]) -> tuple[int, int, int, int]:
     )
 
 
-def validate_historical_statuses(
+def extract_existing_dates(columns: list[str]) -> list[tuple[str, str]]:
+    """既存CSVの日付列を元の並び順で返す。"""
+    result: list[tuple[str, str]] = []
+    seen: set[str] = set()
+    for column in columns:
+        normalized = normalize_date_column(column)
+        if normalized is None:
+            continue
+        if normalized in seen:
+            raise RuntimeError(f"横持ちCSVに重複日付列があります: {normalized}")
+        seen.add(normalized)
+        result.append((normalized, column))
+    return result
+
+
+def merge_existing_timeseries(
     existing_path: Path,
     generated_rows: list[dict[str, str]],
-    newest_date: str,
-) -> None:
-    """既存の過去日ステータスが再構築で変化していないことを確認する。
+    fixed_columns: list[str],
+    generated_dates: list[str],
+    default_value: str,
+) -> tuple[list[dict[str, str]], list[str]]:
+    """既存の歴史値を固定し、新しい日付だけを追加する。
 
-    当日再実行による最新日データの更新は許可する。一方、最新日より前の
-    日付については、施設ごとの開設状況・混雑度が1件でも変われば停止する。
+    既存日付はCSVに保存されている値をそのまま採用する。唯一の例外は、
+    生成対象の最新日が既にCSVにも存在する場合で、これは同日再実行として
+    最新日のみ再生成値へ更新する。
+
+    既存CSVにない新しい日付が既存最終日より古い場合は、自動バックフィルで
+    過去構造を変えないよう停止する。
     """
     if not existing_path.exists() or existing_path.stat().st_size == 0:
-        return
+        return generated_rows, list(generated_dates)
 
     columns, existing_rows = read_csv_with_columns(existing_path)
-    existing_date_columns = {
-        normalized: column
-        for column in columns
-        if (normalized := normalize_date_column(column)) is not None
-        and normalized < newest_date
-    }
-    if not existing_date_columns:
-        return
+    existing_date_pairs = extract_existing_dates(columns)
+    existing_dates = [normalized for normalized, _ in existing_date_pairs]
+    existing_date_set = set(existing_dates)
 
-    generated_by_id = {
-        normalize(row.get("shelter_id")): row
-        for row in generated_rows
-        if normalize(row.get("shelter_id"))
-    }
-    differences: list[str] = []
-    compared_cells = 0
+    if not generated_dates:
+        return existing_rows, existing_dates
+
+    newest_generated_date = generated_dates[-1]
+    new_dates = [item for item in generated_dates if item not in existing_date_set]
+    if existing_dates:
+        latest_existing_date = max(existing_dates)
+        historical_insertions = [item for item in new_dates if item < latest_existing_date]
+        if historical_insertions:
+            raise RuntimeError(
+                "既存の最終日より前へ新しい日付列を自動挿入しようとしたため停止しました。\n"
+                f"existing_latest={latest_existing_date}\n"
+                f"historical_insertions={historical_insertions}"
+            )
+
+    merged_dates = existing_dates + new_dates
+    refresh_date = (
+        newest_generated_date
+        if newest_generated_date in existing_date_set
+        else None
+    )
+
+    generated_by_id: dict[str, dict[str, str]] = {}
+    for row in generated_rows:
+        shelter_id = normalize(row.get("shelter_id"))
+        if not shelter_id:
+            continue
+        if shelter_id in generated_by_id:
+            raise RuntimeError(f"生成時系列にshelter_id重複があります: {shelter_id}")
+        generated_by_id[shelter_id] = row
+
+    existing_ids: set[str] = set()
+    merged_rows: list[dict[str, str]] = []
 
     for old_row in existing_rows:
         shelter_id = normalize(old_row.get("shelter_id"))
         if not shelter_id:
-            continue
-        new_row = generated_by_id.get(shelter_id)
-        if new_row is None:
-            differences.append(f"{shelter_id}: 再構築後に施設行が存在しません")
-            if len(differences) >= 20:
-                break
-            continue
-        for normalized_date, original_column in existing_date_columns.items():
+            raise RuntimeError(f"既存横持ちCSVにshelter_idのない行があります: {existing_path}")
+        if shelter_id in existing_ids:
+            raise RuntimeError(f"既存横持ちCSVにshelter_id重複があります: {shelter_id}")
+        existing_ids.add(shelter_id)
+        generated = generated_by_id.get(shelter_id)
+
+        merged: dict[str, str] = {}
+        for column in fixed_columns:
+            old_value = normalize(old_row.get(column))
+            generated_value = normalize(generated.get(column)) if generated else ""
+            # 既存施設の固定属性も安定させる。空欄だけ最新生成値で補完する。
+            merged[column] = old_value or generated_value
+
+        for normalized_date, original_column in existing_date_pairs:
             old_value = normalize(old_row.get(original_column))
-            new_value = normalize(new_row.get(normalized_date))
+            if refresh_date == normalized_date and generated is not None:
+                merged[normalized_date] = normalize(generated.get(normalized_date)) or default_value
+            else:
+                merged[normalized_date] = old_value
+
+        for snapshot_date in new_dates:
+            merged[snapshot_date] = (
+                normalize(generated.get(snapshot_date)) if generated else ""
+            ) or default_value
+
+        merged_rows.append(merged)
+
+    # 新しく現れた施設は既存の過去日列へ値を遡及注入しない。
+    # 既存履歴では未開設扱いとし、新しい日付から生成値を記録する。
+    for generated in generated_rows:
+        shelter_id = normalize(generated.get("shelter_id"))
+        if not shelter_id or shelter_id in existing_ids:
+            continue
+        merged = {
+            column: normalize(generated.get(column))
+            for column in fixed_columns
+        }
+        for normalized_date, _ in existing_date_pairs:
+            if refresh_date == normalized_date:
+                merged[normalized_date] = normalize(generated.get(normalized_date)) or default_value
+            else:
+                merged[normalized_date] = default_value
+        for snapshot_date in new_dates:
+            merged[snapshot_date] = normalize(generated.get(snapshot_date)) or default_value
+        merged_rows.append(merged)
+
+    # 最重要の不変条件をメモリ上で再検証する。
+    merged_by_id = {
+        normalize(row.get("shelter_id")): row
+        for row in merged_rows
+        if normalize(row.get("shelter_id"))
+    }
+    compared_cells = 0
+    differences: list[str] = []
+    for old_row in existing_rows:
+        shelter_id = normalize(old_row.get("shelter_id"))
+        merged = merged_by_id.get(shelter_id)
+        if merged is None:
+            differences.append(f"{shelter_id}: マージ後に施設行が存在しません")
+            continue
+        for normalized_date, original_column in existing_date_pairs:
+            if normalized_date == refresh_date:
+                continue
+            old_value = normalize(old_row.get(original_column))
+            merged_value = normalize(merged.get(normalized_date))
             compared_cells += 1
-            if old_value != new_value:
+            if old_value != merged_value:
                 differences.append(
-                    f"{shelter_id} {normalized_date}: {old_value!r} -> {new_value!r}"
+                    f"{shelter_id} {normalized_date}: {old_value!r} -> {merged_value!r}"
                 )
                 if len(differences) >= 20:
                     break
@@ -224,10 +326,16 @@ def validate_historical_statuses(
 
     if differences:
         raise RuntimeError(
-            "既存の過去日ステータスが変更されるため再構築を停止しました。\n"
+            "既存の過去日ステータスがマージ処理で変更されるため停止しました。\n"
             + "\n".join(differences)
         )
-    print(f"既存の過去日ステータスを検証しました: {compared_cells}セル、変更0件")
+
+    print(
+        f"既存履歴を保持して時系列を更新します: file={existing_path.name}, "
+        f"preserved_cells={compared_cells}, refresh_date={refresh_date or '-'}, "
+        f"new_dates={new_dates}"
+    )
+    return merged_rows, merged_dates
 
 
 def validate_status_schema(path: Path, dates: list[str]) -> None:
@@ -240,11 +348,18 @@ def validate_status_schema(path: Path, dates: list[str]) -> None:
         )
     if len(columns) != len(set(columns)):
         raise RuntimeError("status_by_date.csvに重複列があります。")
+    seen_ids: set[str] = set()
     for row_number, row in enumerate(rows, start=2):
-        if not normalize(row.get("shelter_id")):
+        shelter_id = normalize(row.get("shelter_id"))
+        if not shelter_id:
             raise RuntimeError(
                 f"status_by_date.csvの{row_number}行目にshelter_idがありません。"
             )
+        if shelter_id in seen_ids:
+            raise RuntimeError(
+                f"status_by_date.csvにshelter_id重複があります: {shelter_id}"
+            )
+        seen_ids.add(shelter_id)
     print(
         f"status_by_date.csvの列構成を検証しました: "
         f"固定属性={len(STATUS_IDENTITY_COLUMNS)}列、日付={len(dates)}列、施設={len(rows)}件"
@@ -347,28 +462,52 @@ def main() -> int:
         congestion_rows.append(outputs[2][0])
 
     status_path = data_root / "status_by_date.csv"
-    validate_historical_statuses(status_path, status_rows, dates[-1])
+    open_path = data_root / "open_status_by_date.csv"
+    congestion_path = data_root / "congestion_by_date.csv"
+
+    status_rows, status_dates = merge_existing_timeseries(
+        status_path,
+        status_rows,
+        STATUS_IDENTITY_COLUMNS,
+        dates,
+        "未開設",
+    )
+    open_rows, open_dates = merge_existing_timeseries(
+        open_path,
+        open_rows,
+        DETAIL_IDENTITY_COLUMNS,
+        dates,
+        "0",
+    )
+    congestion_rows, congestion_dates = merge_existing_timeseries(
+        congestion_path,
+        congestion_rows,
+        DETAIL_IDENTITY_COLUMNS,
+        dates,
+        "未開設",
+    )
 
     write_csv(
         status_path,
         status_rows,
-        STATUS_IDENTITY_COLUMNS + dates,
+        STATUS_IDENTITY_COLUMNS + status_dates,
     )
     write_csv(
-        data_root / "open_status_by_date.csv",
+        open_path,
         open_rows,
-        DETAIL_IDENTITY_COLUMNS + dates,
+        DETAIL_IDENTITY_COLUMNS + open_dates,
     )
     write_csv(
-        data_root / "congestion_by_date.csv",
+        congestion_path,
         congestion_rows,
-        DETAIL_IDENTITY_COLUMNS + dates,
+        DETAIL_IDENTITY_COLUMNS + congestion_dates,
     )
-    validate_status_schema(status_path, dates)
+    validate_status_schema(status_path, status_dates)
 
     print(
-        f"横持ち時系列CSVを生成しました: 施設数={len(facilities)}, "
-        f"日数={len(dates)}, 開始日={dates[0]}, 終了日={dates[-1]}"
+        f"横持ち時系列CSVを更新しました: 生成施設数={len(facilities)}, "
+        f"status施設数={len(status_rows)}, 日数={len(status_dates)}, "
+        f"開始日={status_dates[0]}, 終了日={status_dates[-1]}"
     )
     return 0
 
