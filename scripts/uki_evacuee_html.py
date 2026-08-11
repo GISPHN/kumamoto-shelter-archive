@@ -8,10 +8,12 @@ from bs4 import BeautifulSoup
 
 
 _NUMBER_RE = re.compile(r"(?<!\d)(\d{1,3}(?:,\d{3})*|\d+)(?!\d)")
+_OBSERVED_RE = re.compile(
+    r"\d+月\s*\d+日(?:\s*\([^)]*\))?\s*(?:午前|午後)?\s*\d+時\s*\d+分時点"
+)
 
 
 def _numeric_tokens(text: str) -> list[int]:
-    """Extract integer tokens from a table cell without trusting surrounding labels."""
     values: list[int] = []
     for token in _NUMBER_RE.findall(text):
         try:
@@ -22,11 +24,26 @@ def _numeric_tokens(text: str) -> list[int]:
 
 
 def _cell_integer(text: str) -> int:
-    """Parse one numeric table cell, tolerating responsive label text."""
     values = _numeric_tokens(text)
     if not values:
         raise ValueError(f"numeric value not found: {text!r}")
     return values[-1]
+
+
+def _nearest_observation_text(table, clean_text) -> str:
+    """Find the observation phrase immediately preceding the selected table."""
+    for node in table.find_all_previous(string=True, limit=80):
+        text = clean_text(node)
+        if not text:
+            continue
+        if "避難者数" not in text or "時点" not in text:
+            continue
+        match = _OBSERVED_RE.search(text)
+        if match:
+            return match.group(0)
+    raise RuntimeError(
+        "宇城市の避難者数表の直前から観測時刻を検出できませんでした。"
+    )
 
 
 def parse_uki_html(page_data: bytes, page_url: str):
@@ -46,16 +63,6 @@ def parse_uki_html(page_data: bytes, page_url: str):
 
     update_year_match = re.search(r"(20\d{2})年\s*\d+月\s*\d+日更新", page_text)
     default_year = int(update_year_match.group(1)) if update_year_match else None
-    # Keep the observation-time match local to one date/time phrase.  The former
-    # ``.*?`` expression could cross unrelated page text while the CMS was being
-    # edited and manufacture an impossible timestamp from a later number.
-    observed_text_match = re.search(
-        r"\d+月\s*\d+日(?:\s*\([^)]*\))?\s*(?:午前|午後)?\s*\d+時\s*\d+分時点",
-        page_text,
-    )
-    if not observed_text_match:
-        raise RuntimeError("宇城市ページから観測時刻を検出できませんでした。")
-    observed_at = japanese_datetime_to_iso(observed_text_match.group(0), default_year)
 
     target_table = None
     header_indexes: dict[str, int] = {}
@@ -85,6 +92,9 @@ def parse_uki_html(page_data: bytes, page_url: str):
     missing_headers = sorted(required_headers - set(header_indexes))
     if missing_headers:
         raise RuntimeError(f"宇城市表に必要列がありません: {missing_headers}")
+
+    observed_text = _nearest_observation_text(target_table, clean_text)
+    observed_at = japanese_datetime_to_iso(observed_text, default_year)
 
     records: list[SourceRecord] = []
     total_candidates: list[int] = []
@@ -123,16 +133,13 @@ def parse_uki_html(page_data: bytes, page_url: str):
     ):
         total_candidates.extend(_numeric_tokens(total_match.group("tail")))
 
-    published_total: int | None = None
-    if calculated_total in total_candidates:
-        published_total = calculated_total
-    elif total_candidates:
-        raise RuntimeError(
-            "宇城市HTMLの避難者数合計が一致しません: "
-            f"parsed={calculated_total}, total_candidates={sorted(set(total_candidates))}, "
-            f"rows={len(records)}"
-        )
-    else:
+    if calculated_total not in total_candidates:
+        if total_candidates:
+            raise RuntimeError(
+                "宇城市HTMLの避難者数合計が一致しません: "
+                f"parsed={calculated_total}, total_candidates={sorted(set(total_candidates))}, "
+                f"rows={len(records)}"
+            )
         raise RuntimeError(
             "宇城市HTMLから避難者数合計を取得できませんでした: "
             f"parsed={calculated_total}, rows={len(records)}"
@@ -147,5 +154,5 @@ def parse_uki_html(page_data: bytes, page_url: str):
         raw_sha256=sha256_bytes(page_data),
         normalized_sha256=normalized_snapshot_hash(records),
         records=records,
-        published_total=published_total,
+        published_total=calculated_total,
     )
