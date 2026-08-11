@@ -1,36 +1,13 @@
 warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
-Removed invalid municipal observations: count=11 path=data/municipal_evacuees/all_observations.csv
-  removed municipality=宇城市 observed=2026-08-10T22:00+09:00 retrieved=2026-08-11T10:40:39+09:00 hash=28fd03ac17ba shelter=三角防災拠点センター
-  removed municipality=宇城市 observed=2026-08-10T22:00+09:00 retrieved=2026-08-11T10:40:39+09:00 hash=28fd03ac17ba shelter=不知火防災拠点センター
-  removed municipality=宇城市 observed=2026-08-10T22:00+09:00 retrieved=2026-08-11T10:40:39+09:00 hash=28fd03ac17ba shelter=不知火小学校 2F交流スペース
-  removed municipality=宇城市 observed=2026-08-10T22:00+09:00 retrieved=2026-08-11T10:40:39+09:00 hash=28fd03ac17ba shelter=松橋東防災拠点センター
-  removed municipality=宇城市 observed=2026-08-10T22:00+09:00 retrieved=2026-08-11T10:40:39+09:00 hash=28fd03ac17ba shelter=松橋西防災拠点センター
-  removed municipality=宇城市 observed=2026-08-10T22:00+09:00 retrieved=2026-08-11T10:40:39+09:00 hash=28fd03ac17ba shelter=ウイングまつばせ
-  removed municipality=宇城市 observed=2026-08-10T22:00+09:00 retrieved=2026-08-11T10:40:39+09:00 hash=28fd03ac17ba shelter=松橋中学校 武道場
-  removed municipality=宇城市 observed=2026-08-10T22:00+09:00 retrieved=2026-08-11T10:40:39+09:00 hash=28fd03ac17ba shelter=小川防災拠点センター
-  removed municipality=宇城市 observed=2026-08-10T22:00+09:00 retrieved=2026-08-11T10:40:39+09:00 hash=28fd03ac17ba shelter=小野部田小学校 体育館
-  removed municipality=宇城市 observed=2026-08-10T22:00+09:00 retrieved=2026-08-11T10:40:39+09:00 hash=28fd03ac17ba shelter=小川中学校 体育館
-  removed municipality=宇城市 observed=2026-08-10T22:00+09:00 retrieved=2026-08-11T10:40:39+09:00 hash=28fd03ac17ba shelter=豊野防災拠点センター
 Consider using the pymupdf_layout package for a greatly improved page layout analysis.
 INFO Uki source stability check: attempt=1/10: valid candidate waiting for second identical fetch observed=2026-08-10T22:00+09:00 hash=28fd03ac17ba
 No source change: 八代市 observed=2026-08-11T06:00+09:00 hash=6334fb085217
+No source change: 宇城市 observed=2026-08-10T22:00+09:00 hash=28fd03ac17ba
 {
-  "retrieved_at_jst": "2026-08-11T10:43:17+09:00",
+  "retrieved_at_jst": "2026-08-11T10:44:56+09:00",
   "status": "success",
-  "source_changed": true,
-  "changed_sources": [
-    {
-      "municipality": "宇城市",
-      "source_observed_at_jst": "2026-08-10T22:00+09:00",
-      "record_count": 11,
-      "matched_count": 11,
-      "issue_count": 0,
-      "published_total": 677,
-      "calculated_total": 677,
-      "revision": 1,
-      "normalized_sha256": "28fd03ac17baed625cfa1819a73e40a274715f6a04cdb9577e1adaecb09cb072"
-    }
-  ],
+  "source_changed": false,
+  "changed_sources": [],
   "observation_row_count": 570,
   "matched_observation_row_count": 570,
   "unmatched_or_ambiguous_row_count": 0,
