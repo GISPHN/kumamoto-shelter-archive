@@ -97,7 +97,7 @@ def parse_uki_html(page_data: bytes, page_url: str):
     observed_at = japanese_datetime_to_iso(observed_text, default_year)
 
     records: list[SourceRecord] = []
-    total_candidates: list[int] = []
+    total_row_values: list[int] | None = None
     rows = target_table.find_all("tr")
     for row in rows[header_row_index + 1 :]:
         cells = [
@@ -108,8 +108,15 @@ def parse_uki_html(page_data: bytes, page_url: str):
             continue
         joined = " ".join(cells)
         if re.search(r"合\s*計", joined):
+            # The total row currently contains household total followed by
+            # evacuee total.  Colspan/responsive markup can change the physical
+            # cell count, so use the numeric sequence within this row only.
+            # The last numeric value is the evacuee total by table semantics.
+            values: list[int] = []
             for cell in cells:
-                total_candidates.extend(_numeric_tokens(cell))
+                values.extend(_numeric_tokens(cell))
+            if values:
+                total_row_values = values
             continue
 
         try:
@@ -126,23 +133,18 @@ def parse_uki_html(page_data: bytes, page_url: str):
         raise RuntimeError("宇城市HTMLから避難所行を取得できませんでした。")
 
     calculated_total = sum(record.evacuee_count for record in records)
-
-    for total_match in re.finditer(
-        r"合\s*計(?P<tail>.{0,120})",
-        page_text,
-    ):
-        total_candidates.extend(_numeric_tokens(total_match.group("tail")))
-
-    if calculated_total not in total_candidates:
-        if total_candidates:
-            raise RuntimeError(
-                "宇城市HTMLの避難者数合計が一致しません: "
-                f"parsed={calculated_total}, total_candidates={sorted(set(total_candidates))}, "
-                f"rows={len(records)}"
-            )
+    if not total_row_values:
         raise RuntimeError(
-            "宇城市HTMLから避難者数合計を取得できませんでした: "
+            "宇城市HTMLの選択表から合計行を取得できませんでした: "
             f"parsed={calculated_total}, rows={len(records)}"
+        )
+
+    published_total = total_row_values[-1]
+    if calculated_total != published_total:
+        raise RuntimeError(
+            "宇城市HTMLの避難者数合計が一致しません: "
+            f"parsed={calculated_total}, published={published_total}, "
+            f"total_row_values={total_row_values}, rows={len(records)}"
         )
 
     return SourceSnapshot(
@@ -154,5 +156,5 @@ def parse_uki_html(page_data: bytes, page_url: str):
         raw_sha256=sha256_bytes(page_data),
         normalized_sha256=normalized_snapshot_hash(records),
         records=records,
-        published_total=calculated_total,
+        published_total=published_total,
     )
