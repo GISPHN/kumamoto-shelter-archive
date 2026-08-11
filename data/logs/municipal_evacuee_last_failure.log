@@ -4,12 +4,6 @@ Traceback (most recent call last):
   File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/run_municipal_evacuee_collection.py", line 22, in <module>
     raise SystemExit(collector.main())
                      ^^^^^^^^^^^^^^^^
-  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/collect_municipal_evacuees.py", line 751, in main
-    snapshots = [collect_yatsushiro(debug_dir), collect_uki(debug_dir)]
-                                                ^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/collect_municipal_evacuees.py", line 445, in collect_uki
-    return parse_uki_html(page_data, UKI_PAGE_URL)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/uki_evacuee_html.py", line 95, in parse_uki_html
+  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/collect_municipal_evacuees.py", line 824, in main
     raise RuntimeError(
-RuntimeError: 宇城市HTMLの避難者数合計が一致しません: parsed=677, published=13, rows=11
+RuntimeError: 自治体避難者数の未一致・曖昧施設があります: 2件。matching_issues.csvを確認してください。
