@@ -29,7 +29,7 @@ permissions:
 
 concurrency:
   group: kumamoto-municipal-evacuee-data-write
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   collect:
