@@ -6,6 +6,14 @@ from collections.abc import Callable
 from typing import Any
 
 
+# PyMuPDF can extract the character 麦 from some embedded Japanese PDF fonts as
+# the CJK radical variant ⻨.  They are semantically the same in the affected
+# Yatsushiro shelter names, but Unicode NFKC does not collapse this pair.
+_PDF_GLYPH_EQUIVALENTS = {
+    "⻨": "麦",
+}
+
+
 def build_match_record(collector: Any, original: Callable[..., Any]) -> Callable[..., Any]:
     """Wrap the standard matcher with conservative address-less rules.
 
@@ -27,6 +35,12 @@ def build_match_record(collector: Any, original: Callable[..., Any]) -> Callable
     Any unresolved duplicate remains ambiguous; fuzzy name-only matching is
     intentionally not introduced.
     """
+
+    def canonical_name_variants(value: object) -> set[str]:
+        text = collector.clean_text(value)
+        for extracted, canonical in _PDF_GLYPH_EQUIVALENTS.items():
+            text = text.replace(extracted, canonical)
+        return collector.name_variants(text)
 
     def has_positive_capacity(row: dict[str, str]) -> bool:
         text = collector.clean_text(row.get("portal_capacity_persons", "")).replace(",", "")
@@ -61,11 +75,11 @@ def build_match_record(collector: Any, original: Callable[..., Any]) -> Callable
             for row in status_rows
             if collector.clean_text(row.get("municipality")) == record.municipality
         ]
-        source_names = collector.name_variants(record.shelter_name)
+        source_names = canonical_name_variants(record.shelter_name)
         exact_name = [
             row
             for row in pool
-            if source_names & collector.name_variants(row.get("shelter_name", ""))
+            if source_names & canonical_name_variants(row.get("shelter_name", ""))
         ]
         ranked = sorted(
             (
