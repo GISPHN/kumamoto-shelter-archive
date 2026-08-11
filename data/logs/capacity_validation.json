@@ -1,5 +1,5 @@
 {
-  "validated_at_jst": "2026-08-11T07:29:20+09:00",
+  "validated_at_jst": "2026-08-11T10:32:56+09:00",
   "status": "success",
   "master": {
     "row_count": 2125,
@@ -16,10 +16,10 @@
     "metadata_record_count": 2125
   },
   "latest": {
-    "row_count": 1349,
+    "row_count": 1348,
     "capacity_match_status_counts": {
       "ambiguous": 12,
-      "matched": 1187,
+      "matched": 1186,
       "unmatched": 150
     },
     "capacity_match_method_counts": {
@@ -28,47 +28,48 @@
       "coordinate_near_tie": 11,
       "coordinate_with_name_20m": 47,
       "duplicate_exact_key": 1,
-      "exact_municipality_name_address": 932,
-      "exact_name_municipality_address_similar": 162,
+      "exact_municipality_name_address": 929,
+      "exact_name_municipality_address_similar": 164,
       "fuzzy_below_threshold": 26,
       "high_confidence_fuzzy": 2,
       "no_candidate": 124
     },
-    "matched_row_count": 1187,
-    "matched_with_positive_capacity_count": 968,
-    "matched_with_source_coordinates_count": 1187,
-    "complete_unified_coordinate_count": 1349,
+    "matched_row_count": 1186,
+    "matched_with_positive_capacity_count": 967,
+    "matched_with_source_coordinates_count": 1186,
+    "complete_unified_coordinate_count": 1348,
     "unknown_master_id_count": 0,
     "capacity_mismatch_count": 0
   },
   "open_status_by_date": {
-    "row_count": 1447,
+    "row_count": 1448,
     "capacity_match_status_counts": {
       "ambiguous": 11,
-      "matched": 1286,
+      "matched": 1287,
       "unmatched": 150
     },
     "capacity_match_method_counts": {
       "coordinate_near_tie": 11,
       "coordinate_with_name_20m": 1,
+      "exact_municipality_name_address": 1,
       "fuzzy_below_threshold": 26,
       "no_candidate": 124,
       "portal_shelter_id": 1285
     },
-    "matched_row_count": 1286,
-    "matched_with_positive_capacity_count": 1045,
-    "matched_with_source_coordinates_count": 1286,
-    "complete_unified_coordinate_count": 1447,
+    "matched_row_count": 1287,
+    "matched_with_positive_capacity_count": 1046,
+    "matched_with_source_coordinates_count": 1287,
+    "complete_unified_coordinate_count": 1448,
     "unknown_master_id_count": 0,
     "capacity_mismatch_count": 0
   },
   "status_by_date": {
-    "row_count": 1447,
+    "row_count": 1448,
     "fixed_column_count": 11,
-    "date_column_count": 10,
+    "date_column_count": 13,
     "first_date": "2026-07-29",
-    "last_date": "2026-08-08",
-    "complete_unified_coordinate_count": 1447,
+    "last_date": "2026-08-11",
+    "complete_unified_coordinate_count": 1448,
     "fixed_attribute_mismatch_count": 0,
     "invalid_status_value_count": 0
   }
