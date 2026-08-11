@@ -26,8 +26,6 @@ def _cell_integer(text: str) -> int:
     values = _numeric_tokens(text)
     if not values:
         raise ValueError(f"numeric value not found: {text!r}")
-    # Responsive markup can prepend a header label but the actual cell value is
-    # rendered last.  Use the last integer token in the target cell.
     return values[-1]
 
 
@@ -48,8 +46,11 @@ def parse_uki_html(page_data: bytes, page_url: str):
 
     update_year_match = re.search(r"(20\d{2})年\s*\d+月\s*\d+日更新", page_text)
     default_year = int(update_year_match.group(1)) if update_year_match else None
+    # Keep the observation-time match local to one date/time phrase.  The former
+    # ``.*?`` expression could cross unrelated page text while the CMS was being
+    # edited and manufacture an impossible timestamp from a later number.
     observed_text_match = re.search(
-        r"\d+月\s*\d+日.*?(?:午前|午後)?\s*\d+時\s*\d+分時点",
+        r"\d+月\s*\d+日(?:\s*\([^)]*\))?\s*(?:午前|午後)?\s*\d+時\s*\d+分時点",
         page_text,
     )
     if not observed_text_match:
@@ -63,8 +64,6 @@ def parse_uki_html(page_data: bytes, page_url: str):
         rows = table.find_all("tr")
         if not rows:
             continue
-        # Do not assume the first <tr> is the header.  CMS responsive markup may
-        # insert auxiliary rows before the visible heading row.
         for row_index, row in enumerate(rows):
             headers = [
                 clean_text(cell.get_text(" "))
@@ -99,11 +98,6 @@ def parse_uki_html(page_data: bytes, page_url: str):
             continue
         joined = " ".join(cells)
         if re.search(r"合\s*計", joined):
-            # Keep every number from the total row.  On responsive CMS markup
-            # the visual columns may be represented with colspan or hidden
-            # labels, so positional assumptions are unsafe.  The final
-            # integrity check selects the candidate equal to the sum of the
-            # shelter-level evacuee counts.
             for cell in cells:
                 total_candidates.extend(_numeric_tokens(cell))
             continue
@@ -123,9 +117,6 @@ def parse_uki_html(page_data: bytes, page_url: str):
 
     calculated_total = sum(record.evacuee_count for record in records)
 
-    # Also collect candidates from the article text as a fallback.  This covers
-    # responsive markup where the total row is visually rendered outside the
-    # same physical column structure as the body rows.
     for total_match in re.finditer(
         r"合\s*計(?P<tail>.{0,120})",
         page_text,
@@ -136,8 +127,6 @@ def parse_uki_html(page_data: bytes, page_url: str):
     if calculated_total in total_candidates:
         published_total = calculated_total
     elif total_candidates:
-        # Fail closed rather than accepting a potentially wrong total.  Include
-        # candidates in the error to make future CMS changes diagnosable.
         raise RuntimeError(
             "宇城市HTMLの避難者数合計が一致しません: "
             f"parsed={calculated_total}, total_candidates={sorted(set(total_candidates))}, "
