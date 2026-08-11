@@ -7,7 +7,7 @@ import re
 from dataclasses import dataclass
 from typing import Any
 
-import fitz
+import pymupdf as fitz
 
 FACILITY_MARKERS = {"○", "〇", "△", "▲", "×", "✕", "-", "―"}
 
@@ -91,7 +91,6 @@ def detect_schema(matrix: list[list[Any]]) -> TableSchema:
     if len(sample) < 3 or not sample[0].isdigit():
         raise RuntimeError(f"八代市PDFの先頭データ行が不正です: {sample}")
 
-    # Verified layouts always place No. in column 0 and shelter name in column 1.
     name_index = 1
 
     marker_index = next(
@@ -114,12 +113,9 @@ def detect_schema(matrix: list[list[Any]]) -> TableSchema:
             evacuee_index = header_candidate
             method_parts.append("validated_header_evacuee")
         else:
-            # Last-resort support for the two verified layouts.
             evacuee_index = 6 if len(sample) >= 11 else 5
             method_parts.append("verified_layout_fallback")
 
-    # The historical table has an address in column 2; the current table does
-    # not.  The value itself is a more reliable detector than the merged header.
     address_index = 2 if sample[2].startswith("八代市") else None
     method_parts.append("address_value" if address_index is not None else "address_absent")
 
@@ -264,8 +260,6 @@ def parse_yatsushiro_pdf(
                     published_total = parse_integer(candidate)
 
     if published_total is None:
-        # The visual total row can fall just outside the table bounding box.
-        # Its first three numeric values are capacity, households and evacuees.
         total_match = re.search(
             r"合計\s+[\d,]+\s+[\d,]+\s+([\d,]+)",
             full_text,
