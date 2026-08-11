@@ -1,26 +1,36 @@
 warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
 Consider using the pymupdf_layout package for a greatly improved page layout analysis.
-INFO Uki source stability check: attempt=1/10: valid candidate waiting for second identical fetch observed=2026-08-10T22:00+09:00 hash=28fd03ac17ba
-No source change: 宇城市 observed=2026-08-10T22:00+09:00 hash=28fd03ac17ba
+INFO Uki source stability check: attempt=1/10: valid candidate waiting for second identical fetch observed=2026-08-11T22:00+09:00 hash=32eb82dec973
 {
-  "retrieved_at_jst": "2026-08-11T19:25:50+09:00",
+  "retrieved_at_jst": "2026-08-12T08:57:09+09:00",
   "status": "success",
   "source_changed": true,
   "changed_sources": [
     {
       "municipality": "八代市",
-      "source_observed_at_jst": "2026-08-11T12:00+09:00",
+      "source_observed_at_jst": "2026-08-12T06:00+09:00",
       "record_count": 38,
       "matched_count": 38,
       "issue_count": 0,
-      "published_total": 1963,
-      "calculated_total": 1963,
+      "published_total": 1849,
+      "calculated_total": 1849,
       "revision": 1,
-      "normalized_sha256": "53867293e3b625d329750a455c34e7649d359f3316c4975cc204072be00045f1"
+      "normalized_sha256": "e3fbd3bb2ac83186aec76b9a2b314ab8841261b8f844fa2edebd4fc444317164"
+    },
+    {
+      "municipality": "宇城市",
+      "source_observed_at_jst": "2026-08-11T22:00+09:00",
+      "record_count": 11,
+      "matched_count": 11,
+      "issue_count": 0,
+      "published_total": 659,
+      "calculated_total": 659,
+      "revision": 1,
+      "normalized_sha256": "32eb82dec973c322eb350190dd33534d5d7dc6679c3e9b789e738a61d318027f"
     }
   ],
-  "observation_row_count": 608,
-  "matched_observation_row_count": 608,
+  "observation_row_count": 657,
+  "matched_observation_row_count": 657,
   "unmatched_or_ambiguous_row_count": 0,
   "wide_row_count": 1448,
   "wide_date_columns": [
@@ -37,7 +47,8 @@ No source change: 宇城市 observed=2026-08-10T22:00+09:00 hash=28fd03ac17ba
     "2026-08-08",
     "2026-08-09",
     "2026-08-10",
-    "2026-08-11"
+    "2026-08-11",
+    "2026-08-12"
   ],
   "wide_fixed_columns": [
     "shelter_id",
