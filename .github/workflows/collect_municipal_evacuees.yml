@@ -1,7 +1,7 @@
 name: Collect municipal shelter evacuee counts
 
 on:
-  # GitHub Actions cron is UTC. Manual refresh trigger: 2026-08-11 12:38 JST.
+  # GitHub Actions cron is UTC.
   # 23:10 / 23:30 UTC correspond to 08:10 / 08:30 JST on the following day.
   # 09:30 UTC corresponds to 18:30 JST on the same day.
   schedule:
@@ -29,7 +29,7 @@ permissions:
 
 concurrency:
   group: kumamoto-municipal-evacuee-data-write
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   collect:
