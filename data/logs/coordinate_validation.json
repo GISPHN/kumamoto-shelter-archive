@@ -1,5 +1,5 @@
 {
-  "validated_at_jst": "2026-08-11T12:38:16+09:00",
+  "validated_at_jst": "2026-08-11T12:38:52+09:00",
   "status": "success",
   "coordinate_priority": [
     "gsi_reference",
@@ -23,13 +23,13 @@
     "manual_unique_ids_selected_count": 138,
     "manual_ids_not_selected_where_required_count": 0,
     "manual_ids_not_selected_where_required": [],
-    "manual_selection_occurrence_count": 3099
+    "manual_selection_occurrence_count": 3098
   },
   "validated_file_count": 48,
   "total_coordinate_source_counts": {
     "gsi_reference": 39729,
     "kumamoto_portal": 251,
-    "manual_geocoding": 3099
+    "manual_geocoding": 3098
   },
   "total_error_count": 0,
   "files": [
@@ -654,14 +654,13 @@
     {
       "file": "data/latest_capacity_matching_issues.csv",
       "validation_mode": "detailed_provenance",
-      "row_count": 162,
-      "shelter_row_count": 162,
-      "complete_coordinate_count": 162,
-      "manual_selection_count": 1,
+      "row_count": 161,
+      "shelter_row_count": 161,
+      "complete_coordinate_count": 161,
+      "manual_selection_count": 0,
       "error_count": 0,
       "coordinate_source_counts": {
-        "gsi_reference": 161,
-        "manual_geocoding": 1
+        "gsi_reference": 161
       },
       "error_examples": []
     },
