@@ -3,12 +3,27 @@
 
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
 import collect_municipal_evacuees as collector
 from municipal_evacuee_matcher import build_match_record
+from municipal_observation_guard import remove_impossible_future_rows
 from uki_evacuee_html import parse_uki_html
 from uki_source_fetcher import build_collect_uki
 from yatsushiro_evacuee_pdf import parse_yatsushiro_pdf
 from yatsushiro_source_fetcher import build_collect_yatsushiro
+
+
+def _argument_path(flag: str, default: str) -> Path:
+    try:
+        index = sys.argv.index(flag)
+    except ValueError:
+        return Path(default)
+    if index + 1 >= len(sys.argv):
+        return Path(default)
+    return Path(sys.argv[index + 1])
+
 
 original_match_record = collector.match_record
 collector.parse_yatsushiro_pdf = parse_yatsushiro_pdf
@@ -24,4 +39,9 @@ collector.collect_uki = build_collect_uki(
 collector.match_record = build_match_record(collector, original_match_record)
 
 if __name__ == "__main__":
+    observations_path = _argument_path(
+        "--observations-csv",
+        "data/municipal_evacuees/all_observations.csv",
+    )
+    remove_impossible_future_rows(observations_path)
     raise SystemExit(collector.main())
