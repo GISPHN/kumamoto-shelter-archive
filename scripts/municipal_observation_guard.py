@@ -7,15 +7,11 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 
-# Rows created by the 2026-08-11 parser bug that read an unrelated 22:00 text
-# from Uki City's page.  These exact timestamp/hash combinations are known to be
-# invalid and are removed deterministically during the next successful rebuild.
+# The only specifically verified bad observation created by the parser bug was
+# an impossible future timestamp on 2026-08-11.  The 2026-08-10 22:00 snapshot
+# is retained because the municipal server returned it consistently on repeated
+# fetches and it is not temporally impossible.
 _KNOWN_INVALID = {
-    (
-        "宇城市",
-        "2026-08-10T22:00+09:00",
-        "28fd03ac17baed625cfa1819a73e40a274715f6a04cdb9577e1adaecb09cb072",
-    ),
     (
         "宇城市",
         "2026-08-11T22:00+09:00",
