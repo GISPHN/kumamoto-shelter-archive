@@ -108,10 +108,10 @@ def parse_uki_html(page_data: bytes, page_url: str):
             continue
         joined = " ".join(cells)
         if re.search(r"合\s*計", joined):
-            # The total row currently contains household total followed by
-            # evacuee total.  Colspan/responsive markup can change the physical
-            # cell count, so use the numeric sequence within this row only.
-            # The last numeric value is the evacuee total by table semantics.
+            # Responsive/colspan markup may append additional numeric values to
+            # the total row. Preserve every numeric token and later identify the
+            # published evacuee total by agreement with the independently parsed
+            # shelter-row sum instead of relying on a physical cell position.
             values: list[int] = []
             for cell in cells:
                 values.extend(_numeric_tokens(cell))
@@ -139,13 +139,14 @@ def parse_uki_html(page_data: bytes, page_url: str):
             f"parsed={calculated_total}, rows={len(records)}"
         )
 
-    published_total = total_row_values[-1]
-    if calculated_total != published_total:
+    matching_totals = [value for value in total_row_values if value == calculated_total]
+    if not matching_totals:
         raise RuntimeError(
             "宇城市HTMLの避難者数合計が一致しません: "
-            f"parsed={calculated_total}, published={published_total}, "
-            f"total_row_values={total_row_values}, rows={len(records)}"
+            f"parsed={calculated_total}, total_row_values={total_row_values}, "
+            f"rows={len(records)}"
         )
+    published_total = matching_totals[0]
 
     return SourceSnapshot(
         municipality="宇城市",
