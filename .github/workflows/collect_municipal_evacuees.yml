@@ -14,6 +14,7 @@ on:
     paths:
       - scripts/collect_municipal_evacuees.py
       - scripts/municipal_evacuee_matcher.py
+      - scripts/municipal_observation_guard.py
       - scripts/run_municipal_evacuee_collection.py
       - scripts/yatsushiro_evacuee_pdf.py
       - scripts/yatsushiro_source_fetcher.py
@@ -58,6 +59,7 @@ jobs:
           python -m py_compile \
             scripts/collect_municipal_evacuees.py \
             scripts/municipal_evacuee_matcher.py \
+            scripts/municipal_observation_guard.py \
             scripts/run_municipal_evacuee_collection.py \
             scripts/yatsushiro_evacuee_pdf.py \
             scripts/yatsushiro_source_fetcher.py \
