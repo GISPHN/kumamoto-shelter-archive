@@ -1,15 +1,26 @@
 warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
 Consider using the pymupdf_layout package for a greatly improved page layout analysis.
 INFO Uki source stability check: attempt=1/10: valid candidate waiting for second identical fetch observed=2026-08-11T22:00+09:00 hash=32eb82dec973
-No source change: 八代市 observed=2026-08-12T06:00+09:00 hash=e3fbd3bb2ac8
 No source change: 宇城市 observed=2026-08-11T22:00+09:00 hash=32eb82dec973
 {
-  "retrieved_at_jst": "2026-08-12T09:05:42+09:00",
+  "retrieved_at_jst": "2026-08-12T19:35:19+09:00",
   "status": "success",
-  "source_changed": false,
-  "changed_sources": [],
-  "observation_row_count": 657,
-  "matched_observation_row_count": 657,
+  "source_changed": true,
+  "changed_sources": [
+    {
+      "municipality": "八代市",
+      "source_observed_at_jst": "2026-08-12T12:00+09:00",
+      "record_count": 38,
+      "matched_count": 38,
+      "issue_count": 0,
+      "published_total": 1852,
+      "calculated_total": 1852,
+      "revision": 1,
+      "normalized_sha256": "bb407e3a9d2a8846d26efc300d1bcd854d5c831e87365f068b54e2751605f3a8"
+    }
+  ],
+  "observation_row_count": 695,
+  "matched_observation_row_count": 695,
   "unmatched_or_ambiguous_row_count": 0,
   "wide_row_count": 1448,
   "wide_date_columns": [
