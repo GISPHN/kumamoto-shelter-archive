@@ -1,6 +1,7 @@
 municipality,source_shelter_name,source_address,shelter_id,note
 宇城市,三角防災拠点センター,三角町波多619番地,web:d86e52a30a796c564a94,宇城市HTMLの表記をWeb由来施設へ固定
 宇城市,不知火防災拠点センター,不知火町高良2273番地1,web:c49d287f125a11c54dcd,宇城市HTMLの表記をWeb由来施設へ固定
+宇城市,不知火体育館,不知火町高良2273番地1,web:73eaa7b5e800fbfeede6,自治体HTMLの同名施設を現在のWeb由来避難所レコードへ固定
 宇城市,不知火小学校 2F交流スペース,不知火町高良1952番地,web:f75ce692f58356ed71a7,全角空白と全角数字を正規化
 宇城市,松橋東防災拠点センター,松橋町豊福1786番地,web:87a410b68cfb404f6035,宇城市HTMLの表記をWeb由来施設へ固定
 宇城市,松橋西防災拠点センター,松橋町松橋564番地2,web:38cdaae343f39d2a3d4e,宇城市HTMLの表記をWeb由来施設へ固定
