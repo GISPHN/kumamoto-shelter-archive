@@ -7,4 +7,4 @@ Traceback (most recent call last):
                      ^^^^^^^^^^^^^^^^
   File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/collect_municipal_evacuees.py", line 824, in main
     raise RuntimeError(
-RuntimeError: 自治体避難者数の未一致・曖昧施設があります: 2件。matching_issues.csvを確認してください。
+RuntimeError: 自治体避難者数の未一致・曖昧施設があります: 1件。matching_issues.csvを確認してください。
