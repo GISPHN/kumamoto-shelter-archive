@@ -1,43 +1,52 @@
-"""Supplemental matching for municipal sources that omit shelter addresses."""
+"""Supplemental matching for municipal shelter evacuee sources."""
 
 from __future__ import annotations
 
 from collections.abc import Callable
+import re
 from typing import Any
 
 
 # PyMuPDF can extract the character 麦 from some embedded Japanese PDF fonts as
-# the CJK radical variant ⻨.  They are semantically the same in the affected
+# the CJK radical variant ⻨. They are semantically the same in the affected
 # Yatsushiro shelter names, but Unicode NFKC does not collapse this pair.
 _PDF_GLYPH_EQUIVALENTS = {
     "⻨": "麦",
 }
 
+# Municipal HTML may append temporary operational notes directly to a shelter
+# name, e.g. "不知火体育館 ※8/13木11時から開設".  These notes are valuable audit
+# information and therefore remain untouched in SourceRecord/output CSVs, but
+# they must not participate in facility identity matching.
+_OPERATIONAL_NOTE_RE = re.compile(r"\s*[※＊*]\s*.*$")
+
 
 def build_match_record(collector: Any, original: Callable[..., Any]) -> Callable[..., Any]:
-    """Wrap the standard matcher with conservative address-less rules.
+    """Wrap the standard matcher with conservative normalization rules.
 
-    Yatsushiro City's current PDF omits addresses.  When multiple rows share
-    the same normalized facility name, the wrapper uses stable portal-master
-    quality signals before considering daily opening state, because the daily
-    shelter workflow can itself be temporarily unavailable.
+    In addition to the standard matcher this wrapper:
+      * removes trailing temporary operational notes only for identity matching;
+      * normalizes known PDF glyph substitutions;
+      * resolves address-less Yatsushiro rows conservatively.
 
-    Acceptance order for address-less rows:
-      1. Existing manual aliases and any match already accepted by the standard
-         matcher.
-      2. One unique normalized facility-name match in the municipality.
-      3. One unique high-quality Web row among duplicate exact-name matches.
-         A high-quality Web row must have a ``web:`` shelter id, a positive
-         portal capacity, and a sufficiently specific address.
-      4. One unique open row among multiple exact-name candidates.
-      5. One unique ``web:`` row among the open exact-name candidates.
-
-    Any unresolved duplicate remains ambiguous; fuzzy name-only matching is
-    intentionally not introduced.
+    Source text itself is never rewritten in the audit observations.
     """
+
+    def identity_record(record: Any) -> Any:
+        source_name = collector.clean_text(record.shelter_name)
+        match_name = _OPERATIONAL_NOTE_RE.sub("", source_name).strip()
+        if match_name == source_name:
+            return record
+        return collector.SourceRecord(
+            record.municipality,
+            match_name,
+            record.address,
+            record.evacuee_count,
+        )
 
     def canonical_name_variants(value: object) -> set[str]:
         text = collector.clean_text(value)
+        text = _OPERATIONAL_NOTE_RE.sub("", text).strip()
         for extracted, canonical in _PDF_GLYPH_EQUIVALENTS.items():
             text = text.replace(extracted, canonical)
         return collector.name_variants(text)
@@ -51,9 +60,8 @@ def build_match_record(collector: Any, original: Callable[..., Any]) -> Callable
 
     def has_specific_address(row: dict[str, str]) -> bool:
         normalized = collector.normalize_address(row.get("address", ""))
-        # Municipality-only placeholders such as "熊本県八代市" normalize to
-        # an empty string.  A short but non-empty token is still treated
-        # cautiously; verified shelter addresses contain substantially more.
+        # Municipality-only placeholders normalize to an empty or very short
+        # value. Verified shelter addresses contain substantially more detail.
         return len(normalized) >= 5
 
     def match_record(
@@ -62,20 +70,23 @@ def build_match_record(collector: Any, original: Callable[..., Any]) -> Callable
         aliases: dict[tuple[str, str, str], str],
         observation_date: str,
     ) -> Any:
-        standard = original(record, status_rows, aliases, observation_date)
+        matched_record = identity_record(record)
+        standard = original(matched_record, status_rows, aliases, observation_date)
         if standard.status == "matched":
             return standard
 
-        source_address = collector.normalize_address(record.address)
+        source_address = collector.normalize_address(matched_record.address)
         if source_address:
+            # For address-bearing sources the standard matcher is deliberately
+            # authoritative. Do not add looser name-only fallback matching.
             return standard
 
         pool = [
             row
             for row in status_rows
-            if collector.clean_text(row.get("municipality")) == record.municipality
+            if collector.clean_text(row.get("municipality")) == matched_record.municipality
         ]
-        source_names = canonical_name_variants(record.shelter_name)
+        source_names = canonical_name_variants(matched_record.shelter_name)
         exact_name = [
             row
             for row in pool
@@ -83,7 +94,7 @@ def build_match_record(collector: Any, original: Callable[..., Any]) -> Callable
         ]
         ranked = sorted(
             (
-                (collector.similarity(record, row, observation_date), row)
+                (collector.similarity(matched_record, row, observation_date), row)
                 for row in exact_name
             ),
             key=lambda item: (
@@ -103,10 +114,6 @@ def build_match_record(collector: Any, original: Callable[..., Any]) -> Callable
             )
 
         if len(ranked) > 1:
-            # Prefer the portal-backed row that has enough independent master
-            # attributes to disambiguate the duplicate.  This resolves cases
-            # such as a real facility row versus a municipality-only duplicate,
-            # and a GSI reference row versus its Web counterpart.
             high_quality_web = [
                 item
                 for item in ranked
