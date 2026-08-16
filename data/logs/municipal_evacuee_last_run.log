@@ -3,24 +3,24 @@ Consider using the pymupdf_layout package for a greatly improved page layout ana
 INFO Uki source stability check: attempt=1/10: valid candidate waiting for second identical fetch observed=2026-08-15T22:00+09:00 hash=be62ad15f84b
 No source change: 宇城市 observed=2026-08-15T22:00+09:00 hash=be62ad15f84b
 {
-  "retrieved_at_jst": "2026-08-16T18:51:43+09:00",
+  "retrieved_at_jst": "2026-08-17T08:32:58+09:00",
   "status": "success",
   "source_changed": true,
   "changed_sources": [
     {
       "municipality": "八代市",
-      "source_observed_at_jst": "2026-08-16T12:00+09:00",
+      "source_observed_at_jst": "2026-08-17T06:00+09:00",
       "record_count": 38,
       "matched_count": 38,
       "issue_count": 0,
-      "published_total": 1746,
-      "calculated_total": 1746,
+      "published_total": 1699,
+      "calculated_total": 1699,
       "revision": 1,
-      "normalized_sha256": "b573a4ab3ba23005d96b2b65f4b63d7cb3997e0b29d73cc219fd867db6f3f7d8"
+      "normalized_sha256": "2fb2f3183996ac349b8ad3d9d6659557162251380aa36da4062cb8db9d53bc58"
     }
   ],
-  "observation_row_count": 991,
-  "matched_observation_row_count": 991,
+  "observation_row_count": 1029,
+  "matched_observation_row_count": 1029,
   "unmatched_or_ambiguous_row_count": 0,
   "wide_row_count": 1449,
   "wide_date_columns": [
@@ -42,7 +42,8 @@ No source change: 宇城市 observed=2026-08-15T22:00+09:00 hash=be62ad15f84b
     "2026-08-13",
     "2026-08-14",
     "2026-08-15",
-    "2026-08-16"
+    "2026-08-16",
+    "2026-08-17"
   ],
   "wide_fixed_columns": [
     "shelter_id",
