@@ -1,12 +1,24 @@
 {
-  "retrieved_at_jst": "2026-08-17T19:05:48+09:00",
+  "retrieved_at_jst": "2026-08-18T08:34:26+09:00",
   "status": "success",
-  "source_changed": false,
-  "changed_sources": [],
-  "observation_row_count": 1038,
-  "matched_observation_row_count": 1038,
+  "source_changed": true,
+  "changed_sources": [
+    {
+      "municipality": "八代市",
+      "source_observed_at_jst": "2026-08-18T06:00+09:00",
+      "record_count": 38,
+      "matched_count": 38,
+      "issue_count": 0,
+      "published_total": 1666,
+      "calculated_total": 1666,
+      "revision": 1,
+      "normalized_sha256": "a3b86974be0f2a980be403e1ba0c5e5eb2fd5e29d89d1f5f775fb0c91c0ed0b0"
+    }
+  ],
+  "observation_row_count": 1076,
+  "matched_observation_row_count": 1076,
   "unmatched_or_ambiguous_row_count": 0,
-  "wide_row_count": 1449,
+  "wide_row_count": 1454,
   "wide_date_columns": [
     "2026-07-29",
     "2026-07-30",
@@ -27,7 +39,8 @@
     "2026-08-14",
     "2026-08-15",
     "2026-08-16",
-    "2026-08-17"
+    "2026-08-17",
+    "2026-08-18"
   ],
   "wide_fixed_columns": [
     "shelter_id",
