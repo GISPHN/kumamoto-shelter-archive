@@ -1,33 +1,22 @@
 {
-  "retrieved_at_jst": "2026-08-18T18:58:36+09:00",
+  "retrieved_at_jst": "2026-08-19T08:34:15+09:00",
   "status": "success",
   "source_changed": true,
   "changed_sources": [
     {
       "municipality": "八代市",
-      "source_observed_at_jst": "2026-08-18T12:00+09:00",
+      "source_observed_at_jst": "2026-08-19T06:00+09:00",
       "record_count": 38,
       "matched_count": 38,
       "issue_count": 0,
-      "published_total": 1648,
-      "calculated_total": 1648,
+      "published_total": 1637,
+      "calculated_total": 1637,
       "revision": 1,
-      "normalized_sha256": "50ca192e64da9a026210bcdfb25304fcec6e68a0a232962da201e0b4c4863c3b"
-    },
-    {
-      "municipality": "宇城市",
-      "source_observed_at_jst": "2026-08-17T22:00+09:00",
-      "record_count": 9,
-      "matched_count": 9,
-      "issue_count": 0,
-      "published_total": 676,
-      "calculated_total": 676,
-      "revision": 1,
-      "normalized_sha256": "ec6f907aa5e2a82c5aaca3c8aadc14b6d9d3f3f3c1779ee248d05c926dcb4cfd"
+      "normalized_sha256": "2f78a3831504116bfcdf4a0412067f347eb98b50b4529b52b348d632b454ed7c"
     }
   ],
-  "observation_row_count": 1123,
-  "matched_observation_row_count": 1123,
+  "observation_row_count": 1161,
+  "matched_observation_row_count": 1161,
   "unmatched_or_ambiguous_row_count": 0,
   "wide_row_count": 1454,
   "wide_date_columns": [
@@ -51,7 +40,8 @@
     "2026-08-15",
     "2026-08-16",
     "2026-08-17",
-    "2026-08-18"
+    "2026-08-18",
+    "2026-08-19"
   ],
   "wide_fixed_columns": [
     "shelter_id",
