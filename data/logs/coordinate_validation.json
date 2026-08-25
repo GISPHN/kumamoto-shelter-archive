@@ -1,5 +1,5 @@
 {
-  "validated_at_jst": "2026-08-25T00:54:30+09:00",
+  "validated_at_jst": "2026-08-25T11:41:25+09:00",
   "status": "success",
   "coordinate_priority": [
     "gsi_reference",
@@ -23,13 +23,13 @@
     "manual_unique_ids_selected_count": 138,
     "manual_ids_not_selected_where_required_count": 0,
     "manual_ids_not_selected_where_required": [],
-    "manual_selection_occurrence_count": 4568
+    "manual_selection_occurrence_count": 4567
   },
   "validated_file_count": 87,
   "total_coordinate_source_counts": {
     "gsi_reference": 73649,
     "kumamoto_portal": 496,
-    "manual_geocoding": 4568
+    "manual_geocoding": 4567
   },
   "total_error_count": 0,
   "files": [
@@ -776,14 +776,14 @@
     {
       "file": "data/changes/2026/08/2026-08-25.csv",
       "validation_mode": "detailed_provenance",
-      "row_count": 4,
-      "shelter_row_count": 4,
-      "complete_coordinate_count": 4,
-      "manual_selection_count": 2,
+      "row_count": 3,
+      "shelter_row_count": 3,
+      "complete_coordinate_count": 3,
+      "manual_selection_count": 1,
       "error_count": 0,
       "coordinate_source_counts": {
         "gsi_reference": 2,
-        "manual_geocoding": 2
+        "manual_geocoding": 1
       },
       "error_examples": []
     },
@@ -1181,14 +1181,14 @@
     {
       "file": "data/latest_changes.csv",
       "validation_mode": "detailed_provenance",
-      "row_count": 4,
-      "shelter_row_count": 4,
-      "complete_coordinate_count": 4,
-      "manual_selection_count": 2,
+      "row_count": 3,
+      "shelter_row_count": 3,
+      "complete_coordinate_count": 3,
+      "manual_selection_count": 1,
       "error_count": 0,
       "coordinate_source_counts": {
         "gsi_reference": 2,
-        "manual_geocoding": 2
+        "manual_geocoding": 1
       },
       "error_examples": []
     },
@@ -1209,13 +1209,14 @@
     {
       "file": "data/latest_capacity_matching_issues.csv",
       "validation_mode": "detailed_provenance",
-      "row_count": 165,
-      "shelter_row_count": 165,
-      "complete_coordinate_count": 165,
-      "manual_selection_count": 0,
+      "row_count": 166,
+      "shelter_row_count": 166,
+      "complete_coordinate_count": 166,
+      "manual_selection_count": 1,
       "error_count": 0,
       "coordinate_source_counts": {
-        "gsi_reference": 165
+        "gsi_reference": 165,
+        "manual_geocoding": 1
       },
       "error_examples": []
     },
