@@ -1,5 +1,5 @@
 === Environment ===
-2026-08-25T15:54:35+00:00
+2026-08-26T16:32:19+00:00
 Python 3.12.14
 === Install Python dependencies ===
 Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages (26.2.1)
@@ -45,38 +45,37 @@ Successfully installed PyMuPDF-1.28.2 beautifulsoup4-4.15.0 greenlet-3.5.5 inico
 Installing dependencies...
 Switching to root user to install dependencies...
 Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+Get:6 https://packages.microsoft.com/repos/azure-cli noble InRelease [3564 B]
 Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
-Hit:6 https://packages.microsoft.com/repos/azure-cli noble InRelease
 Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+Get:8 https://dl.google.com/linux/chrome-stable/deb stable InRelease [2548 B]
 Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
 Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
 Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
-Get:8 https://dl.google.com/linux/chrome-stable/deb stable InRelease [2548 B]
-Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [365 kB]
-Get:10 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [412 kB]
-Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1229 kB]
-Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [286 kB]
-Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [181 kB]
-Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1687 kB]
-Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [337 kB]
-Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [388 kB]
-Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1486 kB]
-Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [339 kB]
-Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en [12.8 kB]
+Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [375 kB]
+Get:10 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [422 kB]
+Get:11 https://dl.google.com/linux/chrome-stable/deb stable/main amd64 Packages [1410 B]
+Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1229 kB]
+Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [286 kB]
+Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [181 kB]
+Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1689 kB]
+Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [338 kB]
+Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [388 kB]
+Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1486 kB]
+Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [339 kB]
 Get:20 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
-Get:21 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [5760 B]
+Get:21 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [5748 B]
 Get:22 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [12.6 kB]
-Get:23 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [969 kB]
+Get:23 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [971 kB]
 Get:24 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [206 kB]
 Get:25 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [46.4 kB]
-Get:26 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1202 kB]
+Get:26 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1203 kB]
 Get:27 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [240 kB]
-Get:32 https://dl.google.com/linux/chrome-stable/deb stable/main amd64 Packages [1418 B]
 Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [76.3 kB]
-Get:29 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1388 kB]
-Get:30 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [320 kB]
+Get:29 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1392 kB]
+Get:30 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [321 kB]
 Get:31 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Translation-en [11.1 kB]
-Fetched 11.6 MB in 2s (7694 kB/s)
+Fetched 11.6 MB in 1s (7863 kB/s)
 Reading package lists...
 Reading package lists...
 Building dependency tree...
@@ -139,7 +138,7 @@ The following NEW packages will be installed:
   fonts-freefont-ttf fonts-ipafont-gothic fonts-tlwg-loma-otf fonts-unifont
   fonts-wqy-zenhei xfonts-cyrillic xfonts-encodings xfonts-scalable
   xfonts-utils
-0 upgraded, 9 newly installed, 0 to remove and 29 not upgraded.
+0 upgraded, 9 newly installed, 0 to remove and 25 not upgraded.
 Need to get 21.1 MB of archives.
 After this operation, 79.5 MB of additional disk space will be used.
 Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
@@ -152,9 +151,9 @@ Get:7 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings a
 Get:8 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3 [94.4 kB]
 Get:9 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1 [384 kB]
 Get:10 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3 [304 kB]
-Fetched 21.1 MB in 0s (43.4 MB/s)
+Fetched 21.1 MB in 0s (45.6 MB/s)
 Selecting previously unselected package fonts-ipafont-gothic.
-(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 203124 files and directories currently installed.)
+(Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 203385 files and directories currently installed.)
 Preparing to unpack .../0-fonts-ipafont-gothic_00303-21ubuntu1_all.deb ...
 Unpacking fonts-ipafont-gothic (00303-21ubuntu1) ...
 Selecting previously unselected package fonts-freefont-ttf.
@@ -247,7 +246,7 @@ Chrome Headless Shell 151.0.7922.34 (playwright chromium-headless-shell v1234) d
 Reference CSV is not stored in the repository; downloading the official file.
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 10  151k   10 15786    0     0  21094      0  0:00:07 --:--:--  0:00:07 21076100  151k  100  151k    0     0   146k      0  0:00:01  0:00:01 --:--:--  146k
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 72  151k   72  109k    0     0  95866      0  0:00:01  0:00:01 --:--:-- 95871100  151k  100  151k    0     0   129k      0  0:00:01  0:00:01 --:--:--  129k
 Validated reference CSV: 1321 rows
 === Apply portal compatibility patches ===
 /home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/apply_dgrid_patch.py:102: SyntaxWarning: invalid escape sequence '\s'
@@ -266,1442 +265,366 @@ Reference matcher loaded: 1321 rows
 Manual geocoding loaded: 138 rows
 === Collect rendered shelter table ===
 Dojo shelter view rendered on attempt 1.
-Rendered extraction: mode=dom; all_selected=False; headers=['市町村', '避難所名', '開設状況', '混雑状況', '住所', 'ルート検索']; rows=66; dgrid_meta={"ariaRowCount": "", "clientHeight": 430, "renderedRowCount": 144, "rootClass": "dgrid dgrid-grid ui-widget idis-IdisGrid", "rootId": "dgrid_0", "rowIdCount": 66, "scrollHeight": 54662, "scrolled": true, "scrollerClass": "dgrid-scroller"}
-Full snapshot: reference_groups=1306, opened_web_rows=66, extra_web_rows=43, total=1349
+Rendered extraction: mode=dom; all_selected=False; headers=['市町村', '避難所名', '開設状況', '混雑状況', '住所', 'ルート検索']; rows=63; dgrid_meta={"ariaRowCount": "", "clientHeight": 430, "renderedRowCount": 145, "rootClass": "dgrid dgrid-grid ui-widget idis-IdisGrid", "rootId": "dgrid_0", "rowIdCount": 63, "scrollHeight": 54687, "scrolled": true, "scrollerClass": "dgrid-scroller"}
+Full snapshot: reference_groups=1306, opened_web_rows=63, extra_web_rows=42, total=1348
 {
-  "snapshot_date": "2026-08-26",
-  "records": 1349,
-  "open": 66,
-  "closed_or_inactive": 1283,
+  "snapshot_date": "2026-08-27",
+  "records": 1348,
+  "open": 63,
+  "closed_or_inactive": 1285,
   "unknown": 0,
-  "changes": 2,
+  "changes": 8,
   "reference_matched": 1291,
   "reference_matched_multiple": 15,
   "reference_ambiguous": 0,
-  "reference_unmatched": 43,
-  "reference_match_rate": 0.968125,
-  "matching_issues_csv": "data/matching_issues/2026/08/2026-08-26.csv",
-  "daily_csv": "data/daily/2026/08/2026-08-26.csv",
-  "changes_csv": "data/changes/2026/08/2026-08-26.csv",
-  "source_updated_at": "26/08/26 00:55時点の避難所状況の一覧です。",
+  "reference_unmatched": 42,
+  "reference_match_rate": 0.968843,
+  "matching_issues_csv": "data/matching_issues/2026/08/2026-08-27.csv",
+  "daily_csv": "data/daily/2026/08/2026-08-27.csv",
+  "changes_csv": "data/changes/2026/08/2026-08-27.csv",
+  "source_updated_at": "26/08/27 01:33時点の避難所状況の一覧です。",
   "all_shelters_click_attempted": true
 }
 === Enrich capacity and complete coordinates ===
-Enrichment: data/daily/2026/08/2026-08-26.csv capacity=1183/1349 coordinates=1349/1349
-Enrichment: data/changes/2026/08/2026-08-26.csv capacity=2/2 coordinates=2/2
-Enrichment: data/matching_issues/2026/08/2026-08-26.csv capacity=42/43 coordinates=43/43
-Enrichment: data/latest.csv capacity=1183/1349 coordinates=1349/1349
-Enrichment: data/latest_open.csv capacity=67/67 coordinates=67/67
-Enrichment: data/latest_changes.csv capacity=2/2 coordinates=2/2
-Enrichment: data/latest_matching_issues.csv capacity=42/43 coordinates=43/43
-Capacity matching issues: 166 rows -> data/latest_capacity_matching_issues.csv
-Capacity master rows=2125; manual geocoding rows=138; capacity matches=2521/2855; complete coordinates=2855/2855
+Enrichment: data/daily/2026/08/2026-08-27.csv capacity=1181/1348 coordinates=1347/1348
+Enrichment: data/changes/2026/08/2026-08-27.csv capacity=7/8 coordinates=7/8
+Enrichment: data/matching_issues/2026/08/2026-08-27.csv capacity=40/42 coordinates=41/42
+Enrichment: data/latest.csv capacity=1181/1348 coordinates=1347/1348
+Enrichment: data/latest_open.csv capacity=66/66 coordinates=66/66
+Enrichment: data/latest_changes.csv capacity=7/8 coordinates=7/8
+Enrichment: data/latest_matching_issues.csv capacity=40/42 coordinates=41/42
+Capacity matching issues: 167 rows -> data/latest_capacity_matching_issues.csv
+Capacity master rows=2125; manual geocoding rows=138; capacity matches=2522/2862; complete coordinates=2856/2862
 === Build wide daily time-series CSVs ===
-既存履歴を保持して時系列を更新します: file=status_by_date.csv, preserved_cells=37804, refresh_date=-, new_dates=['2026-08-26']
-既存履歴を保持して時系列を更新します: file=open_status_by_date.csv, preserved_cells=37804, refresh_date=-, new_dates=['2026-08-26']
-既存履歴を保持して時系列を更新します: file=congestion_by_date.csv, preserved_cells=37804, refresh_date=-, new_dates=['2026-08-26']
-status_by_date.csvの列構成を検証しました: 固定属性=11列、日付=27列、施設=1454件
-横持ち時系列CSVを更新しました: 生成施設数=1453, status施設数=1454, 日数=27, 開始日=2026-07-29, 終了日=2026-08-26
+既存履歴を保持して時系列を更新します: file=status_by_date.csv, preserved_cells=39258, refresh_date=-, new_dates=['2026-08-27']
+既存履歴を保持して時系列を更新します: file=open_status_by_date.csv, preserved_cells=39258, refresh_date=-, new_dates=['2026-08-27']
+既存履歴を保持して時系列を更新します: file=congestion_by_date.csv, preserved_cells=39258, refresh_date=-, new_dates=['2026-08-27']
+status_by_date.csvの列構成を検証しました: 固定属性=11列、日付=28列、施設=1455件
+横持ち時系列CSVを更新しました: 生成施設数=1454, status施設数=1455, 日数=28, 開始日=2026-07-29, 終了日=2026-08-27
 === Export current opened shelters for review ===
-Exported current opened shelters: 66 rows
+Exported current opened shelters: 63 rows
 === Validate capacity and coordinate coverage ===
-{
-  "validated_at_jst": "2026-08-26T00:56:50+09:00",
-  "status": "success",
-  "master": {
-    "row_count": 2125,
-    "unique_portal_shelter_id_count": 2125,
-    "municipality_count": 45,
-    "positive_capacity_count": 1620,
-    "capacity_parse_status_counts": {
-      "missing": 105,
-      "missing_zero": 400,
-      "parsed": 1620
-    },
-    "metadata_response_sha256": "22af2291f30f3bcdc22858570987240f2a08bf2edb50c3f53168b34612fca856",
-    "metadata_acquired_at_jst": "2026-08-01T00:28:20+09:00",
-    "metadata_record_count": 2125
-  },
-  "latest": {
-    "row_count": 1349,
-    "capacity_match_status_counts": {
-      "ambiguous": 12,
-      "matched": 1183,
-      "unmatched": 154
-    },
-    "capacity_match_method_counts": {
-      "coordinate_high_similarity_200m": 2,
-      "coordinate_name_address_75m": 42,
-      "coordinate_near_tie": 11,
-      "coordinate_with_name_20m": 48,
-      "duplicate_exact_key": 1,
-      "exact_municipality_name_address": 917,
-      "exact_name_municipality_address_similar": 172,
-      "fuzzy_below_threshold": 28,
-      "high_confidence_fuzzy": 2,
-      "no_candidate": 126
-    },
-    "matched_row_count": 1183,
-    "matched_with_positive_capacity_count": 967,
-    "matched_with_source_coordinates_count": 1183,
-    "complete_unified_coordinate_count": 1349,
-    "unknown_master_id_count": 0,
-    "capacity_mismatch_count": 0
-  },
-  "open_status_by_date": {
-    "row_count": 1454,
-    "capacity_match_status_counts": {
-      "ambiguous": 11,
-      "matched": 1290,
-      "unmatched": 153
-    },
-    "capacity_match_method_counts": {
-      "coordinate_near_tie": 11,
-      "coordinate_with_name_20m": 2,
-      "exact_municipality_name_address": 3,
-      "fuzzy_below_threshold": 27,
-      "no_candidate": 126,
-      "portal_shelter_id": 1285
-    },
-    "matched_row_count": 1290,
-    "matched_with_positive_capacity_count": 1049,
-    "matched_with_source_coordinates_count": 1290,
-    "complete_unified_coordinate_count": 1454,
-    "unknown_master_id_count": 0,
-    "capacity_mismatch_count": 0
-  },
-  "status_by_date": {
-    "row_count": 1454,
-    "fixed_column_count": 11,
-    "date_column_count": 27,
-    "first_date": "2026-07-29",
-    "last_date": "2026-08-26",
-    "complete_unified_coordinate_count": 1454,
-    "fixed_attribute_mismatch_count": 0,
-    "invalid_status_value_count": 0
-  }
-}
-{
-  "validated_at_jst": "2026-08-26T00:56:53+09:00",
-  "status": "success",
-  "coordinate_priority": [
-    "gsi_reference",
-    "manual_geocoding",
-    "kumamoto_portal"
-  ],
-  "manual_geocoding": {
-    "record_count": 138,
-    "unique_shelter_id_count": 138,
-    "loaded_files": [
-      "reference/manual_geocoding/manual_geocoding_part_01.csv",
-      "reference/manual_geocoding/manual_geocoding_part_02.csv",
-      "reference/manual_geocoding/manual_geocoding_part_03.csv",
-      "reference/manual_geocoding/manual_geocoding_part_04.csv",
-      "reference/manual_geocoding/manual_geocoding_part_05.csv",
-      "reference/manual_geocoding/manual_geocoding_part_06.csv"
-    ],
-    "manual_ids_not_present_in_outputs_count": 0,
-    "manual_ids_not_present_in_outputs": [],
-    "manual_ids_requiring_selection_count": 138,
-    "manual_unique_ids_selected_count": 138,
-    "manual_ids_not_selected_where_required_count": 0,
-    "manual_ids_not_selected_where_required": [],
-    "manual_selection_occurrence_count": 4677
-  },
-  "validated_file_count": 90,
-  "total_coordinate_source_counts": {
-    "gsi_reference": 76262,
-    "kumamoto_portal": 514,
-    "manual_geocoding": 4677
-  },
-  "total_error_count": 0,
-  "files": [
-    {
-      "file": "data/daily/2026/07/2026-07-29.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1314,
-      "shelter_row_count": 1314,
-      "complete_coordinate_count": 1314,
-      "manual_selection_count": 14,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1300,
-        "manual_geocoding": 14
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/daily/2026/07/2026-07-30.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1436,
-      "shelter_row_count": 1436,
-      "complete_coordinate_count": 1436,
-      "manual_selection_count": 136,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1300,
-        "manual_geocoding": 136
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/daily/2026/07/2026-07-31.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1430,
-      "shelter_row_count": 1430,
-      "complete_coordinate_count": 1430,
-      "manual_selection_count": 130,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1300,
-        "manual_geocoding": 130
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/daily/2026/08/2026-08-01.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1387,
-      "shelter_row_count": 1387,
-      "complete_coordinate_count": 1387,
-      "manual_selection_count": 81,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1300,
-        "kumamoto_portal": 6,
-        "manual_geocoding": 81
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/daily/2026/08/2026-08-02.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1382,
-      "shelter_row_count": 1382,
-      "complete_coordinate_count": 1382,
-      "manual_selection_count": 76,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1300,
-        "kumamoto_portal": 6,
-        "manual_geocoding": 76
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/daily/2026/08/2026-08-03.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1359,
-      "shelter_row_count": 1359,
-      "complete_coordinate_count": 1359,
-      "manual_selection_count": 53,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1300,
-        "kumamoto_portal": 6,
-        "manual_geocoding": 53
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/daily/2026/08/2026-08-04.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1359,
-      "shelter_row_count": 1359,
-      "complete_coordinate_count": 1359,
-      "manual_selection_count": 51,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1301,
-        "kumamoto_portal": 7,
-        "manual_geocoding": 51
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/daily/2026/08/2026-08-05.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1356,
-      "shelter_row_count": 1356,
-      "complete_coordinate_count": 1356,
-      "manual_selection_count": 48,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1301,
-        "kumamoto_portal": 7,
-        "manual_geocoding": 48
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/daily/2026/08/2026-08-06.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1355,
-      "shelter_row_count": 1355,
-      "complete_coordinate_count": 1355,
-      "manual_selection_count": 47,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1301,
-        "kumamoto_portal": 7,
-        "manual_geocoding": 47
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/daily/2026/08/2026-08-08.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1351,
-      "shelter_row_count": 1351,
-      "complete_coordinate_count": 1351,
-      "manual_selection_count": 44,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1301,
-        "kumamoto_portal": 6,
-        "manual_geocoding": 44
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/daily/2026/08/2026-08-09.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1351,
-      "shelter_row_count": 1351,
-      "complete_coordinate_count": 1351,
-      "manual_selection_count": 44,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1301,
-        "kumamoto_portal": 6,
-        "manual_geocoding": 44
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/daily/2026/08/2026-08-10.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1349,
-      "shelter_row_count": 1349,
-      "complete_coordinate_count": 1349,
-      "manual_selection_count": 41,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1301,
-        "kumamoto_portal": 7,
-        "manual_geocoding": 41
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/daily/2026/08/2026-08-11.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1348,
-      "shelter_row_count": 1348,
-      "complete_coordinate_count": 1348,
-      "manual_selection_count": 40,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1301,
-        "kumamoto_portal": 7,
-        "manual_geocoding": 40
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/daily/2026/08/2026-08-12.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1346,
-      "shelter_row_count": 1346,
-      "complete_coordinate_count": 1346,
-      "manual_selection_count": 38,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1301,
-        "kumamoto_portal": 7,
-        "manual_geocoding": 38
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/daily/2026/08/2026-08-13.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1346,
-      "shelter_row_count": 1346,
-      "complete_coordinate_count": 1346,
-      "manual_selection_count": 38,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1301,
-        "kumamoto_portal": 7,
-        "manual_geocoding": 38
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/daily/2026/08/2026-08-14.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1346,
-      "shelter_row_count": 1346,
-      "complete_coordinate_count": 1346,
-      "manual_selection_count": 38,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1301,
-        "kumamoto_portal": 7,
-        "manual_geocoding": 38
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/daily/2026/08/2026-08-15.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1345,
-      "shelter_row_count": 1345,
-      "complete_coordinate_count": 1345,
-      "manual_selection_count": 38,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1301,
-        "kumamoto_portal": 6,
-        "manual_geocoding": 38
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/daily/2026/08/2026-08-16.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1345,
-      "shelter_row_count": 1345,
-      "complete_coordinate_count": 1345,
-      "manual_selection_count": 38,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1301,
-        "kumamoto_portal": 6,
-        "manual_geocoding": 38
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/daily/2026/08/2026-08-17.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1344,
-      "shelter_row_count": 1344,
-      "complete_coordinate_count": 1344,
-      "manual_selection_count": 37,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1301,
-        "kumamoto_portal": 6,
-        "manual_geocoding": 37
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/daily/2026/08/2026-08-18.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1349,
-      "shelter_row_count": 1349,
-      "complete_coordinate_count": 1349,
-      "manual_selection_count": 37,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1306,
-        "kumamoto_portal": 6,
-        "manual_geocoding": 37
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/daily/2026/08/2026-08-19.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1349,
-      "shelter_row_count": 1349,
-      "complete_coordinate_count": 1349,
-      "manual_selection_count": 37,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1306,
-        "kumamoto_portal": 6,
-        "manual_geocoding": 37
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/daily/2026/08/2026-08-21.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1349,
-      "shelter_row_count": 1349,
-      "complete_coordinate_count": 1349,
-      "manual_selection_count": 37,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1306,
-        "kumamoto_portal": 6,
-        "manual_geocoding": 37
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/daily/2026/08/2026-08-22.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1349,
-      "shelter_row_count": 1349,
-      "complete_coordinate_count": 1349,
-      "manual_selection_count": 37,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1306,
-        "kumamoto_portal": 6,
-        "manual_geocoding": 37
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/daily/2026/08/2026-08-23.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1349,
-      "shelter_row_count": 1349,
-      "complete_coordinate_count": 1349,
-      "manual_selection_count": 37,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1306,
-        "kumamoto_portal": 6,
-        "manual_geocoding": 37
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/daily/2026/08/2026-08-24.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1349,
-      "shelter_row_count": 1349,
-      "complete_coordinate_count": 1349,
-      "manual_selection_count": 37,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1306,
-        "kumamoto_portal": 6,
-        "manual_geocoding": 37
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/daily/2026/08/2026-08-25.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1349,
-      "shelter_row_count": 1349,
-      "complete_coordinate_count": 1349,
-      "manual_selection_count": 37,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1306,
-        "kumamoto_portal": 6,
-        "manual_geocoding": 37
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/daily/2026/08/2026-08-26.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1349,
-      "shelter_row_count": 1349,
-      "complete_coordinate_count": 1349,
-      "manual_selection_count": 37,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1306,
-        "kumamoto_portal": 6,
-        "manual_geocoding": 37
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/changes/2026/07/2026-07-29.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1314,
-      "shelter_row_count": 1314,
-      "complete_coordinate_count": 1314,
-      "manual_selection_count": 14,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1300,
-        "manual_geocoding": 14
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/changes/2026/07/2026-07-30.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 345,
-      "shelter_row_count": 345,
-      "complete_coordinate_count": 345,
-      "manual_selection_count": 122,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 223,
-        "manual_geocoding": 122
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/changes/2026/07/2026-07-31.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 44,
-      "shelter_row_count": 44,
-      "complete_coordinate_count": 44,
-      "manual_selection_count": 18,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 26,
-        "manual_geocoding": 18
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/changes/2026/08/2026-08-01.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 188,
-      "shelter_row_count": 188,
-      "complete_coordinate_count": 188,
-      "manual_selection_count": 55,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 127,
-        "kumamoto_portal": 6,
-        "manual_geocoding": 55
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/changes/2026/08/2026-08-02.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 32,
-      "shelter_row_count": 32,
-      "complete_coordinate_count": 32,
-      "manual_selection_count": 11,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 19,
-        "kumamoto_portal": 2,
-        "manual_geocoding": 11
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/changes/2026/08/2026-08-03.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 40,
-      "shelter_row_count": 40,
-      "complete_coordinate_count": 40,
-      "manual_selection_count": 26,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 12,
-        "kumamoto_portal": 2,
-        "manual_geocoding": 26
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/changes/2026/08/2026-08-04.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 32,
-      "shelter_row_count": 32,
-      "complete_coordinate_count": 32,
-      "manual_selection_count": 3,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 28,
-        "kumamoto_portal": 1,
-        "manual_geocoding": 3
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/changes/2026/08/2026-08-05.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 22,
-      "shelter_row_count": 22,
-      "complete_coordinate_count": 22,
-      "manual_selection_count": 8,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 13,
-        "kumamoto_portal": 1,
-        "manual_geocoding": 8
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/changes/2026/08/2026-08-06.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 9,
-      "shelter_row_count": 9,
-      "complete_coordinate_count": 9,
-      "manual_selection_count": 4,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 4,
-        "kumamoto_portal": 1,
-        "manual_geocoding": 4
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/changes/2026/08/2026-08-08.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 19,
-      "shelter_row_count": 19,
-      "complete_coordinate_count": 19,
-      "manual_selection_count": 6,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 11,
-        "kumamoto_portal": 2,
-        "manual_geocoding": 6
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/changes/2026/08/2026-08-09.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1,
-      "shelter_row_count": 1,
-      "complete_coordinate_count": 1,
-      "manual_selection_count": 0,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/changes/2026/08/2026-08-10.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 25,
-      "shelter_row_count": 25,
-      "complete_coordinate_count": 25,
-      "manual_selection_count": 4,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 19,
-        "kumamoto_portal": 2,
-        "manual_geocoding": 4
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/changes/2026/08/2026-08-11.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 20,
-      "shelter_row_count": 20,
-      "complete_coordinate_count": 20,
-      "manual_selection_count": 8,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 12,
-        "manual_geocoding": 8
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/changes/2026/08/2026-08-12.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 10,
-      "shelter_row_count": 10,
-      "complete_coordinate_count": 10,
-      "manual_selection_count": 3,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 7,
-        "manual_geocoding": 3
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/changes/2026/08/2026-08-13.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 3,
-      "shelter_row_count": 3,
-      "complete_coordinate_count": 3,
-      "manual_selection_count": 3,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "manual_geocoding": 3
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/changes/2026/08/2026-08-14.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 2,
-      "shelter_row_count": 2,
-      "complete_coordinate_count": 2,
-      "manual_selection_count": 2,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "manual_geocoding": 2
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/changes/2026/08/2026-08-15.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 6,
-      "shelter_row_count": 6,
-      "complete_coordinate_count": 6,
-      "manual_selection_count": 3,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "kumamoto_portal": 3,
-        "manual_geocoding": 3
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/changes/2026/08/2026-08-16.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 5,
-      "shelter_row_count": 5,
-      "complete_coordinate_count": 5,
-      "manual_selection_count": 2,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 3,
-        "manual_geocoding": 2
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/changes/2026/08/2026-08-17.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 12,
-      "shelter_row_count": 12,
-      "complete_coordinate_count": 12,
-      "manual_selection_count": 4,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 8,
-        "manual_geocoding": 4
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/changes/2026/08/2026-08-18.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 7,
-      "shelter_row_count": 7,
-      "complete_coordinate_count": 7,
-      "manual_selection_count": 2,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 5,
-        "manual_geocoding": 2
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/changes/2026/08/2026-08-19.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1,
-      "shelter_row_count": 1,
-      "complete_coordinate_count": 1,
-      "manual_selection_count": 0,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/changes/2026/08/2026-08-21.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 4,
-      "shelter_row_count": 4,
-      "complete_coordinate_count": 4,
-      "manual_selection_count": 2,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 2,
-        "manual_geocoding": 2
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/changes/2026/08/2026-08-22.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 3,
-      "shelter_row_count": 3,
-      "complete_coordinate_count": 3,
-      "manual_selection_count": 0,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 3
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/changes/2026/08/2026-08-23.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 4,
-      "shelter_row_count": 4,
-      "complete_coordinate_count": 4,
-      "manual_selection_count": 2,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 2,
-        "manual_geocoding": 2
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/changes/2026/08/2026-08-24.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 4,
-      "shelter_row_count": 4,
-      "complete_coordinate_count": 4,
-      "manual_selection_count": 2,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 2,
-        "manual_geocoding": 2
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/changes/2026/08/2026-08-25.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 3,
-      "shelter_row_count": 3,
-      "complete_coordinate_count": 3,
-      "manual_selection_count": 1,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 2,
-        "manual_geocoding": 1
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/changes/2026/08/2026-08-26.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 2,
-      "shelter_row_count": 2,
-      "complete_coordinate_count": 2,
-      "manual_selection_count": 0,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 2
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/matching_issues/2026/07/2026-07-29.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 14,
-      "shelter_row_count": 14,
-      "complete_coordinate_count": 14,
-      "manual_selection_count": 14,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "manual_geocoding": 14
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/matching_issues/2026/07/2026-07-30.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 136,
-      "shelter_row_count": 136,
-      "complete_coordinate_count": 136,
-      "manual_selection_count": 136,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "manual_geocoding": 136
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/matching_issues/2026/07/2026-07-31.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 130,
-      "shelter_row_count": 130,
-      "complete_coordinate_count": 130,
-      "manual_selection_count": 130,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "manual_geocoding": 130
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-01.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 87,
-      "shelter_row_count": 87,
-      "complete_coordinate_count": 87,
-      "manual_selection_count": 81,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "kumamoto_portal": 6,
-        "manual_geocoding": 81
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-02.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 82,
-      "shelter_row_count": 82,
-      "complete_coordinate_count": 82,
-      "manual_selection_count": 76,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "kumamoto_portal": 6,
-        "manual_geocoding": 76
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-03.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 59,
-      "shelter_row_count": 59,
-      "complete_coordinate_count": 59,
-      "manual_selection_count": 53,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "kumamoto_portal": 6,
-        "manual_geocoding": 53
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-04.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 58,
-      "shelter_row_count": 58,
-      "complete_coordinate_count": 58,
-      "manual_selection_count": 51,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "kumamoto_portal": 7,
-        "manual_geocoding": 51
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-05.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 55,
-      "shelter_row_count": 55,
-      "complete_coordinate_count": 55,
-      "manual_selection_count": 48,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "kumamoto_portal": 7,
-        "manual_geocoding": 48
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-06.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 54,
-      "shelter_row_count": 54,
-      "complete_coordinate_count": 54,
-      "manual_selection_count": 47,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "kumamoto_portal": 7,
-        "manual_geocoding": 47
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-08.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 50,
-      "shelter_row_count": 50,
-      "complete_coordinate_count": 50,
-      "manual_selection_count": 44,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "kumamoto_portal": 6,
-        "manual_geocoding": 44
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-09.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 50,
-      "shelter_row_count": 50,
-      "complete_coordinate_count": 50,
-      "manual_selection_count": 44,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "kumamoto_portal": 6,
-        "manual_geocoding": 44
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-10.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 48,
-      "shelter_row_count": 48,
-      "complete_coordinate_count": 48,
-      "manual_selection_count": 41,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "kumamoto_portal": 7,
-        "manual_geocoding": 41
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-11.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 47,
-      "shelter_row_count": 47,
-      "complete_coordinate_count": 47,
-      "manual_selection_count": 40,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "kumamoto_portal": 7,
-        "manual_geocoding": 40
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-12.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 45,
-      "shelter_row_count": 45,
-      "complete_coordinate_count": 45,
-      "manual_selection_count": 38,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "kumamoto_portal": 7,
-        "manual_geocoding": 38
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-13.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 45,
-      "shelter_row_count": 45,
-      "complete_coordinate_count": 45,
-      "manual_selection_count": 38,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "kumamoto_portal": 7,
-        "manual_geocoding": 38
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-14.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 45,
-      "shelter_row_count": 45,
-      "complete_coordinate_count": 45,
-      "manual_selection_count": 38,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "kumamoto_portal": 7,
-        "manual_geocoding": 38
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-15.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 44,
-      "shelter_row_count": 44,
-      "complete_coordinate_count": 44,
-      "manual_selection_count": 38,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "kumamoto_portal": 6,
-        "manual_geocoding": 38
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-16.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 44,
-      "shelter_row_count": 44,
-      "complete_coordinate_count": 44,
-      "manual_selection_count": 38,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "kumamoto_portal": 6,
-        "manual_geocoding": 38
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-17.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 43,
-      "shelter_row_count": 43,
-      "complete_coordinate_count": 43,
-      "manual_selection_count": 37,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "kumamoto_portal": 6,
-        "manual_geocoding": 37
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-18.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 43,
-      "shelter_row_count": 43,
-      "complete_coordinate_count": 43,
-      "manual_selection_count": 37,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "kumamoto_portal": 6,
-        "manual_geocoding": 37
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-19.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 43,
-      "shelter_row_count": 43,
-      "complete_coordinate_count": 43,
-      "manual_selection_count": 37,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "kumamoto_portal": 6,
-        "manual_geocoding": 37
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-21.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 43,
-      "shelter_row_count": 43,
-      "complete_coordinate_count": 43,
-      "manual_selection_count": 37,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "kumamoto_portal": 6,
-        "manual_geocoding": 37
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-22.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 43,
-      "shelter_row_count": 43,
-      "complete_coordinate_count": 43,
-      "manual_selection_count": 37,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "kumamoto_portal": 6,
-        "manual_geocoding": 37
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-23.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 43,
-      "shelter_row_count": 43,
-      "complete_coordinate_count": 43,
-      "manual_selection_count": 37,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "kumamoto_portal": 6,
-        "manual_geocoding": 37
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-24.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 43,
-      "shelter_row_count": 43,
-      "complete_coordinate_count": 43,
-      "manual_selection_count": 37,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "kumamoto_portal": 6,
-        "manual_geocoding": 37
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-25.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 43,
-      "shelter_row_count": 43,
-      "complete_coordinate_count": 43,
-      "manual_selection_count": 37,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "kumamoto_portal": 6,
-        "manual_geocoding": 37
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-26.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 43,
-      "shelter_row_count": 43,
-      "complete_coordinate_count": 43,
-      "manual_selection_count": 37,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "kumamoto_portal": 6,
-        "manual_geocoding": 37
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/latest.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1349,
-      "shelter_row_count": 1349,
-      "complete_coordinate_count": 1349,
-      "manual_selection_count": 37,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1306,
-        "kumamoto_portal": 6,
-        "manual_geocoding": 37
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/latest_open.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 66,
-      "shelter_row_count": 66,
-      "complete_coordinate_count": 66,
-      "manual_selection_count": 37,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 23,
-        "kumamoto_portal": 6,
-        "manual_geocoding": 37
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/latest_changes.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 2,
-      "shelter_row_count": 2,
-      "complete_coordinate_count": 2,
-      "manual_selection_count": 0,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 2
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/latest_matching_issues.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 43,
-      "shelter_row_count": 43,
-      "complete_coordinate_count": 43,
-      "manual_selection_count": 37,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "kumamoto_portal": 6,
-        "manual_geocoding": 37
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/latest_capacity_matching_issues.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 166,
-      "shelter_row_count": 166,
-      "complete_coordinate_count": 166,
-      "manual_selection_count": 1,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 165,
-        "manual_geocoding": 1
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/all_snapshots.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 36641,
-      "shelter_row_count": 36641,
-      "complete_coordinate_count": 36641,
-      "manual_selection_count": 1328,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 35161,
-        "kumamoto_portal": 152,
-        "manual_geocoding": 1328
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/status_by_date.csv",
-      "validation_mode": "compact_unified_coordinates",
-      "row_count": 1454,
-      "shelter_row_count": 1454,
-      "complete_coordinate_count": 1454,
-      "manual_selection_count": 0,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "inherited_from_open_status_by_date": 1454
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/open_status_by_date.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1454,
-      "shelter_row_count": 1454,
-      "complete_coordinate_count": 1454,
-      "manual_selection_count": 138,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1306,
-        "kumamoto_portal": 10,
-        "manual_geocoding": 138
-      },
-      "error_examples": []
-    },
-    {
-      "file": "data/congestion_by_date.csv",
-      "validation_mode": "detailed_provenance",
-      "row_count": 1454,
-      "shelter_row_count": 1454,
-      "complete_coordinate_count": 1454,
-      "manual_selection_count": 138,
-      "error_count": 0,
-      "coordinate_source_counts": {
-        "gsi_reference": 1306,
-        "kumamoto_portal": 10,
-        "manual_geocoding": 138
-      },
-      "error_examples": []
-    }
-  ],
-  "error_examples": []
-}
+Traceback (most recent call last):
+  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/validate_capacity_outputs.py", line 397, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/validate_capacity_outputs.py", line 353, in main
+    latest_report = validate_detailed_enriched_rows(
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/validate_capacity_outputs.py", line 146, in validate_detailed_enriched_rows
+    require(
+  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/validate_capacity_outputs.py", line 53, in require
+    raise RuntimeError(message)
+RuntimeError: latest.csv contains incomplete or invalid coordinates: ['web:b40327fcf4cb85a88b87']
+=== Rendered HTML diagnostics ===
+html_bytes=560896
+table_count=148
+table[0] rows=1 max_columns=2
+  row[0]=['熊本県', '']
+table[1] rows=1 max_columns=6
+  row[0]=['市町村', '避難所名', '開設状況', '混雑状況', '住所', 'ルート検索']
+table[2] rows=1 max_columns=6
+  row[0]=['水上村', '舟石公民分館', '---', '---', '水上村大字湯山2435-74', '検索']
+table[3] rows=1 max_columns=6
+  row[0]=['水上村', '高澄公民分館', '---', '---', '水上村大字湯山1167-96', '検索']
+table[4] rows=1 max_columns=6
+  row[0]=['水上村', '本野公民分館', '---', '---', '水上村大字湯山1122-53', '検索']
+table[5] rows=1 max_columns=6
+  row[0]=['水上村', '湯山小学校', '---', '---', '水上村大字湯山412', '検索']
+table[6] rows=1 max_columns=6
+  row[0]=['水上村', '湯山運動広場', '---', '---', '水上村大字湯山2266', '検索']
+table[7] rows=1 max_columns=6
+  row[0]=['相良村', '相良北小学校体育館', '---', '---', '相良村大字四浦東2449', '検索']
+table[8] rows=1 max_columns=6
+  row[0]=['相良村', '相良村林業総合センター', '---', '---', '相良村大字四浦東2076', '検索']
+table[9] rows=1 max_columns=6
+  row[0]=['相良村', '上四浦集落センター', '---', '---', '相良村大字四浦西4449-25', '検索']
+table[10] rows=1 max_columns=6
+  row[0]=['相良村', '川辺構造改善センター', '---', '---', '相良村大字川辺2491', '検索']
+table[11] rows=1 max_columns=6
+  row[0]=['相良村', '松馬場集落センター', '---', '---', '相良村大字川辺1920', '検索']
+table[12] rows=1 max_columns=6
+  row[0]=['相良村', '相良村総合体育館', '---', '---', '相良村大字深水2493-1', '検索']
+table[13] rows=1 max_columns=6
+  row[0]=['相良村', '柳瀬構造改善センター', '---', '---', '相良村大字柳瀬377', '検索']
+table[14] rows=1 max_columns=6
+  row[0]=['五木村', '宮園体育館', '---', '---', '熊本県五木村甲5667番地', '検索']
+table[15] rows=1 max_columns=6
+  row[0]=['五木村', '五木村社協介護サービスセンター', '---', '---', '五木村甲字下手2672-41', '検索']
+table[16] rows=1 max_columns=6
+  row[0]=['五木村', '小規模多機能ホーム 五木の友', '---', '---', '五木村甲字宮園5670', '検索']
+table[17] rows=1 max_columns=6
+  row[0]=['五木村', '南地区集会室', '---', '---', '五木村甲字野々脇458-2', '検索']
+table[18] rows=1 max_columns=6
+  row[0]=['五木村', '瀬目地区集会所', '---', '---', '五木村甲字南瀬目234-2', '検索']
+table[19] rows=1 max_columns=6
+  row[0]=['五木村', '葛の八重地区集会所', '---', '---', '五木村甲字葛の八重746', '検索']
+table[20] rows=1 max_columns=6
+  row[0]=['五木村', '下谷集会所', '---', '---', '五木村甲字下谷地内', '検索']
+table[21] rows=1 max_columns=6
+  row[0]=['五木村', '伝統文化伝承館', '---', '---', '五木村甲字田口2997-21', '検索']
+table[22] rows=1 max_columns=6
+  row[0]=['五木村', '西地区集会室', '---', '---', '五木村丙字小鶴321-1', '検索']
+table[23] rows=1 max_columns=6
+  row[0]=['五木村', '中村地区集会所', '---', '---', '五木村乙字中村1629', '検索']
+table[24] rows=1 max_columns=6
+  row[0]=['五木村', '山口集会所', '---', '---', '五木村乙字山口地内', '検索']
+table[25] rows=1 max_columns=6
+  row[0]=['五木村', '日添集会所', '---', '---', '五木村丙字古山口地内', '検索']
+table[26] rows=1 max_columns=6
+  row[0]=['五木村', '日当集会所', '---', '---', '五木村丙字古山口地内', '検索']
+table[27] rows=1 max_columns=6
+  row[0]=['五木村', '端海野ハウス', '---', '---', '五木村乙字上小鶴1561-24', '検索']
+table[28] rows=1 max_columns=6
+  row[0]=['五木村', '三浦地区集会室', '---', '---', '五木村甲字嶽4797-6', '検索']
+table[29] rows=1 max_columns=6
+  row[0]=['五木村', '入鴨集会所', '---', '---', '五木村甲字嶽地内', '検索']
+table[30] rows=1 max_columns=6
+  row[0]=['五木村', '梶原集会所', '---', '---', '五木村甲字梶原地内', '検索']
+table[31] rows=1 max_columns=6
+  row[0]=['五木村', '下梶原集会所', '---', '---', '五木村甲字下梶原地内', '検索']
+table[32] rows=1 max_columns=6
+  row[0]=['五木村', '竹の川集会所', '---', '---', '五木村甲字竹の川地内', '検索']
+table[33] rows=1 max_columns=6
+  row[0]=['五木村', '宮園交流館', '---', '---', '五木村甲字宮園5670', '検索']
+table[34] rows=1 max_columns=6
+  row[0]=['五木村', '栗鶴集会所', '---', '---', '五木村甲字栗鶴地内', '検索']
+table[35] rows=1 max_columns=6
+  row[0]=['五木村', '宮園憩いの家', '---', '---', '五木村甲字北西谷6900-2', '検索']
+table[36] rows=1 max_columns=6
+  row[0]=['五木村', '八重集会所', '---', '---', '五木村甲字八重地内', '検索']
+table[37] rows=1 max_columns=6
+  row[0]=['五木村', '五木東小学校体育館', '---', '---', '五木村甲字松本3374-51', '検索']
+table[38] rows=1 max_columns=6
+  row[0]=['五木村', '林業センター体育館', '---', '---', '五木村乙字高野665-35', '検索']
+table[39] rows=1 max_columns=6
+  row[0]=['五木村', '小鶴体育館', '---', '---', '五木村丙字小鶴321-2', '検索']
+table[40] rows=1 max_columns=6
+  row[0]=['五木村', '三浦体育館', '---', '---', '五木村甲字嶽4797-3', '検索']
+table[41] rows=1 max_columns=6
+  row[0]=['五木村', '下梶原体育館', '---', '---', '五木村甲字下梶原4263-10', '検索']
+table[42] rows=1 max_columns=6
+  row[0]=['山江村', '福祉保健センター 健康の駅', '---', '---', '山江村大字山田甲1373-1', '検索']
+table[43] rows=1 max_columns=6
+  row[0]=['山江村', '万江体育館', '---', '---', '山江村大字万江甲９１２-１', '検索']
+table[44] rows=1 max_columns=6
+  row[0]=['山江村', '介護老人保健施設つつじのさと', '---', '---', '山江村大字山田乙1705', '検索']
+table[45] rows=1 max_columns=6
+  row[0]=['山江村', '合戦峰公民館', '---', '---', '山江村大字山田乙2851', '検索']
+table[46] rows=1 max_columns=6
+  row[0]=['山江村', '秋丸地区農業構造改善センター', '---', '---', '山江村大字山田乙2403', '検索']
+table[47] rows=1 max_columns=6
+  row[0]=['山江村', '寺山公民館', '---', '---', '山江村大字山田甲2733-35', '検索']
+table[48] rows=1 max_columns=6
+  row[0]=['山江村', '山江村体育館', '---', '---', '山江村大字山田甲1353-1', '検索']
+table[49] rows=1 max_columns=6
+  row[0]=['山江村', '山江村農村環境改善センター', '---', '---', '山江村大字山田甲1356-1', '検索']
+table[50] rows=1 max_columns=6
+  row[0]=['山江村', '山江中学校武道館', '---', '---', '山江村大字山田丁23-3', '検索']
+table[51] rows=1 max_columns=6
+  row[0]=['山江村', '一丸公民館', '---', '---', '山江村大字山田丁472-1', '検索']
+table[52] rows=1 max_columns=6
+  row[0]=['山江村', '山江中学校体育館', '---', '---', '山江村大字山田丁60', '検索']
+table[53] rows=1 max_columns=6
+  row[0]=['山江村', '小山田公民館', '---', '---', '山江村大字山田乙690', '検索']
+table[54] rows=1 max_columns=6
+  row[0]=['山江村', '北永シ切集会所', '---', '---', '山江村大字山田乙1728-17', '検索']
+table[55] rows=1 max_columns=6
+  row[0]=['山江村', '山田小学校体育館', '---', '---', '山江村大字山田乙2030', '検索']
+table[56] rows=1 max_columns=6
+  row[0]=['山江村', '第９区公民館', '---', '---', '山江村大字山田丙2396-2', '検索']
+table[57] rows=1 max_columns=6
+  row[0]=['山江村', '湯の原自治会館', '---', '---', '山江村大字山田丙1078', '検索']
+table[58] rows=1 max_columns=6
+  row[0]=['球磨村', 'エスペランサ桜峯集会所（さくらドーム及び周辺施設）', '---', '---', '球磨村大字渡乙８６８番地１', '検索']
+table[59] rows=1 max_columns=6
+  row[0]=['球磨村', '球磨清流学園南屋内運動場', '---', '---', '球磨村大字一勝地丙１８１', '検索']
+table[60] rows=1 max_columns=6
+  row[0]=['球磨村', '田舎の体験交流館さんがうら', '---', '---', '球磨村大字三ケ浦乙２４５－５', '検索']
+table[61] rows=1 max_columns=6
+  row[0]=['球磨村', 'コミュニティセンターたかさわ', '---', '---', '球磨村大字神瀬丁５４８－２', '検索']
+table[62] rows=1 max_columns=6
+  row[0]=['球磨村', '球磨村高齢者生活福祉センターせせらぎ', '---', '---', '球磨村大字一勝地乙１－５', '検索']
+table[63] rows=1 max_columns=6
+  row[0]=['球磨村', 'コミュニティセンターこうのせ', '---', '---', '球磨村大字神瀬甲１１９９番地２', '検索']
+table[64] rows=1 max_columns=6
+  row[0]=['球磨村', '峯公民館', '---', '---', '球磨村大字渡乙９９６', '検索']
+table[65] rows=1 max_columns=6
+  row[0]=['球磨村', '渡保育園', '---', '---', '球磨村大字渡乙７６３', '検索']
+table[66] rows=1 max_columns=6
+  row[0]=['球磨村', '水篠公民館', '---', '---', '球磨村大字渡乙３１６４－１', '検索']
+table[67] rows=1 max_columns=6
+  row[0]=['球磨村', '小川公民館', '---', '---', '球磨村大字渡乙２５９５', '検索']
+table[68] rows=1 max_columns=6
+  row[0]=['球磨村', '馬場公民館', '---', '---', '球磨村大字渡丙２４１－１', '検索']
+table[69] rows=1 max_columns=6
+  row[0]=['球磨村', '大無田林業総合センター', '---', '---', '球磨村大字三ケ浦乙１２４５', '検索']
+table[70] rows=1 max_columns=6
+  row[0]=['球磨村', '岡公民館（椎葉）', '---', '---', '球磨村大字渡丙１３２３－１', '検索']
+table[71] rows=1 max_columns=6
+  row[0]=['球磨村', '岡公民館（久保）', '---', '---', '球磨村大字渡丙６３０', '検索']
+table[72] rows=1 max_columns=6
+  row[0]=['球磨村', '吐合公民館', '---', '---', '球磨村大字一勝地乙７３９－１', '検索']
+table[73] rows=1 max_columns=6
+  row[0]=['球磨村', '中津公民館', '---', '---', '球磨村大字一勝地甲１２４８', '検索']
+table[74] rows=1 max_columns=6
+  row[0]=['球磨村', '日隠公民館', '---', '---', '球磨村大字一勝地乙５８１－５', '検索']
+table[75] rows=1 max_columns=6
+  row[0]=['球磨村', '岳本公民館', '---', '---', '球磨村大字一勝地乙１３８９－１', '検索']
+table[76] rows=1 max_columns=6
+  row[0]=['球磨村', '告公民館', '---', '---', '球磨村大字一勝地丁１２４２－１', '検索']
+table[77] rows=1 max_columns=6
+  row[0]=['球磨村', '松谷公民館', '---', '---', '球磨村大字三ケ浦乙６２３－２', '検索']
+table[78] rows=1 max_columns=6
+  row[0]=['球磨村', '茂田公民館', '---', '---', '球磨村大字一勝地甲１７４７', '検索']
+table[79] rows=1 max_columns=6
+  row[0]=['球磨村', '遠原公民館', '---', '---', '球磨村大字一勝地甲１９３３－１３', '検索']
+table[80] rows=1 max_columns=6
+  row[0]=['球磨村', '大瀬公民館', '---', '---', '球磨村大字大瀬１７８', '検索']
+table[81] rows=1 max_columns=6
+  row[0]=['あさぎり町', '岡原保健センター', '---', '---', '熊本県あさぎり町', '検索']
+table[82] rows=1 max_columns=6
+  row[0]=['あさぎり町', '須恵文化ホール', '---', '---', '熊本県あさぎり町須恵', '検索']
+table[83] rows=1 max_columns=6
+  row[0]=['あさぎり町', '上小学校', '---', '---', 'あさぎり町上南2370', '検索']
+table[84] rows=1 max_columns=6
+  row[0]=['あさぎり町', 'あさぎり中学校', '---', '---', 'あさぎり町上北2144', '検索']
+table[85] rows=1 max_columns=6
+  row[0]=['あさぎり町', '上総合運動公園(体育館・武道場含む)', '---', '---', 'あさぎり町上東1282', '検索']
+table[86] rows=1 max_columns=6
+  row[0]=['あさぎり町', 'あさぎり町ヘルシーランド', '---', '---', 'あさぎり町上北1874', '検索']
+table[87] rows=1 max_columns=6
+  row[0]=['あさぎり町', '旧皆越分校', '---', '---', 'あさぎり町皆越307', '検索']
+table[88] rows=1 max_columns=6
+  row[0]=['あさぎり町', '総合福祉センター', '---', '---', 'あさぎり町免田東1190-2', '検索']
+table[89] rows=1 max_columns=6
+  row[0]=['あさぎり町', '免田小学校', '---', '---', 'あさぎり町免田東1719', '検索']
+table[90] rows=1 max_columns=6
+  row[0]=['あさぎり町', '免田地区体育施設体育館及び武道場(旧免田中学校)', '---', '---', 'あさぎり町免田東1774', '検索']
+table[91] rows=1 max_columns=6
+  row[0]=['あさぎり町', 'ポッポー館', '---', '---', 'あさぎり町免田東1482-2', '検索']
+table[92] rows=1 max_columns=6
+  row[0]=['あさぎり町', '免田総合体育センターグラウンド', '---', '---', 'あさぎり町免田東1989-3', '検索']
+table[93] rows=1 max_columns=6
+  row[0]=['あさぎり町', '県立南稜高等学校', '---', '---', 'あさぎり町上北310', '検索']
+table[94] rows=1 max_columns=6
+  row[0]=['あさぎり町', '岡原かえで館', '---', '---', 'あさぎり町岡原北929', '検索']
+table[95] rows=1 max_columns=6
+  row[0]=['あさぎり町', '岡原小学校', '---', '---', 'あさぎり町岡原北1313', '検索']
+table[96] rows=1 max_columns=6
+  row[0]=['あさぎり町', 'もみじ館', '---', '---', 'あさぎり町岡原北904', '検索']
+table[97] rows=1 max_columns=6
+  row[0]=['あさぎり町', '福留コミュニティ消防センター', '---', '---', 'あさぎり町岡原南1167', '検索']
+table[98] rows=1 max_columns=6
+  row[0]=['あさぎり町', '岡原総合運動公園', '---', '---', 'あさぎり町岡原南2236-13', '検索']
+table[99] rows=1 max_columns=6
+  row[0]=['あさぎり町', 'やったろ館', '---', '---', 'あさぎり町岡原南1654-1', '検索']
+table[100] rows=1 max_columns=6
+  row[0]=['あさぎり町', '須恵文化ホール（大ホールは除く）', '---', '---', 'あさぎり町須恵1227', '検索']
+table[101] rows=1 max_columns=6
+  row[0]=['あさぎり町', '須恵小学校', '---', '---', 'あさぎり町須恵1230', '検索']
+table[102] rows=1 max_columns=6
+  row[0]=['あさぎり町', 'せきれい館', '---', '---', 'あさぎり町深田西955-1', '検索']
+table[103] rows=1 max_columns=6
+  row[0]=['あさぎり町', '深田小学校', '---', '---', 'あさぎり町深田東787', '検索']
+table[104] rows=1 max_columns=6
+  row[0]=['あさぎり町', '高山総合運動公園（体育館含む）', '---', '---', 'あさぎり町深田東1404', '検索']
+table[105] rows=1 max_columns=6
+  row[0]=['あさぎり町', '旧深田中学校グラウンド', '---', '---', 'あさぎり町深田東2070', '検索']
+table[106] rows=1 max_columns=6
+  row[0]=['あさぎり町', 'あさぎり町定住促進センター', '---', '---', 'あさぎり町深田東1430', '検索']
+table[107] rows=1 max_columns=6
+  row[0]=['あさぎり町', '白寿荘', '---', '---', '熊本県あさぎり町上北1880', '検索']
+table[108] rows=1 max_columns=6
+  row[0]=['苓北町', '坂瀬川集会所', '---', '---', '苓北町坂瀬川3756', '検索']
+table[109] rows=1 max_columns=6
+  row[0]=['苓北町', '坂瀬川公民館', '---', '---', '苓北町坂瀬川2600', '検索']
+table[110] rows=1 max_columns=6
+  row[0]=['苓北町', '坂瀬川小学校体育館', '---', '---', '苓北町坂瀬川83', '検索']
+table[111] rows=1 max_columns=6
+  row[0]=['苓北町', '苓北町坂瀬川体育館', '---', '---', '苓北町坂瀬川2600', '検索']
+table[112] rows=1 max_columns=6
+  row[0]=['苓北町', '坂瀬川総合グラウンド', '---', '---', '苓北町坂瀬川2871', '検索']
+table[113] rows=1 max_columns=6
+  row[0]=['苓北町', '大師山', '---', '---', '苓北町坂瀬川3859･3862', '検索']
+table[114] rows=1 max_columns=6
+  row[0]=['苓北町', '上津深江集会所', '---', '---', '苓北町上津深江1186', '検索']
+table[115] rows=1 max_columns=6
+  row[0]=['苓北町', '天神山', '---', '---', '苓北町上津深江1175-1', '検索']
+table[116] rows=1 max_columns=6
+  row[0]=['苓北町', '西日本プラント苓北寮', '---', '---', '苓北町上津深江4452他', '検索']
+table[117] rows=1 max_columns=6
+  row[0]=['苓北町', '上津深江広域避難地', '---', '---', '苓北町上津深江101-1他', '検索']
+table[118] rows=1 max_columns=6
+  row[0]=['苓北町', '町民総合センタ－', '---', '---', '苓北町志岐1220-2', '検索']
+table[119] rows=1 max_columns=6
+  row[0]=['苓北町', '志岐小学校体育館', '---', '---', '苓北町志岐410', '検索']
+table[120] rows=1 max_columns=6
+  row[0]=['苓北町', '苓北中学校体育館', '---', '---', '苓北町志岐294-4', '検索']
+table[121] rows=1 max_columns=6
+  row[0]=['苓北町', '苓北町役場', '---', '---', '苓北町志岐660', '検索']
+table[122] rows=1 max_columns=6
+  row[0]=['苓北町', '苓北町志岐集会所', '---', '---', '苓北町志岐４４４－１', '検索']
+table[123] rows=1 max_columns=6
+  row[0]=['苓北町', '志岐城趾', '---', '---', '苓北町志岐1441他', '検索']
+table[124] rows=1 max_columns=6
+  row[0]=['苓北町', '農構センタ－', '---', '---', '苓北町志岐1010', '検索']
+table[125] rows=1 max_columns=6
+  row[0]=['苓北町', '温泉センタ－', '---', '---', '苓北町志岐1281', '検索']
+table[126] rows=1 max_columns=6
+  row[0]=['苓北町', '総合武道館', '---', '---', '苓北町志岐1183', '検索']
+table[127] rows=1 max_columns=6
+  row[0]=['苓北町', '体育センタ－', '---', '---', '苓北町志岐1220-2', '検索']
+table[128] rows=1 max_columns=6
+  row[0]=['苓北町', '国照寺', '---', '---', '苓北町志岐1360-1･1360-2', '検索']
+table[129] rows=1 max_columns=6
+  row[0]=['苓北町', '明神山地区避難所', '---', '---', '苓北町志岐32-1', '検索']
+table[130] rows=1 max_columns=6
+  row[0]=['苓北町', '紺屋町地区避難所', '---', '---', '苓北町志岐65･66-1', '検索']
+table[131] rows=1 max_columns=6
+  row[0]=['苓北町', '円通寺', '---', '---', '苓北町白木尾6-1', '検索']
+table[132] rows=1 max_columns=6
+  row[0]=['苓北町', '富岡公民館', '---', '---', '苓北町富岡2910', '検索']
+table[133] rows=1 max_columns=6
+  row[0]=['苓北町', '富岡小学校体育館', '---', '---', '苓北町富岡2480', '検索']
+table[134] rows=1 max_columns=6
+  row[0]=['苓北町', '天草拓心高校マリン校舎体育館', '---', '---', '苓北町富岡3757', '検索']
+table[135] rows=1 max_columns=6
+  row[0]=['苓北町', '瑞林寺', '---', '---', '苓北町富岡3170･3171', '検索']
+table[136] rows=1 max_columns=6
+  row[0]=['苓北町', '富岡城趾', '---', '---', '苓北町富岡2245-15他', '検索']
+table[137] rows=1 max_columns=6
+  row[0]=['苓北町', '鎮道寺', '---', '---', '苓北町富岡2452-1･2454-2', '検索']
+table[138] rows=1 max_columns=6
+  row[0]=['苓北町', '富岡温泉ホテル跡', '---', '---', '苓北町富岡2381他', '検索']
+table[139] rows=1 max_columns=6
+  row[0]=['苓北町', '富岡地区避難地', '---', '---', '苓北町富岡2930', '検索']
+table[140] rows=1 max_columns=6
+  row[0]=['苓北町', '苓北町拠点避難地', '---', '---', '苓北町1143-1他', '検索']
+table[141] rows=1 max_columns=6
+  row[0]=['苓北町', '都呂々公民館', '---', '---', '苓北町都呂々114', '検索']
+table[142] rows=1 max_columns=6
+  row[0]=['苓北町', '都呂々小学校体育館', '---', '---', '苓北町都呂々1245-1', '検索']
+table[143] rows=1 max_columns=6
+  row[0]=['苓北町', '苓北町都呂々体育館（ペット専用避難所）', '---', '---', '苓北町都呂々1245-1', '検索']
+table[144] rows=1 max_columns=6
+  row[0]=['苓北町', '木場地区交流施設', '---', '---', '苓北町都呂々6118-2', '検索']
+table[145] rows=1 max_columns=6
+  row[0]=['苓北町', '木場集会所', '---', '---', '苓北町都呂々5153-2', '検索']
+table[146] rows=1 max_columns=6
+  row[0]=['苓北町', '都呂々神社', '---', '---', '苓北町都呂々888', '検索']
+table[147] rows=1 max_columns=2
+  row[0]=['Language', '']
+keyword[全ての避難所] count=1
+  context=app_map_MobileLayerSelector_0"><div class="label"><span>避難情報</span><ul><li class="button is-shown" data-idis-layer-id="15">開設済みの避難所</li><li class="button " data-idis-layer-id="14">全ての避難所</li></ul><div class="layer-annotation">※常に有効。地図側で市町村を選択時にマーカーが表示されます。</div></div><div class="label"><span>通行規制情報</span><ul><li class="button " data-idis-layer-id="99">現在の道路通行規制情報</li></ul></div><div class="label"><span>浸水想定区域</span><ul><li
+keyword[すべての避難所] count=0
+keyword[開設中の避難所] count=0
+keyword[避難所名] count=1
+  context=-0 field-municipalityName dgrid-sortable" role="columnheader" rowspan="1">市町村</th><th class="dgrid-cell dgrid-column-0-1 field-_item field-maplink" role="columnheader" rowspan="1">避難所名</th><th class="dgrid-cell dgrid-column-0-2 field-isOpen dgrid-sortable dgrid-sort-down" role="columnheader" rowspan="1"><div class="dgrid-sort-arrow ui-icon" role="presentation">&nbsp;</div>開設状況</th><th class="dgrid-cell dgrid-column-0-3 f
+keyword[開設状況] count=1
+  context=ass="dgrid-cell dgrid-column-0-2 field-isOpen dgrid-sortable dgrid-sort-down" role="columnheader" rowspan="1"><div class="dgrid-sort-arrow ui-icon" role="presentation">&nbsp;</div>開設状況</th><th class="dgrid-cell dgrid-column-0-3 field-crowdedStatus dgrid-sortable" role="columnheader" rowspan="1">混雑状況</th><th class="dgrid-cell dgrid-column-0-4 field-address dgrid-sortable" role="columnheader" rowspan="1">住所</th><th class="
+keyword[混雑状況] count=1
+  context=lass="dgrid-sort-arrow ui-icon" role="presentation">&nbsp;</div>開設状況</th><th class="dgrid-cell dgrid-column-0-3 field-crowdedStatus dgrid-sortable" role="columnheader" rowspan="1">混雑状況</th><th class="dgrid-cell dgrid-column-0-4 field-address dgrid-sortable" role="columnheader" rowspan="1">住所</th><th class="dgrid-cell dgrid-column-0-5 field-_item field-maplink" role="columnheader" rowspan="1">ルート検索</th></tr></table></div>
+keyword[条件に一致するデータが存在しません] count=0
+keyword[データがありません] count=0
+keyword[エラー] count=0
