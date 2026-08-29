@@ -1,5 +1,5 @@
 === Environment ===
-2026-08-28T00:22:15+00:00
+2026-08-29T00:00:04+00:00
 Python 3.12.14
 === Install Python dependencies ===
 Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages (26.2.1)
@@ -45,37 +45,37 @@ Successfully installed PyMuPDF-1.28.2 beautifulsoup4-4.15.0 greenlet-3.5.5 inico
 Installing dependencies...
 Switching to root user to install dependencies...
 Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
-Get:6 https://packages.microsoft.com/repos/azure-cli noble InRelease [3564 B]
-Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
 Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
 Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
 Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
 Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+Get:6 https://packages.microsoft.com/repos/azure-cli noble InRelease [3564 B]
+Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
 Get:8 https://dl.google.com/linux/chrome-stable/deb stable InRelease [2548 B]
-Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [378 kB]
-Get:10 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [425 kB]
-Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1230 kB]
-Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [287 kB]
-Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [180 kB]
-Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1689 kB]
-Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [338 kB]
-Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [388 kB]
-Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1486 kB]
-Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [339 kB]
-Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
-Get:20 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [5740 B]
-Get:21 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [12.6 kB]
-Get:22 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [972 kB]
-Get:23 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [206 kB]
-Get:24 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [46.4 kB]
-Get:25 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1203 kB]
-Get:26 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [241 kB]
-Get:27 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [76.3 kB]
-Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1392 kB]
-Get:29 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [321 kB]
-Get:30 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Translation-en [11.1 kB]
-Get:31 https://dl.google.com/linux/chrome-stable/deb stable/main amd64 Packages [1401 B]
-Fetched 11.6 MB in 2s (7490 kB/s)
+Get:9 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1230 kB]
+Get:10 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [287 kB]
+Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [180 kB]
+Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1689 kB]
+Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [338 kB]
+Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [388 kB]
+Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1486 kB]
+Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [339 kB]
+Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
+Get:18 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [5776 B]
+Get:19 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [12.6 kB]
+Get:20 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [972 kB]
+Get:21 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [206 kB]
+Get:22 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [46.4 kB]
+Get:23 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1203 kB]
+Get:24 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [241 kB]
+Get:25 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [76.4 kB]
+Get:26 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1392 kB]
+Get:27 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [321 kB]
+Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Translation-en [11.1 kB]
+Get:29 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [427 kB]
+Get:30 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [381 kB]
+Get:31 https://dl.google.com/linux/chrome-stable/deb stable/main amd64 Packages [1403 B]
+Fetched 11.6 MB in 1s (8564 kB/s)
 Reading package lists...
 Reading package lists...
 Building dependency tree...
@@ -151,7 +151,7 @@ Get:7 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings a
 Get:8 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3 [94.4 kB]
 Get:9 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1 [384 kB]
 Get:10 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3 [304 kB]
-Fetched 21.1 MB in 1s (18.6 MB/s)
+Fetched 21.1 MB in 1s (20.1 MB/s)
 Selecting previously unselected package fonts-ipafont-gothic.
 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 203385 files and directories currently installed.)
 Preparing to unpack .../0-fonts-ipafont-gothic_00303-21ubuntu1_all.deb ...
@@ -246,7 +246,7 @@ Chrome Headless Shell 151.0.7922.34 (playwright chromium-headless-shell v1234) d
 Reference CSV is not stored in the repository; downloading the official file.
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  151k  100  151k    0     0   182k      0 --:--:-- --:--:-- --:--:--  182k
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  151k  100  151k    0     0   144k      0  0:00:01  0:00:01 --:--:--  144k
 Validated reference CSV: 1321 rows
 === Apply portal compatibility patches ===
 /home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/apply_dgrid_patch.py:102: SyntaxWarning: invalid escape sequence '\s'
@@ -268,39 +268,39 @@ Dojo shelter view rendered on attempt 1.
 Rendered extraction: mode=dom; all_selected=False; headers=['市町村', '避難所名', '開設状況', '混雑状況', '住所', 'ルート検索']; rows=63; dgrid_meta={"ariaRowCount": "", "clientHeight": 430, "renderedRowCount": 145, "rootClass": "dgrid dgrid-grid ui-widget idis-IdisGrid", "rootId": "dgrid_0", "rowIdCount": 63, "scrollHeight": 54687, "scrolled": true, "scrollerClass": "dgrid-scroller"}
 Full snapshot: reference_groups=1306, opened_web_rows=63, extra_web_rows=42, total=1348
 {
-  "snapshot_date": "2026-08-28",
+  "snapshot_date": "2026-08-29",
   "records": 1348,
   "open": 63,
   "closed_or_inactive": 1285,
   "unknown": 0,
-  "changes": 6,
+  "changes": 0,
   "reference_matched": 1291,
   "reference_matched_multiple": 15,
   "reference_ambiguous": 0,
   "reference_unmatched": 42,
   "reference_match_rate": 0.968843,
-  "matching_issues_csv": "data/matching_issues/2026/08/2026-08-28.csv",
-  "daily_csv": "data/daily/2026/08/2026-08-28.csv",
-  "changes_csv": "data/changes/2026/08/2026-08-28.csv",
-  "source_updated_at": "26/08/28 09:22時点の避難所状況の一覧です。",
+  "matching_issues_csv": "data/matching_issues/2026/08/2026-08-29.csv",
+  "daily_csv": "data/daily/2026/08/2026-08-29.csv",
+  "changes_csv": "data/changes/2026/08/2026-08-29.csv",
+  "source_updated_at": "26/08/29 09:00時点の避難所状況の一覧です。",
   "all_shelters_click_attempted": true
 }
 === Enrich capacity and complete coordinates ===
-Enrichment: data/daily/2026/08/2026-08-28.csv capacity=1181/1348 coordinates=1347/1348
-Enrichment: data/changes/2026/08/2026-08-28.csv capacity=6/6 coordinates=6/6
-Enrichment: data/matching_issues/2026/08/2026-08-28.csv capacity=40/42 coordinates=41/42
+Enrichment: data/daily/2026/08/2026-08-29.csv capacity=1181/1348 coordinates=1347/1348
+Enrichment: data/changes/2026/08/2026-08-29.csv capacity=0/0 coordinates=0/0
+Enrichment: data/matching_issues/2026/08/2026-08-29.csv capacity=40/42 coordinates=41/42
 Enrichment: data/latest.csv capacity=1181/1348 coordinates=1347/1348
 Enrichment: data/latest_open.csv capacity=62/63 coordinates=62/63
-Enrichment: data/latest_changes.csv capacity=6/6 coordinates=6/6
+Enrichment: data/latest_changes.csv capacity=0/0 coordinates=0/0
 Enrichment: data/latest_matching_issues.csv capacity=40/42 coordinates=41/42
 Capacity matching issues: 167 rows -> data/latest_capacity_matching_issues.csv
-Capacity master rows=2125; manual geocoding rows=138; capacity matches=2516/2855; complete coordinates=2850/2855
+Capacity master rows=2125; manual geocoding rows=138; capacity matches=2504/2843; complete coordinates=2838/2843
 === Build wide daily time-series CSVs ===
-既存履歴を保持して時系列を更新します: file=status_by_date.csv, preserved_cells=40740, refresh_date=-, new_dates=['2026-08-28']
-既存履歴を保持して時系列を更新します: file=open_status_by_date.csv, preserved_cells=40740, refresh_date=-, new_dates=['2026-08-28']
-既存履歴を保持して時系列を更新します: file=congestion_by_date.csv, preserved_cells=40740, refresh_date=-, new_dates=['2026-08-28']
-status_by_date.csvの列構成を検証しました: 固定属性=11列、日付=29列、施設=1455件
-横持ち時系列CSVを更新しました: 生成施設数=1454, status施設数=1455, 日数=29, 開始日=2026-07-29, 終了日=2026-08-28
+既存履歴を保持して時系列を更新します: file=status_by_date.csv, preserved_cells=42195, refresh_date=-, new_dates=['2026-08-29']
+既存履歴を保持して時系列を更新します: file=open_status_by_date.csv, preserved_cells=42195, refresh_date=-, new_dates=['2026-08-29']
+既存履歴を保持して時系列を更新します: file=congestion_by_date.csv, preserved_cells=42195, refresh_date=-, new_dates=['2026-08-29']
+status_by_date.csvの列構成を検証しました: 固定属性=11列、日付=30列、施設=1455件
+横持ち時系列CSVを更新しました: 生成施設数=1454, status施設数=1455, 日数=30, 開始日=2026-07-29, 終了日=2026-08-29
 === Export current opened shelters for review ===
 Exported current opened shelters: 63 rows
 === Validate capacity and coordinate coverage ===
