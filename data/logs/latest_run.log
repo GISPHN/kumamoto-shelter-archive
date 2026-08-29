@@ -1,5 +1,5 @@
 === Environment ===
-2026-08-29T00:00:04+00:00
+2026-08-29T18:22:56+00:00
 Python 3.12.14
 === Install Python dependencies ===
 Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages (26.2.1)
@@ -61,21 +61,22 @@ Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Compo
 Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1486 kB]
 Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [339 kB]
 Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
-Get:18 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [5776 B]
+Get:18 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [5744 B]
 Get:19 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [12.6 kB]
 Get:20 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [972 kB]
 Get:21 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [206 kB]
 Get:22 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [46.4 kB]
 Get:23 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1203 kB]
 Get:24 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [241 kB]
-Get:25 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [76.4 kB]
+Get:25 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [76.3 kB]
 Get:26 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1392 kB]
 Get:27 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [321 kB]
 Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Translation-en [11.1 kB]
-Get:29 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [427 kB]
-Get:30 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [381 kB]
-Get:31 https://dl.google.com/linux/chrome-stable/deb stable/main amd64 Packages [1403 B]
-Fetched 11.6 MB in 1s (8564 kB/s)
+Get:29 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [12.5 kB]
+Get:30 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [427 kB]
+Get:31 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [381 kB]
+Get:32 https://dl.google.com/linux/chrome-stable/deb stable/main amd64 Packages [1406 B]
+Fetched 11.6 MB in 1s (11.1 MB/s)
 Reading package lists...
 Reading package lists...
 Building dependency tree...
@@ -246,7 +247,7 @@ Chrome Headless Shell 151.0.7922.34 (playwright chromium-headless-shell v1234) d
 Reference CSV is not stored in the repository; downloading the official file.
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  151k  100  151k    0     0   144k      0  0:00:01  0:00:01 --:--:--  144k
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  151k  100  151k    0     0   182k      0 --:--:-- --:--:-- --:--:--  181k
 Validated reference CSV: 1321 rows
 === Apply portal compatibility patches ===
 /home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/apply_dgrid_patch.py:102: SyntaxWarning: invalid escape sequence '\s'
@@ -265,44 +266,44 @@ Reference matcher loaded: 1321 rows
 Manual geocoding loaded: 138 rows
 === Collect rendered shelter table ===
 Dojo shelter view rendered on attempt 1.
-Rendered extraction: mode=dom; all_selected=False; headers=['市町村', '避難所名', '開設状況', '混雑状況', '住所', 'ルート検索']; rows=63; dgrid_meta={"ariaRowCount": "", "clientHeight": 430, "renderedRowCount": 145, "rootClass": "dgrid dgrid-grid ui-widget idis-IdisGrid", "rootId": "dgrid_0", "rowIdCount": 63, "scrollHeight": 54687, "scrolled": true, "scrollerClass": "dgrid-scroller"}
-Full snapshot: reference_groups=1306, opened_web_rows=63, extra_web_rows=42, total=1348
+Rendered extraction: mode=dom; all_selected=False; headers=['市町村', '避難所名', '開設状況', '混雑状況', '住所', 'ルート検索']; rows=62; dgrid_meta={"ariaRowCount": "", "clientHeight": 430, "renderedRowCount": 145, "rootClass": "dgrid dgrid-grid ui-widget idis-IdisGrid", "rootId": "dgrid_0", "rowIdCount": 62, "scrollHeight": 54687, "scrolled": true, "scrollerClass": "dgrid-scroller"}
+Full snapshot: reference_groups=1306, opened_web_rows=62, extra_web_rows=41, total=1347
 {
-  "snapshot_date": "2026-08-29",
-  "records": 1348,
-  "open": 63,
+  "snapshot_date": "2026-08-30",
+  "records": 1347,
+  "open": 62,
   "closed_or_inactive": 1285,
   "unknown": 0,
-  "changes": 0,
+  "changes": 4,
   "reference_matched": 1291,
   "reference_matched_multiple": 15,
   "reference_ambiguous": 0,
-  "reference_unmatched": 42,
-  "reference_match_rate": 0.968843,
-  "matching_issues_csv": "data/matching_issues/2026/08/2026-08-29.csv",
-  "daily_csv": "data/daily/2026/08/2026-08-29.csv",
-  "changes_csv": "data/changes/2026/08/2026-08-29.csv",
-  "source_updated_at": "26/08/29 09:00時点の避難所状況の一覧です。",
+  "reference_unmatched": 41,
+  "reference_match_rate": 0.969562,
+  "matching_issues_csv": "data/matching_issues/2026/08/2026-08-30.csv",
+  "daily_csv": "data/daily/2026/08/2026-08-30.csv",
+  "changes_csv": "data/changes/2026/08/2026-08-30.csv",
+  "source_updated_at": "26/08/30 03:23時点の避難所状況の一覧です。",
   "all_shelters_click_attempted": true
 }
 === Enrich capacity and complete coordinates ===
-Enrichment: data/daily/2026/08/2026-08-29.csv capacity=1181/1348 coordinates=1347/1348
-Enrichment: data/changes/2026/08/2026-08-29.csv capacity=0/0 coordinates=0/0
-Enrichment: data/matching_issues/2026/08/2026-08-29.csv capacity=40/42 coordinates=41/42
-Enrichment: data/latest.csv capacity=1181/1348 coordinates=1347/1348
+Enrichment: data/daily/2026/08/2026-08-30.csv capacity=1180/1347 coordinates=1346/1347
+Enrichment: data/changes/2026/08/2026-08-30.csv capacity=4/4 coordinates=4/4
+Enrichment: data/matching_issues/2026/08/2026-08-30.csv capacity=39/41 coordinates=40/41
+Enrichment: data/latest.csv capacity=1180/1347 coordinates=1346/1347
 Enrichment: data/latest_open.csv capacity=62/63 coordinates=62/63
-Enrichment: data/latest_changes.csv capacity=0/0 coordinates=0/0
-Enrichment: data/latest_matching_issues.csv capacity=40/42 coordinates=41/42
+Enrichment: data/latest_changes.csv capacity=4/4 coordinates=4/4
+Enrichment: data/latest_matching_issues.csv capacity=39/41 coordinates=40/41
 Capacity matching issues: 167 rows -> data/latest_capacity_matching_issues.csv
-Capacity master rows=2125; manual geocoding rows=138; capacity matches=2504/2843; complete coordinates=2838/2843
+Capacity master rows=2125; manual geocoding rows=138; capacity matches=2508/2847; complete coordinates=2842/2847
 === Build wide daily time-series CSVs ===
-既存履歴を保持して時系列を更新します: file=status_by_date.csv, preserved_cells=42195, refresh_date=-, new_dates=['2026-08-29']
-既存履歴を保持して時系列を更新します: file=open_status_by_date.csv, preserved_cells=42195, refresh_date=-, new_dates=['2026-08-29']
-既存履歴を保持して時系列を更新します: file=congestion_by_date.csv, preserved_cells=42195, refresh_date=-, new_dates=['2026-08-29']
-status_by_date.csvの列構成を検証しました: 固定属性=11列、日付=30列、施設=1455件
-横持ち時系列CSVを更新しました: 生成施設数=1454, status施設数=1455, 日数=30, 開始日=2026-07-29, 終了日=2026-08-29
+既存履歴を保持して時系列を更新します: file=status_by_date.csv, preserved_cells=43650, refresh_date=-, new_dates=['2026-08-30']
+既存履歴を保持して時系列を更新します: file=open_status_by_date.csv, preserved_cells=43650, refresh_date=-, new_dates=['2026-08-30']
+既存履歴を保持して時系列を更新します: file=congestion_by_date.csv, preserved_cells=43650, refresh_date=-, new_dates=['2026-08-30']
+status_by_date.csvの列構成を検証しました: 固定属性=11列、日付=31列、施設=1455件
+横持ち時系列CSVを更新しました: 生成施設数=1454, status施設数=1455, 日数=31, 開始日=2026-07-29, 終了日=2026-08-30
 === Export current opened shelters for review ===
-Exported current opened shelters: 63 rows
+Exported current opened shelters: 62 rows
 === Validate capacity and coordinate coverage ===
 Traceback (most recent call last):
   File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/validate_capacity_outputs.py", line 397, in <module>
@@ -317,7 +318,7 @@ Traceback (most recent call last):
     raise RuntimeError(message)
 RuntimeError: latest.csv contains incomplete or invalid coordinates: ['web:b40327fcf4cb85a88b87']
 === Rendered HTML diagnostics ===
-html_bytes=560896
+html_bytes=560645
 table_count=148
 table[0] rows=1 max_columns=2
   row[0]=['熊本県', '']
