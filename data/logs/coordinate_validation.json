@@ -1,6 +1,6 @@
 {
-  "validated_at_jst": "2026-08-31T10:01:16+09:00",
-  "status": "failure",
+  "validated_at_jst": "2026-08-31T10:09:01+09:00",
+  "status": "success",
   "coordinate_priority": [
     "gsi_reference",
     "manual_geocoding",
@@ -28,10 +28,10 @@
   "validated_file_count": 105,
   "total_coordinate_source_counts": {
     "gsi_reference": 89329,
-    "kumamoto_portal": 616,
+    "kumamoto_portal": 618,
     "manual_geocoding": 5224
   },
-  "total_error_count": 2,
+  "total_error_count": 0,
   "files": [
     {
       "file": "data/daily/2026/07/2026-07-29.csv",
@@ -1510,66 +1510,31 @@
       "validation_mode": "detailed_provenance",
       "row_count": 1456,
       "shelter_row_count": 1456,
-      "complete_coordinate_count": 1455,
+      "complete_coordinate_count": 1456,
       "manual_selection_count": 138,
-      "error_count": 1,
+      "error_count": 0,
       "coordinate_source_counts": {
         "gsi_reference": 1306,
-        "kumamoto_portal": 11,
+        "kumamoto_portal": 12,
         "manual_geocoding": 138
       },
-      "error_examples": [
-        {
-          "file": "data/open_status_by_date.csv",
-          "shelter_id": "web:b40327fcf4cb85a88b87",
-          "municipality": "宇城市",
-          "shelter_name": "旧豊野小学校体育館",
-          "address": "熊本県宇城市豊野町糸石2998",
-          "error": "coordinate_status=missing"
-        }
-      ]
+      "error_examples": []
     },
     {
       "file": "data/congestion_by_date.csv",
       "validation_mode": "detailed_provenance",
       "row_count": 1456,
       "shelter_row_count": 1456,
-      "complete_coordinate_count": 1455,
+      "complete_coordinate_count": 1456,
       "manual_selection_count": 138,
-      "error_count": 1,
+      "error_count": 0,
       "coordinate_source_counts": {
         "gsi_reference": 1306,
-        "kumamoto_portal": 11,
+        "kumamoto_portal": 12,
         "manual_geocoding": 138
       },
-      "error_examples": [
-        {
-          "file": "data/congestion_by_date.csv",
-          "shelter_id": "web:b40327fcf4cb85a88b87",
-          "municipality": "宇城市",
-          "shelter_name": "旧豊野小学校体育館",
-          "address": "熊本県宇城市豊野町糸石2998",
-          "error": "coordinate_status=missing"
-        }
-      ]
+      "error_examples": []
     }
   ],
-  "error_examples": [
-    {
-      "file": "data/open_status_by_date.csv",
-      "shelter_id": "web:b40327fcf4cb85a88b87",
-      "municipality": "宇城市",
-      "shelter_name": "旧豊野小学校体育館",
-      "address": "熊本県宇城市豊野町糸石2998",
-      "error": "coordinate_status=missing"
-    },
-    {
-      "file": "data/congestion_by_date.csv",
-      "shelter_id": "web:b40327fcf4cb85a88b87",
-      "municipality": "宇城市",
-      "shelter_name": "旧豊野小学校体育館",
-      "address": "熊本県宇城市豊野町糸石2998",
-      "error": "coordinate_status=missing"
-    }
-  ]
+  "error_examples": []
 }
