@@ -8,10 +8,10 @@
   "response_sha256": "22af2291f30f3bcdc22858570987240f2a08bf2edb50c3f53168b34612fca856",
   "existing_master_count": 2122,
   "downloaded_record_count": 2125,
-  "merged_master_count": 2125,
+  "merged_master_count": 2126,
   "reported_total": 2125,
-  "record_count": 2125,
-  "parsed_capacity_count": 1620,
+  "record_count": 2126,
+  "parsed_capacity_count": 1621,
   "missing_zero_capacity_count": 400,
   "missing_capacity_count": 105,
   "invalid_capacity_count": 0,
@@ -26,6 +26,16 @@
     "municipalityName": 0,
     "name": 0
   },
+  "incremental_verified_additions": [
+    {
+      "portal_shelter_id": "00002363",
+      "municipality": "宇城市",
+      "shelter_name": "旧豊野小学校体育館",
+      "address": "熊本県宇城市豊野町糸石2998",
+      "acquired_at_jst": "2026-08-31T09:35:11+09:00",
+      "response_sha256": "79e9e7ecb3ef74a5d0893308ba0e99fe1e3182a367b70bf8d66836176efedc19"
+    }
+  ],
   "interpretation": {
     "positive_capacity": "portal_capacity_personsとして保存",
     "capacity_zero": "ポップアップでは---表示のため欠損扱い"
