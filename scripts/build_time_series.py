@@ -84,6 +84,37 @@ DETAIL_IDENTITY_COLUMNS = [
     "coordinate_status",
 ]
 
+# Historical date values are immutable, but derived enrichment metadata may be
+# repaired when a verified reference row becomes available later. Refresh only
+# monotonic improvements so an already matched/complete row is never degraded by
+# a temporary source or matching failure.
+CAPACITY_REFRESH_COLUMNS = {
+    "portal_capacity_persons",
+    "portal_capacity_raw",
+    "capacity_source",
+    "capacity_acquired_at_jst",
+    "capacity_match_status",
+    "capacity_match_method",
+    "capacity_match_score",
+    "portal_latitude",
+    "portal_longitude",
+}
+MANUAL_REFRESH_COLUMNS = {
+    "manual_latitude",
+    "manual_longitude",
+    "manual_geocode_status",
+    "manual_geocode_method",
+    "manual_geocode_source_file",
+    "manual_geocode_source_sha256",
+}
+COORDINATE_REFRESH_COLUMNS = {
+    "latitude",
+    "longitude",
+    "coordinate_source",
+    "coordinate_method",
+    "coordinate_status",
+}
+
 
 def normalize(value: object) -> str:
     return "" if value is None else str(value).strip()
@@ -255,12 +286,38 @@ def merge_existing_timeseries(
         existing_ids.add(shelter_id)
         generated = generated_by_id.get(shelter_id)
 
+        capacity_improved = bool(generated) and (
+            normalize(generated.get("capacity_match_status")) == "matched"
+            and normalize(old_row.get("capacity_match_status")) != "matched"
+        )
+        manual_improved = bool(generated) and (
+            normalize(generated.get("manual_geocode_status")) == "matched"
+            and normalize(old_row.get("manual_geocode_status")) != "matched"
+        )
+        coordinate_improved = bool(generated) and (
+            normalize(generated.get("coordinate_status")) == "complete"
+            and normalize(old_row.get("coordinate_status")) != "complete"
+        )
+
         merged: dict[str, str] = {}
         for column in fixed_columns:
             old_value = normalize(old_row.get(column))
             generated_value = normalize(generated.get(column)) if generated else ""
-            # 既存施設の固定属性も安定させる。空欄だけ最新生成値で補完する。
-            merged[column] = old_value or generated_value
+            should_refresh = (
+                capacity_improved and column in CAPACITY_REFRESH_COLUMNS
+            ) or (
+                manual_improved and column in MANUAL_REFRESH_COLUMNS
+            ) or (
+                coordinate_improved and column in COORDINATE_REFRESH_COLUMNS
+            )
+            # Stable identity fields keep their existing values. Derived
+            # enrichment fields may advance from unmatched/missing to a verified
+            # matched/complete value, without touching historical date cells.
+            merged[column] = (
+                generated_value
+                if should_refresh and generated_value
+                else old_value or generated_value
+            )
 
         for normalized_date, original_column in existing_date_pairs:
             old_value = normalize(old_row.get(original_column))
