@@ -158,8 +158,7 @@ jobs:
             python scripts/enrich_capacity_outputs.py \
               --data-root data \
               --capacity-csv reference/portal_shelter_capacity.csv \
-              --manual-geocoding reference/manual_geocoding \
-              --snapshot-date "$SNAPSHOT_DATE"
+              --manual-geocoding reference/manual_geocoding
 
             echo "=== Build wide daily time-series CSVs ==="
             python scripts/build_time_series.py --data-root data
