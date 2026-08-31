@@ -1,5 +1,5 @@
 === Environment ===
-2026-08-31T00:53:20+00:00
+2026-08-31T00:58:50+00:00
 Python 3.12.14
 === Install Python dependencies ===
 Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages (26.2.1)
@@ -45,38 +45,38 @@ Successfully installed PyMuPDF-1.28.2 beautifulsoup4-4.15.0 greenlet-3.5.5 inico
 Installing dependencies...
 Switching to root user to install dependencies...
 Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
+Get:6 https://packages.microsoft.com/repos/azure-cli noble InRelease [3564 B]
 Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
+Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
 Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
 Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
 Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
-Get:6 https://packages.microsoft.com/repos/azure-cli noble InRelease [3564 B]
-Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
 Get:8 https://dl.google.com/linux/chrome-stable/deb stable InRelease [2548 B]
-Get:9 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1230 kB]
-Get:10 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [287 kB]
-Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [180 kB]
-Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1689 kB]
-Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [338 kB]
-Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [388 kB]
-Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1486 kB]
-Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [339 kB]
-Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
-Get:18 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [5760 B]
-Get:19 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [12.7 kB]
-Get:20 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [972 kB]
-Get:21 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [206 kB]
-Get:22 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [46.3 kB]
-Get:23 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1203 kB]
-Get:24 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [241 kB]
-Get:25 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [76.3 kB]
-Get:26 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1392 kB]
-Get:27 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [321 kB]
-Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Translation-en [11.1 kB]
-Get:29 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [427 kB]
-Get:30 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [381 kB]
-Get:31 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [12.5 kB]
+Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [381 kB]
+Get:10 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [12.5 kB]
+Get:11 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [427 kB]
+Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1230 kB]
+Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [287 kB]
+Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [180 kB]
+Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1689 kB]
+Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [338 kB]
+Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [388 kB]
+Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1486 kB]
+Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [339 kB]
+Get:20 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
+Get:21 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [5760 B]
+Get:22 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [12.7 kB]
+Get:23 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [972 kB]
+Get:24 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [206 kB]
+Get:25 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [46.3 kB]
+Get:26 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1203 kB]
+Get:27 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [241 kB]
+Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [76.3 kB]
+Get:29 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1392 kB]
+Get:30 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [321 kB]
+Get:31 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Translation-en [11.1 kB]
 Get:32 https://dl.google.com/linux/chrome-stable/deb stable/main amd64 Packages [1402 B]
-Fetched 11.6 MB in 1s (8317 kB/s)
+Fetched 11.6 MB in 1s (8433 kB/s)
 Reading package lists...
 Reading package lists...
 Building dependency tree...
@@ -152,7 +152,7 @@ Get:7 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings a
 Get:8 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3 [94.4 kB]
 Get:9 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1 [384 kB]
 Get:10 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3 [304 kB]
-Fetched 21.1 MB in 1s (28.8 MB/s)
+Fetched 21.1 MB in 1s (18.9 MB/s)
 Selecting previously unselected package fonts-ipafont-gothic.
 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 203385 files and directories currently installed.)
 Preparing to unpack .../0-fonts-ipafont-gothic_00303-21ubuntu1_all.deb ...
@@ -247,7 +247,7 @@ Chrome Headless Shell 151.0.7922.34 (playwright chromium-headless-shell v1234) d
 Reference CSV is not stored in the repository; downloading the official file.
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  151k  100  151k    0     0   140k      0  0:00:01  0:00:01 --:--:--  140k
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  151k  100  151k    0     0   178k      0 --:--:-- --:--:-- --:--:--  178k
 Validated reference CSV: 1321 rows
 === Apply portal compatibility patches ===
 /home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/apply_dgrid_patch.py:102: SyntaxWarning: invalid escape sequence '\s'
@@ -283,19 +283,112 @@ Full snapshot: reference_groups=1306, opened_web_rows=61, extra_web_rows=42, tot
   "matching_issues_csv": "data/matching_issues/2026/08/2026-08-31.csv",
   "daily_csv": "data/daily/2026/08/2026-08-31.csv",
   "changes_csv": "data/changes/2026/08/2026-08-31.csv",
-  "source_updated_at": "26/08/31 09:54時点の避難所状況の一覧です。",
+  "source_updated_at": "26/08/31 09:59時点の避難所状況の一覧です。",
   "all_shelters_click_attempted": true
 }
 === Enrich capacity and complete coordinates ===
+Enrichment: data/daily/2026/07/2026-07-29.csv capacity=1155/1314 coordinates=1314/1314
+Enrichment: data/daily/2026/07/2026-07-30.csv capacity=1277/1436 coordinates=1436/1436
+Enrichment: data/daily/2026/07/2026-07-31.csv capacity=1271/1430 coordinates=1430/1430
+Enrichment: data/daily/2026/08/2026-08-01.csv capacity=1227/1387 coordinates=1387/1387
+Enrichment: data/daily/2026/08/2026-08-02.csv capacity=1222/1382 coordinates=1382/1382
+Enrichment: data/daily/2026/08/2026-08-03.csv capacity=1199/1359 coordinates=1359/1359
+Enrichment: data/daily/2026/08/2026-08-04.csv capacity=1198/1359 coordinates=1359/1359
+Enrichment: data/daily/2026/08/2026-08-05.csv capacity=1195/1356 coordinates=1356/1356
+Enrichment: data/daily/2026/08/2026-08-06.csv capacity=1194/1355 coordinates=1355/1355
+Enrichment: data/daily/2026/08/2026-08-08.csv capacity=1190/1351 coordinates=1351/1351
+Enrichment: data/daily/2026/08/2026-08-09.csv capacity=1190/1351 coordinates=1351/1351
+Enrichment: data/daily/2026/08/2026-08-10.csv capacity=1188/1349 coordinates=1349/1349
+Enrichment: data/daily/2026/08/2026-08-11.csv capacity=1187/1348 coordinates=1348/1348
+Enrichment: data/daily/2026/08/2026-08-12.csv capacity=1185/1346 coordinates=1346/1346
+Enrichment: data/daily/2026/08/2026-08-13.csv capacity=1185/1346 coordinates=1346/1346
+Enrichment: data/daily/2026/08/2026-08-14.csv capacity=1185/1346 coordinates=1346/1346
+Enrichment: data/daily/2026/08/2026-08-15.csv capacity=1184/1345 coordinates=1345/1345
+Enrichment: data/daily/2026/08/2026-08-16.csv capacity=1184/1345 coordinates=1345/1345
+Enrichment: data/daily/2026/08/2026-08-17.csv capacity=1183/1344 coordinates=1344/1344
+Enrichment: data/daily/2026/08/2026-08-18.csv capacity=1184/1349 coordinates=1349/1349
+Enrichment: data/daily/2026/08/2026-08-19.csv capacity=1184/1349 coordinates=1349/1349
+Enrichment: data/daily/2026/08/2026-08-21.csv capacity=1184/1349 coordinates=1349/1349
+Enrichment: data/daily/2026/08/2026-08-22.csv capacity=1184/1349 coordinates=1349/1349
+Enrichment: data/daily/2026/08/2026-08-23.csv capacity=1184/1349 coordinates=1349/1349
+Enrichment: data/daily/2026/08/2026-08-24.csv capacity=1184/1349 coordinates=1349/1349
+Enrichment: data/daily/2026/08/2026-08-25.csv capacity=1184/1349 coordinates=1349/1349
+Enrichment: data/daily/2026/08/2026-08-26.csv capacity=1184/1349 coordinates=1349/1349
+Enrichment: data/daily/2026/08/2026-08-27.csv capacity=1183/1348 coordinates=1348/1348
+Enrichment: data/daily/2026/08/2026-08-28.csv capacity=1183/1348 coordinates=1348/1348
+Enrichment: data/daily/2026/08/2026-08-29.csv capacity=1183/1348 coordinates=1348/1348
+Enrichment: data/daily/2026/08/2026-08-30.csv capacity=1182/1347 coordinates=1347/1347
 Enrichment: data/daily/2026/08/2026-08-31.csv capacity=1182/1348 coordinates=1348/1348
+Enrichment: data/changes/2026/07/2026-07-29.csv capacity=1155/1314 coordinates=1314/1314
+Enrichment: data/changes/2026/07/2026-07-30.csv capacity=345/345 coordinates=345/345
+Enrichment: data/changes/2026/07/2026-07-31.csv capacity=44/44 coordinates=44/44
+Enrichment: data/changes/2026/08/2026-08-01.csv capacity=187/188 coordinates=188/188
+Enrichment: data/changes/2026/08/2026-08-02.csv capacity=32/32 coordinates=32/32
+Enrichment: data/changes/2026/08/2026-08-03.csv capacity=40/40 coordinates=40/40
+Enrichment: data/changes/2026/08/2026-08-04.csv capacity=31/32 coordinates=32/32
+Enrichment: data/changes/2026/08/2026-08-05.csv capacity=22/22 coordinates=22/22
+Enrichment: data/changes/2026/08/2026-08-06.csv capacity=9/9 coordinates=9/9
+Enrichment: data/changes/2026/08/2026-08-08.csv capacity=19/19 coordinates=19/19
+Enrichment: data/changes/2026/08/2026-08-09.csv capacity=1/1 coordinates=1/1
+Enrichment: data/changes/2026/08/2026-08-10.csv capacity=25/25 coordinates=25/25
+Enrichment: data/changes/2026/08/2026-08-11.csv capacity=20/20 coordinates=20/20
+Enrichment: data/changes/2026/08/2026-08-12.csv capacity=10/10 coordinates=10/10
+Enrichment: data/changes/2026/08/2026-08-13.csv capacity=3/3 coordinates=3/3
+Enrichment: data/changes/2026/08/2026-08-14.csv capacity=2/2 coordinates=2/2
+Enrichment: data/changes/2026/08/2026-08-15.csv capacity=6/6 coordinates=6/6
+Enrichment: data/changes/2026/08/2026-08-16.csv capacity=5/5 coordinates=5/5
+Enrichment: data/changes/2026/08/2026-08-17.csv capacity=12/12 coordinates=12/12
+Enrichment: data/changes/2026/08/2026-08-18.csv capacity=4/7 coordinates=7/7
+Enrichment: data/changes/2026/08/2026-08-19.csv capacity=1/1 coordinates=1/1
+Enrichment: data/changes/2026/08/2026-08-21.csv capacity=4/4 coordinates=4/4
+Enrichment: data/changes/2026/08/2026-08-22.csv capacity=3/3 coordinates=3/3
+Enrichment: data/changes/2026/08/2026-08-23.csv capacity=4/4 coordinates=4/4
+Enrichment: data/changes/2026/08/2026-08-24.csv capacity=4/4 coordinates=4/4
+Enrichment: data/changes/2026/08/2026-08-25.csv capacity=3/3 coordinates=3/3
+Enrichment: data/changes/2026/08/2026-08-26.csv capacity=2/2 coordinates=2/2
+Enrichment: data/changes/2026/08/2026-08-27.csv capacity=8/8 coordinates=8/8
+Enrichment: data/changes/2026/08/2026-08-28.csv capacity=6/6 coordinates=6/6
+Enrichment: data/changes/2026/08/2026-08-29.csv capacity=0/0 coordinates=0/0
+Enrichment: data/changes/2026/08/2026-08-30.csv capacity=4/4 coordinates=4/4
 Enrichment: data/changes/2026/08/2026-08-31.csv capacity=9/9 coordinates=9/9
+Enrichment: data/matching_issues/2026/07/2026-07-29.csv capacity=14/14 coordinates=14/14
+Enrichment: data/matching_issues/2026/07/2026-07-30.csv capacity=136/136 coordinates=136/136
+Enrichment: data/matching_issues/2026/07/2026-07-31.csv capacity=130/130 coordinates=130/130
+Enrichment: data/matching_issues/2026/08/2026-08-01.csv capacity=87/87 coordinates=87/87
+Enrichment: data/matching_issues/2026/08/2026-08-02.csv capacity=82/82 coordinates=82/82
+Enrichment: data/matching_issues/2026/08/2026-08-03.csv capacity=59/59 coordinates=59/59
+Enrichment: data/matching_issues/2026/08/2026-08-04.csv capacity=58/58 coordinates=58/58
+Enrichment: data/matching_issues/2026/08/2026-08-05.csv capacity=55/55 coordinates=55/55
+Enrichment: data/matching_issues/2026/08/2026-08-06.csv capacity=54/54 coordinates=54/54
+Enrichment: data/matching_issues/2026/08/2026-08-08.csv capacity=50/50 coordinates=50/50
+Enrichment: data/matching_issues/2026/08/2026-08-09.csv capacity=50/50 coordinates=50/50
+Enrichment: data/matching_issues/2026/08/2026-08-10.csv capacity=48/48 coordinates=48/48
+Enrichment: data/matching_issues/2026/08/2026-08-11.csv capacity=47/47 coordinates=47/47
+Enrichment: data/matching_issues/2026/08/2026-08-12.csv capacity=45/45 coordinates=45/45
+Enrichment: data/matching_issues/2026/08/2026-08-13.csv capacity=45/45 coordinates=45/45
+Enrichment: data/matching_issues/2026/08/2026-08-14.csv capacity=45/45 coordinates=45/45
+Enrichment: data/matching_issues/2026/08/2026-08-15.csv capacity=44/44 coordinates=44/44
+Enrichment: data/matching_issues/2026/08/2026-08-16.csv capacity=44/44 coordinates=44/44
+Enrichment: data/matching_issues/2026/08/2026-08-17.csv capacity=43/43 coordinates=43/43
+Enrichment: data/matching_issues/2026/08/2026-08-18.csv capacity=43/43 coordinates=43/43
+Enrichment: data/matching_issues/2026/08/2026-08-19.csv capacity=43/43 coordinates=43/43
+Enrichment: data/matching_issues/2026/08/2026-08-21.csv capacity=43/43 coordinates=43/43
+Enrichment: data/matching_issues/2026/08/2026-08-22.csv capacity=43/43 coordinates=43/43
+Enrichment: data/matching_issues/2026/08/2026-08-23.csv capacity=43/43 coordinates=43/43
+Enrichment: data/matching_issues/2026/08/2026-08-24.csv capacity=43/43 coordinates=43/43
+Enrichment: data/matching_issues/2026/08/2026-08-25.csv capacity=43/43 coordinates=43/43
+Enrichment: data/matching_issues/2026/08/2026-08-26.csv capacity=43/43 coordinates=43/43
+Enrichment: data/matching_issues/2026/08/2026-08-27.csv capacity=42/42 coordinates=42/42
+Enrichment: data/matching_issues/2026/08/2026-08-28.csv capacity=42/42 coordinates=42/42
+Enrichment: data/matching_issues/2026/08/2026-08-29.csv capacity=42/42 coordinates=42/42
+Enrichment: data/matching_issues/2026/08/2026-08-30.csv capacity=41/41 coordinates=41/41
 Enrichment: data/matching_issues/2026/08/2026-08-31.csv capacity=41/42 coordinates=42/42
 Enrichment: data/latest.csv capacity=1182/1348 coordinates=1348/1348
 Enrichment: data/latest_open.csv capacity=61/61 coordinates=61/61
 Enrichment: data/latest_changes.csv capacity=9/9 coordinates=9/9
 Enrichment: data/latest_matching_issues.csv capacity=41/42 coordinates=42/42
 Capacity matching issues: 166 rows -> data/latest_capacity_matching_issues.csv
-Capacity master rows=2126; manual geocoding rows=138; capacity matches=2525/2859; complete coordinates=2859/2859
+Capacity master rows=2126; manual geocoding rows=138; capacity matches=43185/48713; complete coordinates=48713/48713
 === Build wide daily time-series CSVs ===
 既存履歴を保持して時系列を更新します: file=status_by_date.csv, preserved_cells=45136, refresh_date=2026-08-31, new_dates=[]
 既存履歴を保持して時系列を更新します: file=open_status_by_date.csv, preserved_cells=45136, refresh_date=2026-08-31, new_dates=[]
@@ -306,7 +399,7 @@ status_by_date.csvの列構成を検証しました: 固定属性=11列、日付
 Exported current opened shelters: 61 rows
 === Validate capacity and coordinate coverage ===
 {
-  "validated_at_jst": "2026-08-31T09:55:32+09:00",
+  "validated_at_jst": "2026-08-31T10:01:11+09:00",
   "status": "success",
   "master": {
     "row_count": 2126,
@@ -382,7 +475,7 @@ Exported current opened shelters: 61 rows
   }
 }
 {
-  "validated_at_jst": "2026-08-31T09:55:36+09:00",
+  "validated_at_jst": "2026-08-31T10:01:16+09:00",
   "status": "failure",
   "coordinate_priority": [
     "gsi_reference",
@@ -411,10 +504,10 @@ Exported current opened shelters: 61 rows
   "validated_file_count": 105,
   "total_coordinate_source_counts": {
     "gsi_reference": 89329,
-    "kumamoto_portal": 603,
+    "kumamoto_portal": 616,
     "manual_geocoding": 5224
   },
-  "total_error_count": 15,
+  "total_error_count": 2,
   "files": [
     {
       "file": "data/daily/2026/07/2026-07-29.csv",
@@ -823,96 +916,60 @@ Exported current opened shelters: 61 rows
       "validation_mode": "detailed_provenance",
       "row_count": 1348,
       "shelter_row_count": 1348,
-      "complete_coordinate_count": 1347,
+      "complete_coordinate_count": 1348,
       "manual_selection_count": 36,
-      "error_count": 1,
+      "error_count": 0,
       "coordinate_source_counts": {
         "gsi_reference": 1306,
-        "kumamoto_portal": 5,
+        "kumamoto_portal": 6,
         "manual_geocoding": 36
       },
-      "error_examples": [
-        {
-          "file": "data/daily/2026/08/2026-08-27.csv",
-          "shelter_id": "web:b40327fcf4cb85a88b87",
-          "municipality": "宇城市",
-          "shelter_name": "旧豊野小学校体育館",
-          "address": "熊本県宇城市豊野町糸石2998",
-          "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
-        }
-      ]
+      "error_examples": []
     },
     {
       "file": "data/daily/2026/08/2026-08-28.csv",
       "validation_mode": "detailed_provenance",
       "row_count": 1348,
       "shelter_row_count": 1348,
-      "complete_coordinate_count": 1347,
+      "complete_coordinate_count": 1348,
       "manual_selection_count": 36,
-      "error_count": 1,
+      "error_count": 0,
       "coordinate_source_counts": {
         "gsi_reference": 1306,
-        "kumamoto_portal": 5,
+        "kumamoto_portal": 6,
         "manual_geocoding": 36
       },
-      "error_examples": [
-        {
-          "file": "data/daily/2026/08/2026-08-28.csv",
-          "shelter_id": "web:b40327fcf4cb85a88b87",
-          "municipality": "宇城市",
-          "shelter_name": "旧豊野小学校体育館",
-          "address": "熊本県宇城市豊野町糸石2998",
-          "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
-        }
-      ]
+      "error_examples": []
     },
     {
       "file": "data/daily/2026/08/2026-08-29.csv",
       "validation_mode": "detailed_provenance",
       "row_count": 1348,
       "shelter_row_count": 1348,
-      "complete_coordinate_count": 1347,
+      "complete_coordinate_count": 1348,
       "manual_selection_count": 36,
-      "error_count": 1,
+      "error_count": 0,
       "coordinate_source_counts": {
         "gsi_reference": 1306,
-        "kumamoto_portal": 5,
+        "kumamoto_portal": 6,
         "manual_geocoding": 36
       },
-      "error_examples": [
-        {
-          "file": "data/daily/2026/08/2026-08-29.csv",
-          "shelter_id": "web:b40327fcf4cb85a88b87",
-          "municipality": "宇城市",
-          "shelter_name": "旧豊野小学校体育館",
-          "address": "熊本県宇城市豊野町糸石2998",
-          "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
-        }
-      ]
+      "error_examples": []
     },
     {
       "file": "data/daily/2026/08/2026-08-30.csv",
       "validation_mode": "detailed_provenance",
       "row_count": 1347,
       "shelter_row_count": 1347,
-      "complete_coordinate_count": 1346,
+      "complete_coordinate_count": 1347,
       "manual_selection_count": 35,
-      "error_count": 1,
+      "error_count": 0,
       "coordinate_source_counts": {
         "gsi_reference": 1306,
-        "kumamoto_portal": 5,
+        "kumamoto_portal": 6,
         "manual_geocoding": 35
       },
-      "error_examples": [
-        {
-          "file": "data/daily/2026/08/2026-08-30.csv",
-          "shelter_id": "web:b40327fcf4cb85a88b87",
-          "municipality": "宇城市",
-          "shelter_name": "旧豊野小学校体育館",
-          "address": "熊本県宇城市豊野町糸石2998",
-          "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
-        }
-      ]
+      "error_examples": []
     },
     {
       "file": "data/daily/2026/08/2026-08-31.csv",
@@ -1314,24 +1371,15 @@ Exported current opened shelters: 61 rows
       "validation_mode": "detailed_provenance",
       "row_count": 8,
       "shelter_row_count": 8,
-      "complete_coordinate_count": 7,
+      "complete_coordinate_count": 8,
       "manual_selection_count": 2,
-      "error_count": 1,
+      "error_count": 0,
       "coordinate_source_counts": {
         "gsi_reference": 4,
-        "kumamoto_portal": 1,
+        "kumamoto_portal": 2,
         "manual_geocoding": 2
       },
-      "error_examples": [
-        {
-          "file": "data/changes/2026/08/2026-08-27.csv",
-          "shelter_id": "web:b40327fcf4cb85a88b87",
-          "municipality": "宇城市",
-          "shelter_name": "旧豊野小学校体育館",
-          "address": "熊本県宇城市豊野町糸石2998",
-          "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
-        }
-      ]
+      "error_examples": []
     },
     {
       "file": "data/changes/2026/08/2026-08-28.csv",
@@ -1767,92 +1815,56 @@ Exported current opened shelters: 61 rows
       "validation_mode": "detailed_provenance",
       "row_count": 42,
       "shelter_row_count": 42,
-      "complete_coordinate_count": 41,
+      "complete_coordinate_count": 42,
       "manual_selection_count": 36,
-      "error_count": 1,
+      "error_count": 0,
       "coordinate_source_counts": {
-        "kumamoto_portal": 5,
+        "kumamoto_portal": 6,
         "manual_geocoding": 36
       },
-      "error_examples": [
-        {
-          "file": "data/matching_issues/2026/08/2026-08-27.csv",
-          "shelter_id": "web:b40327fcf4cb85a88b87",
-          "municipality": "宇城市",
-          "shelter_name": "旧豊野小学校体育館",
-          "address": "熊本県宇城市豊野町糸石2998",
-          "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
-        }
-      ]
+      "error_examples": []
     },
     {
       "file": "data/matching_issues/2026/08/2026-08-28.csv",
       "validation_mode": "detailed_provenance",
       "row_count": 42,
       "shelter_row_count": 42,
-      "complete_coordinate_count": 41,
+      "complete_coordinate_count": 42,
       "manual_selection_count": 36,
-      "error_count": 1,
+      "error_count": 0,
       "coordinate_source_counts": {
-        "kumamoto_portal": 5,
+        "kumamoto_portal": 6,
         "manual_geocoding": 36
       },
-      "error_examples": [
-        {
-          "file": "data/matching_issues/2026/08/2026-08-28.csv",
-          "shelter_id": "web:b40327fcf4cb85a88b87",
-          "municipality": "宇城市",
-          "shelter_name": "旧豊野小学校体育館",
-          "address": "熊本県宇城市豊野町糸石2998",
-          "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
-        }
-      ]
+      "error_examples": []
     },
     {
       "file": "data/matching_issues/2026/08/2026-08-29.csv",
       "validation_mode": "detailed_provenance",
       "row_count": 42,
       "shelter_row_count": 42,
-      "complete_coordinate_count": 41,
+      "complete_coordinate_count": 42,
       "manual_selection_count": 36,
-      "error_count": 1,
+      "error_count": 0,
       "coordinate_source_counts": {
-        "kumamoto_portal": 5,
+        "kumamoto_portal": 6,
         "manual_geocoding": 36
       },
-      "error_examples": [
-        {
-          "file": "data/matching_issues/2026/08/2026-08-29.csv",
-          "shelter_id": "web:b40327fcf4cb85a88b87",
-          "municipality": "宇城市",
-          "shelter_name": "旧豊野小学校体育館",
-          "address": "熊本県宇城市豊野町糸石2998",
-          "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
-        }
-      ]
+      "error_examples": []
     },
     {
       "file": "data/matching_issues/2026/08/2026-08-30.csv",
       "validation_mode": "detailed_provenance",
       "row_count": 41,
       "shelter_row_count": 41,
-      "complete_coordinate_count": 40,
+      "complete_coordinate_count": 41,
       "manual_selection_count": 35,
-      "error_count": 1,
+      "error_count": 0,
       "coordinate_source_counts": {
-        "kumamoto_portal": 5,
+        "kumamoto_portal": 6,
         "manual_geocoding": 35
       },
-      "error_examples": [
-        {
-          "file": "data/matching_issues/2026/08/2026-08-30.csv",
-          "shelter_id": "web:b40327fcf4cb85a88b87",
-          "municipality": "宇城市",
-          "shelter_name": "旧豊野小学校体育館",
-          "address": "熊本県宇城市豊野町糸石2998",
-          "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
-        }
-      ]
+      "error_examples": []
     },
     {
       "file": "data/matching_issues/2026/08/2026-08-31.csv",
@@ -1946,48 +1958,15 @@ Exported current opened shelters: 61 rows
       "validation_mode": "detailed_provenance",
       "row_count": 43380,
       "shelter_row_count": 43380,
-      "complete_coordinate_count": 43376,
+      "complete_coordinate_count": 43380,
       "manual_selection_count": 1506,
-      "error_count": 4,
+      "error_count": 0,
       "coordinate_source_counts": {
         "gsi_reference": 41691,
-        "kumamoto_portal": 179,
+        "kumamoto_portal": 183,
         "manual_geocoding": 1506
       },
-      "error_examples": [
-        {
-          "file": "data/all_snapshots.csv",
-          "shelter_id": "web:b40327fcf4cb85a88b87",
-          "municipality": "宇城市",
-          "shelter_name": "旧豊野小学校体育館",
-          "address": "熊本県宇城市豊野町糸石2998",
-          "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
-        },
-        {
-          "file": "data/all_snapshots.csv",
-          "shelter_id": "web:b40327fcf4cb85a88b87",
-          "municipality": "宇城市",
-          "shelter_name": "旧豊野小学校体育館",
-          "address": "熊本県宇城市豊野町糸石2998",
-          "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
-        },
-        {
-          "file": "data/all_snapshots.csv",
-          "shelter_id": "web:b40327fcf4cb85a88b87",
-          "municipality": "宇城市",
-          "shelter_name": "旧豊野小学校体育館",
-          "address": "熊本県宇城市豊野町糸石2998",
-          "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
-        },
-        {
-          "file": "data/all_snapshots.csv",
-          "shelter_id": "web:b40327fcf4cb85a88b87",
-          "municipality": "宇城市",
-          "shelter_name": "旧豊野小学校体育館",
-          "address": "熊本県宇城市豊野町糸石2998",
-          "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
-        }
-      ]
+      "error_examples": []
     },
     {
       "file": "data/status_by_date.csv",
@@ -2053,110 +2032,6 @@ Exported current opened shelters: 61 rows
   ],
   "error_examples": [
     {
-      "file": "data/daily/2026/08/2026-08-27.csv",
-      "shelter_id": "web:b40327fcf4cb85a88b87",
-      "municipality": "宇城市",
-      "shelter_name": "旧豊野小学校体育館",
-      "address": "熊本県宇城市豊野町糸石2998",
-      "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
-    },
-    {
-      "file": "data/daily/2026/08/2026-08-28.csv",
-      "shelter_id": "web:b40327fcf4cb85a88b87",
-      "municipality": "宇城市",
-      "shelter_name": "旧豊野小学校体育館",
-      "address": "熊本県宇城市豊野町糸石2998",
-      "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
-    },
-    {
-      "file": "data/daily/2026/08/2026-08-29.csv",
-      "shelter_id": "web:b40327fcf4cb85a88b87",
-      "municipality": "宇城市",
-      "shelter_name": "旧豊野小学校体育館",
-      "address": "熊本県宇城市豊野町糸石2998",
-      "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
-    },
-    {
-      "file": "data/daily/2026/08/2026-08-30.csv",
-      "shelter_id": "web:b40327fcf4cb85a88b87",
-      "municipality": "宇城市",
-      "shelter_name": "旧豊野小学校体育館",
-      "address": "熊本県宇城市豊野町糸石2998",
-      "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
-    },
-    {
-      "file": "data/changes/2026/08/2026-08-27.csv",
-      "shelter_id": "web:b40327fcf4cb85a88b87",
-      "municipality": "宇城市",
-      "shelter_name": "旧豊野小学校体育館",
-      "address": "熊本県宇城市豊野町糸石2998",
-      "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-27.csv",
-      "shelter_id": "web:b40327fcf4cb85a88b87",
-      "municipality": "宇城市",
-      "shelter_name": "旧豊野小学校体育館",
-      "address": "熊本県宇城市豊野町糸石2998",
-      "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-28.csv",
-      "shelter_id": "web:b40327fcf4cb85a88b87",
-      "municipality": "宇城市",
-      "shelter_name": "旧豊野小学校体育館",
-      "address": "熊本県宇城市豊野町糸石2998",
-      "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-29.csv",
-      "shelter_id": "web:b40327fcf4cb85a88b87",
-      "municipality": "宇城市",
-      "shelter_name": "旧豊野小学校体育館",
-      "address": "熊本県宇城市豊野町糸石2998",
-      "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
-    },
-    {
-      "file": "data/matching_issues/2026/08/2026-08-30.csv",
-      "shelter_id": "web:b40327fcf4cb85a88b87",
-      "municipality": "宇城市",
-      "shelter_name": "旧豊野小学校体育館",
-      "address": "熊本県宇城市豊野町糸石2998",
-      "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
-    },
-    {
-      "file": "data/all_snapshots.csv",
-      "shelter_id": "web:b40327fcf4cb85a88b87",
-      "municipality": "宇城市",
-      "shelter_name": "旧豊野小学校体育館",
-      "address": "熊本県宇城市豊野町糸石2998",
-      "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
-    },
-    {
-      "file": "data/all_snapshots.csv",
-      "shelter_id": "web:b40327fcf4cb85a88b87",
-      "municipality": "宇城市",
-      "shelter_name": "旧豊野小学校体育館",
-      "address": "熊本県宇城市豊野町糸石2998",
-      "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
-    },
-    {
-      "file": "data/all_snapshots.csv",
-      "shelter_id": "web:b40327fcf4cb85a88b87",
-      "municipality": "宇城市",
-      "shelter_name": "旧豊野小学校体育館",
-      "address": "熊本県宇城市豊野町糸石2998",
-      "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
-    },
-    {
-      "file": "data/all_snapshots.csv",
-      "shelter_id": "web:b40327fcf4cb85a88b87",
-      "municipality": "宇城市",
-      "shelter_name": "旧豊野小学校体育館",
-      "address": "熊本県宇城市豊野町糸石2998",
-      "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
-    },
-    {
       "file": "data/open_status_by_date.csv",
       "shelter_id": "web:b40327fcf4cb85a88b87",
       "municipality": "宇城市",
@@ -2180,7 +2055,7 @@ Traceback (most recent call last):
                      ^^^^^^
   File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/validate_coordinate_outputs.py", line 458, in main
     raise RuntimeError(
-RuntimeError: 緯度経度または手動座標の適用に問題があります: 15
+RuntimeError: 緯度経度または手動座標の適用に問題があります: 2
 === Rendered HTML diagnostics ===
 html_bytes=560394
 table_count=148
