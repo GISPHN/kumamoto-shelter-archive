@@ -1,70 +1,75 @@
 {
-  "validated_at_jst": "2026-08-26T00:57:41+09:00",
+  "validated_at_jst": "2026-08-31T09:55:32+09:00",
   "status": "success",
   "master": {
-    "row_count": 2125,
-    "unique_portal_shelter_id_count": 2125,
+    "row_count": 2126,
+    "unique_portal_shelter_id_count": 2126,
     "municipality_count": 45,
-    "positive_capacity_count": 1620,
+    "positive_capacity_count": 1621,
     "capacity_parse_status_counts": {
       "missing": 105,
       "missing_zero": 400,
-      "parsed": 1620
+      "parsed": 1621
     },
     "metadata_response_sha256": "22af2291f30f3bcdc22858570987240f2a08bf2edb50c3f53168b34612fca856",
     "metadata_acquired_at_jst": "2026-08-01T00:28:20+09:00",
-    "metadata_record_count": 2125
+    "metadata_record_count": 2126
   },
   "latest": {
-    "row_count": 1349,
+    "row_count": 1348,
     "capacity_match_status_counts": {
-      "ambiguous": 11,
-      "matched": 1184,
+      "ambiguous": 12,
+      "matched": 1182,
       "unmatched": 154
     },
     "capacity_match_method_counts": {
+      "coordinate_high_similarity_200m": 2,
+      "coordinate_name_address_75m": 42,
       "coordinate_near_tie": 11,
-      "coordinate_with_name_20m": 1,
+      "coordinate_with_name_20m": 48,
+      "duplicate_exact_key": 1,
+      "exact_municipality_name_address": 914,
+      "exact_name_municipality_address_similar": 174,
       "fuzzy_below_threshold": 28,
-      "no_candidate": 126,
-      "portal_shelter_id": 1183
+      "high_confidence_fuzzy": 2,
+      "no_candidate": 126
     },
-    "matched_row_count": 1184,
-    "matched_with_positive_capacity_count": 968,
-    "matched_with_source_coordinates_count": 1184,
-    "complete_unified_coordinate_count": 1349,
+    "matched_row_count": 1182,
+    "matched_with_positive_capacity_count": 966,
+    "matched_with_source_coordinates_count": 1182,
+    "complete_unified_coordinate_count": 1348,
     "unknown_master_id_count": 0,
     "capacity_mismatch_count": 0
   },
   "open_status_by_date": {
-    "row_count": 1454,
+    "row_count": 1456,
     "capacity_match_status_counts": {
       "ambiguous": 11,
-      "matched": 1290,
-      "unmatched": 153
+      "matched": 1291,
+      "unmatched": 154
     },
     "capacity_match_method_counts": {
       "coordinate_near_tie": 11,
       "coordinate_with_name_20m": 2,
-      "exact_municipality_name_address": 3,
-      "fuzzy_below_threshold": 27,
+      "exact_municipality_name_address": 4,
+      "fuzzy_below_threshold": 28,
       "no_candidate": 126,
       "portal_shelter_id": 1285
     },
-    "matched_row_count": 1290,
-    "matched_with_positive_capacity_count": 1049,
-    "matched_with_source_coordinates_count": 1290,
-    "complete_unified_coordinate_count": 1454,
+    "matched_row_count": 1291,
+    "matched_with_positive_capacity_count": 1050,
+    "matched_with_source_coordinates_count": 1291,
+    "complete_unified_coordinate_count": 1456,
     "unknown_master_id_count": 0,
     "capacity_mismatch_count": 0
   },
   "status_by_date": {
-    "row_count": 1454,
+    "row_count": 1456,
     "fixed_column_count": 11,
-    "date_column_count": 27,
+    "date_column_count": 32,
     "first_date": "2026-07-29",
-    "last_date": "2026-08-26",
-    "complete_unified_coordinate_count": 1454,
+    "last_date": "2026-08-31",
+    "complete_unified_coordinate_count": 1456,
     "fixed_attribute_mismatch_count": 0,
     "invalid_status_value_count": 0
   }

@@ -1,5 +1,5 @@
 === Environment ===
-2026-08-30T18:34:44+00:00
+2026-08-31T00:53:20+00:00
 Python 3.12.14
 === Install Python dependencies ===
 Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages (26.2.1)
@@ -46,37 +46,37 @@ Installing dependencies...
 Switching to root user to install dependencies...
 Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
-Get:6 https://packages.microsoft.com/repos/azure-cli noble InRelease [3564 B]
 Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
-Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
 Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
 Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
+Get:6 https://packages.microsoft.com/repos/azure-cli noble InRelease [3564 B]
+Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
 Get:8 https://dl.google.com/linux/chrome-stable/deb stable InRelease [2548 B]
-Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [12.5 kB]
-Get:10 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [427 kB]
-Get:11 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [381 kB]
-Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1230 kB]
-Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [287 kB]
-Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [180 kB]
-Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1689 kB]
-Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [338 kB]
-Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [388 kB]
-Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1486 kB]
-Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [339 kB]
-Get:20 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
-Get:21 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [5760 B]
-Get:22 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [12.7 kB]
-Get:23 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [972 kB]
-Get:24 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [206 kB]
-Get:25 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [46.3 kB]
-Get:26 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1203 kB]
-Get:27 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [241 kB]
-Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [76.3 kB]
-Get:29 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1392 kB]
-Get:30 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [321 kB]
-Get:31 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Translation-en [11.1 kB]
+Get:9 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1230 kB]
+Get:10 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [287 kB]
+Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [180 kB]
+Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1689 kB]
+Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [338 kB]
+Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [388 kB]
+Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1486 kB]
+Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [339 kB]
+Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
+Get:18 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [5760 B]
+Get:19 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [12.7 kB]
+Get:20 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [972 kB]
+Get:21 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [206 kB]
+Get:22 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [46.3 kB]
+Get:23 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1203 kB]
+Get:24 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [241 kB]
+Get:25 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [76.3 kB]
+Get:26 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1392 kB]
+Get:27 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [321 kB]
+Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/multiverse Translation-en [11.1 kB]
+Get:29 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [427 kB]
+Get:30 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [381 kB]
+Get:31 https://packages.microsoft.com/ubuntu/24.04/prod noble/main armhf Packages [12.5 kB]
 Get:32 https://dl.google.com/linux/chrome-stable/deb stable/main amd64 Packages [1402 B]
-Fetched 11.6 MB in 1s (9035 kB/s)
+Fetched 11.6 MB in 1s (8317 kB/s)
 Reading package lists...
 Reading package lists...
 Building dependency tree...
@@ -152,7 +152,7 @@ Get:7 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings a
 Get:8 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3 [94.4 kB]
 Get:9 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1 [384 kB]
 Get:10 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3 [304 kB]
-Fetched 21.1 MB in 1s (15.2 MB/s)
+Fetched 21.1 MB in 1s (28.8 MB/s)
 Selecting previously unselected package fonts-ipafont-gothic.
 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 203385 files and directories currently installed.)
 Preparing to unpack .../0-fonts-ipafont-gothic_00303-21ubuntu1_all.deb ...
@@ -247,7 +247,7 @@ Chrome Headless Shell 151.0.7922.34 (playwright chromium-headless-shell v1234) d
 Reference CSV is not stored in the repository; downloading the official file.
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  151k  100  151k    0     0   132k      0  0:00:01  0:00:01 --:--:--  132k
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  151k  100  151k    0     0   140k      0  0:00:01  0:00:01 --:--:--  140k
 Validated reference CSV: 1321 rows
 === Apply portal compatibility patches ===
 /home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/apply_dgrid_patch.py:102: SyntaxWarning: invalid escape sequence '\s'
@@ -274,7 +274,7 @@ Full snapshot: reference_groups=1306, opened_web_rows=61, extra_web_rows=42, tot
   "open": 61,
   "closed_or_inactive": 1287,
   "unknown": 0,
-  "changes": 6,
+  "changes": 9,
   "reference_matched": 1291,
   "reference_matched_multiple": 15,
   "reference_ambiguous": 0,
@@ -283,40 +283,1904 @@ Full snapshot: reference_groups=1306, opened_web_rows=61, extra_web_rows=42, tot
   "matching_issues_csv": "data/matching_issues/2026/08/2026-08-31.csv",
   "daily_csv": "data/daily/2026/08/2026-08-31.csv",
   "changes_csv": "data/changes/2026/08/2026-08-31.csv",
-  "source_updated_at": "26/08/31 03:35時点の避難所状況の一覧です。",
+  "source_updated_at": "26/08/31 09:54時点の避難所状況の一覧です。",
   "all_shelters_click_attempted": true
 }
 === Enrich capacity and complete coordinates ===
-Enrichment: data/daily/2026/08/2026-08-31.csv capacity=1181/1348 coordinates=1347/1348
-Enrichment: data/changes/2026/08/2026-08-31.csv capacity=6/6 coordinates=6/6
-Enrichment: data/matching_issues/2026/08/2026-08-31.csv capacity=40/42 coordinates=41/42
-Enrichment: data/latest.csv capacity=1181/1348 coordinates=1347/1348
-Enrichment: data/latest_open.csv capacity=61/62 coordinates=61/62
-Enrichment: data/latest_changes.csv capacity=6/6 coordinates=6/6
-Enrichment: data/latest_matching_issues.csv capacity=40/42 coordinates=41/42
-Capacity matching issues: 167 rows -> data/latest_capacity_matching_issues.csv
-Capacity master rows=2125; manual geocoding rows=138; capacity matches=2515/2854; complete coordinates=2849/2854
+Enrichment: data/daily/2026/08/2026-08-31.csv capacity=1182/1348 coordinates=1348/1348
+Enrichment: data/changes/2026/08/2026-08-31.csv capacity=9/9 coordinates=9/9
+Enrichment: data/matching_issues/2026/08/2026-08-31.csv capacity=41/42 coordinates=42/42
+Enrichment: data/latest.csv capacity=1182/1348 coordinates=1348/1348
+Enrichment: data/latest_open.csv capacity=61/61 coordinates=61/61
+Enrichment: data/latest_changes.csv capacity=9/9 coordinates=9/9
+Enrichment: data/latest_matching_issues.csv capacity=41/42 coordinates=42/42
+Capacity matching issues: 166 rows -> data/latest_capacity_matching_issues.csv
+Capacity master rows=2126; manual geocoding rows=138; capacity matches=2525/2859; complete coordinates=2859/2859
 === Build wide daily time-series CSVs ===
-既存履歴を保持して時系列を更新します: file=status_by_date.csv, preserved_cells=45105, refresh_date=-, new_dates=['2026-08-31']
-既存履歴を保持して時系列を更新します: file=open_status_by_date.csv, preserved_cells=45105, refresh_date=-, new_dates=['2026-08-31']
-既存履歴を保持して時系列を更新します: file=congestion_by_date.csv, preserved_cells=45105, refresh_date=-, new_dates=['2026-08-31']
+既存履歴を保持して時系列を更新します: file=status_by_date.csv, preserved_cells=45136, refresh_date=2026-08-31, new_dates=[]
+既存履歴を保持して時系列を更新します: file=open_status_by_date.csv, preserved_cells=45136, refresh_date=2026-08-31, new_dates=[]
+既存履歴を保持して時系列を更新します: file=congestion_by_date.csv, preserved_cells=45136, refresh_date=2026-08-31, new_dates=[]
 status_by_date.csvの列構成を検証しました: 固定属性=11列、日付=32列、施設=1456件
 横持ち時系列CSVを更新しました: 生成施設数=1455, status施設数=1456, 日数=32, 開始日=2026-07-29, 終了日=2026-08-31
 === Export current opened shelters for review ===
 Exported current opened shelters: 61 rows
 === Validate capacity and coordinate coverage ===
+{
+  "validated_at_jst": "2026-08-31T09:55:32+09:00",
+  "status": "success",
+  "master": {
+    "row_count": 2126,
+    "unique_portal_shelter_id_count": 2126,
+    "municipality_count": 45,
+    "positive_capacity_count": 1621,
+    "capacity_parse_status_counts": {
+      "missing": 105,
+      "missing_zero": 400,
+      "parsed": 1621
+    },
+    "metadata_response_sha256": "22af2291f30f3bcdc22858570987240f2a08bf2edb50c3f53168b34612fca856",
+    "metadata_acquired_at_jst": "2026-08-01T00:28:20+09:00",
+    "metadata_record_count": 2126
+  },
+  "latest": {
+    "row_count": 1348,
+    "capacity_match_status_counts": {
+      "ambiguous": 12,
+      "matched": 1182,
+      "unmatched": 154
+    },
+    "capacity_match_method_counts": {
+      "coordinate_high_similarity_200m": 2,
+      "coordinate_name_address_75m": 42,
+      "coordinate_near_tie": 11,
+      "coordinate_with_name_20m": 48,
+      "duplicate_exact_key": 1,
+      "exact_municipality_name_address": 914,
+      "exact_name_municipality_address_similar": 174,
+      "fuzzy_below_threshold": 28,
+      "high_confidence_fuzzy": 2,
+      "no_candidate": 126
+    },
+    "matched_row_count": 1182,
+    "matched_with_positive_capacity_count": 966,
+    "matched_with_source_coordinates_count": 1182,
+    "complete_unified_coordinate_count": 1348,
+    "unknown_master_id_count": 0,
+    "capacity_mismatch_count": 0
+  },
+  "open_status_by_date": {
+    "row_count": 1456,
+    "capacity_match_status_counts": {
+      "ambiguous": 11,
+      "matched": 1291,
+      "unmatched": 154
+    },
+    "capacity_match_method_counts": {
+      "coordinate_near_tie": 11,
+      "coordinate_with_name_20m": 2,
+      "exact_municipality_name_address": 4,
+      "fuzzy_below_threshold": 28,
+      "no_candidate": 126,
+      "portal_shelter_id": 1285
+    },
+    "matched_row_count": 1291,
+    "matched_with_positive_capacity_count": 1050,
+    "matched_with_source_coordinates_count": 1291,
+    "complete_unified_coordinate_count": 1456,
+    "unknown_master_id_count": 0,
+    "capacity_mismatch_count": 0
+  },
+  "status_by_date": {
+    "row_count": 1456,
+    "fixed_column_count": 11,
+    "date_column_count": 32,
+    "first_date": "2026-07-29",
+    "last_date": "2026-08-31",
+    "complete_unified_coordinate_count": 1456,
+    "fixed_attribute_mismatch_count": 0,
+    "invalid_status_value_count": 0
+  }
+}
+{
+  "validated_at_jst": "2026-08-31T09:55:36+09:00",
+  "status": "failure",
+  "coordinate_priority": [
+    "gsi_reference",
+    "manual_geocoding",
+    "kumamoto_portal"
+  ],
+  "manual_geocoding": {
+    "record_count": 138,
+    "unique_shelter_id_count": 138,
+    "loaded_files": [
+      "reference/manual_geocoding/manual_geocoding_part_01.csv",
+      "reference/manual_geocoding/manual_geocoding_part_02.csv",
+      "reference/manual_geocoding/manual_geocoding_part_03.csv",
+      "reference/manual_geocoding/manual_geocoding_part_04.csv",
+      "reference/manual_geocoding/manual_geocoding_part_05.csv",
+      "reference/manual_geocoding/manual_geocoding_part_06.csv"
+    ],
+    "manual_ids_not_present_in_outputs_count": 0,
+    "manual_ids_not_present_in_outputs": [],
+    "manual_ids_requiring_selection_count": 138,
+    "manual_unique_ids_selected_count": 138,
+    "manual_ids_not_selected_where_required_count": 0,
+    "manual_ids_not_selected_where_required": [],
+    "manual_selection_occurrence_count": 5224
+  },
+  "validated_file_count": 105,
+  "total_coordinate_source_counts": {
+    "gsi_reference": 89329,
+    "kumamoto_portal": 603,
+    "manual_geocoding": 5224
+  },
+  "total_error_count": 15,
+  "files": [
+    {
+      "file": "data/daily/2026/07/2026-07-29.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1314,
+      "shelter_row_count": 1314,
+      "complete_coordinate_count": 1314,
+      "manual_selection_count": 14,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1300,
+        "manual_geocoding": 14
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/daily/2026/07/2026-07-30.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1436,
+      "shelter_row_count": 1436,
+      "complete_coordinate_count": 1436,
+      "manual_selection_count": 136,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1300,
+        "manual_geocoding": 136
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/daily/2026/07/2026-07-31.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1430,
+      "shelter_row_count": 1430,
+      "complete_coordinate_count": 1430,
+      "manual_selection_count": 130,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1300,
+        "manual_geocoding": 130
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-01.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1387,
+      "shelter_row_count": 1387,
+      "complete_coordinate_count": 1387,
+      "manual_selection_count": 81,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1300,
+        "kumamoto_portal": 6,
+        "manual_geocoding": 81
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-02.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1382,
+      "shelter_row_count": 1382,
+      "complete_coordinate_count": 1382,
+      "manual_selection_count": 76,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1300,
+        "kumamoto_portal": 6,
+        "manual_geocoding": 76
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-03.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1359,
+      "shelter_row_count": 1359,
+      "complete_coordinate_count": 1359,
+      "manual_selection_count": 53,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1300,
+        "kumamoto_portal": 6,
+        "manual_geocoding": 53
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-04.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1359,
+      "shelter_row_count": 1359,
+      "complete_coordinate_count": 1359,
+      "manual_selection_count": 51,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1301,
+        "kumamoto_portal": 7,
+        "manual_geocoding": 51
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-05.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1356,
+      "shelter_row_count": 1356,
+      "complete_coordinate_count": 1356,
+      "manual_selection_count": 48,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1301,
+        "kumamoto_portal": 7,
+        "manual_geocoding": 48
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-06.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1355,
+      "shelter_row_count": 1355,
+      "complete_coordinate_count": 1355,
+      "manual_selection_count": 47,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1301,
+        "kumamoto_portal": 7,
+        "manual_geocoding": 47
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-08.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1351,
+      "shelter_row_count": 1351,
+      "complete_coordinate_count": 1351,
+      "manual_selection_count": 44,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1301,
+        "kumamoto_portal": 6,
+        "manual_geocoding": 44
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-09.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1351,
+      "shelter_row_count": 1351,
+      "complete_coordinate_count": 1351,
+      "manual_selection_count": 44,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1301,
+        "kumamoto_portal": 6,
+        "manual_geocoding": 44
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-10.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1349,
+      "shelter_row_count": 1349,
+      "complete_coordinate_count": 1349,
+      "manual_selection_count": 41,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1301,
+        "kumamoto_portal": 7,
+        "manual_geocoding": 41
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-11.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1348,
+      "shelter_row_count": 1348,
+      "complete_coordinate_count": 1348,
+      "manual_selection_count": 40,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1301,
+        "kumamoto_portal": 7,
+        "manual_geocoding": 40
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-12.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1346,
+      "shelter_row_count": 1346,
+      "complete_coordinate_count": 1346,
+      "manual_selection_count": 38,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1301,
+        "kumamoto_portal": 7,
+        "manual_geocoding": 38
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-13.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1346,
+      "shelter_row_count": 1346,
+      "complete_coordinate_count": 1346,
+      "manual_selection_count": 38,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1301,
+        "kumamoto_portal": 7,
+        "manual_geocoding": 38
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-14.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1346,
+      "shelter_row_count": 1346,
+      "complete_coordinate_count": 1346,
+      "manual_selection_count": 38,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1301,
+        "kumamoto_portal": 7,
+        "manual_geocoding": 38
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-15.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1345,
+      "shelter_row_count": 1345,
+      "complete_coordinate_count": 1345,
+      "manual_selection_count": 38,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1301,
+        "kumamoto_portal": 6,
+        "manual_geocoding": 38
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-16.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1345,
+      "shelter_row_count": 1345,
+      "complete_coordinate_count": 1345,
+      "manual_selection_count": 38,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1301,
+        "kumamoto_portal": 6,
+        "manual_geocoding": 38
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-17.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1344,
+      "shelter_row_count": 1344,
+      "complete_coordinate_count": 1344,
+      "manual_selection_count": 37,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1301,
+        "kumamoto_portal": 6,
+        "manual_geocoding": 37
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-18.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1349,
+      "shelter_row_count": 1349,
+      "complete_coordinate_count": 1349,
+      "manual_selection_count": 37,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1306,
+        "kumamoto_portal": 6,
+        "manual_geocoding": 37
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-19.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1349,
+      "shelter_row_count": 1349,
+      "complete_coordinate_count": 1349,
+      "manual_selection_count": 37,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1306,
+        "kumamoto_portal": 6,
+        "manual_geocoding": 37
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-21.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1349,
+      "shelter_row_count": 1349,
+      "complete_coordinate_count": 1349,
+      "manual_selection_count": 37,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1306,
+        "kumamoto_portal": 6,
+        "manual_geocoding": 37
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-22.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1349,
+      "shelter_row_count": 1349,
+      "complete_coordinate_count": 1349,
+      "manual_selection_count": 37,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1306,
+        "kumamoto_portal": 6,
+        "manual_geocoding": 37
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-23.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1349,
+      "shelter_row_count": 1349,
+      "complete_coordinate_count": 1349,
+      "manual_selection_count": 37,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1306,
+        "kumamoto_portal": 6,
+        "manual_geocoding": 37
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-24.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1349,
+      "shelter_row_count": 1349,
+      "complete_coordinate_count": 1349,
+      "manual_selection_count": 37,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1306,
+        "kumamoto_portal": 6,
+        "manual_geocoding": 37
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-25.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1349,
+      "shelter_row_count": 1349,
+      "complete_coordinate_count": 1349,
+      "manual_selection_count": 37,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1306,
+        "kumamoto_portal": 6,
+        "manual_geocoding": 37
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-26.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1349,
+      "shelter_row_count": 1349,
+      "complete_coordinate_count": 1349,
+      "manual_selection_count": 37,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1306,
+        "kumamoto_portal": 6,
+        "manual_geocoding": 37
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-27.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1348,
+      "shelter_row_count": 1348,
+      "complete_coordinate_count": 1347,
+      "manual_selection_count": 36,
+      "error_count": 1,
+      "coordinate_source_counts": {
+        "gsi_reference": 1306,
+        "kumamoto_portal": 5,
+        "manual_geocoding": 36
+      },
+      "error_examples": [
+        {
+          "file": "data/daily/2026/08/2026-08-27.csv",
+          "shelter_id": "web:b40327fcf4cb85a88b87",
+          "municipality": "宇城市",
+          "shelter_name": "旧豊野小学校体育館",
+          "address": "熊本県宇城市豊野町糸石2998",
+          "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
+        }
+      ]
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-28.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1348,
+      "shelter_row_count": 1348,
+      "complete_coordinate_count": 1347,
+      "manual_selection_count": 36,
+      "error_count": 1,
+      "coordinate_source_counts": {
+        "gsi_reference": 1306,
+        "kumamoto_portal": 5,
+        "manual_geocoding": 36
+      },
+      "error_examples": [
+        {
+          "file": "data/daily/2026/08/2026-08-28.csv",
+          "shelter_id": "web:b40327fcf4cb85a88b87",
+          "municipality": "宇城市",
+          "shelter_name": "旧豊野小学校体育館",
+          "address": "熊本県宇城市豊野町糸石2998",
+          "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
+        }
+      ]
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-29.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1348,
+      "shelter_row_count": 1348,
+      "complete_coordinate_count": 1347,
+      "manual_selection_count": 36,
+      "error_count": 1,
+      "coordinate_source_counts": {
+        "gsi_reference": 1306,
+        "kumamoto_portal": 5,
+        "manual_geocoding": 36
+      },
+      "error_examples": [
+        {
+          "file": "data/daily/2026/08/2026-08-29.csv",
+          "shelter_id": "web:b40327fcf4cb85a88b87",
+          "municipality": "宇城市",
+          "shelter_name": "旧豊野小学校体育館",
+          "address": "熊本県宇城市豊野町糸石2998",
+          "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
+        }
+      ]
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-30.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1347,
+      "shelter_row_count": 1347,
+      "complete_coordinate_count": 1346,
+      "manual_selection_count": 35,
+      "error_count": 1,
+      "coordinate_source_counts": {
+        "gsi_reference": 1306,
+        "kumamoto_portal": 5,
+        "manual_geocoding": 35
+      },
+      "error_examples": [
+        {
+          "file": "data/daily/2026/08/2026-08-30.csv",
+          "shelter_id": "web:b40327fcf4cb85a88b87",
+          "municipality": "宇城市",
+          "shelter_name": "旧豊野小学校体育館",
+          "address": "熊本県宇城市豊野町糸石2998",
+          "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
+        }
+      ]
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-31.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1348,
+      "shelter_row_count": 1348,
+      "complete_coordinate_count": 1348,
+      "manual_selection_count": 35,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1306,
+        "kumamoto_portal": 7,
+        "manual_geocoding": 35
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/07/2026-07-29.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1314,
+      "shelter_row_count": 1314,
+      "complete_coordinate_count": 1314,
+      "manual_selection_count": 14,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1300,
+        "manual_geocoding": 14
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/07/2026-07-30.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 345,
+      "shelter_row_count": 345,
+      "complete_coordinate_count": 345,
+      "manual_selection_count": 122,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 223,
+        "manual_geocoding": 122
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/07/2026-07-31.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 44,
+      "shelter_row_count": 44,
+      "complete_coordinate_count": 44,
+      "manual_selection_count": 18,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 26,
+        "manual_geocoding": 18
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-01.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 188,
+      "shelter_row_count": 188,
+      "complete_coordinate_count": 188,
+      "manual_selection_count": 55,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 127,
+        "kumamoto_portal": 6,
+        "manual_geocoding": 55
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-02.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 32,
+      "shelter_row_count": 32,
+      "complete_coordinate_count": 32,
+      "manual_selection_count": 11,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 19,
+        "kumamoto_portal": 2,
+        "manual_geocoding": 11
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-03.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 40,
+      "shelter_row_count": 40,
+      "complete_coordinate_count": 40,
+      "manual_selection_count": 26,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 12,
+        "kumamoto_portal": 2,
+        "manual_geocoding": 26
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-04.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 32,
+      "shelter_row_count": 32,
+      "complete_coordinate_count": 32,
+      "manual_selection_count": 3,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 28,
+        "kumamoto_portal": 1,
+        "manual_geocoding": 3
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-05.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 22,
+      "shelter_row_count": 22,
+      "complete_coordinate_count": 22,
+      "manual_selection_count": 8,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 13,
+        "kumamoto_portal": 1,
+        "manual_geocoding": 8
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-06.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 9,
+      "shelter_row_count": 9,
+      "complete_coordinate_count": 9,
+      "manual_selection_count": 4,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 4,
+        "kumamoto_portal": 1,
+        "manual_geocoding": 4
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-08.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 19,
+      "shelter_row_count": 19,
+      "complete_coordinate_count": 19,
+      "manual_selection_count": 6,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 11,
+        "kumamoto_portal": 2,
+        "manual_geocoding": 6
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-09.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1,
+      "shelter_row_count": 1,
+      "complete_coordinate_count": 1,
+      "manual_selection_count": 0,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-10.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 25,
+      "shelter_row_count": 25,
+      "complete_coordinate_count": 25,
+      "manual_selection_count": 4,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 19,
+        "kumamoto_portal": 2,
+        "manual_geocoding": 4
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-11.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 20,
+      "shelter_row_count": 20,
+      "complete_coordinate_count": 20,
+      "manual_selection_count": 8,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 12,
+        "manual_geocoding": 8
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-12.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 10,
+      "shelter_row_count": 10,
+      "complete_coordinate_count": 10,
+      "manual_selection_count": 3,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 7,
+        "manual_geocoding": 3
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-13.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 3,
+      "shelter_row_count": 3,
+      "complete_coordinate_count": 3,
+      "manual_selection_count": 3,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "manual_geocoding": 3
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-14.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 2,
+      "shelter_row_count": 2,
+      "complete_coordinate_count": 2,
+      "manual_selection_count": 2,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "manual_geocoding": 2
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-15.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 6,
+      "shelter_row_count": 6,
+      "complete_coordinate_count": 6,
+      "manual_selection_count": 3,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 3,
+        "manual_geocoding": 3
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-16.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 5,
+      "shelter_row_count": 5,
+      "complete_coordinate_count": 5,
+      "manual_selection_count": 2,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 3,
+        "manual_geocoding": 2
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-17.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 12,
+      "shelter_row_count": 12,
+      "complete_coordinate_count": 12,
+      "manual_selection_count": 4,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 8,
+        "manual_geocoding": 4
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-18.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 7,
+      "shelter_row_count": 7,
+      "complete_coordinate_count": 7,
+      "manual_selection_count": 2,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 5,
+        "manual_geocoding": 2
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-19.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1,
+      "shelter_row_count": 1,
+      "complete_coordinate_count": 1,
+      "manual_selection_count": 0,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-21.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 4,
+      "shelter_row_count": 4,
+      "complete_coordinate_count": 4,
+      "manual_selection_count": 2,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 2,
+        "manual_geocoding": 2
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-22.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 3,
+      "shelter_row_count": 3,
+      "complete_coordinate_count": 3,
+      "manual_selection_count": 0,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 3
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-23.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 4,
+      "shelter_row_count": 4,
+      "complete_coordinate_count": 4,
+      "manual_selection_count": 2,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 2,
+        "manual_geocoding": 2
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-24.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 4,
+      "shelter_row_count": 4,
+      "complete_coordinate_count": 4,
+      "manual_selection_count": 2,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 2,
+        "manual_geocoding": 2
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-25.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 3,
+      "shelter_row_count": 3,
+      "complete_coordinate_count": 3,
+      "manual_selection_count": 1,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 2,
+        "manual_geocoding": 1
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-26.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 2,
+      "shelter_row_count": 2,
+      "complete_coordinate_count": 2,
+      "manual_selection_count": 0,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 2
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-27.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 8,
+      "shelter_row_count": 8,
+      "complete_coordinate_count": 7,
+      "manual_selection_count": 2,
+      "error_count": 1,
+      "coordinate_source_counts": {
+        "gsi_reference": 4,
+        "kumamoto_portal": 1,
+        "manual_geocoding": 2
+      },
+      "error_examples": [
+        {
+          "file": "data/changes/2026/08/2026-08-27.csv",
+          "shelter_id": "web:b40327fcf4cb85a88b87",
+          "municipality": "宇城市",
+          "shelter_name": "旧豊野小学校体育館",
+          "address": "熊本県宇城市豊野町糸石2998",
+          "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
+        }
+      ]
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-28.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 6,
+      "shelter_row_count": 6,
+      "complete_coordinate_count": 6,
+      "manual_selection_count": 4,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 2,
+        "manual_geocoding": 4
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-29.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 0,
+      "shelter_row_count": 0,
+      "complete_coordinate_count": 0,
+      "manual_selection_count": 0,
+      "error_count": 0,
+      "coordinate_source_counts": {},
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-30.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 4,
+      "shelter_row_count": 4,
+      "complete_coordinate_count": 4,
+      "manual_selection_count": 3,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1,
+        "manual_geocoding": 3
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-31.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 9,
+      "shelter_row_count": 9,
+      "complete_coordinate_count": 9,
+      "manual_selection_count": 5,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 3,
+        "kumamoto_portal": 1,
+        "manual_geocoding": 5
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/07/2026-07-29.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 14,
+      "shelter_row_count": 14,
+      "complete_coordinate_count": 14,
+      "manual_selection_count": 14,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "manual_geocoding": 14
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/07/2026-07-30.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 136,
+      "shelter_row_count": 136,
+      "complete_coordinate_count": 136,
+      "manual_selection_count": 136,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "manual_geocoding": 136
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/07/2026-07-31.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 130,
+      "shelter_row_count": 130,
+      "complete_coordinate_count": 130,
+      "manual_selection_count": 130,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "manual_geocoding": 130
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-01.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 87,
+      "shelter_row_count": 87,
+      "complete_coordinate_count": 87,
+      "manual_selection_count": 81,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 6,
+        "manual_geocoding": 81
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-02.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 82,
+      "shelter_row_count": 82,
+      "complete_coordinate_count": 82,
+      "manual_selection_count": 76,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 6,
+        "manual_geocoding": 76
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-03.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 59,
+      "shelter_row_count": 59,
+      "complete_coordinate_count": 59,
+      "manual_selection_count": 53,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 6,
+        "manual_geocoding": 53
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-04.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 58,
+      "shelter_row_count": 58,
+      "complete_coordinate_count": 58,
+      "manual_selection_count": 51,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 7,
+        "manual_geocoding": 51
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-05.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 55,
+      "shelter_row_count": 55,
+      "complete_coordinate_count": 55,
+      "manual_selection_count": 48,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 7,
+        "manual_geocoding": 48
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-06.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 54,
+      "shelter_row_count": 54,
+      "complete_coordinate_count": 54,
+      "manual_selection_count": 47,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 7,
+        "manual_geocoding": 47
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-08.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 50,
+      "shelter_row_count": 50,
+      "complete_coordinate_count": 50,
+      "manual_selection_count": 44,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 6,
+        "manual_geocoding": 44
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-09.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 50,
+      "shelter_row_count": 50,
+      "complete_coordinate_count": 50,
+      "manual_selection_count": 44,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 6,
+        "manual_geocoding": 44
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-10.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 48,
+      "shelter_row_count": 48,
+      "complete_coordinate_count": 48,
+      "manual_selection_count": 41,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 7,
+        "manual_geocoding": 41
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-11.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 47,
+      "shelter_row_count": 47,
+      "complete_coordinate_count": 47,
+      "manual_selection_count": 40,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 7,
+        "manual_geocoding": 40
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-12.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 45,
+      "shelter_row_count": 45,
+      "complete_coordinate_count": 45,
+      "manual_selection_count": 38,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 7,
+        "manual_geocoding": 38
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-13.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 45,
+      "shelter_row_count": 45,
+      "complete_coordinate_count": 45,
+      "manual_selection_count": 38,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 7,
+        "manual_geocoding": 38
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-14.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 45,
+      "shelter_row_count": 45,
+      "complete_coordinate_count": 45,
+      "manual_selection_count": 38,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 7,
+        "manual_geocoding": 38
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-15.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 44,
+      "shelter_row_count": 44,
+      "complete_coordinate_count": 44,
+      "manual_selection_count": 38,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 6,
+        "manual_geocoding": 38
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-16.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 44,
+      "shelter_row_count": 44,
+      "complete_coordinate_count": 44,
+      "manual_selection_count": 38,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 6,
+        "manual_geocoding": 38
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-17.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 43,
+      "shelter_row_count": 43,
+      "complete_coordinate_count": 43,
+      "manual_selection_count": 37,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 6,
+        "manual_geocoding": 37
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-18.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 43,
+      "shelter_row_count": 43,
+      "complete_coordinate_count": 43,
+      "manual_selection_count": 37,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 6,
+        "manual_geocoding": 37
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-19.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 43,
+      "shelter_row_count": 43,
+      "complete_coordinate_count": 43,
+      "manual_selection_count": 37,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 6,
+        "manual_geocoding": 37
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-21.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 43,
+      "shelter_row_count": 43,
+      "complete_coordinate_count": 43,
+      "manual_selection_count": 37,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 6,
+        "manual_geocoding": 37
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-22.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 43,
+      "shelter_row_count": 43,
+      "complete_coordinate_count": 43,
+      "manual_selection_count": 37,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 6,
+        "manual_geocoding": 37
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-23.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 43,
+      "shelter_row_count": 43,
+      "complete_coordinate_count": 43,
+      "manual_selection_count": 37,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 6,
+        "manual_geocoding": 37
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-24.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 43,
+      "shelter_row_count": 43,
+      "complete_coordinate_count": 43,
+      "manual_selection_count": 37,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 6,
+        "manual_geocoding": 37
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-25.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 43,
+      "shelter_row_count": 43,
+      "complete_coordinate_count": 43,
+      "manual_selection_count": 37,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 6,
+        "manual_geocoding": 37
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-26.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 43,
+      "shelter_row_count": 43,
+      "complete_coordinate_count": 43,
+      "manual_selection_count": 37,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 6,
+        "manual_geocoding": 37
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-27.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 42,
+      "shelter_row_count": 42,
+      "complete_coordinate_count": 41,
+      "manual_selection_count": 36,
+      "error_count": 1,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 5,
+        "manual_geocoding": 36
+      },
+      "error_examples": [
+        {
+          "file": "data/matching_issues/2026/08/2026-08-27.csv",
+          "shelter_id": "web:b40327fcf4cb85a88b87",
+          "municipality": "宇城市",
+          "shelter_name": "旧豊野小学校体育館",
+          "address": "熊本県宇城市豊野町糸石2998",
+          "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
+        }
+      ]
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-28.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 42,
+      "shelter_row_count": 42,
+      "complete_coordinate_count": 41,
+      "manual_selection_count": 36,
+      "error_count": 1,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 5,
+        "manual_geocoding": 36
+      },
+      "error_examples": [
+        {
+          "file": "data/matching_issues/2026/08/2026-08-28.csv",
+          "shelter_id": "web:b40327fcf4cb85a88b87",
+          "municipality": "宇城市",
+          "shelter_name": "旧豊野小学校体育館",
+          "address": "熊本県宇城市豊野町糸石2998",
+          "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
+        }
+      ]
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-29.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 42,
+      "shelter_row_count": 42,
+      "complete_coordinate_count": 41,
+      "manual_selection_count": 36,
+      "error_count": 1,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 5,
+        "manual_geocoding": 36
+      },
+      "error_examples": [
+        {
+          "file": "data/matching_issues/2026/08/2026-08-29.csv",
+          "shelter_id": "web:b40327fcf4cb85a88b87",
+          "municipality": "宇城市",
+          "shelter_name": "旧豊野小学校体育館",
+          "address": "熊本県宇城市豊野町糸石2998",
+          "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
+        }
+      ]
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-30.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 41,
+      "shelter_row_count": 41,
+      "complete_coordinate_count": 40,
+      "manual_selection_count": 35,
+      "error_count": 1,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 5,
+        "manual_geocoding": 35
+      },
+      "error_examples": [
+        {
+          "file": "data/matching_issues/2026/08/2026-08-30.csv",
+          "shelter_id": "web:b40327fcf4cb85a88b87",
+          "municipality": "宇城市",
+          "shelter_name": "旧豊野小学校体育館",
+          "address": "熊本県宇城市豊野町糸石2998",
+          "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
+        }
+      ]
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-31.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 42,
+      "shelter_row_count": 42,
+      "complete_coordinate_count": 42,
+      "manual_selection_count": 35,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 7,
+        "manual_geocoding": 35
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/latest.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1348,
+      "shelter_row_count": 1348,
+      "complete_coordinate_count": 1348,
+      "manual_selection_count": 35,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1306,
+        "kumamoto_portal": 7,
+        "manual_geocoding": 35
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/latest_open.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 61,
+      "shelter_row_count": 61,
+      "complete_coordinate_count": 61,
+      "manual_selection_count": 35,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 19,
+        "kumamoto_portal": 7,
+        "manual_geocoding": 35
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/latest_changes.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 9,
+      "shelter_row_count": 9,
+      "complete_coordinate_count": 9,
+      "manual_selection_count": 5,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 3,
+        "kumamoto_portal": 1,
+        "manual_geocoding": 5
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/latest_matching_issues.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 42,
+      "shelter_row_count": 42,
+      "complete_coordinate_count": 42,
+      "manual_selection_count": 35,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 7,
+        "manual_geocoding": 35
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/latest_capacity_matching_issues.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 166,
+      "shelter_row_count": 166,
+      "complete_coordinate_count": 166,
+      "manual_selection_count": 1,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 165,
+        "manual_geocoding": 1
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/all_snapshots.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 43380,
+      "shelter_row_count": 43380,
+      "complete_coordinate_count": 43376,
+      "manual_selection_count": 1506,
+      "error_count": 4,
+      "coordinate_source_counts": {
+        "gsi_reference": 41691,
+        "kumamoto_portal": 179,
+        "manual_geocoding": 1506
+      },
+      "error_examples": [
+        {
+          "file": "data/all_snapshots.csv",
+          "shelter_id": "web:b40327fcf4cb85a88b87",
+          "municipality": "宇城市",
+          "shelter_name": "旧豊野小学校体育館",
+          "address": "熊本県宇城市豊野町糸石2998",
+          "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
+        },
+        {
+          "file": "data/all_snapshots.csv",
+          "shelter_id": "web:b40327fcf4cb85a88b87",
+          "municipality": "宇城市",
+          "shelter_name": "旧豊野小学校体育館",
+          "address": "熊本県宇城市豊野町糸石2998",
+          "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
+        },
+        {
+          "file": "data/all_snapshots.csv",
+          "shelter_id": "web:b40327fcf4cb85a88b87",
+          "municipality": "宇城市",
+          "shelter_name": "旧豊野小学校体育館",
+          "address": "熊本県宇城市豊野町糸石2998",
+          "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
+        },
+        {
+          "file": "data/all_snapshots.csv",
+          "shelter_id": "web:b40327fcf4cb85a88b87",
+          "municipality": "宇城市",
+          "shelter_name": "旧豊野小学校体育館",
+          "address": "熊本県宇城市豊野町糸石2998",
+          "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
+        }
+      ]
+    },
+    {
+      "file": "data/status_by_date.csv",
+      "validation_mode": "compact_unified_coordinates",
+      "row_count": 1456,
+      "shelter_row_count": 1456,
+      "complete_coordinate_count": 1456,
+      "manual_selection_count": 0,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "inherited_from_open_status_by_date": 1456
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/open_status_by_date.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1456,
+      "shelter_row_count": 1456,
+      "complete_coordinate_count": 1455,
+      "manual_selection_count": 138,
+      "error_count": 1,
+      "coordinate_source_counts": {
+        "gsi_reference": 1306,
+        "kumamoto_portal": 11,
+        "manual_geocoding": 138
+      },
+      "error_examples": [
+        {
+          "file": "data/open_status_by_date.csv",
+          "shelter_id": "web:b40327fcf4cb85a88b87",
+          "municipality": "宇城市",
+          "shelter_name": "旧豊野小学校体育館",
+          "address": "熊本県宇城市豊野町糸石2998",
+          "error": "coordinate_status=missing"
+        }
+      ]
+    },
+    {
+      "file": "data/congestion_by_date.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1456,
+      "shelter_row_count": 1456,
+      "complete_coordinate_count": 1455,
+      "manual_selection_count": 138,
+      "error_count": 1,
+      "coordinate_source_counts": {
+        "gsi_reference": 1306,
+        "kumamoto_portal": 11,
+        "manual_geocoding": 138
+      },
+      "error_examples": [
+        {
+          "file": "data/congestion_by_date.csv",
+          "shelter_id": "web:b40327fcf4cb85a88b87",
+          "municipality": "宇城市",
+          "shelter_name": "旧豊野小学校体育館",
+          "address": "熊本県宇城市豊野町糸石2998",
+          "error": "coordinate_status=missing"
+        }
+      ]
+    }
+  ],
+  "error_examples": [
+    {
+      "file": "data/daily/2026/08/2026-08-27.csv",
+      "shelter_id": "web:b40327fcf4cb85a88b87",
+      "municipality": "宇城市",
+      "shelter_name": "旧豊野小学校体育館",
+      "address": "熊本県宇城市豊野町糸石2998",
+      "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-28.csv",
+      "shelter_id": "web:b40327fcf4cb85a88b87",
+      "municipality": "宇城市",
+      "shelter_name": "旧豊野小学校体育館",
+      "address": "熊本県宇城市豊野町糸石2998",
+      "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-29.csv",
+      "shelter_id": "web:b40327fcf4cb85a88b87",
+      "municipality": "宇城市",
+      "shelter_name": "旧豊野小学校体育館",
+      "address": "熊本県宇城市豊野町糸石2998",
+      "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
+    },
+    {
+      "file": "data/daily/2026/08/2026-08-30.csv",
+      "shelter_id": "web:b40327fcf4cb85a88b87",
+      "municipality": "宇城市",
+      "shelter_name": "旧豊野小学校体育館",
+      "address": "熊本県宇城市豊野町糸石2998",
+      "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
+    },
+    {
+      "file": "data/changes/2026/08/2026-08-27.csv",
+      "shelter_id": "web:b40327fcf4cb85a88b87",
+      "municipality": "宇城市",
+      "shelter_name": "旧豊野小学校体育館",
+      "address": "熊本県宇城市豊野町糸石2998",
+      "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-27.csv",
+      "shelter_id": "web:b40327fcf4cb85a88b87",
+      "municipality": "宇城市",
+      "shelter_name": "旧豊野小学校体育館",
+      "address": "熊本県宇城市豊野町糸石2998",
+      "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-28.csv",
+      "shelter_id": "web:b40327fcf4cb85a88b87",
+      "municipality": "宇城市",
+      "shelter_name": "旧豊野小学校体育館",
+      "address": "熊本県宇城市豊野町糸石2998",
+      "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-29.csv",
+      "shelter_id": "web:b40327fcf4cb85a88b87",
+      "municipality": "宇城市",
+      "shelter_name": "旧豊野小学校体育館",
+      "address": "熊本県宇城市豊野町糸石2998",
+      "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
+    },
+    {
+      "file": "data/matching_issues/2026/08/2026-08-30.csv",
+      "shelter_id": "web:b40327fcf4cb85a88b87",
+      "municipality": "宇城市",
+      "shelter_name": "旧豊野小学校体育館",
+      "address": "熊本県宇城市豊野町糸石2998",
+      "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
+    },
+    {
+      "file": "data/all_snapshots.csv",
+      "shelter_id": "web:b40327fcf4cb85a88b87",
+      "municipality": "宇城市",
+      "shelter_name": "旧豊野小学校体育館",
+      "address": "熊本県宇城市豊野町糸石2998",
+      "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
+    },
+    {
+      "file": "data/all_snapshots.csv",
+      "shelter_id": "web:b40327fcf4cb85a88b87",
+      "municipality": "宇城市",
+      "shelter_name": "旧豊野小学校体育館",
+      "address": "熊本県宇城市豊野町糸石2998",
+      "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
+    },
+    {
+      "file": "data/all_snapshots.csv",
+      "shelter_id": "web:b40327fcf4cb85a88b87",
+      "municipality": "宇城市",
+      "shelter_name": "旧豊野小学校体育館",
+      "address": "熊本県宇城市豊野町糸石2998",
+      "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
+    },
+    {
+      "file": "data/all_snapshots.csv",
+      "shelter_id": "web:b40327fcf4cb85a88b87",
+      "municipality": "宇城市",
+      "shelter_name": "旧豊野小学校体育館",
+      "address": "熊本県宇城市豊野町糸石2998",
+      "error": "missing_or_invalid_coordinate_pair;coordinate_status=missing;coordinate_source=(blank);coordinate_method=(blank)"
+    },
+    {
+      "file": "data/open_status_by_date.csv",
+      "shelter_id": "web:b40327fcf4cb85a88b87",
+      "municipality": "宇城市",
+      "shelter_name": "旧豊野小学校体育館",
+      "address": "熊本県宇城市豊野町糸石2998",
+      "error": "coordinate_status=missing"
+    },
+    {
+      "file": "data/congestion_by_date.csv",
+      "shelter_id": "web:b40327fcf4cb85a88b87",
+      "municipality": "宇城市",
+      "shelter_name": "旧豊野小学校体育館",
+      "address": "熊本県宇城市豊野町糸石2998",
+      "error": "coordinate_status=missing"
+    }
+  ]
+}
 Traceback (most recent call last):
-  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/validate_capacity_outputs.py", line 397, in <module>
+  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/validate_coordinate_outputs.py", line 465, in <module>
     raise SystemExit(main())
                      ^^^^^^
-  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/validate_capacity_outputs.py", line 353, in main
-    latest_report = validate_detailed_enriched_rows(
-                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/validate_capacity_outputs.py", line 146, in validate_detailed_enriched_rows
-    require(
-  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/validate_capacity_outputs.py", line 53, in require
-    raise RuntimeError(message)
-RuntimeError: latest.csv contains incomplete or invalid coordinates: ['web:b40327fcf4cb85a88b87']
+  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/validate_coordinate_outputs.py", line 458, in main
+    raise RuntimeError(
+RuntimeError: 緯度経度または手動座標の適用に問題があります: 15
 === Rendered HTML diagnostics ===
 html_bytes=560394
 table_count=148
