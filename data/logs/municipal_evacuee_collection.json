@@ -1,10 +1,10 @@
 {
-  "retrieved_at_jst": "2026-09-08T10:15:54+09:00",
+  "retrieved_at_jst": "2026-09-08T22:46:45+09:00",
   "status": "success",
   "source_changed": false,
   "changed_sources": [],
-  "observation_row_count": 2466,
-  "matched_observation_row_count": 2466,
+  "observation_row_count": 2548,
+  "matched_observation_row_count": 2548,
   "unmatched_or_ambiguous_row_count": 0,
   "wide_row_count": 1457,
   "wide_date_columns": [
