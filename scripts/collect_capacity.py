@@ -199,6 +199,34 @@ def merge_rows(
     )
 
 
+def capacity_master_stats(rows: list[dict[str, str]]) -> dict[str, int]:
+    """Summarize the persisted master, including preserved prior capacities."""
+    statuses = [row.get("capacity_parse_status", "") for row in rows]
+    return {
+        "record_count": len(rows),
+        "parsed_capacity_count": sum(
+            bool(row.get("portal_capacity_persons")) for row in rows
+        ),
+        "preserved_previous_parsed_count": sum(
+            status == "preserved_previous_parsed" for status in statuses
+        ),
+        "missing_zero_capacity_count": sum(
+            status == "missing_zero" for status in statuses
+        ),
+        "missing_capacity_count": sum(status == "missing" for status in statuses),
+        "invalid_capacity_count": sum(
+            status.startswith("invalid") for status in statuses
+        ),
+        "municipality_count": len(
+            {
+                row.get("municipality_code", "")
+                for row in rows
+                if row.get("municipality_code", "")
+            }
+        ),
+    }
+
+
 def validate_items(
     payload: Any,
     minimum_records: int,
@@ -314,8 +342,10 @@ def main() -> int:
         "response_sha256": source_sha256(body),
         "existing_master_count": len(existing),
         "downloaded_record_count": len(downloaded),
+        "downloaded_parsed_capacity_count": stats["parsed_capacity_count"],
         "merged_master_count": len(merged),
         **stats,
+        **capacity_master_stats(merged),
         "interpretation": {
             "positive_capacity": "portal_capacity_personsとして保存",
             "capacity_zero": "ポップアップでは---表示のため欠損扱い",
