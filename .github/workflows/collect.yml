@@ -5,7 +5,18 @@ on:
     branches:
       - main
     paths:
-      - scripts/**
+      - scripts/collect_shelters.py
+      - scripts/reference_matcher.py
+      - scripts/capacity_matcher.py
+      - scripts/coordinate_enricher.py
+      - scripts/enrich_capacity_outputs.py
+      - scripts/validate_capacity_outputs.py
+      - scripts/validate_coordinate_outputs.py
+      - scripts/diagnose_html.py
+      - scripts/apply_dgrid_patch.py
+      - scripts/refine_dgrid_patch.py
+      - scripts/ensure_dgrid_meta.py
+      - scripts/snapshot_retention.py
       - requirements.txt
       - reference/**
       - .github/workflows/collect.yml
