@@ -1,5 +1,5 @@
 === Environment ===
-2026-09-12T22:32:38+00:00
+2026-09-12T22:44:34+00:00
 Python 3.12.14
 === Install Python dependencies ===
 Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages (26.2.1)
@@ -46,32 +46,32 @@ Installing dependencies...
 Switching to root user to install dependencies...
 Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
-Get:6 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
 Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
 Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
 Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
-Get:7 https://dl.google.com/linux/chrome-stable/deb stable InRelease [2548 B]
-Get:8 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [414 kB]
-Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [463 kB]
-Get:10 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1263 kB]
-Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [292 kB]
-Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [180 kB]
-Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1690 kB]
-Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [388 kB]
-Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1544 kB]
-Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [354 kB]
-Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
-Get:18 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [5748 B]
-Get:19 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [12.6 kB]
-Get:20 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [1006 kB]
-Get:21 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [213 kB]
-Get:22 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [46.4 kB]
-Get:23 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1206 kB]
-Get:24 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [76.3 kB]
-Get:25 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1445 kB]
-Get:26 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [336 kB]
-Get:27 https://dl.google.com/linux/chrome-stable/deb stable/main amd64 Packages [1409 B]
-Fetched 11.3 MB in 1s (9150 kB/s)
+Get:6 https://dl.google.com/linux/chrome-stable/deb stable InRelease [2548 B]
+Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+Get:8 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1263 kB]
+Get:9 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [292 kB]
+Get:10 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [180 kB]
+Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1690 kB]
+Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [388 kB]
+Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1544 kB]
+Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [354 kB]
+Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
+Get:16 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [5748 B]
+Get:17 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [12.6 kB]
+Get:18 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [1006 kB]
+Get:19 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [213 kB]
+Get:20 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [46.4 kB]
+Get:21 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1206 kB]
+Get:22 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [76.3 kB]
+Get:23 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1445 kB]
+Get:25 https://dl.google.com/linux/chrome-stable/deb stable/main amd64 Packages [1409 B]
+Get:24 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [336 kB]
+Get:26 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [414 kB]
+Get:27 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [463 kB]
+Fetched 11.3 MB in 1s (9079 kB/s)
 Reading package lists...
 Reading package lists...
 Building dependency tree...
@@ -147,7 +147,7 @@ Get:7 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings a
 Get:8 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3 [94.4 kB]
 Get:9 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1 [384 kB]
 Get:10 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3 [304 kB]
-Fetched 21.1 MB in 1s (21.0 MB/s)
+Fetched 21.1 MB in 0s (60.7 MB/s)
 Selecting previously unselected package fonts-ipafont-gothic.
 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 201818 files and directories currently installed.)
 Preparing to unpack .../0-fonts-ipafont-gothic_00303-21ubuntu1_all.deb ...
@@ -242,7 +242,7 @@ Chrome Headless Shell 151.0.7922.34 (playwright chromium-headless-shell v1234) d
 Reference CSV is not stored in the repository; downloading the official file.
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 25  151k   25 39786    0     0  59843      0  0:00:02 --:--:--  0:00:02 59828100  151k  100  151k    0     0   193k      0 --:--:-- --:--:-- --:--:--  193k
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 61  151k   61 95786    0     0  78650      0  0:00:01  0:00:01 --:--:-- 78642100  151k  100  151k    0     0   112k      0  0:00:01  0:00:01 --:--:--  112k
 Validated reference CSV: 1321 rows
 === Apply portal compatibility patches ===
 /home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/apply_dgrid_patch.py:102: SyntaxWarning: invalid escape sequence '\s'
@@ -278,7 +278,7 @@ Full snapshot: reference_groups=1306, opened_web_rows=39, extra_web_rows=22, tot
   "matching_issues_csv": "data/matching_issues/2026/09/2026-09-13.csv",
   "daily_csv": "data/daily/2026/09/2026-09-13.csv",
   "changes_csv": "data/changes/2026/09/2026-09-13.csv",
-  "source_updated_at": "26/09/13 07:33時点の避難所状況の一覧です。",
+  "source_updated_at": "26/09/13 07:45時点の避難所状況の一覧です。",
   "all_shelters_click_attempted": true
 }
 === Enrich capacity and complete coordinates ===
@@ -433,7 +433,7 @@ status_by_date.csvの列構成を検証しました: 固定属性=11列、日付
 Exported current opened shelters: 39 rows
 === Validate capacity and coordinate coverage ===
 {
-  "validated_at_jst": "2026-09-13T07:34:57+09:00",
+  "validated_at_jst": "2026-09-13T07:46:55+09:00",
   "status": "success",
   "master": {
     "row_count": 2126,
@@ -483,12 +483,16 @@ Exported current opened shelters: 39 rows
       "unmatched": 153
     },
     "capacity_match_method_counts": {
+      "coordinate_high_similarity_200m": 2,
+      "coordinate_name_address_75m": 42,
       "coordinate_near_tie": 11,
-      "coordinate_with_name_20m": 2,
-      "exact_municipality_name_address": 5,
+      "coordinate_with_name_20m": 49,
+      "exact_municipality_name_address": 894,
+      "exact_name_municipality_address_similar": 174,
       "fuzzy_below_threshold": 27,
+      "high_confidence_fuzzy": 2,
       "no_candidate": 126,
-      "portal_shelter_id": 1285
+      "portal_shelter_id": 129
     },
     "matched_row_count": 1292,
     "matched_with_positive_capacity_count": 1051,
@@ -509,7 +513,7 @@ Exported current opened shelters: 39 rows
   }
 }
 {
-  "validated_at_jst": "2026-09-13T07:35:03+09:00",
+  "validated_at_jst": "2026-09-13T07:47:00+09:00",
   "status": "success",
   "coordinate_priority": [
     "gsi_reference",
