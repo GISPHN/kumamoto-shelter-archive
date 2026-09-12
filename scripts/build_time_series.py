@@ -286,9 +286,11 @@ def merge_existing_timeseries(
         existing_ids.add(shelter_id)
         generated = generated_by_id.get(shelter_id)
 
+        # Capacity fields describe the current verified master rather than a
+        # historical observation. Refresh them whenever the current generated
+        # row is matched, including legitimate changes to an existing capacity.
         capacity_improved = bool(generated) and (
             normalize(generated.get("capacity_match_status")) == "matched"
-            and normalize(old_row.get("capacity_match_status")) != "matched"
         )
         manual_improved = bool(generated) and (
             normalize(generated.get("manual_geocode_status")) == "matched"
