@@ -168,14 +168,18 @@ data/matching_issues/YYYY/MM/YYYY-MM-DD.csv
 
 日別CSVは縦持ち形式です。1行が1避難所、1ファイルが1観測日です。
 
-### 全期間の縦持ちデータ
+### 縦持ちデータ
 
 | ファイル | 内容 |
 |---|---|
-| `data/all_snapshots.csv` | 全日の日別CSVを縦方向に結合 |
+| `data/all_snapshots.csv` | 直近30回分の日別CSVを縦方向に結合した利便用ファイル |
 | `data/logs/collection_log.csv` | 日次収集の件数、照合率、実行結果 |
 | `data/logs/latest_run.log` | 最新の日次収集ログ |
 | `data/logs/capacity_latest_run.log` | 最新の定員マスタ取得・検証ログ |
+
+`data/all_snapshots.csv`はGitHubの単一ファイル100 MiB制限を超えないよう、
+直近30回分かつ元ファイル合計90 MiB以内に制限します。30回より前を含む
+全期間の履歴は削除せず、`data/daily/YYYY/MM/YYYY-MM-DD.csv`に保存します。
 
 ## 横持ち時系列CSV
 

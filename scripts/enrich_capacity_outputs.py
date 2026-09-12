@@ -13,9 +13,11 @@ try:
         COORDINATE_OUTPUT_COLUMNS,
         CoordinateEnricher,
     )
+    from scripts.snapshot_retention import recent_daily_snapshot_files
 except ModuleNotFoundError:
     from capacity_matcher import CAPACITY_OUTPUT_COLUMNS, CapacityMatcher
     from coordinate_enricher import COORDINATE_OUTPUT_COLUMNS, CoordinateEnricher
+    from snapshot_retention import recent_daily_snapshot_files
 
 
 def read_csv(path: Path) -> tuple[list[str], list[dict[str, str]]]:
@@ -65,7 +67,7 @@ def enrich_file(
 
 
 def rebuild_all_snapshots(data_root: Path) -> None:
-    daily_files = sorted(data_root.glob("daily/*/*/*.csv"))
+    daily_files = recent_daily_snapshot_files(data_root)
     if not daily_files:
         return
     all_columns: list[str] = []
