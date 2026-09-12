@@ -31,12 +31,14 @@ try:
         ReferenceMatcher,
         tracking_id,
     )
+    from scripts.snapshot_retention import recent_daily_snapshot_files
 except ModuleNotFoundError:  # direct execution: python scripts/collect_shelters.py
     from reference_matcher import (
         REFERENCE_OUTPUT_COLUMNS,
         ReferenceMatcher,
         tracking_id,
     )
+    from snapshot_retention import recent_daily_snapshot_files
 
 JST = ZoneInfo("Asia/Tokyo")
 DEFAULT_URL = (
@@ -332,7 +334,7 @@ def previous_daily_file(data_root: Path, current_path: Path) -> Path | None:
 
 def rebuild_all_snapshots(data_root: Path) -> None:
     all_rows: list[dict[str, str]] = []
-    for path in sorted(data_root.glob("daily/*/*/*.csv")):
+    for path in recent_daily_snapshot_files(data_root):
         all_rows.extend(load_csv(path))
     write_csv(data_root / "all_snapshots.csv", all_rows, CSV_COLUMNS)
 
