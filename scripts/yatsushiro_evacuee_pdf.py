@@ -206,13 +206,20 @@ def parse_yatsushiro_pdf(
     document = fitz.open(stream=pdf_data, filetype="pdf")
     diagnostics: list[dict[str, object]] = []
     try:
+        pages = list(document)
         full_text = clean_text(
-            "\n".join(page.get_text("text", sort=True) for page in document)
+            "\n".join(page.get_text("text", sort=True) for page in pages)
+        )
+        # ``sort=True`` usually improves date parsing, but in some one-page
+        # layouts it moves the visual total-row numbers away from ``合計``.
+        # Preserve the PDF content-stream order as an independent fallback.
+        natural_order_text = clean_text(
+            "\n".join(page.get_text("text", sort=False) for page in pages)
         )
         observed_at = japanese_datetime_to_iso(full_text)
 
         candidates: list[tuple[int, list[list[Any]], int]] = []
-        for page_index, page in enumerate(document):
+        for page_index, page in enumerate(pages):
             finder = page.find_tables(
                 vertical_strategy="lines",
                 horizontal_strategy="lines",
@@ -302,12 +309,14 @@ def parse_yatsushiro_pdf(
                     published_total = parse_integer(candidate)
 
     if published_total is None:
-        total_match = re.search(
-            r"合計\s+[\d,]+\s+[\d,]+\s+([\d,]+)",
-            full_text,
-        )
-        if total_match:
-            published_total = parse_integer(total_match.group(1))
+        for text_variant in (full_text, natural_order_text):
+            total_match = re.search(
+                r"合計\s+[\d,]+\s+[\d,]+\s+([\d,]+)",
+                text_variant,
+            )
+            if total_match:
+                published_total = parse_integer(total_match.group(1))
+                break
 
     if not records:
         raise RuntimeError(
