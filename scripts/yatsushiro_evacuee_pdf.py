@@ -69,6 +69,48 @@ def _is_integer_cell(value: str) -> bool:
     return bool(re.fullmatch(r"[\d,]+", value))
 
 
+def _validate_rows_without_published_total(
+    *,
+    seen_numbers: set[int],
+    record_count: int,
+    selected_numeric_count: int,
+    candidate_numeric_counts: list[int],
+) -> None:
+    """Reject partial table extraction when the PDF has no usable total row.
+
+    Some Yatsushiro PDFs omit the visual total row from the ruled table (and
+    occasionally from the document altogether).  In that case there is no
+    independent published total against which to check the parsed records.
+    Accept the records only when the numbered facility rows themselves provide
+    strong evidence that one complete, unfragmented table was extracted.
+    """
+    ordered_numbers = sorted(seen_numbers)
+    expected_numbers = list(range(1, record_count + 1))
+    positive_candidate_counts = [count for count in candidate_numeric_counts if count]
+
+    problems: list[str] = []
+    if ordered_numbers != expected_numbers:
+        problems.append(
+            f"facility numbers are not contiguous from 1: {ordered_numbers}"
+        )
+    if selected_numeric_count != record_count:
+        problems.append(
+            "selected table row count differs from parsed records: "
+            f"selected={selected_numeric_count}, parsed={record_count}"
+        )
+    if positive_candidate_counts != [selected_numeric_count]:
+        problems.append(
+            "numbered facility rows are split across or duplicated in tables: "
+            f"candidate_counts={positive_candidate_counts}"
+        )
+
+    if problems:
+        raise RuntimeError(
+            "八代市PDFの合計行がなく、避難所行の完全性も確認できませんでした: "
+            + "; ".join(problems)
+        )
+
+
 def detect_schema(matrix: list[list[Any]]) -> TableSchema:
     """Detect both historical and current Yatsushiro table layouts.
 
@@ -275,11 +317,18 @@ def parse_yatsushiro_pdf(
 
     calculated_total = sum(record.evacuee_count for record in records)
     if published_total is None:
-        raise RuntimeError(
-            "八代市PDFの合計行から避難者数を取得できませんでした。"
-            + json.dumps(diagnostics, ensure_ascii=False)
+        _validate_rows_without_published_total(
+            seen_numbers=seen_numbers,
+            record_count=len(records),
+            selected_numeric_count=numeric_count,
+            candidate_numeric_counts=[count for count, _, _ in candidates],
         )
-    if calculated_total != published_total:
+        print(
+            "WARNING Yatsushiro PDF has no usable published total; "
+            "accepted a single complete table with contiguous facility numbers: "
+            f"rows={len(records)}, calculated_total={calculated_total}"
+        )
+    elif calculated_total != published_total:
         raise RuntimeError(
             "八代市PDFの避難者数合計が一致しません: "
             f"parsed={calculated_total}, published={published_total}, "
