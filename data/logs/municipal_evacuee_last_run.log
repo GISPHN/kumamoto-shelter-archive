@@ -1,15 +1,101 @@
 warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
 Consider using the pymupdf_layout package for a greatly improved page layout analysis.
-Traceback (most recent call last):
-  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/run_municipal_evacuee_collection.py", line 64, in <module>
-    raise SystemExit(collector.main())
-                     ^^^^^^^^^^^^^^^^
-  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/collect_municipal_evacuees.py", line 751, in main
-    snapshots = [collect_yatsushiro(debug_dir), collect_uki(debug_dir)]
-                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/yatsushiro_source_fetcher.py", line 157, in collect_yatsushiro
-    return parse_pdf(
-           ^^^^^^^^^^
-  File "/home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/yatsushiro_evacuee_pdf.py", line 278, in parse_yatsushiro_pdf
-    raise RuntimeError(
-RuntimeError: 八代市PDFの合計行から避難者数を取得できませんでした。[{"page": 0, "table": 0, "row_count": 15, "column_count": 14, "numeric_row_count": 14, "sample": [["避難所基本情報 避難者情報 エア No. 避難所名 水 電気 最大 避難 コン 地区 避難者数 収容人数 世帯数", "", "", "", "", "", "", "", "", "洗濯 シャワー 仮設 トイレ テレビ 支援 等 トイレ カー", "", "", "", ""], ["1", "代陽コミュニティセンター", "代陽", "200", "24", "28", "〇", "〇", "〇", "〇", "〇", "", "0", "0"], ["2", "桜十字ホールやつしろ(ハーモニーホール)", "代陽", "1,250", "59", "77", "〇", "〇", "〇", "〇", "〇", "〇", "5", "0"], ["3", "八代トヨオカ地建アリーナ(総合体育館)", "太田郷", "350", "121", "192", "〇", "〇", "〇", "〇", "〇", "〇", "5", "0"], ["4", "太田郷コミュニティセンター", "太田郷", "130", "31", "55", "〇", "〇", "〇", "〇", "〇", "", "0", "0"], ["5", "第二中学校", "太田郷", "1,400", "49", "86", "〇", "〇", "〇", "〇", "〇", "〇", "0", "0"]]}, {"selected_schema": {"name_index": 1, "address_index": null, "evacuee_index": 5, "facility_marker_index": 6, "detection_method": "marker_boundary+address_absent", "headers": ["避難所基本情報 避難者情報 エア No. 避難所名 水 電気 最大 避難 コン 地区 避難者数 収容人数 世帯数", "", "", "", "", "", "", "", "", "洗濯 シャワー 仮設 トイレ テレビ 支援 等 トイレ カー", "", "", "", ""], "first_data_row": ["1", "代陽コミュニティセンター", "代陽", "200", "24", "28", "〇", "〇", "〇", "〇", "〇", "", "0", "0"]}}]
+INFO Uki source stability check: attempt=1/10: valid candidate waiting for second identical fetch observed=2026-09-14T22:00+09:00 hash=fb1202d8b170
+{
+  "retrieved_at_jst": "2026-09-15T16:08:21+09:00",
+  "status": "success",
+  "source_changed": true,
+  "changed_sources": [
+    {
+      "municipality": "八代市",
+      "source_observed_at_jst": "2026-09-15T12:00+09:00",
+      "record_count": 14,
+      "matched_count": 14,
+      "issue_count": 0,
+      "published_total": 832,
+      "calculated_total": 832,
+      "revision": 1,
+      "normalized_sha256": "d2ddac71028030ce89acae6dc678af284ad1f397ce71c3f0a97f53a8b0e67190"
+    },
+    {
+      "municipality": "宇城市",
+      "source_observed_at_jst": "2026-09-14T22:00+09:00",
+      "record_count": 8,
+      "matched_count": 8,
+      "issue_count": 0,
+      "published_total": 438,
+      "calculated_total": 438,
+      "revision": 1,
+      "normalized_sha256": "fb1202d8b170a8bfc9cce523244c39c2c48191e147419d163ad83abe720cecf8"
+    }
+  ],
+  "observation_row_count": 2795,
+  "matched_observation_row_count": 2795,
+  "unmatched_or_ambiguous_row_count": 0,
+  "wide_row_count": 1457,
+  "wide_date_columns": [
+    "2026-07-29",
+    "2026-07-30",
+    "2026-07-31",
+    "2026-08-01",
+    "2026-08-02",
+    "2026-08-03",
+    "2026-08-04",
+    "2026-08-05",
+    "2026-08-06",
+    "2026-08-07",
+    "2026-08-08",
+    "2026-08-09",
+    "2026-08-10",
+    "2026-08-11",
+    "2026-08-12",
+    "2026-08-13",
+    "2026-08-14",
+    "2026-08-15",
+    "2026-08-16",
+    "2026-08-17",
+    "2026-08-18",
+    "2026-08-19",
+    "2026-08-20",
+    "2026-08-21",
+    "2026-08-22",
+    "2026-08-23",
+    "2026-08-24",
+    "2026-08-25",
+    "2026-08-26",
+    "2026-08-27",
+    "2026-08-28",
+    "2026-08-29",
+    "2026-08-30",
+    "2026-08-31",
+    "2026-09-01",
+    "2026-09-02",
+    "2026-09-03",
+    "2026-09-04",
+    "2026-09-05",
+    "2026-09-06",
+    "2026-09-07",
+    "2026-09-08",
+    "2026-09-09",
+    "2026-09-10",
+    "2026-09-11",
+    "2026-09-12",
+    "2026-09-13",
+    "2026-09-14",
+    "2026-09-15"
+  ],
+  "wide_fixed_columns": [
+    "shelter_id",
+    "reference_common_ids",
+    "municipality",
+    "shelter_name",
+    "address",
+    "reference_same_address_as_emergency_site",
+    "reference_other_mayor_matters",
+    "reference_accepted_persons",
+    "portal_capacity_persons",
+    "latitude",
+    "longitude"
+  ],
+  "blank_means": "municipal source did not publish a value; not zero"
+}
