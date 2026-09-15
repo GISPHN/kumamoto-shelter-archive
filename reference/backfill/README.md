@@ -22,3 +22,14 @@
 - `revision`: 1（該当観測日時の既存登録なし）
 
 元の八代市公開PDFを再取得した記録とは区別し、二次保存された原資料からの回収であることを明示しています。
+
+## 2026年9月15日6時観測の回収
+
+`yatsushiro_20260915_0600.csv` は、同日10時台に失敗したGitHub Actions runの診断artifactに保存されていた八代市公式PDFから再解析した転記表です。14施設の避難者数合計は833人で、PDF記載の合計833人と一致しました。
+
+- 失敗run: https://github.com/GISPHN/kumamoto-shelter-archive/actions/runs/34917986828
+- 当時の公式PDF URL: https://www.city.yatsushiro.lg.jp/kiji00326798/3_26798_159907_up_ubnxqzwu.pdf
+- PDF SHA-256: `64c21f3788c18b51227d1f6442c11c4fbc6df57ba126a9a2b56886de72477edc`
+- 正規化済み観測SHA-256: `1fcdc94910747151c1f6206cb29a9bca6df9feffe908893fb052127738c24935`
+
+`data/municipal_evacuees/all_observations.csv` に14件を追加します。12時観測の方が新しいため、`data/evacuee_count_by_date.csv` の9月15日の代表値と `latest_observations.csv` は変更しません。全14件を既存の施設IDへ照合し、未一致・曖昧一致はありませんでした。
