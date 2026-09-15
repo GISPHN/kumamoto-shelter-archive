@@ -68,6 +68,9 @@ jobs:
             scripts/uki_evacuee_html.py \
             scripts/uki_source_fetcher.py
 
+      - name: Recover Yatsushiro 2026-09-15 06:00 observation
+        run: python scripts/backfill_yatsushiro_20260915_0600.py
+
       - name: Collect evacuee counts
         id: collect
         shell: bash
