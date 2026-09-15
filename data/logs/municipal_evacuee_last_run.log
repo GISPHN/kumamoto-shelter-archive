@@ -4,12 +4,12 @@ INFO Uki source stability check: attempt=1/10: valid candidate waiting for secon
 No source change: 八代市 observed=2026-09-15T12:00+09:00 hash=d2ddac710280
 No source change: 宇城市 observed=2026-09-14T22:00+09:00 hash=fb1202d8b170
 {
-  "retrieved_at_jst": "2026-09-15T16:13:31+09:00",
+  "retrieved_at_jst": "2026-09-15T16:22:01+09:00",
   "status": "success",
   "source_changed": false,
   "changed_sources": [],
-  "observation_row_count": 2795,
-  "matched_observation_row_count": 2795,
+  "observation_row_count": 2809,
+  "matched_observation_row_count": 2809,
   "unmatched_or_ambiguous_row_count": 0,
   "wide_row_count": 1457,
   "wide_date_columns": [
