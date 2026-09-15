@@ -32,4 +32,4 @@
 - PDF SHA-256: `64c21f3788c18b51227d1f6442c11c4fbc6df57ba126a9a2b56886de72477edc`
 - 正規化済み観測SHA-256: `1fcdc94910747151c1f6206cb29a9bca6df9feffe908893fb052127738c24935`
 
-`data/municipal_evacuees/all_observations.csv` に14件を追加します。12時観測の方が新しいため、`data/evacuee_count_by_date.csv` の9月15日の代表値と `latest_observations.csv` は変更しません。全14件を既存の施設IDへ照合し、未一致・曖昧一致はありませんでした。
+`data/municipal_evacuees/all_observations.csv` に14件を追加しました。12時観測の方が新しいため、`data/evacuee_count_by_date.csv` の9月15日の代表値と `latest_observations.csv` は変更していません。全14件を既存の施設IDへ照合し、未一致・曖昧一致はありませんでした。
