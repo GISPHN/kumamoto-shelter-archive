@@ -31,19 +31,31 @@ class _FakeFinder:
 
 
 class _FakePage:
-    def __init__(self, matrix: list[list[str]]) -> None:
+    def __init__(
+        self,
+        matrix: list[list[str]],
+        natural_order_suffix: str = "",
+    ) -> None:
         self._matrix = matrix
+        self._natural_order_suffix = natural_order_suffix
 
     def get_text(self, *_args: object, **_kwargs: object) -> str:
-        return "避難所開設状況一覧 令和8年9月15日 6時00分現在"
+        text = "避難所開設状況一覧 令和8年9月15日 6時00分現在"
+        if _kwargs.get("sort") is False:
+            text += self._natural_order_suffix
+        return text
 
     def find_tables(self, **_kwargs: object) -> _FakeFinder:
         return _FakeFinder(self._matrix)
 
 
 class _FakeDocument:
-    def __init__(self, matrix: list[list[str]]) -> None:
-        self._pages = [_FakePage(matrix)]
+    def __init__(
+        self,
+        matrix: list[list[str]],
+        natural_order_suffix: str = "",
+    ) -> None:
+        self._pages = [_FakePage(matrix, natural_order_suffix)]
 
     def __iter__(self):
         return iter(self._pages)
@@ -79,6 +91,25 @@ def test_parser_keeps_complete_rows_when_pdf_omits_total(
 
     assert [record.evacuee_count for record in snapshot.records] == [7, 11]
     assert snapshot.published_total is None
+
+
+def test_parser_reads_total_from_pdf_natural_text_order(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    matrix = [
+        ["No. 避難所名 地区 最大収容人数 世帯数 避難者数 水", "", "", "", "", "", ""],
+        ["1", "避難所A", "地区A", "100", "4", "7", "〇"],
+        ["2", "避難所B", "地区B", "200", "5", "11", "〇"],
+    ]
+    monkeypatch.setattr(
+        yatsushiro_evacuee_pdf.fitz,
+        "open",
+        lambda **_kwargs: _FakeDocument(matrix, " 合計 300 9 18"),
+    )
+
+    snapshot = parse_yatsushiro_pdf(b"%PDF-fake", "document", "page")
+
+    assert snapshot.published_total == 18
 
 
 @pytest.mark.parametrize(
