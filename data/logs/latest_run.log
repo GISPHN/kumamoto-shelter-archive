@@ -1,5 +1,5 @@
 === Environment ===
-2026-09-15T18:54:52+00:00
+2026-09-16T18:50:54+00:00
 Python 3.12.14
 === Install Python dependencies ===
 Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.12.14/x64/lib/python3.12/site-packages (26.2.1)
@@ -28,12 +28,12 @@ Collecting soupsieve>=1.6.1 (from beautifulsoup4<5,>=4.12->-r requirements.txt (
 Collecting typing-extensions>=4.0.0 (from beautifulsoup4<5,>=4.12->-r requirements.txt (line 3))
   Using cached typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
 Downloading playwright-1.63.0-py3-none-manylinux1_x86_64.whl (48.2 MB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 48.2/48.2 MB 298.4 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 48.2/48.2 MB 244.6 MB/s  0:00:00
 Using cached pytest-8.4.2-py3-none-any.whl (365 kB)
 Using cached beautifulsoup4-4.15.0-py3-none-any.whl (109 kB)
 Using cached pymupdf-1.28.2-cp310-abi3-manylinux_2_28_x86_64.whl (25.8 MB)
 Downloading greenlet-3.5.6-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (621 kB)
-   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 621.4/621.4 kB 104.5 MB/s  0:00:00
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 621.4/621.4 kB 101.1 MB/s  0:00:00
 Using cached pluggy-1.6.0-py3-none-any.whl (20 kB)
 Using cached pyee-13.0.1-py3-none-any.whl (15 kB)
 Using cached iniconfig-2.3.0-py3-none-any.whl (7.5 kB)
@@ -48,36 +48,36 @@ Installing dependencies...
 Switching to root user to install dependencies...
 Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
 Hit:2 http://azure.archive.ubuntu.com/ubuntu noble InRelease
-Get:6 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
 Get:3 http://azure.archive.ubuntu.com/ubuntu noble-updates InRelease [126 kB]
 Get:4 http://azure.archive.ubuntu.com/ubuntu noble-backports InRelease [126 kB]
 Get:5 http://azure.archive.ubuntu.com/ubuntu noble-security InRelease [126 kB]
-Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [473 kB]
-Get:8 https://dl.google.com/linux/chrome-stable/deb stable InRelease [2548 B]
-Get:9 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [424 kB]
-Get:10 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1263 kB]
-Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [292 kB]
-Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [180 kB]
-Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1686 kB]
-Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [337 kB]
-Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [388 kB]
-Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1550 kB]
-Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [355 kB]
-Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [45.7 kB]
-Get:19 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en [12.8 kB]
-Get:20 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
-Get:21 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [5776 B]
-Get:22 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [12.6 kB]
-Get:23 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [1007 kB]
-Get:24 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [213 kB]
-Get:25 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [46.4 kB]
-Get:26 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1207 kB]
-Get:27 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [242 kB]
-Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [76.3 kB]
-Get:29 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1445 kB]
-Get:30 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [336 kB]
-Get:31 https://dl.google.com/linux/chrome-stable/deb stable/main amd64 Packages [1415 B]
-Fetched 12.0 MB in 1s (9172 kB/s)
+Get:6 https://dl.google.com/linux/chrome-stable/deb stable InRelease [2548 B]
+Get:7 https://packages.microsoft.com/ubuntu/24.04/prod noble InRelease [3600 B]
+Get:8 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Packages [1264 kB]
+Get:9 http://azure.archive.ubuntu.com/ubuntu noble-updates/main Translation-en [292 kB]
+Get:10 http://azure.archive.ubuntu.com/ubuntu noble-updates/main amd64 Components [181 kB]
+Get:11 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Packages [1688 kB]
+Get:12 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe Translation-en [338 kB]
+Get:13 http://azure.archive.ubuntu.com/ubuntu noble-updates/universe amd64 Components [388 kB]
+Get:14 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted amd64 Packages [1550 kB]
+Get:15 http://azure.archive.ubuntu.com/ubuntu noble-updates/restricted Translation-en [355 kB]
+Get:16 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Packages [45.7 kB]
+Get:17 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse Translation-en [13.1 kB]
+Get:18 http://azure.archive.ubuntu.com/ubuntu noble-updates/multiverse amd64 Components [940 B]
+Get:19 http://azure.archive.ubuntu.com/ubuntu noble-backports/main amd64 Components [5776 B]
+Get:20 http://azure.archive.ubuntu.com/ubuntu noble-backports/universe amd64 Components [12.6 kB]
+Get:21 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Packages [1009 kB]
+Get:22 http://azure.archive.ubuntu.com/ubuntu noble-security/main Translation-en [213 kB]
+Get:23 http://azure.archive.ubuntu.com/ubuntu noble-security/main amd64 Components [46.4 kB]
+Get:24 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Packages [1207 kB]
+Get:25 http://azure.archive.ubuntu.com/ubuntu noble-security/universe Translation-en [242 kB]
+Get:26 http://azure.archive.ubuntu.com/ubuntu noble-security/universe amd64 Components [76.3 kB]
+Get:27 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted amd64 Packages [1449 kB]
+Get:28 http://azure.archive.ubuntu.com/ubuntu noble-security/restricted Translation-en [336 kB]
+Get:29 https://dl.google.com/linux/chrome-stable/deb stable/main amd64 Packages [1409 B]
+Get:30 https://packages.microsoft.com/ubuntu/24.04/prod noble/main amd64 Packages [474 kB]
+Get:31 https://packages.microsoft.com/ubuntu/24.04/prod noble/main arm64 Packages [425 kB]
+Fetched 12.0 MB in 1s (9159 kB/s)
 Reading package lists...
 Reading package lists...
 Building dependency tree...
@@ -140,7 +140,7 @@ The following NEW packages will be installed:
   fonts-freefont-ttf fonts-ipafont-gothic fonts-tlwg-loma-otf fonts-unifont
   fonts-wqy-zenhei xfonts-cyrillic xfonts-encodings xfonts-scalable
   xfonts-utils
-0 upgraded, 9 newly installed, 0 to remove and 64 not upgraded.
+0 upgraded, 9 newly installed, 0 to remove and 69 not upgraded.
 Need to get 21.1 MB of archives.
 After this operation, 79.5 MB of additional disk space will be used.
 Get:1 file:/etc/apt/apt-mirrors.txt Mirrorlist [144 B]
@@ -153,7 +153,7 @@ Get:7 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-encodings a
 Get:8 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-utils amd64 1:7.7+6build3 [94.4 kB]
 Get:9 http://azure.archive.ubuntu.com/ubuntu noble/universe amd64 xfonts-cyrillic all 1:1.0.5+nmu1 [384 kB]
 Get:10 http://azure.archive.ubuntu.com/ubuntu noble/main amd64 xfonts-scalable all 1:1.0.3-1.3 [304 kB]
-Fetched 21.1 MB in 1s (24.1 MB/s)
+Fetched 21.1 MB in 0s (42.5 MB/s)
 Selecting previously unselected package fonts-ipafont-gothic.
 (Reading database ... (Reading database ... 5%(Reading database ... 10%(Reading database ... 15%(Reading database ... 20%(Reading database ... 25%(Reading database ... 30%(Reading database ... 35%(Reading database ... 40%(Reading database ... 45%(Reading database ... 50%(Reading database ... 55%(Reading database ... 60%(Reading database ... 65%(Reading database ... 70%(Reading database ... 75%(Reading database ... 80%(Reading database ... 85%(Reading database ... 90%(Reading database ... 95%(Reading database ... 100%(Reading database ... 201818 files and directories currently installed.)
 Preparing to unpack .../0-fonts-ipafont-gothic_00303-21ubuntu1_all.deb ...
@@ -248,7 +248,7 @@ Chrome Headless Shell 153.0.8010.12 (playwright chromium-headless-shell v1243) d
 Reference CSV is not stored in the repository; downloading the official file.
   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
                                  Dload  Upload   Total   Spent    Left  Speed
-  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0 10  151k   10 15786    0     0  27572      0  0:00:05 --:--:--  0:00:05 27549100  151k  100  151k    0     0   189k      0 --:--:-- --:--:-- --:--:--  189k
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100  151k  100  151k    0     0   130k      0  0:00:01  0:00:01 --:--:--  130k
 Validated reference CSV: 1321 rows
 === Apply portal compatibility patches ===
 /home/runner/work/kumamoto-shelter-archive/kumamoto-shelter-archive/scripts/apply_dgrid_patch.py:102: SyntaxWarning: invalid escape sequence '\s'
@@ -267,24 +267,24 @@ Reference matcher loaded: 1321 rows
 Manual geocoding loaded: 138 rows
 === Collect rendered shelter table ===
 Dojo shelter view rendered on attempt 1.
-Rendered extraction: mode=dom; all_selected=False; headers=['市町村', '避難所名', '開設状況', '混雑状況', '住所', 'ルート検索']; rows=38; dgrid_meta={"ariaRowCount": "", "clientHeight": 430, "renderedRowCount": 181, "rootClass": "dgrid dgrid-grid ui-widget idis-IdisGrid", "rootId": "dgrid_0", "rowIdCount": 38, "scrollHeight": 54705, "scrolled": true, "scrollerClass": "dgrid-scroller"}
+Rendered extraction: mode=dom; all_selected=False; headers=['市町村', '避難所名', '開設状況', '混雑状況', '住所', 'ルート検索']; rows=38; dgrid_meta={"ariaRowCount": "", "clientHeight": 430, "renderedRowCount": 184, "rootClass": "dgrid dgrid-grid ui-widget idis-IdisGrid", "rootId": "dgrid_0", "rowIdCount": 38, "scrollHeight": 54766, "scrolled": true, "scrollerClass": "dgrid-scroller"}
 Full snapshot: reference_groups=1306, opened_web_rows=38, extra_web_rows=21, total=1327
 {
-  "snapshot_date": "2026-09-16",
+  "snapshot_date": "2026-09-17",
   "records": 1327,
   "open": 38,
   "closed_or_inactive": 1289,
   "unknown": 0,
-  "changes": 0,
+  "changes": 1,
   "reference_matched": 1291,
   "reference_matched_multiple": 15,
   "reference_ambiguous": 0,
   "reference_unmatched": 21,
   "reference_match_rate": 0.984175,
-  "matching_issues_csv": "data/matching_issues/2026/09/2026-09-16.csv",
-  "daily_csv": "data/daily/2026/09/2026-09-16.csv",
-  "changes_csv": "data/changes/2026/09/2026-09-16.csv",
-  "source_updated_at": "26/09/16 03:55時点の避難所状況の一覧です。",
+  "matching_issues_csv": "data/matching_issues/2026/09/2026-09-17.csv",
+  "daily_csv": "data/daily/2026/09/2026-09-17.csv",
+  "changes_csv": "data/changes/2026/09/2026-09-17.csv",
+  "source_updated_at": "26/09/17 03:51時点の避難所状況の一覧です。",
   "all_shelters_click_attempted": true
 }
 === Enrich capacity and complete coordinates ===
@@ -335,7 +335,8 @@ Enrichment: data/daily/2026/09/2026-09-12.csv capacity=1163/1328 coordinates=132
 Enrichment: data/daily/2026/09/2026-09-13.csv capacity=1163/1328 coordinates=1328/1328
 Enrichment: data/daily/2026/09/2026-09-14.csv capacity=1162/1327 coordinates=1327/1327
 Enrichment: data/daily/2026/09/2026-09-15.csv capacity=1162/1327 coordinates=1327/1327
-Enrichment: data/daily/2026/09/2026-09-16.csv capacity=1161/1327 coordinates=1327/1327
+Enrichment: data/daily/2026/09/2026-09-16.csv capacity=1162/1327 coordinates=1327/1327
+Enrichment: data/daily/2026/09/2026-09-17.csv capacity=1161/1327 coordinates=1327/1327
 Enrichment: data/changes/2026/07/2026-07-29.csv capacity=1155/1314 coordinates=1314/1314
 Enrichment: data/changes/2026/07/2026-07-30.csv capacity=345/345 coordinates=345/345
 Enrichment: data/changes/2026/07/2026-07-31.csv capacity=44/44 coordinates=44/44
@@ -384,6 +385,7 @@ Enrichment: data/changes/2026/09/2026-09-13.csv capacity=0/0 coordinates=0/0
 Enrichment: data/changes/2026/09/2026-09-14.csv capacity=2/2 coordinates=2/2
 Enrichment: data/changes/2026/09/2026-09-15.csv capacity=0/0 coordinates=0/0
 Enrichment: data/changes/2026/09/2026-09-16.csv capacity=0/0 coordinates=0/0
+Enrichment: data/changes/2026/09/2026-09-17.csv capacity=1/1 coordinates=1/1
 Enrichment: data/matching_issues/2026/07/2026-07-29.csv capacity=14/14 coordinates=14/14
 Enrichment: data/matching_issues/2026/07/2026-07-30.csv capacity=136/136 coordinates=136/136
 Enrichment: data/matching_issues/2026/07/2026-07-31.csv capacity=130/130 coordinates=130/130
@@ -431,24 +433,25 @@ Enrichment: data/matching_issues/2026/09/2026-09-12.csv capacity=22/22 coordinat
 Enrichment: data/matching_issues/2026/09/2026-09-13.csv capacity=22/22 coordinates=22/22
 Enrichment: data/matching_issues/2026/09/2026-09-14.csv capacity=21/21 coordinates=21/21
 Enrichment: data/matching_issues/2026/09/2026-09-15.csv capacity=21/21 coordinates=21/21
-Enrichment: data/matching_issues/2026/09/2026-09-16.csv capacity=20/21 coordinates=21/21
+Enrichment: data/matching_issues/2026/09/2026-09-16.csv capacity=21/21 coordinates=21/21
+Enrichment: data/matching_issues/2026/09/2026-09-17.csv capacity=20/21 coordinates=21/21
 Enrichment: data/latest.csv capacity=1161/1327 coordinates=1327/1327
 Enrichment: data/latest_open.csv capacity=38/38 coordinates=38/38
-Enrichment: data/latest_changes.csv capacity=0/0 coordinates=0/0
+Enrichment: data/latest_changes.csv capacity=1/1 coordinates=1/1
 Enrichment: data/latest_matching_issues.csv capacity=20/21 coordinates=21/21
 Capacity matching issues: 166 rows -> data/latest_capacity_matching_issues.csv
-Capacity master rows=2126; manual geocoding rows=138; capacity matches=62124/70292; complete coordinates=70292/70292
+Capacity master rows=2126; manual geocoding rows=138; capacity matches=63309/71642; complete coordinates=71642/71642
 === Build wide daily time-series CSVs ===
-既存履歴を保持して時系列を更新します: file=status_by_date.csv, preserved_cells=68432, refresh_date=-, new_dates=['2026-09-16']
-既存履歴を保持して時系列を更新します: file=open_status_by_date.csv, preserved_cells=68432, refresh_date=-, new_dates=['2026-09-16']
-既存履歴を保持して時系列を更新します: file=congestion_by_date.csv, preserved_cells=68432, refresh_date=-, new_dates=['2026-09-16']
-status_by_date.csvの列構成を検証しました: 固定属性=11列、日付=48列、施設=1456件
-横持ち時系列CSVを更新しました: 生成施設数=1455, status施設数=1456, 日数=48, 開始日=2026-07-29, 終了日=2026-09-16
+既存履歴を保持して時系列を更新します: file=status_by_date.csv, preserved_cells=69888, refresh_date=-, new_dates=['2026-09-17']
+既存履歴を保持して時系列を更新します: file=open_status_by_date.csv, preserved_cells=69888, refresh_date=-, new_dates=['2026-09-17']
+既存履歴を保持して時系列を更新します: file=congestion_by_date.csv, preserved_cells=69888, refresh_date=-, new_dates=['2026-09-17']
+status_by_date.csvの列構成を検証しました: 固定属性=11列、日付=49列、施設=1456件
+横持ち時系列CSVを更新しました: 生成施設数=1455, status施設数=1456, 日数=49, 開始日=2026-07-29, 終了日=2026-09-17
 === Export current opened shelters for review ===
 Exported current opened shelters: 38 rows
 === Validate capacity and coordinate coverage ===
 {
-  "validated_at_jst": "2026-09-16T03:57:11+09:00",
+  "validated_at_jst": "2026-09-17T03:53:14+09:00",
   "status": "success",
   "master": {
     "row_count": 2126,
@@ -519,16 +522,16 @@ Exported current opened shelters: 38 rows
   "status_by_date": {
     "row_count": 1456,
     "fixed_column_count": 11,
-    "date_column_count": 48,
+    "date_column_count": 49,
     "first_date": "2026-07-29",
-    "last_date": "2026-09-16",
+    "last_date": "2026-09-17",
     "complete_unified_coordinate_count": 1456,
     "fixed_attribute_mismatch_count": 0,
     "invalid_status_value_count": 0
   }
 }
 {
-  "validated_at_jst": "2026-09-16T03:57:16+09:00",
+  "validated_at_jst": "2026-09-17T03:53:20+09:00",
   "status": "success",
   "coordinate_priority": [
     "gsi_reference",
@@ -552,13 +555,13 @@ Exported current opened shelters: 38 rows
     "manual_unique_ids_selected_count": 138,
     "manual_ids_not_selected_where_required_count": 0,
     "manual_ids_not_selected_where_required": [],
-    "manual_selection_occurrence_count": 4924
+    "manual_selection_occurrence_count": 4929
   },
-  "validated_file_count": 153,
+  "validated_file_count": 156,
   "total_coordinate_source_counts": {
-    "gsi_reference": 107710,
-    "kumamoto_portal": 861,
-    "manual_geocoding": 4924
+    "gsi_reference": 109023,
+    "kumamoto_portal": 876,
+    "manual_geocoding": 4929
   },
   "total_error_count": 0,
   "files": [
@@ -1280,6 +1283,21 @@ Exported current opened shelters: 38 rows
       "error_examples": []
     },
     {
+      "file": "data/daily/2026/09/2026-09-17.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1327,
+      "shelter_row_count": 1327,
+      "complete_coordinate_count": 1327,
+      "manual_selection_count": 14,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1306,
+        "kumamoto_portal": 7,
+        "manual_geocoding": 14
+      },
+      "error_examples": []
+    },
+    {
       "file": "data/changes/2026/07/2026-07-29.csv",
       "validation_mode": "detailed_provenance",
       "row_count": 1314,
@@ -1934,6 +1952,19 @@ Exported current opened shelters: 38 rows
       "manual_selection_count": 0,
       "error_count": 0,
       "coordinate_source_counts": {},
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/09/2026-09-17.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1,
+      "shelter_row_count": 1,
+      "complete_coordinate_count": 1,
+      "manual_selection_count": 0,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1
+      },
       "error_examples": []
     },
     {
@@ -2606,6 +2637,20 @@ Exported current opened shelters: 38 rows
       "error_examples": []
     },
     {
+      "file": "data/matching_issues/2026/09/2026-09-17.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 21,
+      "shelter_row_count": 21,
+      "complete_coordinate_count": 21,
+      "manual_selection_count": 14,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 7,
+        "manual_geocoding": 14
+      },
+      "error_examples": []
+    },
+    {
       "file": "data/latest.csv",
       "validation_mode": "detailed_provenance",
       "row_count": 1327,
@@ -2638,12 +2683,14 @@ Exported current opened shelters: 38 rows
     {
       "file": "data/latest_changes.csv",
       "validation_mode": "detailed_provenance",
-      "row_count": 0,
-      "shelter_row_count": 0,
-      "complete_coordinate_count": 0,
+      "row_count": 1,
+      "shelter_row_count": 1,
+      "complete_coordinate_count": 1,
       "manual_selection_count": 0,
       "error_count": 0,
-      "coordinate_source_counts": {},
+      "coordinate_source_counts": {
+        "gsi_reference": 1
+      },
       "error_examples": []
     },
     {
@@ -2677,15 +2724,15 @@ Exported current opened shelters: 38 rows
     {
       "file": "data/all_snapshots.csv",
       "validation_mode": "detailed_provenance",
-      "row_count": 40125,
-      "shelter_row_count": 40125,
-      "complete_coordinate_count": 40125,
-      "manual_selection_count": 753,
+      "row_count": 40108,
+      "shelter_row_count": 40108,
+      "complete_coordinate_count": 40108,
+      "manual_selection_count": 730,
       "error_count": 0,
       "coordinate_source_counts": {
-        "gsi_reference": 39175,
-        "kumamoto_portal": 197,
-        "manual_geocoding": 753
+        "gsi_reference": 39180,
+        "kumamoto_portal": 198,
+        "manual_geocoding": 730
       },
       "error_examples": []
     },
