@@ -1,5 +1,5 @@
 {
-  "validated_at_jst": "2026-09-21T03:14:26+09:00",
+  "validated_at_jst": "2026-09-22T04:59:43+09:00",
   "status": "success",
   "coordinate_priority": [
     "gsi_reference",
@@ -23,13 +23,13 @@
     "manual_unique_ids_selected_count": 138,
     "manual_ids_not_selected_where_required_count": 0,
     "manual_ids_not_selected_where_required": [],
-    "manual_selection_occurrence_count": 4948
+    "manual_selection_occurrence_count": 4956
   },
-  "validated_file_count": 168,
+  "validated_file_count": 171,
   "total_coordinate_source_counts": {
-    "gsi_reference": 114253,
-    "kumamoto_portal": 936,
-    "manual_geocoding": 4948
+    "gsi_reference": 115559,
+    "kumamoto_portal": 947,
+    "manual_geocoding": 4956
   },
   "total_error_count": 0,
   "files": [
@@ -826,6 +826,21 @@
       "error_examples": []
     },
     {
+      "file": "data/daily/2026/09/2026-09-22.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 1326,
+      "shelter_row_count": 1326,
+      "complete_coordinate_count": 1326,
+      "manual_selection_count": 14,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1306,
+        "kumamoto_portal": 6,
+        "manual_geocoding": 14
+      },
+      "error_examples": []
+    },
+    {
       "file": "data/changes/2026/07/2026-07-29.csv",
       "validation_mode": "detailed_provenance",
       "row_count": 1314,
@@ -1544,6 +1559,21 @@
       "error_count": 0,
       "coordinate_source_counts": {
         "gsi_reference": 2
+      },
+      "error_examples": []
+    },
+    {
+      "file": "data/changes/2026/09/2026-09-22.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 3,
+      "shelter_row_count": 3,
+      "complete_coordinate_count": 3,
+      "manual_selection_count": 1,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "gsi_reference": 1,
+        "kumamoto_portal": 1,
+        "manual_geocoding": 1
       },
       "error_examples": []
     },
@@ -2287,16 +2317,30 @@
       "error_examples": []
     },
     {
+      "file": "data/matching_issues/2026/09/2026-09-22.csv",
+      "validation_mode": "detailed_provenance",
+      "row_count": 20,
+      "shelter_row_count": 20,
+      "complete_coordinate_count": 20,
+      "manual_selection_count": 14,
+      "error_count": 0,
+      "coordinate_source_counts": {
+        "kumamoto_portal": 6,
+        "manual_geocoding": 14
+      },
+      "error_examples": []
+    },
+    {
       "file": "data/latest.csv",
       "validation_mode": "detailed_provenance",
-      "row_count": 1327,
-      "shelter_row_count": 1327,
-      "complete_coordinate_count": 1327,
+      "row_count": 1326,
+      "shelter_row_count": 1326,
+      "complete_coordinate_count": 1326,
       "manual_selection_count": 14,
       "error_count": 0,
       "coordinate_source_counts": {
         "gsi_reference": 1306,
-        "kumamoto_portal": 7,
+        "kumamoto_portal": 6,
         "manual_geocoding": 14
       },
       "error_examples": []
@@ -2304,14 +2348,14 @@
     {
       "file": "data/latest_open.csv",
       "validation_mode": "detailed_provenance",
-      "row_count": 36,
-      "shelter_row_count": 36,
-      "complete_coordinate_count": 36,
+      "row_count": 35,
+      "shelter_row_count": 35,
+      "complete_coordinate_count": 35,
       "manual_selection_count": 14,
       "error_count": 0,
       "coordinate_source_counts": {
         "gsi_reference": 15,
-        "kumamoto_portal": 7,
+        "kumamoto_portal": 6,
         "manual_geocoding": 14
       },
       "error_examples": []
@@ -2319,26 +2363,28 @@
     {
       "file": "data/latest_changes.csv",
       "validation_mode": "detailed_provenance",
-      "row_count": 2,
-      "shelter_row_count": 2,
-      "complete_coordinate_count": 2,
-      "manual_selection_count": 0,
+      "row_count": 3,
+      "shelter_row_count": 3,
+      "complete_coordinate_count": 3,
+      "manual_selection_count": 1,
       "error_count": 0,
       "coordinate_source_counts": {
-        "gsi_reference": 2
+        "gsi_reference": 1,
+        "kumamoto_portal": 1,
+        "manual_geocoding": 1
       },
       "error_examples": []
     },
     {
       "file": "data/latest_matching_issues.csv",
       "validation_mode": "detailed_provenance",
-      "row_count": 21,
-      "shelter_row_count": 21,
-      "complete_coordinate_count": 21,
+      "row_count": 20,
+      "shelter_row_count": 20,
+      "complete_coordinate_count": 20,
       "manual_selection_count": 14,
       "error_count": 0,
       "coordinate_source_counts": {
-        "kumamoto_portal": 7,
+        "kumamoto_portal": 6,
         "manual_geocoding": 14
       },
       "error_examples": []
@@ -2346,28 +2392,29 @@
     {
       "file": "data/latest_capacity_matching_issues.csv",
       "validation_mode": "detailed_provenance",
-      "row_count": 165,
-      "shelter_row_count": 165,
-      "complete_coordinate_count": 165,
-      "manual_selection_count": 0,
+      "row_count": 166,
+      "shelter_row_count": 166,
+      "complete_coordinate_count": 166,
+      "manual_selection_count": 1,
       "error_count": 0,
       "coordinate_source_counts": {
-        "gsi_reference": 165
+        "gsi_reference": 165,
+        "manual_geocoding": 1
       },
       "error_examples": []
     },
     {
       "file": "data/all_snapshots.csv",
       "validation_mode": "detailed_provenance",
-      "row_count": 40020,
-      "shelter_row_count": 40020,
-      "complete_coordinate_count": 40020,
-      "manual_selection_count": 638,
+      "row_count": 39997,
+      "shelter_row_count": 39997,
+      "complete_coordinate_count": 39997,
+      "manual_selection_count": 615,
       "error_count": 0,
       "coordinate_source_counts": {
         "gsi_reference": 39180,
         "kumamoto_portal": 202,
-        "manual_geocoding": 638
+        "manual_geocoding": 615
       },
       "error_examples": []
     },
