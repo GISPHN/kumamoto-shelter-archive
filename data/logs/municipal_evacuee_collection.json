@@ -1,11 +1,11 @@
 {
-  "retrieved_at_jst": "2026-09-20T22:39:37+09:00",
+  "retrieved_at_jst": "2026-09-21T10:03:11+09:00",
   "status": "success",
   "source_changed": true,
   "changed_sources": [
     {
       "municipality": "八代市",
-      "source_observed_at_jst": "2026-09-20T12:00+09:00",
+      "source_observed_at_jst": "2026-09-21T06:00+09:00",
       "record_count": 13,
       "matched_count": 13,
       "issue_count": 0,
@@ -15,8 +15,8 @@
       "normalized_sha256": "def5ac977994713c3fb0204466a71f747cc94500d867fd94c030280bd73b152d"
     }
   ],
-  "observation_row_count": 2977,
-  "matched_observation_row_count": 2977,
+  "observation_row_count": 2990,
+  "matched_observation_row_count": 2990,
   "unmatched_or_ambiguous_row_count": 0,
   "wide_row_count": 1457,
   "wide_date_columns": [
@@ -73,7 +73,8 @@
     "2026-09-17",
     "2026-09-18",
     "2026-09-19",
-    "2026-09-20"
+    "2026-09-20",
+    "2026-09-21"
   ],
   "wide_fixed_columns": [
     "shelter_id",
