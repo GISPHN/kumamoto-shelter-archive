@@ -9,7 +9,12 @@ from bs4 import BeautifulSoup
 
 _NUMBER_RE = re.compile(r"(?<!\d)(\d{1,3}(?:,\d{3})*|\d+)(?!\d)")
 _OBSERVED_RE = re.compile(
-    r"\d+月\s*\d+日(?:\s*\([^)]*\))?\s*(?:午前|午後)?\s*\d+時\s*\d+分時点"
+    # The CMS may render weekdays as a circled compatibility character such
+    # as ㈫. NFKC normalization expands it to (火), producing nested
+    # parentheses in strings such as 9月22日((火)曜日)22時00分時点.
+    # Match a short, non-numeric weekday decoration instead of assuming one
+    # flat pair of parentheses.
+    r"\d+月\s*\d+日(?:\s*[^\d]{0,24}?)?\s*(?:午前|午後)?\s*\d+時\s*\d+分時点"
 )
 
 
@@ -32,15 +37,23 @@ def _cell_integer(text: str) -> int:
 
 def _nearest_observation_text(table, clean_text) -> str:
     """Find the observation phrase immediately preceding the selected table."""
+    context = ""
     for node in table.find_all_previous(string=True, limit=80):
         text = clean_text(node)
         if not text:
             continue
-        if "避難者数" not in text or "時点" not in text:
+
+        # Inline CMS markup can split one visible sentence across several
+        # text nodes (for example 9月22日(, ㈫曜日, and )22時00分時点).
+        # Reassemble a bounded amount of preceding text in document order
+        # before applying the observation-time pattern.
+        context = clean_text(f"{text} {context}")[-1200:]
+        if "避難者数" not in context or "時点" not in context:
             continue
-        match = _OBSERVED_RE.search(text)
-        if match:
-            return match.group(0)
+        matches = list(_OBSERVED_RE.finditer(context))
+        if matches:
+            # The last match is the one nearest the selected table.
+            return matches[-1].group(0)
     raise RuntimeError(
         "宇城市の避難者数表の直前から観測時刻を検出できませんでした。"
     )
