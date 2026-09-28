@@ -1,10 +1,22 @@
 {
-  "retrieved_at_jst": "2026-09-28T10:48:49+09:00",
+  "retrieved_at_jst": "2026-09-29T02:46:30+09:00",
   "status": "success",
-  "source_changed": false,
-  "changed_sources": [],
-  "observation_row_count": 3225,
-  "matched_observation_row_count": 3225,
+  "source_changed": true,
+  "changed_sources": [
+    {
+      "municipality": "八代市",
+      "source_observed_at_jst": "2026-09-28T12:00+09:00",
+      "record_count": 13,
+      "matched_count": 13,
+      "issue_count": 0,
+      "published_total": 735,
+      "calculated_total": 735,
+      "revision": 1,
+      "normalized_sha256": "caffb40a5b3fd508ffd97308c0241d5175e862145a72e66002a7dc42ae7d89ec"
+    }
+  ],
+  "observation_row_count": 3238,
+  "matched_observation_row_count": 3238,
   "unmatched_or_ambiguous_row_count": 0,
   "wide_row_count": 1457,
   "wide_date_columns": [
