@@ -1,15 +1,14 @@
 warning: The `fitz` API is deprecated and will be removed in future. Use `import pymupdf` instead.
 Consider using the pymupdf_layout package for a greatly improved page layout analysis.
-INFO Uki source stability check: attempt=1/10: valid candidate waiting for second identical fetch observed=2026-09-29T22:00+09:00 hash=7ce0b7662dce
-No source change: 宇城市 observed=2026-09-29T22:00+09:00 hash=7ce0b7662dce
+INFO Uki source stability check: attempt=1/10: valid candidate waiting for second identical fetch observed=2026-09-30T22:00+09:00 hash=cf95be5f4097
 {
-  "retrieved_at_jst": "2026-10-01T01:02:25+09:00",
+  "retrieved_at_jst": "2026-10-01T11:06:29+09:00",
   "status": "success",
   "source_changed": true,
   "changed_sources": [
     {
       "municipality": "八代市",
-      "source_observed_at_jst": "2026-09-30T18:00+09:00",
+      "source_observed_at_jst": "2026-10-01T06:00+09:00",
       "record_count": 13,
       "matched_count": 13,
       "issue_count": 0,
@@ -17,10 +16,21 @@ No source change: 宇城市 observed=2026-09-29T22:00+09:00 hash=7ce0b7662dce
       "calculated_total": 723,
       "revision": 1,
       "normalized_sha256": "48c564f8d8918c47e7adedbf8e1effea9e321717d0dce64bd479b5a710a33682"
+    },
+    {
+      "municipality": "宇城市",
+      "source_observed_at_jst": "2026-09-30T22:00+09:00",
+      "record_count": 5,
+      "matched_count": 5,
+      "issue_count": 0,
+      "published_total": 328,
+      "calculated_total": 328,
+      "revision": 1,
+      "normalized_sha256": "cf95be5f4097ec08929704c34915be89fba479cb4e34de09c4a67144e8eb7ca5"
     }
   ],
-  "observation_row_count": 3300,
-  "matched_observation_row_count": 3300,
+  "observation_row_count": 3318,
+  "matched_observation_row_count": 3318,
   "unmatched_or_ambiguous_row_count": 0,
   "wide_row_count": 1457,
   "wide_date_columns": [
@@ -87,7 +97,8 @@ No source change: 宇城市 observed=2026-09-29T22:00+09:00 hash=7ce0b7662dce
     "2026-09-27",
     "2026-09-28",
     "2026-09-29",
-    "2026-09-30"
+    "2026-09-30",
+    "2026-10-01"
   ],
   "wide_fixed_columns": [
     "shelter_id",
