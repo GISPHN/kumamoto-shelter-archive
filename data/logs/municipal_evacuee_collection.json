@@ -1,10 +1,22 @@
 {
-  "retrieved_at_jst": "2026-10-10T11:18:13+09:00",
+  "retrieved_at_jst": "2026-10-11T00:31:34+09:00",
   "status": "success",
-  "source_changed": false,
-  "changed_sources": [],
-  "observation_row_count": 3441,
-  "matched_observation_row_count": 3441,
+  "source_changed": true,
+  "changed_sources": [
+    {
+      "municipality": "宇城市",
+      "source_observed_at_jst": "2026-10-09T22:00+09:00",
+      "record_count": 5,
+      "matched_count": 5,
+      "issue_count": 0,
+      "published_total": 290,
+      "calculated_total": 290,
+      "revision": 1,
+      "normalized_sha256": "a7277f7c6039a8cfc5cbd6d5234d052a0a68dd8d96dd4f68cb43adf4752f5a42"
+    }
+  ],
+  "observation_row_count": 3446,
+  "matched_observation_row_count": 3446,
   "unmatched_or_ambiguous_row_count": 0,
   "wide_row_count": 1457,
   "wide_date_columns": [
