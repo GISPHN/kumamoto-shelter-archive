@@ -154,7 +154,7 @@ class CapacityMatcher:
         self.rows: list[dict[str, str]] = []
         self.by_portal_id: dict[str, dict[str, str]] = {}
         self.by_key: dict[str, list[dict[str, str]]] = {}
-        self.by_name: dict[str, list[dict[str, str]]] = {}
+        self.by_name: dict[str, list[dict[str, str]]] = {}\n        self.by_municipality_address: dict[tuple[str, str], list[dict[str, str]]] = {}
 
         if not path.exists() or path.stat().st_size == 0:
             return
@@ -196,7 +196,7 @@ class CapacityMatcher:
                 if row["portal_shelter_id"]:
                     self.by_portal_id[row["portal_shelter_id"]] = row
                 self.by_key.setdefault(row["_match_key"], []).append(row)
-                self.by_name.setdefault(row["_name_key"], []).append(row)
+                self.by_name.setdefault(row["_name_key"], []).append(row)\n                self.by_municipality_address.setdefault(\n                    (row["_municipality_key"], row["_address_key"]), []\n                ).append(row)
 
     @property
     def available(self) -> bool:
@@ -397,6 +397,22 @@ class CapacityMatcher:
             return CapacityMatch(
                 "ambiguous", "exact_name_multiple_capacity_rows", 0.0, None
             )
+
+        # A portal name can legitimately differ from the GSI reference name
+        # (for example, 会議室 vs 休憩室). When the municipality and normalized
+        # address identify exactly one capacity record, use that record without
+        # guessing from a fuzzy name match.
+        address_matches = self.by_municipality_address.get(
+            (municipality_key, address_key), []
+        )
+        if len(address_matches) == 1 and address_key:
+            return CapacityMatch(
+                "matched", "exact_municipality_address", 0.96, address_matches[0]
+            )
+        if len(address_matches) > 1:
+            spatial = self._accept_spatial(data_row, address_matches)
+            if spatial is not None:
+                return spatial
 
         municipality_pool = [
             row
