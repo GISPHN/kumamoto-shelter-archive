@@ -154,7 +154,8 @@ class CapacityMatcher:
         self.rows: list[dict[str, str]] = []
         self.by_portal_id: dict[str, dict[str, str]] = {}
         self.by_key: dict[str, list[dict[str, str]]] = {}
-        self.by_name: dict[str, list[dict[str, str]]] = {}\n        self.by_municipality_address: dict[tuple[str, str], list[dict[str, str]]] = {}
+        self.by_name: dict[str, list[dict[str, str]]] = {}
+        self.by_municipality_address: dict[tuple[str, str], list[dict[str, str]]] = {}
 
         if not path.exists() or path.stat().st_size == 0:
             return
@@ -196,7 +197,10 @@ class CapacityMatcher:
                 if row["portal_shelter_id"]:
                     self.by_portal_id[row["portal_shelter_id"]] = row
                 self.by_key.setdefault(row["_match_key"], []).append(row)
-                self.by_name.setdefault(row["_name_key"], []).append(row)\n                self.by_municipality_address.setdefault(\n                    (row["_municipality_key"], row["_address_key"]), []\n                ).append(row)
+                self.by_name.setdefault(row["_name_key"], []).append(row)
+                self.by_municipality_address.setdefault(
+                    (row["_municipality_key"], row["_address_key"]), []
+                ).append(row)
 
     @property
     def available(self) -> bool:
