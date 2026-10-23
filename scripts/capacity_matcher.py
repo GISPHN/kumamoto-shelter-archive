@@ -345,10 +345,7 @@ class CapacityMatcher:
             )
 
         portal_id = clean_text(data_row.get("portal_shelter_id", ""))
-        if portal_id and portal_id in self.by_portal_id:
-            return CapacityMatch(
-                "matched", "portal_shelter_id", 1.0, self.by_portal_id[portal_id]
-            )
+        portal_row = self.by_portal_id.get(portal_id) if portal_id else None
 
         municipality = clean_text(data_row.get("municipality", ""))
         name = data_row.get("shelter_name", "")
@@ -380,6 +377,15 @@ class CapacityMatcher:
         ]
         if len(same_municipality) == 1:
             row = same_municipality[0]
+            # A persisted portal ID is authoritative only when it agrees with
+            # the current municipality/name candidate. This prevents an old ID
+            # from overriding a newer exact-name record after source changes.
+            if portal_row and portal_row.get("portal_shelter_id") == row.get(
+                "portal_shelter_id"
+            ):
+                return CapacityMatch(
+                    "matched", "portal_shelter_id", 1.0, row
+                )
             if not address_key or not row["_address_key"]:
                 return CapacityMatch(
                     "matched", "exact_name_municipality", 0.97, row
@@ -394,7 +400,23 @@ class CapacityMatcher:
                     address_score,
                     row,
                 )
+            # Exact facility name within a municipality is stronger than an
+            # address-only match when public sources use different address
+            # versions or formatting.
+            return CapacityMatch(
+                "matched",
+                "exact_name_municipality_address_different",
+                0.93,
+                row,
+            )
         if len(same_municipality) > 1:
+            if portal_row and any(
+                row.get("portal_shelter_id") == portal_id
+                for row in same_municipality
+            ):
+                return CapacityMatch(
+                    "matched", "portal_shelter_id", 1.0, portal_row
+                )
             spatial = self._accept_spatial(data_row, same_municipality)
             if spatial is not None:
                 return spatial
@@ -403,9 +425,10 @@ class CapacityMatcher:
             )
 
         # A portal name can legitimately differ from the GSI reference name
-        # (for example, 会議室 vs 休憩室). When the municipality and normalized
-        # address identify exactly one capacity record, use that record without
-        # guessing from a fuzzy name match.
+        # (for example, 会議室 vs 休憩室). When no exact-name candidate exists,
+        # a unique municipality/address match is a safe fallback. It must stay
+        # after exact-name matching so a shared or stale address cannot override
+        # a facility's unique official name.
         address_matches = self.by_municipality_address.get(
             (municipality_key, address_key), []
         )
