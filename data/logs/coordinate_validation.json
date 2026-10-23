@@ -1,5 +1,5 @@
 {
-  "validated_at_jst": "2026-10-24T07:20:24+09:00",
+  "validated_at_jst": "2026-10-24T07:22:21+09:00",
   "status": "success",
   "coordinate_priority": [
     "gsi_reference",
@@ -27,7 +27,7 @@
   },
   "validated_file_count": 267,
   "total_coordinate_source_counts": {
-    "gsi_reference": 157300,
+    "gsi_reference": 157301,
     "kumamoto_portal": 1171,
     "manual_geocoding": 5273
   },
@@ -3715,13 +3715,13 @@
     {
       "file": "data/latest_capacity_matching_issues.csv",
       "validation_mode": "detailed_provenance",
-      "row_count": 104,
-      "shelter_row_count": 104,
-      "complete_coordinate_count": 104,
+      "row_count": 105,
+      "shelter_row_count": 105,
+      "complete_coordinate_count": 105,
       "manual_selection_count": 0,
       "error_count": 0,
       "coordinate_source_counts": {
-        "gsi_reference": 104
+        "gsi_reference": 105
       },
       "error_examples": []
     },
