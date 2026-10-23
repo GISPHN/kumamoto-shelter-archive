@@ -292,8 +292,12 @@ def merge_existing_timeseries(
         # Capacity fields describe the current verified master rather than a
         # historical observation. Refresh them whenever the current generated
         # row is matched, including legitimate changes to an existing capacity.
+        capacity_match_status = normalize(
+            generated.get("capacity_match_status")
+            or generated.get("_capacity_match_status")
+        ) if generated else ""
         capacity_improved = bool(generated) and (
-            normalize(generated.get("capacity_match_status")) == "matched"
+            capacity_match_status == "matched"
         )
         manual_improved = bool(generated) and (
             normalize(generated.get("manual_geocode_status")) == "matched"
@@ -505,6 +509,12 @@ def main() -> int:
             column: normalize(metadata.get(column))
             for column in STATUS_IDENTITY_COLUMNS
         }
+        # Keep the match state as an internal-only marker while merging the
+        # compact status CSV. It is omitted by write_csv but lets the merger
+        # refresh portal_capacity_persons consistently with the detail CSV.
+        status_base["_capacity_match_status"] = normalize(
+            metadata.get("capacity_match_status")
+        )
         detail_base = {
             column: normalize(metadata.get(column))
             for column in DETAIL_IDENTITY_COLUMNS
