@@ -227,3 +227,39 @@ def test_clears_stale_capacity_when_verified_master_is_blank(tmp_path):
     assert rows[0]["portal_capacity_persons"] == ""
     assert rows[0]["2026-08-30"] == "1"
     assert rows[0]["2026-08-31"] == "1"
+
+
+def test_refreshes_compact_status_capacity_with_internal_match_marker(tmp_path):
+    path = tmp_path / "status_by_date.csv"
+    write_existing(
+        path,
+        {
+            "shelter_id": "web:test",
+            "portal_shelter_id": "portal-id",
+            "portal_capacity_persons": "410",
+            "capacity_match_status": "",
+            "capacity_match_method": "",
+            "coordinate_status": "",
+            "2026-08-30": "開設（平常）",
+        },
+    )
+    generated = [{
+        "shelter_id": "web:test",
+        "portal_shelter_id": "portal-id",
+        "portal_capacity_persons": "330",
+        "_capacity_match_status": "matched",
+        "2026-08-30": "未開設",
+        "2026-08-31": "開設（平常）",
+    }]
+
+    rows, _ = merge_existing_timeseries(
+        path,
+        generated,
+        FIXED_COLUMNS,
+        ["2026-08-30", "2026-08-31"],
+        "未開設",
+    )
+
+    assert rows[0]["portal_capacity_persons"] == "330"
+    assert rows[0]["2026-08-30"] == "開設（平常）"
+    assert rows[0]["2026-08-31"] == "開設（平常）"
