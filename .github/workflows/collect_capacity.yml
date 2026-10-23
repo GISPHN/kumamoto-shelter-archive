@@ -51,6 +51,7 @@ jobs:
         with:
           python-version: "3.12"
 
+      # Re-run enrichment after verified matcher/portal-ID repairs.
       - name: Validate scripts
         run: |
           python -m py_compile \
