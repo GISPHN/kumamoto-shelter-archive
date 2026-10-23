@@ -52,6 +52,7 @@ jobs:
           python-version: "3.12"
 
       # Re-run enrichment after verified matcher/portal-ID repairs.
+      # Output writers share one queue with rebuild and validation workflows.
       - name: Validate scripts
         run: |
           python -m py_compile \
