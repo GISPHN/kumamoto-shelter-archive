@@ -14,8 +14,8 @@ permissions:
   contents: write
 
 concurrency:
-  group: kumamoto-shelter-time-series-rebuild
-  cancel-in-progress: true
+  group: kumamoto-shelter-capacity-data-write
+  cancel-in-progress: false
 
 jobs:
   rebuild:
