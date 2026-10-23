@@ -53,6 +53,7 @@ jobs:
 
       # Re-run enrichment after verified matcher/portal-ID repairs.
       # Output writers share one queue with rebuild and validation workflows.
+      # Final master refresh after the serialized archive repair.
       - name: Validate scripts
         run: |
           python -m py_compile \
