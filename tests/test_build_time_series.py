@@ -188,3 +188,42 @@ def test_refreshes_corrected_portal_id_without_changing_history(tmp_path):
     assert rows[0]["portal_capacity_persons"] == "50"
     assert rows[0]["2026-08-30"] == "1"
     assert rows[0]["2026-08-31"] == "1"
+
+
+def test_clears_stale_capacity_when_verified_master_is_blank(tmp_path):
+    path = tmp_path / "open_status_by_date.csv"
+    write_existing(
+        path,
+        {
+            "shelter_id": "web:test",
+            "portal_shelter_id": "portal-id",
+            "portal_capacity_persons": "100",
+            "capacity_match_status": "matched",
+            "capacity_match_method": "portal_shelter_id",
+            "coordinate_status": "complete",
+            "2026-08-30": "1",
+        },
+    )
+    generated = [{
+        "shelter_id": "web:test",
+        "portal_shelter_id": "portal-id",
+        "portal_capacity_persons": "",
+        "portal_capacity_raw": "",
+        "capacity_match_status": "matched",
+        "capacity_match_method": "portal_shelter_id",
+        "coordinate_status": "complete",
+        "2026-08-30": "0",
+        "2026-08-31": "1",
+    }]
+
+    rows, _ = merge_existing_timeseries(
+        path,
+        generated,
+        FIXED_COLUMNS,
+        ["2026-08-30", "2026-08-31"],
+        "0",
+    )
+
+    assert rows[0]["portal_capacity_persons"] == ""
+    assert rows[0]["2026-08-30"] == "1"
+    assert rows[0]["2026-08-31"] == "1"

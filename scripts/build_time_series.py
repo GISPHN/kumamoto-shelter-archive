@@ -315,14 +315,17 @@ def merge_existing_timeseries(
             ) or (
                 coordinate_improved and column in COORDINATE_REFRESH_COLUMNS
             )
-            # Stable identity fields keep their existing values. Derived
-            # enrichment fields may advance from unmatched/missing to a verified
-            # matched/complete value, without touching historical date cells.
-            merged[column] = (
-                generated_value
-                if should_refresh and generated_value
-                else old_value or generated_value
-            )
+            # Capacity metadata describes the current verified master. Apply
+            # the generated value even when it is empty: an official blank
+            # capacity must clear a stale historical value instead of masking a
+            # source change. Other enrichment fields remain monotonic and only
+            # advance when a non-empty verified value is available.
+            if capacity_improved and column in CAPACITY_REFRESH_COLUMNS:
+                merged[column] = generated_value
+            elif should_refresh and generated_value:
+                merged[column] = generated_value
+            else:
+                merged[column] = old_value or generated_value
 
         for normalized_date, original_column in existing_date_pairs:
             old_value = normalize(old_row.get(original_column))
