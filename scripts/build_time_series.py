@@ -89,6 +89,9 @@ DETAIL_IDENTITY_COLUMNS = [
 # monotonic improvements so an already matched/complete row is never degraded by
 # a temporary source or matching failure.
 CAPACITY_REFRESH_COLUMNS = {
+    # A corrected matcher result may repair a stale facility ID as well as
+    # the derived capacity fields. Historical date cells remain immutable.
+    "portal_shelter_id",
     "portal_capacity_persons",
     "portal_capacity_raw",
     "capacity_source",
