@@ -1,5 +1,5 @@
 {
-  "retrieved_at_jst": "2026-10-23T10:42:48+09:00",
+  "retrieved_at_jst": "2026-10-24T10:33:39+09:00",
   "status": "success",
   "source_changed": false,
   "changed_sources": [],
@@ -94,7 +94,8 @@
     "2026-10-20",
     "2026-10-21",
     "2026-10-22",
-    "2026-10-23"
+    "2026-10-23",
+    "2026-10-24"
   ],
   "wide_fixed_columns": [
     "shelter_id",
