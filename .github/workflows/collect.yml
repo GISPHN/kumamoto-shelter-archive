@@ -1,4 +1,5 @@
 name: Collect Kumamoto shelter data
+# Portal map coordinates are captured from shelter links.
 
 on:
   push:
