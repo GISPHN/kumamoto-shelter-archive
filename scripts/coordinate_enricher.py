@@ -37,6 +37,8 @@ MANUAL_REQUIRED_COLUMNS = {
 }
 
 COORDINATE_OUTPUT_COLUMNS = [
+    "portal_latitude",
+    "portal_longitude",
     "manual_latitude",
     "manual_longitude",
     "manual_geocode_status",
@@ -245,6 +247,8 @@ class CoordinateEnricher:
             method = "portal_latitude_longitude"
 
         return {
+            "portal_latitude": clean_text(data_row.get("portal_latitude")),
+            "portal_longitude": clean_text(data_row.get("portal_longitude")),
             "manual_latitude": manual_row.get("manual_latitude", ""),
             "manual_longitude": manual_row.get("manual_longitude", ""),
             "manual_geocode_status": manual.status,
