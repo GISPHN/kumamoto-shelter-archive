@@ -1,5 +1,5 @@
 {
-  "validated_at_jst": "2026-10-26T11:04:36+09:00",
+  "validated_at_jst": "2026-10-26T11:13:10+09:00",
   "status": "success",
   "master": {
     "row_count": 2131,
@@ -16,26 +16,27 @@
     "metadata_record_count": 2131
   },
   "latest": {
-    "row_count": 1327,
+    "row_count": 1317,
     "capacity_match_status_counts": {
       "ambiguous": 8,
-      "matched": 1222,
+      "matched": 1212,
       "unmatched": 97
     },
     "capacity_match_method_counts": {
-      "coordinate_name_address_75m": 9,
+      "coordinate_name_address_75m": 10,
       "coordinate_near_tie": 8,
-      "coordinate_with_name_20m": 9,
+      "coordinate_with_name_20m": 10,
       "exact_municipality_address": 109,
-      "exact_municipality_name_address": 903,
+      "exact_municipality_name_address": 892,
+      "exact_name_municipality_address_different": 27,
+      "exact_name_municipality_address_similar": 164,
       "fuzzy_below_threshold": 6,
-      "no_candidate": 91,
-      "portal_shelter_id": 192
+      "no_candidate": 91
     },
-    "matched_row_count": 1222,
-    "matched_with_positive_capacity_count": 1003,
-    "matched_with_source_coordinates_count": 1222,
-    "complete_unified_coordinate_count": 1327,
+    "matched_row_count": 1212,
+    "matched_with_positive_capacity_count": 994,
+    "matched_with_source_coordinates_count": 1212,
+    "complete_unified_coordinate_count": 1317,
     "unknown_master_id_count": 0,
     "capacity_mismatch_count": 0
   },
@@ -47,14 +48,16 @@
       "unmatched": 94
     },
     "capacity_match_method_counts": {
-      "coordinate_name_address_75m": 10,
+      "coordinate_name_address_75m": 11,
       "coordinate_near_tie": 8,
-      "coordinate_with_name_20m": 14,
+      "coordinate_with_name_20m": 15,
       "exact_municipality_address": 111,
-      "exact_municipality_name_address": 1031,
+      "exact_municipality_name_address": 1030,
+      "exact_name_municipality_address_different": 27,
+      "exact_name_municipality_address_similar": 164,
       "fuzzy_below_threshold": 6,
       "no_candidate": 88,
-      "portal_shelter_id": 193
+      "portal_shelter_id": 1
     },
     "matched_row_count": 1359,
     "matched_with_positive_capacity_count": 1115,
