@@ -69,6 +69,8 @@ CSV_COLUMNS = [
     "source_url",
     "record_hash",
     "raw_row_json",
+    "portal_latitude",
+    "portal_longitude",
 ] + REFERENCE_OUTPUT_COLUMNS
 
 CHANGE_COLUMNS = CSV_COLUMNS + ["change_details"]
@@ -130,6 +132,10 @@ def normalize_header(value: Any) -> str:
 
 def canonical_key(header: str) -> str | None:
     normalized = normalize_header(header)
+    if normalized == "portallatitude":
+        return "portal_latitude"
+    if normalized == "portallongitude":
+        return "portal_longitude"
     for key, aliases in HEADER_ALIASES.items():
         for alias in aliases:
             alias_normalized = normalize_header(alias)
@@ -251,6 +257,8 @@ def row_to_normalized(
         "source_url": source_url,
         "record_hash": "",
         "raw_row_json": json.dumps(raw_row, ensure_ascii=False, sort_keys=True),
+        "portal_latitude": canonical.get("portal_latitude", ""),
+        "portal_longitude": canonical.get("portal_longitude", ""),
     }
     normalized["record_hash"] = record_hash(normalized)
     return normalized
@@ -536,6 +544,7 @@ async def collect_rendered_page(url: str, debug_dir: Path, timeout_ms: int) -> C
                   const headers = Array.from(headerRow.children)
                     .filter(cell => cell.tagName === 'TH')
                     .map(cell => norm(cell.textContent));
+                  headers.push('portal_latitude', 'portal_longitude');
                   const headerContainer = headerRow.closest('.dgrid-header');
                   const root =
                     (headerContainer && headerContainer.parentElement) ||
@@ -566,8 +575,21 @@ async def collect_rendered_page(url: str, debug_dir: Path, timeout_ms: int) -> C
                         .filter(cell => cell.tagName === 'TD')
                         .map(cell => norm(cell.textContent));
                       if (headers.length < 5 || cells.length < headers.length) continue;
-                      const values = cells.slice(0, headers.length);
+                      const values = cells.slice(0, headers.length - 2);
                       if (!values[1] || values[1] === '避難所名') continue;
+                      const mapLink = tr.querySelector('a[href*="ll="]');
+                      const href = mapLink ? mapLink.getAttribute('href') || '' : '';
+                      let portalLatitude = '';
+                      let portalLongitude = '';
+                      const coordinateMatch = href.match(/[?&]ll=([^&]+)/);
+                      if (coordinateMatch) {
+                        const coordinateParts = decodeURIComponent(coordinateMatch[1]).split(',');
+                        if (coordinateParts.length >= 2) {
+                          portalLatitude = coordinateParts[0].trim();
+                          portalLongitude = coordinateParts[1].trim();
+                        }
+                      }
+                      values.push(portalLatitude, portalLongitude);
                       // The source table is the opened shelter list. Reject rows
                       // that do not explicitly report an opened state.
                       if (!values[2].includes('開設') || values[2].includes('未開設')) continue;
