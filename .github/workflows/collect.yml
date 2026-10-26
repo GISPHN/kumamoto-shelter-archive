@@ -243,7 +243,7 @@ jobs:
           set -euo pipefail
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data
+          git add -A
           if git diff --cached --quiet; then
             echo "No data or diagnostic changes to commit."
             exit 0
@@ -253,7 +253,7 @@ jobs:
           else
             git commit -m "Record failed shelter collection diagnostics"
           fi
-          git pull --rebase origin main
+          git pull --rebase --autostash origin main
           git push
 
       - name: Upload diagnostics on failure
