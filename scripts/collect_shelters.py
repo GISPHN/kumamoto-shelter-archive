@@ -574,7 +574,7 @@ async def collect_rendered_page(url: str, debug_dir: Path, timeout_ms: int) -> C
                       const cells = Array.from(tr.children)
                         .filter(cell => cell.tagName === 'TD')
                         .map(cell => norm(cell.textContent));
-                      if (headers.length < 5 || cells.length < headers.length) continue;
+                      if (headers.length < 5 || cells.length < headers.length - 2) continue;
                       const values = cells.slice(0, headers.length - 2);
                       if (!values[1] || values[1] === '避難所名') continue;
                       const mapLink = tr.querySelector('a[href*="ll="]');
