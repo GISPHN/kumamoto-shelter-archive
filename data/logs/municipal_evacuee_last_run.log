@@ -4,7 +4,7 @@ INFO Uki source stability check: attempt=1/10: valid candidate waiting for secon
 No source change: 八代市 observed=2026-11-06T06:00+09:00 hash=c73dcba255dd
 No source change: 宇城市 observed=2026-11-05T22:00+09:00 hash=ef92e32a42df
 {
-  "retrieved_at_jst": "2026-11-07T11:46:18+09:00",
+  "retrieved_at_jst": "2026-11-08T11:24:18+09:00",
   "status": "success",
   "source_changed": false,
   "changed_sources": [],
@@ -114,7 +114,8 @@ No source change: 宇城市 observed=2026-11-05T22:00+09:00 hash=ef92e32a42df
     "2026-11-04",
     "2026-11-05",
     "2026-11-06",
-    "2026-11-07"
+    "2026-11-07",
+    "2026-11-08"
   ],
   "wide_fixed_columns": [
     "shelter_id",
