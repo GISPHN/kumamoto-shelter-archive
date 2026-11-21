@@ -1,10 +1,22 @@
 {
-  "retrieved_at_jst": "2026-11-20T13:06:27+09:00",
+  "retrieved_at_jst": "2026-11-21T12:56:43+09:00",
   "status": "success",
-  "source_changed": false,
-  "changed_sources": [],
-  "observation_row_count": 3861,
-  "matched_observation_row_count": 3861,
+  "source_changed": true,
+  "changed_sources": [
+    {
+      "municipality": "宇城市",
+      "source_observed_at_jst": "2026-11-20T22:00+09:00",
+      "record_count": 2,
+      "matched_count": 2,
+      "issue_count": 0,
+      "published_total": 138,
+      "calculated_total": 138,
+      "revision": 1,
+      "normalized_sha256": "47d14e98b73f08198a1c3d126a561fc47d935a9c6cd1b69ea66a4f2c5d55bb78"
+    }
+  ],
+  "observation_row_count": 3863,
+  "matched_observation_row_count": 3863,
   "unmatched_or_ambiguous_row_count": 0,
   "wide_row_count": 1466,
   "wide_date_columns": [
@@ -122,7 +134,8 @@
     "2026-11-17",
     "2026-11-18",
     "2026-11-19",
-    "2026-11-20"
+    "2026-11-20",
+    "2026-11-21"
   ],
   "wide_fixed_columns": [
     "shelter_id",
